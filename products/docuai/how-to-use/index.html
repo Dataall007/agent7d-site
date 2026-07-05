@@ -1,0 +1,327 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DocuAI — How to Use</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    color: #333; background: #fff; line-height: 1.6;
+    font-size: 14px;
+  }
+  .container { max-width: 680px; margin: 0 auto; padding: 32px 20px 60px; }
+
+  /* Header */
+  .header { text-align: center; margin-bottom: 40px; }
+  .logo { font-size: 26px; font-weight: 700; color: #0085ff; margin-bottom: 6px; }
+  .logo span { color: #111; }
+  .tagline { font-size: 14px; color: #666; }
+
+  /* Section */
+  .section { margin-bottom: 40px; }
+  .section-label { font-size: 10px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: #0085ff; margin-bottom: 10px; }
+  h2 { font-size: 18px; font-weight: 600; color: #111; margin-bottom: 16px; }
+
+  /* Steps */
+  .steps { display: flex; flex-direction: column; gap: 0; }
+  .step { display: grid; grid-template-columns: 36px 1fr; gap: 14px; padding: 14px 0; border-bottom: 1px solid #f0f0f0; }
+  .step:last-child { border-bottom: none; }
+  .step-num {
+    width: 32px; height: 32px; border-radius: 50%;
+    background: #0085ff; color: #fff;
+    font-size: 13px; font-weight: 600;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; margin-top: 2px;
+  }
+  .step-title { font-size: 14px; font-weight: 600; color: #111; margin-bottom: 4px; }
+  .step-body { font-size: 13px; color: #555; line-height: 1.6; }
+  .step-tip { font-size: 12px; color: #0085ff; margin-top: 6px; }
+
+  /* Templates grid */
+  .templates { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 8px; }
+  .template-card {
+    border: 1px solid #e8e8e8; border-radius: 10px;
+    padding: 14px; background: #fafafa;
+  }
+  .template-icon { font-size: 22px; margin-bottom: 6px; }
+  .template-name { font-size: 13px; font-weight: 600; color: #111; margin-bottom: 3px; }
+  .template-desc { font-size: 12px; color: #666; }
+  .template-badge { display: inline-block; font-size: 10px; padding: 2px 7px; border-radius: 4px; margin-top: 6px; }
+  .badge-all { background: #e8f4ff; color: #0085ff; }
+  .badge-deals { background: #e8fff4; color: #00ca72; }
+  .badge-leads { background: #fff8e6; color: #fdab3d; }
+  .badge-contacts { background: #f0ecff; color: #6b46c1; }
+
+  /* Mode cards */
+  .modes { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
+  .mode-card { border: 1px solid #e8e8e8; border-radius: 8px; padding: 12px; text-align: center; }
+  .mode-icon { font-size: 20px; margin-bottom: 4px; }
+  .mode-name { font-size: 12px; font-weight: 600; color: #111; }
+  .mode-time { font-size: 11px; color: #888; margin-top: 2px; }
+  .mode-desc { font-size: 11px; color: #666; margin-top: 4px; }
+
+  /* Tips */
+  .tips { background: #f0f7ff; border-radius: 10px; padding: 18px 20px; }
+  .tip { display: flex; gap: 10px; margin-bottom: 10px; font-size: 13px; color: #333; }
+  .tip:last-child { margin-bottom: 0; }
+  .tip-icon { font-size: 16px; flex-shrink: 0; }
+
+  /* FAQ */
+  .faq-item { border-bottom: 1px solid #f0f0f0; padding: 14px 0; }
+  .faq-item:last-child { border-bottom: none; }
+  .faq-q { font-size: 13px; font-weight: 600; color: #111; margin-bottom: 6px; }
+  .faq-a { font-size: 13px; color: #555; }
+
+  /* Footer */
+  .footer { text-align: center; margin-top: 48px; padding-top: 20px; border-top: 1px solid #f0f0f0; font-size: 12px; color: #aaa; }
+  .footer a { color: #0085ff; text-decoration: none; }
+
+  /* Highlight box */
+  .highlight {
+    background: linear-gradient(135deg, #0085ff08, #00ca7208);
+    border: 1px solid #e0f0ff; border-radius: 10px;
+    padding: 16px 18px; margin-bottom: 16px;
+    font-size: 13px; color: #333; line-height: 1.6;
+  }
+  .highlight strong { color: #0085ff; }
+
+  /* Divider */
+  hr { border: none; border-top: 1px solid #f0f0f0; margin: 36px 0; }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- Header -->
+  <div class="header">
+    <div class="logo">Docu<span>AI</span></div>
+    <div class="tagline">AI-powered document generation for monday.com</div>
+  </div>
+
+  <!-- Welcome -->
+  <div class="highlight">
+    <strong>Welcome to DocuAI! 🎉</strong><br>
+    DocuAI generates professional documents directly from your monday.com item data — using AI. No copy-paste, no manual typing. Just click Generate and get a ready-to-send PDF and Word document in seconds.
+  </div>
+
+  <hr>
+
+  <!-- Getting Started -->
+  <div class="section">
+    <div class="section-label">Getting Started</div>
+    <h2>How to use DocuAI</h2>
+    <div class="steps">
+
+      <div class="step">
+        <div class="step-num">1</div>
+        <div>
+          <div class="step-title">Open any item in monday.com</div>
+          <div class="step-body">Click on any item in your board to open the item view. DocuAI works from the item panel — look for the <strong>DocuAI</strong> tab at the top of the item.</div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">2</div>
+        <div>
+          <div class="step-title">DocuAI detects your board automatically</div>
+          <div class="step-body">DocuAI reads your board type (Leads, Deals, Contacts, or any board) and shows the most relevant document templates first. No setup or mapping required.</div>
+          <div class="step-tip">💡 You'll see "All Boards", "Leads Board", or "Deals Board" in the top right of the panel</div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">3</div>
+        <div>
+          <div class="step-title">Choose a document type</div>
+          <div class="step-body">Select from 6 document types. Click <strong>Generate →</strong> on the template you want. Some templates may ask for a few additional details (like services or payment terms).</div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">4</div>
+        <div>
+          <div class="step-title">Wait ~15 seconds while AI writes your document</div>
+          <div class="step-body">You'll see a 3-step progress bar: Reading your data → Writing with AI → Finishing touches. The AI reads your item data and writes a complete, professional document — not just fills in blanks.</div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">5</div>
+        <div>
+          <div class="step-title">Download and share</div>
+          <div class="step-body">When ready, you'll see a preview of the AI-written content, and two download buttons: <strong>PDF</strong> and <strong>Word (.docx)</strong>. The document is also automatically attached to your item's Files tab.</div>
+          <div class="step-tip">✅ "Attached to Files" confirmation appears on the success screen</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- Templates -->
+  <div class="section">
+    <div class="section-label">Document Types</div>
+    <h2>6 templates included</h2>
+    <div class="templates">
+      <div class="template-card">
+        <div class="template-icon">🎯</div>
+        <div class="template-name">Lead Brief</div>
+        <div class="template-desc">Lead profile, pain points, opportunity score, next step</div>
+        <span class="template-badge badge-leads">Leads boards</span>
+      </div>
+      <div class="template-card">
+        <div class="template-icon">📝</div>
+        <div class="template-name">Meeting Summary</div>
+        <div class="template-desc">Decisions, action items, owners, next steps with dates</div>
+        <span class="template-badge badge-all">All boards</span>
+      </div>
+      <div class="template-card">
+        <div class="template-icon">💰</div>
+        <div class="template-name">Price Proposal</div>
+        <div class="template-desc">Professional proposal with services, pricing, terms</div>
+        <span class="template-badge badge-deals">Deals boards</span>
+      </div>
+      <div class="template-card">
+        <div class="template-icon">📄</div>
+        <div class="template-name">Service Contract</div>
+        <div class="template-desc">Full contract with scope, deliverables, payment schedule</div>
+        <span class="template-badge badge-deals">Deals boards</span>
+      </div>
+      <div class="template-card">
+        <div class="template-icon">🚀</div>
+        <div class="template-name">Onboarding Document</div>
+        <div class="template-desc">Welcome guide, timeline, processes, next steps checklist</div>
+        <span class="template-badge badge-contacts">Contacts boards</span>
+      </div>
+      <div class="template-card">
+        <div class="template-icon">📊</div>
+        <div class="template-name">ROI Report</div>
+        <div class="template-desc">Results, metrics comparison, trends, AI recommendations</div>
+        <span class="template-badge badge-all">All boards</span>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- Generation Modes -->
+  <div class="section">
+    <div class="section-label">Generation Modes</div>
+    <h2>Choose your speed vs. depth</h2>
+    <div class="modes">
+      <div class="mode-card">
+        <div class="mode-icon">⚡</div>
+        <div class="mode-name">Fast</div>
+        <div class="mode-time">~13 seconds</div>
+        <div class="mode-desc">Concise, professional. Great for quick handoffs.</div>
+      </div>
+      <div class="mode-card">
+        <div class="mode-icon">📄</div>
+        <div class="mode-name">Normal</div>
+        <div class="mode-time">~15 seconds</div>
+        <div class="mode-desc">Balanced detail and quality. Good for most uses.</div>
+      </div>
+      <div class="mode-card">
+        <div class="mode-icon">🔍</div>
+        <div class="mode-name">Deep</div>
+        <div class="mode-time">~20 seconds</div>
+        <div class="mode-desc">Rich, detailed analysis. Best for proposals and reports.</div>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- Settings -->
+  <div class="section">
+    <div class="section-label">Settings</div>
+    <h2>Customize DocuAI</h2>
+    <div class="tips">
+      <div class="tip">
+        <div class="tip-icon">🌐</div>
+        <div><strong>Language:</strong> Switch between English and Hebrew (עברית) in the Settings tab. Hebrew documents are generated with full right-to-left (RTL) support.</div>
+      </div>
+      <div class="tip">
+        <div class="tip-icon">🏢</div>
+        <div><strong>Company name:</strong> Add your company name in Settings — it appears in document headers automatically.</div>
+      </div>
+      <div class="tip">
+        <div class="tip-icon">🕐</div>
+        <div><strong>History:</strong> View your last 20 generated documents in the History tab. Each entry shows the document type, item name, and generation date.</div>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- Tips for better output -->
+  <div class="section">
+    <div class="section-label">Pro Tips</div>
+    <h2>Get better AI output</h2>
+    <div class="tips">
+      <div class="tip">
+        <div class="tip-icon">📋</div>
+        <div><strong>Fill your item columns:</strong> The more data in your item (Deal Value, Notes, Status, Contact info), the smarter and more specific the AI output will be.</div>
+      </div>
+      <div class="tip">
+        <div class="tip-icon">📝</div>
+        <div><strong>Use the Updates/Notes column:</strong> Adding meeting notes or deal context in your item's Updates section significantly improves Meeting Summary and Lead Brief quality.</div>
+      </div>
+      <div class="tip">
+        <div class="tip-icon">🔍</div>
+        <div><strong>Use Deep mode for client-facing documents:</strong> For proposals, contracts, and ROI reports you'll send to clients, Deep mode produces noticeably richer content.</div>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- FAQ -->
+  <div class="section">
+    <div class="section-label">FAQ</div>
+    <h2>Common questions</h2>
+
+    <div class="faq-item">
+      <div class="faq-q">Why does generation take 13–20 seconds?</div>
+      <div class="faq-a">DocuAI uses AI to write your document from scratch — not just fill in a template. The AI reads all your item data, understands the context, and writes complete professional content. This takes a bit longer than simple templates, but the quality is significantly higher.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">Where is the generated document saved?</div>
+      <div class="faq-a">Every document is automatically attached to your monday.com item's Files tab. You can also download PDF and Word versions directly from the DocuAI success screen.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">I don't see all 6 templates. Where are they?</div>
+      <div class="faq-a">DocuAI shows the most relevant templates for your board type first. Use the "Show all templates" toggle at the bottom of the panel to see all 6 templates on any board.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">Is my data safe?</div>
+      <div class="faq-a">Yes. Your item data is used only to generate the document and is not stored on DocuAI servers after generation. See our Privacy Policy for full details.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">How do I generate in Hebrew?</div>
+      <div class="faq-a">Go to the Settings tab in the DocuAI panel and switch Language to Hebrew (עברית). All documents will be generated in Hebrew with RTL layout.</div>
+    </div>
+
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <p>Need help? Email us at <a href="mailto:support@agent7d.com">support@agent7d.com</a></p>
+    <p style="margin-top:8px;">
+      <a href="/products/docuai/privacy">Privacy Policy</a> ·
+      <a href="/products/docuai/terms">Terms of Service</a> ·
+      <a href="/products/docuai/support">Support</a>
+    </p>
+    <p style="margin-top:12px;">© 2026 agent7d · DocuAI for monday.com</p>
+  </div>
+
+</div>
+</body>
+</html>
