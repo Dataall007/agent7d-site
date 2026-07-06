@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How to generate proposals from monday.com in 15 seconds — agent7d Blog</title>
+<meta name="description" content="You've done the hard work. The deal is moving. The prospect is warm. And now you spend 45 minutes copying client names, project scopes, pricing, and timelines f">
+<meta property="og:title" content="How to generate proposals from monday.com in 15 seconds">
+<meta property="og:description" content="You've done the hard work. The deal is moving. The prospect is warm. And now you spend 45 minutes copying client names, project scopes, pricing, and timelines f">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script>
+  const t=localStorage.getItem('theme')||(window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');
+  document.documentElement.setAttribute('data-theme',t);
+</script>
+<style>
+:root{
+  --primary:#e11d48;--primary-hover:#be123c;--primary-light:#fef2f5;
+  --bg:#ffffff;--bg-2:#f9fafb;--bg-3:#f3f4f6;
+  --border:#e5e7eb;--text-1:#111827;--text-2:#374151;--text-3:#6b7280;--text-4:#9ca3af;
+  --font:'Plus Jakarta Sans',sans-serif;--t:0.15s ease;
+  --shadow-sm:0 1px 3px rgba(0,0,0,0.08);--shadow-md:0 4px 12px rgba(0,0,0,0.08);
+}
+[data-theme="dark"]{
+  --bg:#0a0a0a;--bg-2:#111111;--bg-3:#1a1a1a;--border:#262626;
+  --text-1:#f9fafb;--text-2:#e5e7eb;--text-3:#9ca3af;--text-4:#6b7280;
+  --primary:#ff2056;--primary-light:rgba(255,32,86,0.1);
+  --shadow-sm:0 1px 3px rgba(0,0,0,0.3);--shadow-md:0 4px 12px rgba(0,0,0,0.4);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font);background:var(--bg);color:var(--text-1);line-height:1.6;-webkit-font-smoothing:antialiased;transition:background var(--t),color var(--t)}
+a{color:var(--primary);text-decoration:none}
+a:hover{text-decoration:underline}
+
+.nav-wrap{width:100%;border-bottom:1px solid var(--border);background:var(--bg);position:sticky;top:0;z-index:100}
+.nav-inner{max-width:1100px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:64px}
+.logo{font-size:20px;font-weight:800;color:var(--text-1);text-decoration:none;letter-spacing:-0.02em}
+.logo span{color:var(--primary)}
+.nav-links{display:flex;align-items:center;gap:24px}
+.nav-links a{font-size:14px;font-weight:500;color:var(--text-3);text-decoration:none;transition:color var(--t)}
+.nav-links a:hover{color:var(--text-1)}
+.theme-btn{background:none;border:1px solid var(--border);border-radius:8px;padding:6px 10px;cursor:pointer;color:var(--text-3);font-size:16px;transition:all var(--t)}
+.theme-btn:hover{border-color:var(--primary);color:var(--primary)}
+
+.article-wrap{max-width:720px;margin:0 auto;padding:64px 24px 96px}
+.breadcrumb{font-size:13px;color:var(--text-4);margin-bottom:32px}
+.breadcrumb a{color:var(--text-3);text-decoration:none}
+.breadcrumb a:hover{color:var(--primary)}
+.article-category{font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--primary);margin-bottom:14px}
+.article-title{font-size:42px;font-weight:800;line-height:1.15;letter-spacing:-0.02em;color:var(--text-1);margin-bottom:16px}
+.article-meta{font-size:13px;color:var(--text-4);margin-bottom:40px;display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+.article-meta span{display:flex;align-items:center;gap:5px}
+.article-divider{height:1px;background:var(--border);margin-bottom:40px}
+
+.article-body{font-size:17px;line-height:1.8;color:var(--text-2)}
+.article-body h2{font-size:26px;font-weight:700;color:var(--text-1);margin:40px 0 16px;line-height:1.3}
+.article-body h3{font-size:20px;font-weight:600;color:var(--text-1);margin:28px 0 12px}
+.article-body p{margin-bottom:20px}
+.article-body ul,.article-body ol{padding-right:24px;margin-bottom:20px}
+.article-body li{margin-bottom:8px}
+.article-body strong{color:var(--text-1);font-weight:600}
+.article-body code{background:var(--bg-3);border:1px solid var(--border);border-radius:4px;padding:2px 6px;font-size:14px;font-family:monospace}
+.article-body blockquote{border-right:4px solid var(--primary);padding:12px 20px;margin:24px 0;background:var(--bg-2);border-radius:0 8px 8px 0;color:var(--text-2);font-style:italic}
+
+.cta-box{background:var(--primary-light);border:1px solid rgba(225,29,72,0.2);border-radius:14px;padding:32px;margin:48px 0;text-align:center}
+.cta-box h3{font-size:22px;font-weight:700;color:var(--text-1);margin-bottom:8px}
+.cta-box p{color:var(--text-3);margin-bottom:20px;font-size:15px}
+.btn-primary{display:inline-block;background:var(--primary);color:#fff;padding:12px 28px;border-radius:10px;font-size:14px;font-weight:600;text-decoration:none;transition:all var(--t);box-shadow:0 4px 20px rgba(225,29,72,0.25)}
+.btn-primary:hover{background:var(--primary-hover);transform:translateY(-1px);text-decoration:none}
+
+footer{border-top:1px solid var(--border);padding:32px 24px;text-align:center;color:var(--text-4);font-size:13px}
+footer a{color:var(--text-3)}
+footer a:hover{color:var(--primary)}
+</style>
+</head>
+<body>
+<div class="nav-wrap">
+  <div class="nav-inner">
+    <a href="/" class="logo">agent7<span>d</span></a>
+    <div class="nav-links">
+      <a href="/">Home</a>
+      <a href="/blog/">Blog</a>
+      <a href="/products/docuai/support/">DocuAI</a>
+      <button class="theme-btn" onclick="toggleTheme()" title="Toggle theme">☀️</button>
+    </div>
+  </div>
+</div>
+
+<div class="article-wrap">
+  <div class="breadcrumb"><a href="/">Home</a> → <a href="/blog/">Blog</a> → How to generate proposals from monday.com in 15 seconds</div>
+  <div class="article-category">Sales & CRM</div>
+  <h1 class="article-title">How to generate proposals from monday.com in 15 seconds</h1>
+  <div class="article-meta">
+    <span>📅 July 6, 2026</span>
+    <span>✍️ agent7d Team</span>
+    <span>⏱ 5 min read</span>
+  </div>
+  <div class="article-divider"></div>
+  <div class="article-body">
+    
+<h2>The Problem</h2>
+<p>You've done the hard work. The deal is moving. The prospect is warm. And now you spend 45 minutes copying client names, project scopes, pricing, and timelines from monday.com into a Word doc — reformatting, double-checking, hoping you didn't paste last quarter's numbers by mistake.</p>
+<p>This is the hidden tax on every sales and account management team using monday.com. The data is already there, sitting clean and structured in your board. But the moment you need to send a proposal, you're back to manual work.</p>
+<p>And it's not just wasted time. Inconsistent formatting, wrong figures, outdated templates — these mistakes happen when humans bridge the gap between a CRM board and a document. A prospect who receives a proposal with the wrong company name doesn't become a client.</p>
+<p>The real problem isn't document generation. It's that most teams treat it as a separate task instead of a natural output of the data they're already managing.</p>
+<h2>The Solution</h2>
+<p>DocuAI is a monday.com app that turns your item data into formatted documents automatically. You connect it to your board, map your columns to a document template, and from that point forward — generating a proposal is a single click.</p>
+<p>No copy-pasting. No switching tools. The document pulls live data directly from the item: client name, project details, deliverables, pricing, timelines, contact information — whatever you've mapped. The output is a polished, consistent document every time.</p>
+<p>It works for proposals, contracts, SOWs, onboarding packs, status reports — any document your team generates repeatedly from structured data.</p>
+<h2>Step by Step</h2>
+<p>Here's how to set it up:</p>
+<p><strong>1. Install DocuAI from the monday.com marketplace</strong></p>
+<p>Add it to your workspace. It lives inside monday.com as a board view or item integration — no separate platform to log into.</p>
+<p><strong>2. Create or upload your proposal template</strong></p>
+<p>DocuAI uses a template system with dynamic fields. You can build one from scratch in the editor or upload an existing document and tag the fields you want replaced with live data.</p>
+<p><strong>3. Map your columns to template fields</strong></p>
+<p>This is where the logic lives. You tell DocuAI: "When I generate a document from this item, put the value from the 'Client Name' column here, the 'Project Budget' column here," and so on. Takes about five minutes the first time.</p>
+<p><strong>4. Generate the document from the item</strong></p>
+<p>Open any item on your board, click Generate, and DocuAI produces the document instantly. You can preview it, download it as a PDF or Word file, or send it directly.</p>
+<p><strong>5. Save or automate</strong></p>
+<p>You can trigger generation manually or set up an automation — for example, when a deal moves to "Proposal Sent" stage, DocuAI generates and attaches the document automatically.</p>
+<h2>Real Example</h2>
+<p>A marketing agency uses monday.com to manage new business. Their board has columns for client name, industry, service package, project start date, monthly retainer, and assigned account manager.</p>
+<p>Before DocuAI, their proposals took 30–40 minutes each — pulling data, filling the template, formatting, reviewing. With DocuAI, they built one master proposal template with mapped fields. Now when a deal reaches the proposal stage, the account manager clicks Generate. The document is ready in under 20 seconds, professionally formatted with every client-specific detail already filled in.</p>
+<p>They went from spending roughly 3 hours per week on proposal creation to about 10 minutes. More importantly, every proposal looks identical in quality — no more formatting inconsistencies, no more wrong figures.</p>
+<h2>How to Get Started</h2>
+<p>The setup genuinely takes less than 30 minutes for most teams. The fastest path:</p>
+<li>Identify one document your team creates repeatedly from monday.com data — a proposal, a contract, a project brief.</li>
+<li>Make sure that data lives consistently in board columns (it usually already does).</li>
+<li>Install DocuAI, build the template, map the fields, generate your first document.</li>
+<p>If your template is already built, step 3 takes about 10 minutes. After that, every document is a single click.</p>
+<p>The teams that get the most value are those with high proposal volume — agencies, consultancies, SaaS sales teams — where the manual work compounds fast. But honestly, if you're generating the same type of document more than a few times a month, the setup pays for itself immediately.</p>
+<p>---</p>
+<p>Ready to stop copying data into documents? Try DocuAI for monday.com — it generates professional proposals, contracts, and reports from your item data in seconds. <a href="https://agent7d.com/products/docuai/">Get started free</a></p>
+  </div>
+  <div class="cta-box">
+    <h3>Generate documents from monday.com in seconds</h3>
+    <p>DocuAI turns your item data into professional proposals, contracts, and reports — automatically.</p>
+    <a href="https://agent7d.com/products/docuai/" class="btn-primary">Try DocuAI Free →</a>
+  </div>
+</div>
+
+<footer>
+  <p>© 2026 agent7d · <a href="/products/docuai/privacy/">Privacy</a> · <a href="/products/docuai/terms/">Terms</a> · <a href="/blog/">Blog</a></p>
+</footer>
+<script>
+function toggleTheme(){
+  const cur=document.documentElement.getAttribute('data-theme');
+  const next=cur==='dark'?'light':'dark';
+  document.documentElement.setAttribute('data-theme',next);
+  localStorage.setItem('theme',next);
+  document.querySelector('.theme-btn').textContent=next==='dark'?'🌙':'☀️';
+}
+document.querySelector('.theme-btn').textContent=
+  document.documentElement.getAttribute('data-theme')==='dark'?'🌙':'☀️';
+</script>
+</body>
+</html>
