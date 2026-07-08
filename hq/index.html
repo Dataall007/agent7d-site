@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>bClarity HQ — Control Room</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0f172a; color: #e2e8f0; min-height: 100vh; direction: rtl; }
+
+    header { background: linear-gradient(135deg, #1e3a8a, #2563eb); padding: 24px 32px; display: flex; align-items: center; justify-content: space-between; }
+    header h1 { font-size: 22px; font-weight: 700; letter-spacing: -0.5px; }
+    header .subtitle { font-size: 13px; opacity: 0.7; margin-top: 4px; }
+    #last-updated { font-size: 12px; opacity: 0.6; text-align: left; }
+    #refresh-btn { background: rgba(255,255,255,0.15); border: none; color: #fff; padding: 8px 16px; border-radius: 8px; cursor: pointer; font-size: 13px; margin-top: 8px; }
+    #refresh-btn:hover { background: rgba(255,255,255,0.25); }
+
+    main { max-width: 1100px; margin: 32px auto; padding: 0 24px; }
+
+    h2 { font-size: 16px; font-weight: 600; color: #94a3b8; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 16px; }
+
+    /* Agent cards */
+    .agents-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 16px; margin-bottom: 40px; }
+    .agent-card { background: #1e293b; border-radius: 12px; padding: 20px; border: 1px solid #334155; position: relative; overflow: hidden; }
+    .agent-card::before { content: ''; position: absolute; top: 0; right: 0; width: 4px; height: 100%; }
+    .agent-card.success::before { background: #22c55e; }
+    .agent-card.error::before { background: #ef4444; }
+    .agent-card.unknown::before { background: #64748b; }
+
+    .agent-header { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+    .status-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+    .success .status-dot { background: #22c55e; box-shadow: 0 0 8px #22c55e66; }
+    .error .status-dot { background: #ef4444; box-shadow: 0 0 8px #ef444466; }
+    .unknown .status-dot { background: #64748b; }
+    .agent-name { font-weight: 600; font-size: 15px; }
+    .agent-action { font-size: 13px; color: #94a3b8; margin-bottom: 8px; line-height: 1.4; }
+    .agent-time { font-size: 11px; color: #475569; }
+    .agent-error { font-size: 12px; color: #f87171; margin-top: 8px; background: #450a0a; padding: 6px 10px; border-radius: 6px; }
+
+    /* Backlog table */
+    .backlog-section { margin-bottom: 40px; }
+    .backlog-table { width: 100%; border-collapse: collapse; }
+    .backlog-table th { text-align: right; padding: 10px 14px; font-size: 12px; color: #64748b; text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 1px solid #1e293b; }
+    .backlog-table td { padding: 12px 14px; border-bottom: 1px solid #1e293b20; font-size: 14px; vertical-align: top; }
+    .backlog-table tr:hover td { background: #1e293b50; }
+    .badge { display: inline-block; padding: 2px 8px; border-radius: 999px; font-size: 11px; font-weight: 600; }
+    .badge-p1 { background: #450a0a; color: #f87171; }
+    .badge-p2 { background: #1c1917; color: #a8a29e; }
+    .badge-done { background: #052e16; color: #4ade80; }
+    .status-label { font-size: 12px; color: #94a3b8; }
+    .notes-cell { color: #64748b; font-size: 12px; }
+
+    /* Loading / error states */
+    #loading { text-align: center; padding: 60px; color: #64748b; font-size: 14px; }
+    #error-msg { background: #450a0a; border: 1px solid #7f1d1d; border-radius: 8px; padding: 16px; color: #fca5a5; font-size: 14px; margin-bottom: 24px; display: none; }
+
+    .auto-refresh-note { font-size: 11px; color: #475569; text-align: center; padding: 24px; }
+  </style>
+</head>
+<body>
+  <header>
+    <div>
+      <h1>🏢 bClarity HQ — Control Room</h1>
+      <div class="subtitle">Agent health · Backlog · Status</div>
+    </div>
+    <div style="text-align:left">
+      <div id="last-updated">טוען...</div>
+      <button id="refresh-btn" onclick="load()">↺ רענן</button>
+    </div>
+  </header>
+
+  <main>
+    <div id="error-msg"></div>
+    <div id="loading">⏳ טוען נתונים מ-GitHub...</div>
+    <div id="content" style="display:none">
+
+      <h2>🤖 סוכנים</h2>
+      <div class="agents-grid" id="agents-grid"></div>
+
+      <div class="backlog-section">
+        <h2>📋 Backlog</h2>
+        <table class="backlog-table">
+          <thead>
+            <tr>
+              <th>משימה</th>
+              <th>סטטוס</th>
+              <th>עדיפות</th>
+              <th>הערות</th>
+            </tr>
+          </thead>
+          <tbody id="backlog-body"></tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+
+  <p class="auto-refresh-note">מתרענן אוטומטית כל 60 שניות · קורא מ-GitHub raw</p>
+
+  <script>
+    const STATUS_URL = "https://raw.githubusercontent.com/Dataall007/hq/main/status.json";
+    const CACHE_BUST = () => `${STATUS_URL}?t=${Date.now()}`;
+
+    const AGENT_LABELS = {
+      "bar-blog": "Bar — בלוג",
+      "bar-linkedin": "Bar — LinkedIn",
+      "routine-email": "Routine — מייל בוקר",
+    };
+
+    function formatTime(iso) {
+      if (!iso) return "—";
+      return new Date(iso).toLocaleString("he-IL", {
+        timeZone: "Asia/Jerusalem",
+        day: "numeric", month: "numeric",
+        hour: "2-digit", minute: "2-digit"
+      });
+    }
+
+    function statusClass(s) {
+      if (s === "success") return "success";
+      if (s === "error") return "error";
+      return "unknown";
+    }
+
+    function statusIcon(s) {
+      if (s === "success") return "✅";
+      if (s === "error") return "❌";
+      return "⏸️";
+    }
+
+    function renderAgents(agents) {
+      const grid = document.getElementById("agents-grid");
+      const keys = Object.keys(agents);
+      if (!keys.length) {
+        grid.innerHTML = "<p style='color:#64748b'>אין נתוני סוכנים</p>";
+        return;
+      }
+      grid.innerHTML = keys.map(key => {
+        const a = agents[key];
+        const cls = statusClass(a.status);
+        const label = AGENT_LABELS[key] || key;
+        const errHtml = a.error ? `<div class="agent-error">⚠️ ${a.error}</div>` : "";
+        return `
+          <div class="agent-card ${cls}">
+            <div class="agent-header">
+              <div class="status-dot"></div>
+              <div class="agent-name">${label}</div>
+            </div>
+            <div class="agent-action">${a.lastAction || "—"}</div>
+            <div class="agent-time">ריצה אחרונה: ${formatTime(a.lastRun)}</div>
+            ${errHtml}
+          </div>`;
+      }).join("");
+    }
+
+    function priorityBadge(p) {
+      if (p === "P1") return `<span class="badge badge-p1">P1</span>`;
+      if (p === "P2") return `<span class="badge badge-p2">P2</span>`;
+      return `<span class="badge">${p || "—"}</span>`;
+    }
+
+    function statusLabel(s) {
+      const map = { "planned": "📋 מתוכנן", "in-progress": "🔄 בביצוע", "done": "✅ הושלם" };
+      return `<span class="status-label">${map[s] || s}</span>`;
+    }
+
+    function renderBacklog(backlog) {
+      const tbody = document.getElementById("backlog-body");
+      if (!backlog || !backlog.length) {
+        tbody.innerHTML = `<tr><td colspan="4" style="color:#64748b;text-align:center;padding:24px">אין פריטים בbacklog</td></tr>`;
+        return;
+      }
+      // Sort: P1 first, then by status (in-progress before planned, done last)
+      const order = { "in-progress": 0, "planned": 1, "done": 2 };
+      const priOrder = { "P1": 0, "P2": 1 };
+      const sorted = [...backlog].sort((a, b) => {
+        const pa = priOrder[a.priority] ?? 9;
+        const pb = priOrder[b.priority] ?? 9;
+        if (pa !== pb) return pa - pb;
+        return (order[a.status] ?? 9) - (order[b.status] ?? 9);
+      });
+      tbody.innerHTML = sorted.map(b => `
+        <tr style="${b.status === 'done' ? 'opacity:0.4' : ''}">
+          <td>${b.task}</td>
+          <td>${statusLabel(b.status)}</td>
+          <td>${priorityBadge(b.priority)}</td>
+          <td class="notes-cell">${b.notes || ""}</td>
+        </tr>`).join("");
+    }
+
+    async function load() {
+      const errEl = document.getElementById("error-msg");
+      errEl.style.display = "none";
+      try {
+        const res = await fetch(CACHE_BUST());
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        const data = await res.json();
+
+        renderAgents(data.agents || {});
+        renderBacklog(data.backlog || []);
+
+        document.getElementById("last-updated").textContent =
+          "עודכן: " + formatTime(data.lastUpdated);
+        document.getElementById("loading").style.display = "none";
+        document.getElementById("content").style.display = "block";
+      } catch (e) {
+        errEl.textContent = `❌ שגיאה בטעינת נתונים: ${e.message}`;
+        errEl.style.display = "block";
+        document.getElementById("loading").style.display = "none";
+        document.getElementById("content").style.display = "block";
+      }
+    }
+
+    load();
+    setInterval(load, 60000);
+  </script>
+</body>
+</html>
