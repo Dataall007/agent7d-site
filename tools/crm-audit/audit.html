@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>CRM Audit — Connect Your CRM | agent7d</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --primary: #e11d48;
+    --bg: #0a0a0a;
+    --surface: #111;
+    --border: #1f1f1f;
+    --text: #f5f5f5;
+    --muted: #9ca3af;
+    --font: 'Plus Jakarta Sans', sans-serif;
+  }
+  body { font-family: var(--font); background: var(--bg); color: var(--text); min-height: 100vh; display: flex; flex-direction: column; }
+
+  nav { padding: 0 32px; height: 64px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--border); }
+  .logo { font-size: 20px; font-weight: 800; letter-spacing: -0.02em; text-decoration: none; color: var(--text); }
+  .logo span { color: var(--primary); }
+
+  .audit-wrap { flex: 1; display: flex; align-items: center; justify-content: center; padding: 48px 24px; }
+  .audit-card { background: var(--surface); border: 1px solid var(--border); border-radius: 24px; padding: 48px; width: 100%; max-width: 560px; }
+
+  /* PROGRESS */
+  .progress-bar { height: 3px; background: var(--border); border-radius: 999px; margin-bottom: 40px; overflow: hidden; }
+  .progress-fill { height: 100%; background: var(--primary); border-radius: 999px; transition: width 0.4s ease; }
+  .step-label { font-size: 11px; font-weight: 700; color: var(--muted); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 8px; }
+  .step-title { font-size: 24px; font-weight: 800; margin-bottom: 8px; }
+  .step-sub { font-size: 14px; color: var(--muted); margin-bottom: 32px; line-height: 1.6; }
+
+  /* FORM */
+  label { display: block; font-size: 13px; font-weight: 600; color: var(--muted); margin-bottom: 8px; }
+  input, select, textarea {
+    width: 100%; background: var(--bg); border: 1px solid var(--border); color: var(--text);
+    font-family: var(--font); font-size: 14px; padding: 12px 16px;
+    border-radius: 10px; outline: none; transition: border-color 0.2s;
+    margin-bottom: 20px;
+  }
+  input:focus, select:focus, textarea:focus { border-color: var(--primary); }
+  select option { background: #1a1a1a; }
+  textarea { resize: vertical; min-height: 80px; }
+
+  .checkbox-group { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 24px; }
+  .checkbox-opt { display: flex; align-items: center; gap: 8px; cursor: pointer; }
+  .checkbox-opt input[type=checkbox] { width: auto; margin: 0; accent-color: var(--primary); }
+  .checkbox-opt span { font-size: 13px; color: var(--muted); }
+
+  .btn-primary { width: 100%; background: var(--primary); color: #fff; border: none; padding: 14px; border-radius: 10px; font-size: 15px; font-weight: 700; cursor: pointer; transition: opacity 0.2s; font-family: var(--font); }
+  .btn-primary:hover { opacity: 0.88; }
+  .btn-primary:disabled { opacity: 0.5; cursor: not-allowed; }
+  .btn-back { background: none; border: none; color: var(--muted); font-size: 13px; cursor: pointer; font-family: var(--font); padding: 12px 0 0; width: 100%; text-align: center; }
+  .btn-back:hover { color: var(--text); }
+
+  /* HELP TEXT */
+  .help { font-size: 12px; color: var(--muted); margin-top: -16px; margin-bottom: 20px; }
+  .help a { color: var(--primary); text-decoration: none; }
+
+  /* LOADING */
+  .loading-screen { display: none; text-align: center; }
+  .spinner { width: 48px; height: 48px; border: 3px solid var(--border); border-top-color: var(--primary); border-radius: 50%; animation: spin 0.8s linear infinite; margin: 0 auto 24px; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .loading-steps { list-style: none; text-align: left; margin: 0 auto; max-width: 300px; }
+  .loading-steps li { display: flex; align-items: center; gap: 12px; padding: 8px 0; font-size: 14px; color: var(--muted); transition: color 0.3s; }
+  .loading-steps li.active { color: var(--text); font-weight: 600; }
+  .loading-steps li.done { color: #10b981; }
+  .loading-steps li .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--border); flex-shrink: 0; transition: background 0.3s; }
+  .loading-steps li.active .dot { background: var(--primary); }
+  .loading-steps li.done .dot { background: #10b981; }
+
+  /* STEPS */
+  .step-content { display: none; }
+  .step-content.active { display: block; }
+
+  .privacy-note { font-size: 11px; color: var(--muted); text-align: center; margin-top: 16px; }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="/tools/crm-audit/" class="logo">agent<span>7</span>d</a>
+  <span style="font-size:13px;color:var(--muted)">Free CRM Audit</span>
+</nav>
+
+<div class="audit-wrap">
+  <div class="audit-card">
+
+    <div class="progress-bar"><div class="progress-fill" id="progress" style="width:25%"></div></div>
+
+    <!-- STEP 1: CRM Connect -->
+    <div class="step-content active" id="step1">
+      <div class="step-label">Step 1 of 4</div>
+      <div class="step-title">Connect Monday.com</div>
+      <div class="step-sub">We need read-only access to your boards. Your API key is never stored — it's only used to pull this one snapshot.</div>
+
+      <label>Monday.com API Key</label>
+      <input type="password" id="apiKey" placeholder="eyJ..." autocomplete="off">
+      <div class="help">
+        Find it in Monday.com → Avatar → Admin → API → <a href="https://support.monday.com/hc/en-us/articles/360005144509" target="_blank">How to get your API key ↗</a>
+      </div>
+
+      <button class="btn-primary" onclick="connectMonday()">Connect & Fetch Boards →</button>
+      <div class="privacy-note">🔒 Read-only. We never write to your board. Never stored.</div>
+    </div>
+
+    <!-- STEP 2: Business Context -->
+    <div class="step-content" id="step2">
+      <div class="step-label">Step 2 of 4</div>
+      <div class="step-title">About your business</div>
+      <div class="step-sub">This makes your audit 10x more specific. Takes 90 seconds.</div>
+
+      <label>Company name</label>
+      <input type="text" id="companyName" placeholder="Acme Corp">
+
+      <label>Email (to send your report)</label>
+      <input type="email" id="email" placeholder="you@company.com">
+
+      <label>Industry</label>
+      <select id="industry">
+        <option value="">Select industry...</option>
+        <option>SaaS / Tech</option>
+        <option>Professional Services</option>
+        <option>Real Estate</option>
+        <option>Financial Services</option>
+        <option>Healthcare</option>
+        <option>Education</option>
+        <option>Manufacturing</option>
+        <option>Other</option>
+      </select>
+
+      <label>Team size</label>
+      <select id="teamSize">
+        <option value="">Select team size...</option>
+        <option>1–5</option>
+        <option>6–20</option>
+        <option>21–50</option>
+        <option>51–200</option>
+        <option>200+</option>
+      </select>
+
+      <button class="btn-primary" onclick="goStep(3)">Continue →</button>
+      <button class="btn-back" onclick="goStep(1)">← Back</button>
+    </div>
+
+    <!-- STEP 3: Revenue Context -->
+    <div class="step-content" id="step3">
+      <div class="step-label">Step 3 of 4</div>
+      <div class="step-title">Revenue & pipeline</div>
+      <div class="step-sub">We use this to calculate your actual revenue leakage in dollars.</div>
+
+      <label>Monthly leads / new opportunities</label>
+      <input type="number" id="monthlyLeads" placeholder="e.g. 50">
+
+      <label>Average deal value (USD)</label>
+      <input type="number" id="avgDeal" placeholder="e.g. 5000">
+
+      <label>Biggest CRM challenges (select all that apply)</label>
+      <div class="checkbox-group" id="challenges">
+        <label class="checkbox-opt"><input type="checkbox" value="Stale data"><span>Stale data</span></label>
+        <label class="checkbox-opt"><input type="checkbox" value="Missing fields"><span>Missing fields</span></label>
+        <label class="checkbox-opt"><input type="checkbox" value="No automation"><span>No automation</span></label>
+        <label class="checkbox-opt"><input type="checkbox" value="Slow follow-ups"><span>Slow follow-ups</span></label>
+        <label class="checkbox-opt"><input type="checkbox" value="Poor visibility"><span>Poor visibility</span></label>
+        <label class="checkbox-opt"><input type="checkbox" value="No reporting"><span>No reporting</span></label>
+        <label class="checkbox-opt"><input type="checkbox" value="Team adoption"><span>Team adoption</span></label>
+      </div>
+
+      <button class="btn-primary" onclick="runAudit()">Run My Audit →</button>
+      <button class="btn-back" onclick="goStep(2)">← Back</button>
+    </div>
+
+    <!-- STEP 4: Loading -->
+    <div class="step-content" id="step4">
+      <div class="loading-screen" id="loadingScreen" style="display:block">
+        <div class="spinner"></div>
+        <div style="font-size:20px;font-weight:800;margin-bottom:8px">Analyzing your CRM...</div>
+        <div style="font-size:14px;color:var(--muted);margin-bottom:32px">Our AI is reading 20 years of CRM consulting knowledge</div>
+        <ul class="loading-steps" id="loadingSteps">
+          <li id="ls1" class="active"><span class="dot"></span> Fetching board data</li>
+          <li id="ls2"><span class="dot"></span> Analyzing pipeline health</li>
+          <li id="ls3"><span class="dot"></span> Calculating revenue leakage</li>
+          <li id="ls4"><span class="dot"></span> Identifying quick wins</li>
+          <li id="ls5"><span class="dot"></span> Generating your report</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+const API_BASE = "https://crm-audit-api.onrender.com";
+let crmSummary = null;
+
+function goStep(n) {
+  document.querySelectorAll(".step-content").forEach(s => s.classList.remove("active"));
+  document.getElementById("step" + n).classList.add("active");
+  document.getElementById("progress").style.width = (n * 25) + "%";
+}
+
+async function connectMonday() {
+  const apiKey = document.getElementById("apiKey").value.trim();
+  if (!apiKey) return alert("Please enter your Monday.com API key");
+
+  const btn = document.querySelector("#step1 .btn-primary");
+  btn.disabled = true;
+  btn.textContent = "Connecting...";
+
+  try {
+    const res = await fetch(`${API_BASE}/api/crm/monday`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ apiKey }),
+    });
+    if (!res.ok) throw new Error("Connection failed. Check your API key.");
+    const data = await res.json();
+    crmSummary = data.summary;
+    goStep(2);
+  } catch (err) {
+    alert(err.message);
+  } finally {
+    btn.disabled = false;
+    btn.textContent = "Connect & Fetch Boards →";
+  }
+}
+
+async function runAudit() {
+  const companyName = document.getElementById("companyName").value.trim();
+  const email = document.getElementById("email").value.trim();
+  if (!companyName) return alert("Please enter your company name");
+  if (!email) return alert("Please enter your email to receive the report");
+
+  goStep(4);
+  animateLoadingSteps();
+
+  const challenges = [...document.querySelectorAll("#challenges input:checked")].map(c => c.value);
+
+  try {
+    const res = await fetch(`${API_BASE}/api/audit`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        crmSummary,
+        companyName,
+        email,
+        industry: document.getElementById("industry").value,
+        teamSize: document.getElementById("teamSize").value,
+        monthlyLeads: document.getElementById("monthlyLeads").value,
+        avgDeal: document.getElementById("avgDeal").value,
+        challenges,
+      }),
+    });
+    if (!res.ok) throw new Error("Audit failed. Please try again.");
+    const data = await res.json();
+    window.location.href = `report.html?id=${data.auditId}`;
+  } catch (err) {
+    alert(err.message);
+    goStep(3);
+  }
+}
+
+function animateLoadingSteps() {
+  const steps = ["ls1","ls2","ls3","ls4","ls5"];
+  let i = 0;
+  const tick = () => {
+    if (i > 0) {
+      document.getElementById(steps[i-1]).className = "done";
+    }
+    if (i < steps.length) {
+      document.getElementById(steps[i]).className = "active";
+      i++;
+      setTimeout(tick, 3500 + Math.random() * 1500);
+    }
+  };
+  tick();
+}
+</script>
+
+</body>
+</html>

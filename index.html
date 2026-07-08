@@ -1,22 +1,745 @@
-﻿<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>agent7d.com</title>
+<title>agent7d — AI Tools, Products & Consulting</title>
+<meta name="description" content="We build the tools, systems, and strategies that put companies ahead of what's coming. AI automation, DocuAI for monday.com, and bClarity consulting.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script>
+  const saved = localStorage.getItem('theme');
+  const preferred = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  document.documentElement.setAttribute('data-theme', saved || 'dark');
+</script>
 <style>
-  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; display: flex; align-items: center; justify-content: center; min-height: 100vh; margin: 0; background: #f9f9f9; color: #333; }
-  .wrap { text-align: center; }
-  .logo { font-size: 28px; font-weight: 700; color: #0085ff; margin-bottom: 8px; }
-  .logo span { color: #333; }
-  p { color: #888; font-size: 15px; }
-  a { color: #0085ff; text-decoration: none; }
+/* ── DESIGN TOKENS ── */
+:root {
+  --primary: #e11d48;
+  --primary-hover: #be123c;
+  --primary-light: rgba(225,29,72,0.12);
+  --primary-glow: rgba(225,29,72,0.18);
+  --font: 'Plus Jakarta Sans', sans-serif;
+  --t: 0.18s ease;
+  --t-slow: 0.35s ease;
+  --radius: 10px;
+  --radius-lg: 16px;
+  --max: 1120px;
+}
+
+[data-theme="dark"] {
+  --bg:       #0a0a0a;
+  --bg-2:     #111111;
+  --bg-3:     #1a1a1a;
+  --border:   rgba(255,255,255,0.08);
+  --border-2: rgba(255,255,255,0.12);
+  --text-1:   #f9fafb;
+  --text-2:   #d1d5db;
+  --text-3:   #9ca3af;
+  --text-4:   #6b7280;
+  --nav-bg:   rgba(10,10,10,0.75);
+}
+
+[data-theme="light"] {
+  --bg:       #ffffff;
+  --bg-2:     #f9fafb;
+  --bg-3:     #f3f4f6;
+  --border:   rgba(0,0,0,0.08);
+  --border-2: rgba(0,0,0,0.12);
+  --text-1:   #111827;
+  --text-2:   #374151;
+  --text-3:   #6b7280;
+  --text-4:   #9ca3af;
+  --nav-bg:   rgba(255,255,255,0.80);
+}
+
+/* ── RESET ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text-1);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  transition: background var(--t-slow), color var(--t-slow);
+  overflow-x: hidden;
+}
+a { color: inherit; text-decoration: none; }
+button { cursor: pointer; font-family: var(--font); }
+
+/* ── NAVIGATION ── */
+.nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  height: 64px;
+  border-bottom: 1px solid transparent;
+  background: transparent;
+  backdrop-filter: blur(0px);
+  transition: all 0.3s ease;
+}
+.nav.scrolled {
+  background: var(--nav-bg);
+  border-color: var(--border);
+  backdrop-filter: blur(20px) saturate(1.4);
+}
+.nav-inner {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 0 24px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+}
+.logo {
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: var(--text-1);
+  flex-shrink: 0;
+}
+.logo span { color: var(--primary); }
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex: 1;
+}
+.nav-links a {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-3);
+  padding: 6px 12px;
+  border-radius: 8px;
+  transition: all var(--t);
+}
+.nav-links a:hover { color: var(--text-1); background: var(--border); }
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+.theme-btn {
+  background: none;
+  border: 1px solid var(--border-2);
+  border-radius: 8px;
+  padding: 6px 10px;
+  color: var(--text-3);
+  font-size: 15px;
+  transition: all var(--t);
+  line-height: 1;
+}
+.theme-btn:hover { border-color: var(--primary); color: var(--primary); }
+.btn-nav {
+  background: var(--primary);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 18px;
+  font-size: 13px;
+  font-weight: 700;
+  transition: all var(--t);
+}
+.btn-nav:hover { background: var(--primary-hover); transform: translateY(-1px); }
+
+/* ── HERO ── */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 120px 24px 80px;
+  overflow: hidden;
+  background: var(--bg);
+}
+
+/* Animated mesh — dark only */
+[data-theme="dark"] .hero::before {
+  content: '';
+  position: absolute;
+  width: 700px; height: 700px;
+  background: radial-gradient(circle, rgba(225,29,72,0.14) 0%, transparent 68%);
+  top: -140px; right: -140px;
+  animation: float1 9s ease-in-out infinite;
+  pointer-events: none;
+}
+[data-theme="dark"] .hero::after {
+  content: '';
+  position: absolute;
+  width: 500px; height: 500px;
+  background: radial-gradient(circle, rgba(139,92,246,0.09) 0%, transparent 68%);
+  bottom: -60px; left: -80px;
+  animation: float2 11s ease-in-out infinite;
+  pointer-events: none;
+}
+[data-theme="light"] .hero::before {
+  content: '';
+  position: absolute;
+  width: 700px; height: 700px;
+  background: radial-gradient(circle, rgba(225,29,72,0.06) 0%, transparent 68%);
+  top: -140px; right: -140px;
+  animation: float1 9s ease-in-out infinite;
+  pointer-events: none;
+}
+@keyframes float1 {
+  0%,100% { transform: translate(0,0) scale(1); }
+  50%      { transform: translate(-28px, 32px) scale(1.08); }
+}
+@keyframes float2 {
+  0%,100% { transform: translate(0,0) scale(1); }
+  50%      { transform: translate(22px, -22px) scale(1.06); }
+}
+
+/* Noise grain overlay — dark only */
+[data-theme="dark"] .hero-grain {
+  position: absolute;
+  inset: 0;
+  opacity: 0.025;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
+  pointer-events: none;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: 760px;
+}
+
+/* Sequential fade-in */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.hero-badge  { animation: fadeUp 0.7s 0.1s both; }
+.hero-title  { animation: fadeUp 0.7s 0.3s both; }
+.hero-sub    { animation: fadeUp 0.7s 0.5s both; }
+.hero-ctas   { animation: fadeUp 0.7s 0.7s both; }
+.hero-scroll { animation: fadeUp 0.7s 0.9s both; }
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 14px;
+  border: 1px solid rgba(225,29,72,0.35);
+  border-radius: 999px;
+  background: rgba(225,29,72,0.08);
+  color: var(--primary);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 28px;
+}
+.badge-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--primary);
+  animation: pulse-dot 2s ease-in-out infinite;
+}
+@keyframes pulse-dot {
+  0%,100% { opacity: 1; transform: scale(1); }
+  50%      { opacity: 0.5; transform: scale(0.7); }
+}
+
+.hero-title {
+  font-size: clamp(42px, 7vw, 76px);
+  font-weight: 800;
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+  color: var(--text-1);
+  margin-bottom: 24px;
+}
+.hero-title .red { color: var(--primary); }
+
+.hero-sub {
+  font-size: clamp(16px, 2.2vw, 20px);
+  color: var(--text-3);
+  max-width: 480px;
+  margin: 0 auto 40px;
+  line-height: 1.65;
+  font-weight: 400;
+}
+
+.hero-ctas {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 56px;
+}
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--primary);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius);
+  padding: 14px 28px;
+  font-size: 15px;
+  font-weight: 700;
+  transition: all var(--t);
+  box-shadow: 0 4px 24px rgba(225,29,72,0.3);
+}
+.btn-primary:hover {
+  background: var(--primary-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(225,29,72,0.4);
+}
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: transparent;
+  color: var(--text-2);
+  border: 1px solid var(--border-2);
+  border-radius: var(--radius);
+  padding: 14px 28px;
+  font-size: 15px;
+  font-weight: 600;
+  transition: all var(--t);
+}
+.btn-secondary:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+  transform: translateY(-2px);
+}
+
+/* Scroll indicator */
+.hero-scroll {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  color: var(--text-4);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.scroll-arrow {
+  width: 24px; height: 24px;
+  border-right: 2px solid var(--text-4);
+  border-bottom: 2px solid var(--text-4);
+  transform: rotate(45deg);
+  animation: bounce 2s ease-in-out infinite;
+  margin-top: 4px;
+}
+@keyframes bounce {
+  0%,100% { transform: rotate(45deg) translateY(0); opacity: 0.4; }
+  50%      { transform: rotate(45deg) translateY(5px); opacity: 0.9; }
+}
+
+/* ── SECTION 2: PRODUCTS & TOOLS ── */
+.pt-section {
+  background: var(--bg-2);
+  padding: 96px 24px;
+}
+.pt-inner {
+  max-width: var(--max);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+}
+.pt-col {
+  padding: 0 40px;
+}
+.pt-col:first-child {
+  border-right: 1px solid var(--border);
+  padding-left: 0;
+}
+.pt-col:last-child { padding-right: 0; }
+
+.pt-col-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 32px;
+}
+.pt-col-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--primary);
+  flex-shrink: 0;
+}
+.pt-col-title {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-4);
+}
+
+/* Cards */
+.product-card {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 28px;
+  background: var(--bg);
+  transition: all 0.22s;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 16px;
+}
+.product-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: var(--primary);
+  transform: scaleX(0);
+  transition: transform 0.22s;
+}
+.product-card:hover {
+  border-color: rgba(225,29,72,0.35);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 40px rgba(225,29,72,0.08);
+}
+.product-card:hover::before { transform: scaleX(1); }
+
+/* Locked/coming soon card */
+.product-card.locked {
+  opacity: 0.55;
+  cursor: default;
+}
+.product-card.locked:hover {
+  transform: none;
+  box-shadow: none;
+  border-color: var(--border);
+}
+.product-card.locked::before { display: none; }
+
+/* Featured card */
+.product-card.featured {
+  border-color: rgba(225,29,72,0.3);
+  background: linear-gradient(135deg, var(--bg) 0%, rgba(225,29,72,0.04) 100%);
+}
+
+.card-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+.card-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+.badge-live {
+  background: rgba(16,185,129,0.12);
+  color: #10b981;
+  border: 1px solid rgba(16,185,129,0.25);
+}
+.badge-live::before {
+  content: '';
+  display: inline-block;
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: #10b981;
+}
+.badge-soon {
+  background: var(--bg-3);
+  color: var(--text-4);
+  border: 1px solid var(--border);
+}
+.badge-price {
+  background: var(--primary-light);
+  color: var(--primary);
+  border: 1px solid rgba(225,29,72,0.25);
+  font-size: 13px;
+  padding: 4px 12px;
+}
+.badge-free {
+  background: rgba(59,130,246,0.1);
+  color: #60a5fa;
+  border: 1px solid rgba(59,130,246,0.2);
+}
+
+.card-name {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-1);
+  margin-bottom: 8px;
+  line-height: 1.3;
+}
+.card-desc {
+  font-size: 13px;
+  color: var(--text-3);
+  line-height: 1.65;
+  margin-bottom: 18px;
+}
+.card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.card-link {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--primary);
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  transition: gap var(--t);
+}
+.card-link:hover { gap: 8px; }
+.card-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--primary);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 9px 18px;
+  font-size: 13px;
+  font-weight: 700;
+  transition: all var(--t);
+  cursor: pointer;
+  text-decoration: none;
+}
+.card-cta:hover { background: var(--primary-hover); transform: translateY(-1px); }
+.card-sub {
+  font-size: 11px;
+  color: var(--text-4);
+}
+.card-lock {
+  font-size: 20px;
+  opacity: 0.4;
+}
+.tools-more {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-4);
+  padding: 10px 0;
+  transition: color var(--t);
+}
+.tools-more:hover { color: var(--primary); }
+
+@media (max-width: 768px) {
+  .pt-inner { grid-template-columns: 1fr; }
+  .pt-col:first-child { border-right: none; border-bottom: 1px solid var(--border); padding: 0 0 40px; margin-bottom: 40px; }
+  .pt-col:last-child { padding: 0; }
+}
+
+/* ── MOBILE NAV ── */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  padding: 4px;
+}
+.hamburger span {
+  display: block;
+  width: 22px; height: 2px;
+  background: var(--text-2);
+  border-radius: 2px;
+  transition: all var(--t);
+}
+.mobile-menu {
+  display: none;
+  position: fixed;
+  top: 64px; left: 0; right: 0;
+  background: var(--bg-2);
+  border-bottom: 1px solid var(--border);
+  padding: 16px 24px 24px;
+  z-index: 99;
+  flex-direction: column;
+  gap: 4px;
+}
+.mobile-menu.open { display: flex; }
+.mobile-menu a {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--text-2);
+  padding: 10px 12px;
+  border-radius: 8px;
+  transition: all var(--t);
+}
+.mobile-menu a:hover { color: var(--primary); background: var(--bg-3); }
+.mobile-cta { margin-top: 8px; }
+
+@media (max-width: 768px) {
+  .nav-links, .btn-nav { display: none; }
+  .hamburger { display: flex; }
+}
 </style>
 </head>
 <body>
-<div class="wrap">
-  <div class="logo">agent7d<span>.com</span></div>
-  <p>Products by <a href="https://agent7d.ai">agent7d</a></p>
+
+<!-- NAVIGATION -->
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="/" class="logo">agent<span>7</span>d</a>
+    <div class="nav-links">
+      <a href="#products">Products</a>
+      <a href="#tools">Tools</a>
+      <a href="/blog/">Blog</a>
+      <a href="#services">Services</a>
+    </div>
+    <div class="nav-right">
+      <button class="theme-btn" id="theme-btn" onclick="toggleTheme()" title="Toggle theme" aria-label="Toggle dark/light mode">☀️</button>
+      <a href="#tools" class="btn-nav">Get Started</a>
+      <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobile-menu">
+  <a href="#products" onclick="toggleMenu()">Products</a>
+  <a href="#tools" onclick="toggleMenu()">Tools</a>
+  <a href="/blog/" onclick="toggleMenu()">Blog</a>
+  <a href="#services" onclick="toggleMenu()">Services</a>
+  <a href="#tools" class="btn-primary mobile-cta" onclick="toggleMenu()">Get Started →</a>
 </div>
+
+<!-- SECTION 1: HERO -->
+<section class="hero" id="home">
+  <div class="hero-grain"></div>
+  <div class="hero-content">
+    <div class="hero-badge">
+      <span class="badge-dot"></span>
+      AI &nbsp;·&nbsp; Automation &nbsp;·&nbsp; Products &nbsp;·&nbsp; 2026
+    </div>
+    <h1 class="hero-title">
+      The Next 5 Years<br>
+      Belong to<br>
+      <span class="red">AI-Powered Businesses.</span>
+    </h1>
+    <p class="hero-sub">
+      We build the tools, systems, and strategies
+      that put companies ahead of what's coming.
+    </p>
+    <div class="hero-ctas">
+      <a href="#products" class="btn-primary">Explore Products →</a>
+      <a href="#tools" class="btn-secondary">Free CRM Audit</a>
+    </div>
+    <div class="hero-scroll">
+      <span>Scroll</span>
+      <div class="scroll-arrow"></div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 2: PRODUCTS & TOOLS -->
+<section class="pt-section" id="products">
+  <div class="pt-inner">
+
+    <!-- LEFT: Products -->
+    <div class="pt-col">
+      <div class="pt-col-header">
+        <div class="pt-col-dot"></div>
+        <span class="pt-col-title">Products</span>
+      </div>
+
+      <div class="product-card">
+        <div class="card-top">
+          <span class="card-badge badge-live">Live on Marketplace</span>
+        </div>
+        <div class="card-name">DocuAI for monday.com</div>
+        <div class="card-desc">AI document generation inside monday.com. Turn item data into proposals, contracts, and reports in one click. 6 templates. PDF + Word.</div>
+        <div class="card-footer">
+          <a href="/products/docuai/" class="card-link">View product →</a>
+        </div>
+      </div>
+
+      <div class="product-card locked">
+        <div class="card-top">
+          <span class="card-badge badge-soon">Coming Soon</span>
+          <span class="card-lock">🔒</span>
+        </div>
+        <div class="card-name">Next Product</div>
+        <div class="card-desc">Building something new. Stay tuned.</div>
+        <div class="card-footer">
+          <span class="card-link" style="color:var(--text-4)">Building something new →</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT: Tools -->
+    <div class="pt-col" id="tools">
+      <div class="pt-col-header">
+        <div class="pt-col-dot"></div>
+        <span class="pt-col-title">Tools</span>
+      </div>
+
+      <div class="product-card featured">
+        <div class="card-top">
+          <span class="card-badge badge-price">$299</span>
+        </div>
+        <div class="card-name">CRM Audit Report</div>
+        <div class="card-desc">Get a consulting-grade audit of your CRM in 10 minutes. Revenue leakage, pipeline gaps, automation blind spots, and a 90-day roadmap — all in one PDF.</div>
+        <div class="card-footer">
+          <a href="#" class="card-cta">Run Free Audit →</a>
+          <span class="card-sub">Free preview · Full report $299</span>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="card-top">
+          <span class="card-badge badge-free">Free</span>
+        </div>
+        <div class="card-name">AI Readiness Score</div>
+        <div class="card-desc">10-question quiz. See exactly where your business stands on AI adoption and get a prioritized action plan.</div>
+        <div class="card-footer">
+          <a href="#" class="card-link">Take the Quiz →</a>
+        </div>
+      </div>
+
+      <a href="#" class="tools-more">More tools coming →</a>
+    </div>
+
+  </div>
+</section>
+
+<script>
+function toggleTheme() {
+  const cur = document.documentElement.getAttribute('data-theme');
+  const next = cur === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', next);
+  localStorage.setItem('theme', next);
+  document.getElementById('theme-btn').textContent = next === 'dark' ? '☀️' : '🌙';
+}
+function toggleMenu() {
+  document.getElementById('mobile-menu').classList.toggle('open');
+}
+// Set initial icon
+document.getElementById('theme-btn').textContent =
+  document.documentElement.getAttribute('data-theme') === 'dark' ? '☀️' : '🌙';
+
+// Nav scroll effect
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 20);
+}, { passive: true });
+</script>
 </body>
 </html>
