@@ -1,0 +1,1126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DocuAI — AI Document Generator for monday.com</title>
+  <meta name="description" content="Turn your monday.com board data into professional PDF & Word documents in seconds. AI-powered templates for proposals, contracts, and more.">
+  <link rel="canonical" href="https://agent7d.com/products/docuai/">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    /* ── Tokens ── */
+    :root {
+      --red:        #e11d48;
+      --red-hover:  #be1239;
+      --red-glow:   rgba(225, 29, 72, 0.15);
+      --monday:     #0085ff;
+
+      --bg:         #ffffff;
+      --bg-2:       #f8f9fc;
+      --bg-3:       #f1f4f9;
+      --surface:    #ffffff;
+      --border:     rgba(0,0,0,0.08);
+      --text:       #0f0f0f;
+      --text-muted: #6b7280;
+      --text-dim:   #9ca3af;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg:         #0a0a0a;
+        --bg-2:       #111111;
+        --bg-3:       #1a1a1a;
+        --surface:    #111111;
+        --border:     rgba(255,255,255,0.08);
+        --text:       #f5f5f5;
+        --text-muted: #9ca3af;
+        --text-dim:   #6b7280;
+      }
+    }
+
+    :root[data-theme="dark"] {
+      --bg:         #0a0a0a;
+      --bg-2:       #111111;
+      --bg-3:       #1a1a1a;
+      --surface:    #111111;
+      --border:     rgba(255,255,255,0.08);
+      --text:       #f5f5f5;
+      --text-muted: #9ca3af;
+      --text-dim:   #6b7280;
+    }
+
+    :root[data-theme="light"] {
+      --bg:         #ffffff;
+      --bg-2:       #f8f9fc;
+      --bg-3:       #f1f4f9;
+      --surface:    #ffffff;
+      --border:     rgba(0,0,0,0.08);
+      --text:       #0f0f0f;
+      --text-muted: #6b7280;
+      --text-dim:   #9ca3af;
+    }
+
+    /* ── Reset ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    /* ── Nav ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 40px;
+      background: color-mix(in srgb, var(--bg) 80%, transparent);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: var(--text);
+    }
+
+    .nav-logo img {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+    }
+
+    .nav-logo-name {
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .theme-btn {
+      background: none;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--text-muted);
+      cursor: pointer;
+      padding: 7px 10px;
+      font-size: 14px;
+      line-height: 1;
+      transition: border-color 0.15s, color 0.15s;
+    }
+
+    .theme-btn:hover { border-color: var(--red); color: var(--red); }
+
+    .btn-install-nav {
+      background: var(--red);
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      padding: 8px 18px;
+      font-size: 14px;
+      font-weight: 600;
+      font-family: inherit;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.15s, transform 0.15s;
+    }
+
+    .btn-install-nav:hover { background: var(--red-hover); transform: translateY(-1px); }
+
+    /* ── Sections ── */
+    section { width: 100%; }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 40px;
+    }
+
+    /* ── Hero ── */
+    .hero {
+      padding: 160px 40px 100px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 80px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 600px;
+      height: 400px;
+      background: radial-gradient(ellipse, var(--red-glow) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-logo {
+      width: 80px;
+      height: 80px;
+      border-radius: 20px;
+      margin-bottom: 28px;
+      position: relative;
+    }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background: var(--bg-3);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      padding: 5px 14px;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 32px;
+    }
+
+    .hero-eyebrow-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--monday);
+    }
+
+    .hero-title {
+      font-size: clamp(48px, 8vw, 88px);
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      line-height: 1.0;
+      text-wrap: balance;
+      margin-bottom: 8px;
+      color: var(--text);
+    }
+
+    .hero-title-sub {
+      font-size: clamp(20px, 3vw, 26px);
+      font-weight: 500;
+      color: var(--text-muted);
+      letter-spacing: -0.01em;
+      margin-bottom: 16px;
+    }
+
+    .hero-desc {
+      font-size: 16px;
+      color: var(--text-muted);
+      max-width: 480px;
+      margin: 0 auto 40px;
+      line-height: 1.65;
+    }
+
+    .hero-cta {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-bottom: 56px;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--red);
+      color: #fff;
+      text-decoration: none;
+      border-radius: 12px;
+      padding: 16px 32px;
+      font-size: 16px;
+      font-weight: 700;
+      font-family: inherit;
+      letter-spacing: -0.01em;
+      transition: background 0.15s, transform 0.15s, box-shadow 0.15s;
+      cursor: pointer;
+      border: none;
+    }
+
+    .btn-primary:hover {
+      background: var(--red-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px var(--red-glow);
+    }
+
+    .btn-primary svg { flex-shrink: 0; }
+
+    .marketplace-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--text-dim);
+      font-size: 13px;
+      font-weight: 500;
+    }
+
+    /* Product mockup */
+    .hero-mockup {
+      width: 100%;
+      max-width: 860px;
+      background: var(--bg-2);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 24px 80px rgba(0,0,0,0.12);
+      position: relative;
+    }
+
+    .mockup-bar {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 16px;
+      background: var(--bg-3);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .mockup-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+
+    .mockup-dot:nth-child(1) { background: #ff5f56; }
+    .mockup-dot:nth-child(2) { background: #ffbd2e; }
+    .mockup-dot:nth-child(3) { background: #27c93f; }
+
+    .mockup-title {
+      font-size: 12px;
+      color: var(--text-dim);
+      margin-right: auto;
+    }
+
+    .mockup-body {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      gap: 0;
+      align-items: center;
+      min-height: 200px;
+    }
+
+    .mockup-board {
+      padding: 20px;
+    }
+
+    .board-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      margin-bottom: 12px;
+    }
+
+    .board-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 10px;
+      border-radius: 8px;
+      margin-bottom: 4px;
+      font-size: 12px;
+    }
+
+    .board-row.active {
+      background: color-mix(in srgb, var(--monday) 12%, transparent);
+      border: 1px solid color-mix(in srgb, var(--monday) 25%, transparent);
+    }
+
+    .board-row-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .board-row-text { color: var(--text); font-weight: 500; }
+    .board-row-tag {
+      margin-right: auto;
+      font-size: 10px;
+      color: var(--text-dim);
+      background: var(--bg-3);
+      border-radius: 4px;
+      padding: 1px 6px;
+    }
+
+    .mockup-arrow {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      padding: 16px;
+    }
+
+    .arrow-badge {
+      background: var(--red);
+      color: #fff;
+      font-size: 10px;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 100px;
+      letter-spacing: 0.04em;
+      margin-bottom: 2px;
+    }
+
+    .arrow-line {
+      color: var(--text-dim);
+      font-size: 20px;
+    }
+
+    .mockup-doc {
+      padding: 20px;
+      border-right: none;
+    }
+
+    .doc-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 16px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+    }
+
+    .doc-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+    }
+
+    .doc-title-line {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .doc-badge {
+      font-size: 10px;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-weight: 600;
+    }
+
+    .doc-badge.pdf { background: #fef2f2; color: #dc2626; }
+    .doc-badge.word { background: #eff6ff; color: #2563eb; }
+
+    :root[data-theme="dark"] .doc-badge.pdf { background: rgba(220,38,38,0.15); }
+    :root[data-theme="dark"] .doc-badge.word { background: rgba(37,99,235,0.15); }
+
+    @media (prefers-color-scheme: dark) {
+      .doc-badge.pdf { background: rgba(220,38,38,0.15); }
+      .doc-badge.word { background: rgba(37,99,235,0.15); }
+    }
+
+    .doc-lines {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .doc-line {
+      height: 8px;
+      border-radius: 4px;
+      background: var(--bg-3);
+    }
+
+    .doc-formats {
+      display: flex;
+      gap: 6px;
+      margin-top: 14px;
+    }
+
+    .format-btn {
+      flex: 1;
+      text-align: center;
+      padding: 6px;
+      border-radius: 6px;
+      font-size: 11px;
+      font-weight: 600;
+      cursor: default;
+    }
+
+    .format-btn.pdf-btn { background: #fef2f2; color: #dc2626; }
+    .format-btn.word-btn { background: #eff6ff; color: #2563eb; }
+
+    :root[data-theme="dark"] .format-btn.pdf-btn { background: rgba(220,38,38,0.15); }
+    :root[data-theme="dark"] .format-btn.word-btn { background: rgba(37,99,235,0.15); }
+
+    @media (prefers-color-scheme: dark) {
+      .format-btn.pdf-btn { background: rgba(220,38,38,0.15); }
+      .format-btn.word-btn { background: rgba(37,99,235,0.15); }
+    }
+
+    /* ── Divider ── */
+    .section-divider {
+      width: 100%;
+      height: 1px;
+      background: var(--border);
+    }
+
+    /* ── How it works ── */
+    .how {
+      padding: 96px 40px;
+      background: var(--bg-2);
+    }
+
+    .section-label {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 16px;
+    }
+
+    .section-title {
+      font-size: clamp(28px, 4vw, 40px);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      text-wrap: balance;
+      color: var(--text);
+      margin-bottom: 56px;
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+    }
+
+    .step {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 36px 32px;
+      position: relative;
+    }
+
+    .step:first-child { border-radius: 16px 0 0 16px; }
+    .step:last-child  { border-radius: 0 16px 16px 0; }
+
+    .step-num {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      color: var(--red);
+      margin-bottom: 16px;
+    }
+
+    .step-icon {
+      font-size: 28px;
+      margin-bottom: 14px;
+      display: block;
+    }
+
+    .step-name {
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 6px;
+      letter-spacing: -0.01em;
+    }
+
+    .step-desc {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* ── Templates ── */
+    .templates { padding: 96px 40px; }
+
+    .templates-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+
+    .template-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 28px;
+      transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+      cursor: default;
+    }
+
+    .template-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.08);
+      border-color: color-mix(in srgb, var(--red) 30%, var(--border));
+    }
+
+    .template-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      margin-bottom: 16px;
+    }
+
+    .template-name {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 6px;
+      letter-spacing: -0.01em;
+    }
+
+    .template-desc {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.55;
+    }
+
+    /* ── Pricing ── */
+    .pricing {
+      padding: 96px 40px;
+      background: var(--bg-2);
+    }
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      align-items: start;
+    }
+
+    .plan {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 36px 32px;
+    }
+
+    .plan.featured {
+      border-color: var(--red);
+      box-shadow: 0 0 0 1px var(--red), 0 16px 48px var(--red-glow);
+      position: relative;
+    }
+
+    .plan-badge {
+      position: absolute;
+      top: -13px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--red);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 4px 14px;
+      border-radius: 100px;
+      white-space: nowrap;
+    }
+
+    .plan-name {
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 20px;
+    }
+
+    .plan-price {
+      display: flex;
+      align-items: baseline;
+      gap: 4px;
+      margin-bottom: 6px;
+    }
+
+    .plan-amount {
+      font-size: 44px;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      color: var(--text);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .plan-period {
+      font-size: 14px;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    .plan-limit {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 28px;
+    }
+
+    .plan-divider {
+      height: 1px;
+      background: var(--border);
+      margin-bottom: 24px;
+    }
+
+    .plan-features {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 32px;
+    }
+
+    .plan-features li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 14px;
+      color: var(--text-muted);
+    }
+
+    .plan-features li::before {
+      content: '';
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: color-mix(in srgb, var(--red) 15%, transparent);
+      flex-shrink: 0;
+      margin-top: 1px;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23e11d48'%3E%3Cpath d='M12.5 4.5l-6 6-3-3' stroke='%23e11d48' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+      background-size: contain;
+      background-repeat: no-repeat;
+    }
+
+    .btn-plan {
+      display: block;
+      width: 100%;
+      padding: 13px;
+      border-radius: 10px;
+      font-size: 14px;
+      font-weight: 700;
+      font-family: inherit;
+      text-align: center;
+      text-decoration: none;
+      cursor: pointer;
+      border: none;
+      transition: all 0.15s;
+    }
+
+    .btn-plan-ghost {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+
+    .btn-plan-ghost:hover { border-color: var(--text-muted); }
+
+    .btn-plan-primary {
+      background: var(--red);
+      color: #fff;
+    }
+
+    .btn-plan-primary:hover {
+      background: var(--red-hover);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px var(--red-glow);
+    }
+
+    /* ── Footer ── */
+    footer {
+      padding: 48px 40px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .footer-brand {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      color: var(--text-muted);
+    }
+
+    .footer-brand img {
+      width: 24px;
+      height: 24px;
+      border-radius: 6px;
+      opacity: 0.7;
+    }
+
+    .footer-brand-name {
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 28px;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      font-size: 13px;
+      color: var(--text-dim);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+
+    .footer-links a:hover { color: var(--red); }
+
+    /* ── Responsive ── */
+    @media (max-width: 768px) {
+      nav { padding: 14px 20px; }
+      .hero { padding: 120px 20px 64px; }
+      .container { padding: 0 20px; }
+      .how, .templates, .pricing { padding: 64px 20px; }
+      footer { padding: 36px 20px; }
+
+      .steps { grid-template-columns: 1fr; gap: 12px; }
+      .step:first-child, .step:last-child { border-radius: 16px; }
+      .step { border-radius: 16px; }
+
+      .templates-grid { grid-template-columns: 1fr 1fr; }
+      .pricing-grid { grid-template-columns: 1fr; }
+
+      .mockup-body { grid-template-columns: 1fr; }
+      .mockup-arrow { flex-direction: row; padding: 8px 20px; }
+    }
+
+    @media (max-width: 480px) {
+      .templates-grid { grid-template-columns: 1fr; }
+      .footer-links { gap: 16px; }
+      .nav-logo-name { display: none; }
+    }
+
+    /* ── Focus ── */
+    :focus-visible {
+      outline: 2px solid var(--red);
+      outline-offset: 3px;
+      border-radius: 4px;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { transition: none !important; animation: none !important; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Nav -->
+  <nav>
+    <a href="/products/docuai/" class="nav-logo">
+      <img src="docuai-icon-512.svg" alt="DocuAI">
+      <span class="nav-logo-name">DocuAI</span>
+    </a>
+    <div class="nav-actions">
+      <button class="theme-btn" onclick="toggleTheme()" aria-label="Toggle theme" title="Toggle theme">◐</button>
+      <a href="https://auth.monday.com/oauth2/authorize?client_id=c5554d002272ce2061923ca308b6af77&response_type=install"
+         class="btn-install-nav" target="_blank" rel="noopener">
+        Install Free
+      </a>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero">
+
+    <img src="docuai-icon-512.svg" alt="DocuAI logo" class="hero-logo">
+
+    <div class="hero-eyebrow">
+      <span class="hero-eyebrow-dot"></span>
+      Available on monday.com Marketplace
+    </div>
+
+    <h1 class="hero-title">DocuAI</h1>
+    <p class="hero-title-sub">AI Document Generator for monday.com</p>
+    <p class="hero-desc">
+      Turn your board data into professional PDF &amp; Word documents in seconds.
+      No copy-pasting. No formatting headaches. Just one click.
+    </p>
+
+    <div class="hero-cta">
+      <a href="https://auth.monday.com/oauth2/authorize?client_id=c5554d002272ce2061923ca308b6af77&response_type=install"
+         class="btn-primary" target="_blank" rel="noopener">
+        Install on monday.com
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+      <span class="marketplace-badge">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M7 1L8.5 5h4L9.5 8l1.5 4L7 10 3 12l1.5-4L1.5 5h4L7 1z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/>
+        </svg>
+        Free to install · No credit card required
+      </span>
+    </div>
+
+    <!-- Product mockup -->
+    <div class="hero-mockup">
+      <div class="mockup-bar">
+        <span class="mockup-dot"></span>
+        <span class="mockup-dot"></span>
+        <span class="mockup-dot"></span>
+        <span class="mockup-title">monday.com · Lead: Acme Corp</span>
+      </div>
+      <div class="mockup-body">
+        <!-- Board side -->
+        <div class="mockup-board">
+          <div class="board-label">Board data</div>
+          <div class="board-row active">
+            <span class="board-row-dot" style="background:#0085ff"></span>
+            <span class="board-row-text">Acme Corp</span>
+            <span class="board-row-tag">Lead Brief</span>
+          </div>
+          <div class="board-row">
+            <span class="board-row-dot" style="background:#00ca72"></span>
+            <span class="board-row-text">TechStart Ltd</span>
+            <span class="board-row-tag">Proposal</span>
+          </div>
+          <div class="board-row">
+            <span class="board-row-dot" style="background:#fdab3d"></span>
+            <span class="board-row-text">GlobalEx</span>
+            <span class="board-row-tag">Contract</span>
+          </div>
+          <div class="board-row">
+            <span class="board-row-dot" style="background:#9ca3af"></span>
+            <span class="board-row-text">PineCo</span>
+            <span class="board-row-tag">ROI Report</span>
+          </div>
+        </div>
+
+        <!-- Arrow -->
+        <div class="mockup-arrow">
+          <span class="arrow-badge">AI</span>
+          <span class="arrow-line">→</span>
+        </div>
+
+        <!-- Doc side -->
+        <div class="mockup-doc">
+          <div class="doc-card">
+            <div class="doc-header">
+              <span class="doc-title-line">Lead Brief — Acme Corp</span>
+            </div>
+            <div class="doc-lines">
+              <div class="doc-line" style="width:85%"></div>
+              <div class="doc-line" style="width:70%"></div>
+              <div class="doc-line" style="width:90%"></div>
+              <div class="doc-line" style="width:60%"></div>
+              <div class="doc-line" style="width:75%"></div>
+            </div>
+            <div class="doc-formats">
+              <div class="format-btn pdf-btn">PDF</div>
+              <div class="format-btn word-btn">Word</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- How it works -->
+  <section class="how">
+    <div class="container">
+      <div class="section-label">How it works</div>
+      <h2 class="section-title">Three clicks from board to document</h2>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">STEP 01</div>
+          <span class="step-icon">📋</span>
+          <div class="step-name">Open any item</div>
+          <p class="step-desc">Open any item in your monday.com board. DocuAI reads all the relevant fields automatically.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">STEP 02</div>
+          <span class="step-icon">🎨</span>
+          <div class="step-name">Choose a template</div>
+          <p class="step-desc">Pick from 6 AI-powered templates — from lead briefs to full service contracts.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">STEP 03</div>
+          <span class="step-icon">⬇️</span>
+          <div class="step-name">Download PDF &amp; Word</div>
+          <p class="step-desc">Your document is generated in seconds. Download as PDF, Word, or both.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Templates -->
+  <section class="templates">
+    <div class="container">
+      <div class="section-label">Templates</div>
+      <h2 class="section-title">Built for how your team works</h2>
+      <div class="templates-grid">
+
+        <div class="template-card">
+          <div class="template-icon" style="background:rgba(0,133,255,0.1)">📝</div>
+          <div class="template-name">Lead Brief</div>
+          <p class="template-desc">One-page summary of a lead — company, contact, opportunity, and next steps.</p>
+        </div>
+
+        <div class="template-card">
+          <div class="template-icon" style="background:rgba(0,202,114,0.1)">🗓️</div>
+          <div class="template-name">Meeting Summary</div>
+          <p class="template-desc">Structured notes with decisions, action items, and owners — sent automatically after the call.</p>
+        </div>
+
+        <div class="template-card">
+          <div class="template-icon" style="background:rgba(225,29,72,0.1)">💼</div>
+          <div class="template-name">Price Proposal</div>
+          <p class="template-desc">Professional proposal with scope, pricing table, and timeline — ready to send in seconds.</p>
+        </div>
+
+        <div class="template-card">
+          <div class="template-icon" style="background:rgba(253,171,61,0.1)">📄</div>
+          <div class="template-name">Service Contract</div>
+          <p class="template-desc">Pre-filled contract from your board data. Review, sign, done.</p>
+        </div>
+
+        <div class="template-card">
+          <div class="template-icon" style="background:rgba(99,102,241,0.1)">🚀</div>
+          <div class="template-name">Onboarding Document</div>
+          <p class="template-desc">Welcome pack for new clients or team members, generated from project data.</p>
+        </div>
+
+        <div class="template-card">
+          <div class="template-icon" style="background:rgba(16,185,129,0.1)">📈</div>
+          <div class="template-name">ROI Report</div>
+          <p class="template-desc">Show the numbers that matter — impact, costs, returns — in a board-ready report.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing -->
+  <section class="pricing">
+    <div class="container">
+      <div class="section-label">Pricing</div>
+      <h2 class="section-title">Start free, scale as you grow</h2>
+      <div class="pricing-grid">
+
+        <!-- Free -->
+        <div class="plan">
+          <div class="plan-name">Free</div>
+          <div class="plan-price">
+            <span class="plan-amount">$0</span>
+            <span class="plan-period">/ month</span>
+          </div>
+          <div class="plan-limit">5 documents per month</div>
+          <div class="plan-divider"></div>
+          <ul class="plan-features">
+            <li>All 6 templates</li>
+            <li>PDF &amp; Word export</li>
+            <li>monday.com native integration</li>
+          </ul>
+          <a href="https://auth.monday.com/oauth2/authorize?client_id=c5554d002272ce2061923ca308b6af77&response_type=install"
+             class="btn-plan btn-plan-ghost" target="_blank" rel="noopener">
+            Get Started Free
+          </a>
+        </div>
+
+        <!-- Pro (featured) -->
+        <div class="plan featured">
+          <span class="plan-badge">Most Popular</span>
+          <div class="plan-name">Pro</div>
+          <div class="plan-price">
+            <span class="plan-amount">$29</span>
+            <span class="plan-period">/ month</span>
+          </div>
+          <div class="plan-limit">100 documents per month</div>
+          <div class="plan-divider"></div>
+          <ul class="plan-features">
+            <li>All 6 templates</li>
+            <li>PDF &amp; Word export</li>
+            <li>monday.com native integration</li>
+            <li>Custom branding &amp; logo</li>
+            <li>Priority support</li>
+          </ul>
+          <a href="https://auth.monday.com/oauth2/authorize?client_id=c5554d002272ce2061923ca308b6af77&response_type=install"
+             class="btn-plan btn-plan-primary" target="_blank" rel="noopener">
+            Get Started →
+          </a>
+        </div>
+
+        <!-- Business -->
+        <div class="plan">
+          <div class="plan-name">Business</div>
+          <div class="plan-price">
+            <span class="plan-amount">$59</span>
+            <span class="plan-period">/ month</span>
+          </div>
+          <div class="plan-limit">Unlimited documents</div>
+          <div class="plan-divider"></div>
+          <ul class="plan-features">
+            <li>Everything in Pro</li>
+            <li>Unlimited documents</li>
+            <li>Custom templates</li>
+            <li>Dedicated account manager</li>
+          </ul>
+          <a href="https://auth.monday.com/oauth2/authorize?client_id=c5554d002272ce2061923ca308b6af77&response_type=install"
+             class="btn-plan btn-plan-ghost" target="_blank" rel="noopener">
+            Contact Sales
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <a href="/products/docuai/" class="footer-brand">
+      <img src="docuai-icon-512.svg" alt="DocuAI">
+      <span class="footer-brand-name">DocuAI</span>
+    </a>
+    <nav class="footer-links" aria-label="Footer">
+      <a href="/products/docuai/privacy/">Privacy Policy</a>
+      <a href="/products/docuai/terms/">Terms of Service</a>
+      <a href="/products/docuai/support/">Support</a>
+      <a href="/products/docuai/how-to-use/">How to Use</a>
+    </nav>
+  </footer>
+
+  <script>
+    function getStoredTheme() { return localStorage.getItem('theme') || ''; }
+    function applyTheme(t) {
+      document.documentElement.dataset.theme = t;
+      localStorage.setItem('theme', t);
+    }
+    function toggleTheme() {
+      const curr = document.documentElement.dataset.theme;
+      applyTheme(curr === 'dark' ? 'light' : 'dark');
+    }
+    applyTheme(getStoredTheme());
+  </script>
+
+</body>
+</html>

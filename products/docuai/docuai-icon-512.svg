@@ -1,0 +1,28 @@
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <rect width="512" height="512" rx="112" fill="#f1f5f9"/>
+  
+  <!-- Document -->
+  <rect x="86" y="86" width="214" height="278" rx="26" fill="#ffffff" stroke="#e2e8f0" stroke-width="8"/>
+  
+  <!-- Text lines -->
+  <rect x="118" y="140" width="150" height="22" rx="11" fill="#94a3b8"/>
+  <rect x="118" y="182" width="116" height="22" rx="11" fill="#cbd5e1"/>
+  <rect x="118" y="224" width="132" height="22" rx="11" fill="#cbd5e1"/>
+  <rect x="118" y="266" width="88" height="22" rx="11" fill="#e2e8f0"/>
+  <rect x="118" y="308" width="108" height="22" rx="11" fill="#e2e8f0"/>
+  
+  <!-- AI Badge -->
+  <rect x="246" y="246" width="180" height="106" rx="32" fill="#0085ff"/>
+  <text x="336" y="318" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="70" font-weight="700" fill="#ffffff" text-anchor="middle">AI</text>
+  
+  <!-- Confetti dots and shapes -->
+  <circle cx="384" cy="118" r="19" fill="#0085ff"/>
+  <circle cx="426" cy="182" r="13" fill="#fdab3d"/>
+  <circle cx="406" cy="74" r="11" fill="#00ca72"/>
+  <circle cx="448" cy="136" r="9" fill="#f1f5f9" stroke="#0085ff" stroke-width="3"/>
+  
+  <rect x="362" y="158" width="26" height="26" rx="6" fill="#fdab3d" transform="rotate(20 375 171)"/>
+  <rect x="416" y="96" width="22" height="22" rx="5" fill="#00ca72" transform="rotate(-15 427 107)"/>
+  <rect x="450" y="164" width="18" height="18" rx="4" fill="#f472b6" transform="rotate(30 459 173)"/>
+  <rect x="370" y="72" width="16" height="16" rx="4" fill="#fbbf24" transform="rotate(-20 378 80)"/>
+</svg>
