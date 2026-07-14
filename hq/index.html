@@ -272,6 +272,21 @@
     .badge-tool-active { background: rgba(34,197,94,0.12); color: #22c55e; border: 1px solid rgba(34,197,94,0.25); }
     .badge-tool-inactive { background: rgba(239,68,68,0.1); color: #f87171; border: 1px solid rgba(239,68,68,0.2); }
     .badge-tool-issue { background: rgba(234,179,8,0.12); color: #facc15; border: 1px solid rgba(234,179,8,0.25); }
+
+    /* ── ROADMAP ── */
+    .roadmap-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    @media (max-width: 800px) { .roadmap-grid { grid-template-columns: 1fr; } }
+    .roadmap-col {
+      background: var(--bg-2); border: 1px solid var(--border);
+      border-radius: var(--radius-lg); padding: 16px;
+    }
+    .roadmap-col-title { font-size: 12px; font-weight: 700; letter-spacing: 0.04em; margin-bottom: 12px; display: flex; align-items: center; gap: 6px; }
+    .roadmap-col.now .roadmap-col-title { color: #22c55e; }
+    .roadmap-col.next .roadmap-col-title { color: #60a5fa; }
+    .roadmap-col.later .roadmap-col-title { color: var(--text-4); }
+    .roadmap-item { padding: 10px 0; border-bottom: 1px solid var(--border); font-size: 13px; color: var(--text-2); }
+    .roadmap-item:last-child { border-bottom: none; }
+    .roadmap-item-note { font-size: 11px; color: var(--text-4); margin-top: 3px; }
   </style>
 </head>
 <body>
@@ -290,6 +305,7 @@
   <div class="tab-bar">
     <button class="tab-btn active" onclick="switchTab('dashboard', this)">📊 Dashboard</button>
     <button class="tab-btn" onclick="switchTab('tools', this)">🔧 Tools</button>
+    <button class="tab-btn" onclick="switchTab('roadmap', this)">🗺️ Roadmap</button>
   </div>
   <div class="tab-divider"></div>
 
@@ -358,6 +374,23 @@
       <div class="section">
         <div class="section-label">🔧 Stack & Tools</div>
         <div class="tools-grid" id="tools-grid"></div>
+      </div>
+    </div>
+
+    <!-- ROADMAP TAB -->
+    <div id="tab-roadmap" style="display:none">
+      <div class="section">
+        <div class="section-label">📋 Bar — Tasks & Settings</div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>משימה</th><th>קצב</th><th>מקור תוכן</th><th>יעד פלט</th><th>אישור</th></tr></thead>
+            <tbody id="bar-tasks-body"></tbody>
+          </table>
+        </div>
+      </div>
+      <div class="section">
+        <div class="section-label">🗺️ Now / Next / Later</div>
+        <div class="roadmap-grid" id="roadmap-grid"></div>
       </div>
     </div>
 
@@ -531,6 +564,8 @@
         renderRuns(d.agent_runs);
         renderBacklog(d.backlog);
         renderTools(d.tools);
+        renderBarTasks(d.agents && d.agents.bar && d.agents.bar.tasks);
+        renderRoadmap(d.roadmap);
 
         document.getElementById("last-updated").textContent = "עודכן: " + fmt(d.last_updated);
         document.getElementById("loading").style.display = "none";
@@ -549,6 +584,7 @@
       btn.classList.add('active');
       document.getElementById('tab-dashboard').style.display = name === 'dashboard' ? '' : 'none';
       document.getElementById('tab-tools').style.display    = name === 'tools'     ? '' : 'none';
+      document.getElementById('tab-roadmap').style.display  = name === 'roadmap'   ? '' : 'none';
     }
 
     /* Tools */
@@ -591,6 +627,44 @@
             ${ctrlLink}
           </div>
         </div>`;
+      }).join("");
+    }
+
+    /* Bar tasks table */
+    function renderBarTasks(tasks) {
+      const tbody = document.getElementById("bar-tasks-body");
+      if (!tasks || !tasks.length) {
+        tbody.innerHTML = `<tr><td colspan="5" style="text-align:center;color:var(--text-4);padding:24px">אין נתוני משימות</td></tr>`;
+        return;
+      }
+      tbody.innerHTML = tasks.map(t => `
+        <tr>
+          <td><strong>${t.name}</strong></td>
+          <td class="td-muted">${t.cadence || "—"}</td>
+          <td class="td-muted">${t.source || "—"}</td>
+          <td class="td-muted">${t.output || "—"}</td>
+          <td class="td-muted">${t.approval || "—"}</td>
+        </tr>`).join("");
+    }
+
+    /* Roadmap — Now / Next / Later */
+    function renderRoadmap(roadmap) {
+      const grid = document.getElementById("roadmap-grid");
+      const cols = [
+        { key: "now", title: "🟢 NOW", cls: "now" },
+        { key: "next", title: "🔵 NEXT", cls: "next" },
+        { key: "later", title: "⚪ LATER", cls: "later" },
+      ];
+      grid.innerHTML = cols.map(c => {
+        const items = (roadmap && roadmap[c.key]) || [];
+        const itemsHtml = items.length
+          ? items.map(i => `
+              <div class="roadmap-item">
+                ${i.title || i}
+                ${i.note ? `<div class="roadmap-item-note">${i.note}</div>` : ""}
+              </div>`).join("")
+          : `<div class="roadmap-item" style="color:var(--text-4)">—</div>`;
+        return `<div class="roadmap-col ${c.cls}"><div class="roadmap-col-title">${c.title}</div>${itemsHtml}</div>`;
       }).join("");
     }
 
