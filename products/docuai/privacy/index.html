@@ -27,7 +27,7 @@
   <div class="logo">DocuAI<span> for monday.com</span></div>
 
   <h1>Privacy Policy</h1>
-  <div class="meta">DocuAI for monday.com · Last updated: July 1, 2026</div>
+  <div class="meta">DocuAI for monday.com · Last updated: July 15, 2026</div>
 
   <div class="highlight">
     <strong>The short version:</strong> DocuAI reads your monday.com item data to generate documents. We do not store your data after the document is created. We do not sell your data. Ever.
@@ -55,24 +55,44 @@
   </ul>
 
   <h2>4. Data Retention</h2>
-  <p><strong>We do not store your business data.</strong> Item data (deal values, contact names, notes, etc.) is processed in real-time to generate the document and is not saved to any DocuAI database or server after generation is complete.</p>
-  <p>The only data we retain:</p>
+  <p><strong>Your business data is never stored on our servers.</strong> Item data (deal values, contact names, notes, etc.) is processed in real-time to generate the document and is not saved to any DocuAI database or server after generation is complete.</p>
+  <p>We retain two categories of data:</p>
+  <p><strong>1. In monday.com App Storage (monday's infrastructure):</strong></p>
   <ul>
-    <li>Document generation history (document type, date, item name) — stored in monday.com App Storage, not on our servers</li>
-    <li>App settings (language preference, company name for document headers) — stored in monday.com App Storage</li>
+    <li>Language preference</li>
+    <li>Document history metadata (type, date, item name)</li>
+    <li>Usage counter per account per month</li>
   </ul>
+  <p><strong>2. In Supabase (our servers — AWS eu-west-1):</strong></p>
+  <ul>
+    <li>account_id (numeric monday workspace ID — not PII)</li>
+    <li>Plan tier (free / pro / business)</li>
+    <li>Template name used</li>
+    <li>Error messages for debugging</li>
+    <li>Install/uninstall events (audit log)</li>
+  </ul>
+  <p>Your business data, item content, names, emails, and generated documents are <strong>never</strong> stored on our servers. All Supabase data is permanently deleted within 10 days of app uninstall.</p>
 
   <h2>5. AI Processing (Claude by Anthropic)</h2>
   <p>DocuAI uses Claude, an AI model developed by Anthropic, to generate document content. Your item data is sent to Anthropic's API for processing. Anthropic's privacy policy applies to this processing: <a href="https://www.anthropic.com/privacy" target="_blank">anthropic.com/privacy</a>.</p>
   <p>Anthropic does not use API data to train its models.</p>
 
-  <h2>6. Data Sharing</h2>
-  <p>We do not sell, rent, or share your data with third parties, except:</p>
-  <ul>
-    <li><strong>Anthropic</strong> — for AI document generation (see Section 5)</li>
-    <li><strong>monday.com</strong> — as required to operate within the monday.com platform</li>
-    <li><strong>Legal requirements</strong> — if required by law or legal process</li>
-  </ul>
+  <h2>6. Third-Party Services</h2>
+  <p>We do not sell or rent your data. DocuAI sends data to the following third-party services in order to operate:</p>
+
+  <h3>Anthropic (api.anthropic.com)</h3>
+  <p>Used for AI document generation. Your monday.com item data (field values, names, notes) is sent to Anthropic's Claude API to generate document content. Anthropic does not use API data for model training. Privacy policy: <a href="https://www.anthropic.com/privacy" target="_blank">anthropic.com/privacy</a></p>
+
+  <h3>monday.com (api.monday.com)</h3>
+  <p>Used for platform integration. All board and item data interactions go through monday.com's official API using the monday SDK. Privacy policy: <a href="https://monday.com/l/legal/privacy" target="_blank">monday.com/l/legal/privacy</a></p>
+
+  <h3>Supabase (supabase.co)</h3>
+  <p>Used for usage tracking and error logging. We store only: account_id (numeric monday workspace ID), plan tier, template name, and error messages. No PII is stored. Hosted on AWS eu-west-1. Privacy policy: <a href="https://supabase.com/privacy" target="_blank">supabase.com/privacy</a></p>
+
+  <h3>Vercel (vercel.com)</h3>
+  <p>Used for hosting our frontend and backend serverless functions. HTTP request logs (IP, timestamp, endpoint) may be retained for 30 days. Privacy policy: <a href="https://vercel.com/legal/privacy-policy" target="_blank">vercel.com/legal/privacy-policy</a></p>
+
+  <p>We may also disclose data if required by law or legal process.</p>
 
   <h2>7. Security</h2>
   <p>All data transmitted between DocuAI, monday.com, and Anthropic is encrypted in transit using TLS/HTTPS. We follow security best practices to protect your data during processing.</p>
