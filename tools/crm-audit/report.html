@@ -257,7 +257,11 @@ function renderReport(data) {
   `;
 
   if (isPaid) {
-    document.getElementById("pdfLink").href = `${API_BASE}/api/pdf/preview/${auditId}`;
+    // Paid users get the full report (token-gated); fall back to preview if the
+    // token isn't present for some reason.
+    document.getElementById("pdfLink").href = data.pdf_token
+      ? `${API_BASE}/api/pdf/full/${auditId}?token=${data.pdf_token}`
+      : `${API_BASE}/api/pdf/preview/${auditId}`;
   }
 
   document.getElementById("navLabel").textContent = (data.companyName || "Your") + " · CRM Report";
