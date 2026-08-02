@@ -61,19 +61,20 @@ in Israel, owned by Alon Rozenberg. Agent7D.com is the AI products brand operati
   <p>We retain two categories of data:</p>
   <p><strong>1. In monday.com App Storage (monday's infrastructure):</strong></p>
   <ul>
-    <li>Language preference</li>
-    <li>Document history metadata (type, date, item name)</li>
+    <li>Language and settings preference (instance-scoped)</li>
+    <li>Document history metadata — type, date, item name (instance-scoped)</li>
     <li>Usage counter per account per month</li>
   </ul>
-  <p><strong>2. In Supabase (our servers — AWS eu-west-1):</strong></p>
+  <p><strong>2. On our servers (Supabase, AWS eu-west-1):</strong></p>
   <ul>
     <li>account_id (numeric monday workspace ID — not PII)</li>
     <li>Plan tier (free / pro / business)</li>
-    <li>Template name used</li>
-    <li>Error messages for debugging</li>
-    <li>Install/uninstall events (audit log)</li>
+    <li>Template name and generation metadata</li>
+    <li>Error logs for debugging</li>
+    <li>Install/uninstall audit events</li>
   </ul>
-  <p>Your business data, item content, names, emails, and generated documents are <strong>never</strong> stored on our servers. All Supabase data is permanently deleted within 10 days of app uninstall.</p>
+  <p>No business data, item content, names, emails, or generated document content is stored on our servers.</p>
+  <p>All Supabase data is permanently deleted within 10 days of app uninstall, via an automated webhook.</p>
 
   <h2>5. AI Processing (Claude by Anthropic)</h2>
   <p>DocuAI uses Claude, an AI model developed by Anthropic, to generate document content. Your item data is sent to Anthropic's API for processing. Anthropic's privacy policy applies to this processing: <a href="https://www.anthropic.com/privacy" target="_blank">anthropic.com/privacy</a>.</p>
