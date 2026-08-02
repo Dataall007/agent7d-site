@@ -193,7 +193,13 @@
 </div>
 
 <script>
-const API_BASE = "https://crm-audit-api.onrender.com";
+// Served from localhost during development → talk to the local API. Hardcoded to
+// the hostname rather than read from the query string on purpose: this page collects
+// the user's Monday API key, so an attacker must never be able to craft a link that
+// redirects it to another host.
+const API_BASE = ["localhost", "127.0.0.1"].includes(location.hostname)
+  ? "http://localhost:3001"
+  : "https://crm-audit-api.onrender.com";
 let crmSummary = null;
 
 function goStep(n) {

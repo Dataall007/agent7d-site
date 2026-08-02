@@ -112,7 +112,10 @@
 </div>
 
 <script>
-const API_BASE = "https://crm-audit-api.onrender.com";
+// Mirrors audit.html: localhost serves against the local API, everything else Render.
+const API_BASE = ["localhost", "127.0.0.1"].includes(location.hostname)
+  ? "http://localhost:3001"
+  : "https://crm-audit-api.onrender.com";
 
 const params = new URLSearchParams(location.search);
 const auditId = params.get("id");
