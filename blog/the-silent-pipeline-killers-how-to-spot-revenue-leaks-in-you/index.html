@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Silent Pipeline Killers: How to Spot Revenue Leaks in Your monday.com CRM Before They Cost You Deals — agent7d Blog</title>
+<meta name="description" content="Most sales teams using monday.com assume a full pipeline is a healthy pipeline. It isn't. A board packed with open deals can be quietly hemorrhaging revenue whi">
+<meta property="og:title" content="The Silent Pipeline Killers: How to Spot Revenue Leaks in Your monday.com CRM Before They Cost You Deals">
+<meta property="og:description" content="Most sales teams using monday.com assume a full pipeline is a healthy pipeline. It isn't. A board packed with open deals can be quietly hemorrhaging revenue whi">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script>
+  const t=localStorage.getItem('theme')||(window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');
+  document.documentElement.setAttribute('data-theme',t);
+</script>
+<style>
+:root{
+  --primary:#e11d48;--primary-hover:#be123c;--primary-light:#fef2f5;
+  --bg:#ffffff;--bg-2:#f9fafb;--bg-3:#f3f4f6;
+  --border:#e5e7eb;--text-1:#111827;--text-2:#374151;--text-3:#6b7280;--text-4:#9ca3af;
+  --font:'Plus Jakarta Sans',sans-serif;--t:0.15s ease;
+  --shadow-sm:0 1px 3px rgba(0,0,0,0.08);--shadow-md:0 4px 12px rgba(0,0,0,0.08);
+}
+[data-theme="dark"]{
+  --bg:#0a0a0a;--bg-2:#111111;--bg-3:#1a1a1a;--border:#262626;
+  --text-1:#f9fafb;--text-2:#e5e7eb;--text-3:#9ca3af;--text-4:#6b7280;
+  --primary:#ff2056;--primary-light:rgba(255,32,86,0.1);
+  --shadow-sm:0 1px 3px rgba(0,0,0,0.3);--shadow-md:0 4px 12px rgba(0,0,0,0.4);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font);background:var(--bg);color:var(--text-1);line-height:1.6;-webkit-font-smoothing:antialiased;transition:background var(--t),color var(--t)}
+a{color:var(--primary);text-decoration:none}
+a:hover{text-decoration:underline}
+
+.nav-wrap{width:100%;border-bottom:1px solid var(--border);background:var(--bg);position:sticky;top:0;z-index:100}
+.nav-inner{max-width:1100px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:64px}
+.logo{font-size:20px;font-weight:800;color:var(--text-1);text-decoration:none;letter-spacing:-0.02em}
+.logo span{color:var(--primary)}
+.nav-links{display:flex;align-items:center;gap:24px}
+.nav-links a{font-size:14px;font-weight:500;color:var(--text-3);text-decoration:none;transition:color var(--t)}
+.nav-links a:hover{color:var(--text-1)}
+.theme-btn{background:none;border:1px solid var(--border);border-radius:8px;padding:6px 10px;cursor:pointer;color:var(--text-3);font-size:16px;transition:all var(--t)}
+.theme-btn:hover{border-color:var(--primary);color:var(--primary)}
+
+.article-wrap{max-width:720px;margin:0 auto;padding:64px 24px 96px}
+.breadcrumb{font-size:13px;color:var(--text-4);margin-bottom:32px}
+.breadcrumb a{color:var(--text-3);text-decoration:none}
+.breadcrumb a:hover{color:var(--primary)}
+.article-category{font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--primary);margin-bottom:14px}
+.article-title{font-size:42px;font-weight:800;line-height:1.15;letter-spacing:-0.02em;color:var(--text-1);margin-bottom:16px}
+.article-meta{font-size:13px;color:var(--text-4);margin-bottom:40px;display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+.article-meta span{display:flex;align-items:center;gap:5px}
+.article-divider{height:1px;background:var(--border);margin-bottom:40px}
+
+.article-body{font-size:17px;line-height:1.8;color:var(--text-2)}
+.article-body h2{font-size:26px;font-weight:700;color:var(--text-1);margin:40px 0 16px;line-height:1.3}
+.article-body h3{font-size:20px;font-weight:600;color:var(--text-1);margin:28px 0 12px}
+.article-body p{margin-bottom:20px}
+.article-body ul,.article-body ol{padding-right:24px;margin-bottom:20px}
+.article-body li{margin-bottom:8px}
+.article-body strong{color:var(--text-1);font-weight:600}
+.article-body code{background:var(--bg-3);border:1px solid var(--border);border-radius:4px;padding:2px 6px;font-size:14px;font-family:monospace}
+.article-body blockquote{border-right:4px solid var(--primary);padding:12px 20px;margin:24px 0;background:var(--bg-2);border-radius:0 8px 8px 0;color:var(--text-2);font-style:italic}
+
+.cta-box{background:var(--primary-light);border:1px solid rgba(225,29,72,0.2);border-radius:14px;padding:32px;margin:48px 0;text-align:center}
+.cta-box h3{font-size:22px;font-weight:700;color:var(--text-1);margin-bottom:8px}
+.cta-box p{color:var(--text-3);margin-bottom:20px;font-size:15px}
+.btn-primary{display:inline-block;background:var(--primary);color:#fff;padding:12px 28px;border-radius:10px;font-size:14px;font-weight:600;text-decoration:none;transition:all var(--t);box-shadow:0 4px 20px rgba(225,29,72,0.25)}
+.btn-primary:hover{background:var(--primary-hover);transform:translateY(-1px);text-decoration:none}
+
+footer{border-top:1px solid var(--border);padding:32px 24px;text-align:center;color:var(--text-4);font-size:13px}
+footer a{color:var(--text-3)}
+footer a:hover{color:var(--primary)}
+</style>
+</head>
+<body>
+<div class="nav-wrap">
+  <div class="nav-inner">
+    <a href="/" class="logo">agent7<span>d</span></a>
+    <div class="nav-links">
+      <a href="/">Home</a>
+      <a href="/blog/">Blog</a>
+      <a href="/products/docuai/support/">DocuAI</a>
+      <button class="theme-btn" onclick="toggleTheme()" title="Toggle theme">☀️</button>
+    </div>
+  </div>
+</div>
+
+<div class="article-wrap">
+  <div class="breadcrumb"><a href="/">Home</a> → <a href="/blog/">Blog</a> → The Silent Pipeline Killers: How to Spot Revenue Leaks in Your monday.com CRM Before They Cost You Deals</div>
+  <div class="article-category">monday.com</div>
+  <h1 class="article-title">The Silent Pipeline Killers: How to Spot Revenue Leaks in Your monday.com CRM Before They Cost You Deals</h1>
+  <div class="article-meta">
+    <span>📅 August 21, 2026</span>
+    <span>✍️ agent7d Team</span>
+    <span>⏱ 5 min read</span>
+  </div>
+  <div class="article-divider"></div>
+  <div class="article-body">
+    
+<p>Most sales teams using monday.com assume a full pipeline is a healthy pipeline. It isn't. A board packed with open deals can be quietly hemorrhaging revenue while everyone feels busy. The deals aren't lost to bad pitches or weak closers — they're lost to neglect, incomplete data, and accountability gaps that nobody notices until it's too late.</p>
+<p>Monday.com pipeline health isn't about deal volume. It's about whether the right person is actively working the right deals with the right information — and right now, there's a good chance your board is failing that test on all three counts.</p>
+<h2>The Problem</h2>
+<p>There are three silent killers hiding inside almost every monday.com CRM board, and they share one trait: they don't announce themselves.</p>
+<p><strong>Stuck deals with no recent activity.</strong> A deal sitting at "Proposal Sent" for 45 days isn't a pipeline asset — it's dead weight distorting your forecast. Without activity-date tracking or follow-up enforcement, monday.com boards accumulate these deals invisibly. The stage hasn't changed, so it doesn't look broken. But nothing is moving.</p>
+<p><strong>Records missing critical fields.</strong> Close date empty. Contact owner blank. Deal value at zero. These aren't minor oversights — they're structural failures that make reporting meaningless and forecasting impossible. When your pipeline board has 40% of records missing a close date, your Q3 revenue projection is fiction.</p>
+<p><strong>Unowned items that fall through the cracks.</strong> This one is the most expensive. An item with no assigned owner in monday.com belongs to everyone — which means it belongs to no one. Nobody follows up. Nobody logs a call. The deal expires quietly, and everyone assumes someone else handled it.</p>
+<p>Together, these three issues can silently kill 20–40% of your pipeline potential before a single salesperson has a bad day.</p>
+<h2>The Solution</h2>
+<p>A proper pipeline health audit forces these issues into the open. In monday.com, you can surface most of them manually — it takes discipline, but the data is there if you know where to look.</p>
+<p>Start with board filters. Filter your CRM board by "Last Activity Date" to isolate deals that haven't been touched in 14, 30, or 60 days. Sort by assigned owner and look for blanks. Use column statistics (the sigma icon at the bottom of any column) to instantly see how many records have empty values in critical fields like close date, deal value, and contact name.</p>
+<p>Then check your activity log. Monday.com tracks item-level updates — you can scroll through recent activity on stale deals to confirm whether the silence is real or just unlogged. If reps are working deals outside the board (email threads, spreadsheets, verbal conversations), that's a process problem compounding the data problem.</p>
+<p>Once you've run the manual scan, score what you find. What percentage of open deals have no owner? What percentage have no close date? What percentage haven't been updated in 30-plus days? These numbers tell you the real health of your pipeline — not the stage count, not the total deal value.</p>
+<h2>Real Example</h2>
+<p>A 12-person sales team came to us after noticing their close rate had dropped without any obvious cause. No rep had left. No market had shifted. Their monday.com board showed 87 open deals across three stages.</p>
+<p>When we ran a pipeline audit, we found that 34% of those open deals — 30 records — had no assigned owner and hadn't been updated in over 30 days. Nearly a third of their pipeline was in a dead zone. Some of those deals had been sitting untouched since the initial discovery call, never followed up on because the handoff between SDR and AE had broken down and neither party realised the record was orphaned.</p>
+<p>The fix wasn't complicated: they assigned owners to every open deal the same day, created a board automation to notify the team lead when any deal goes 14 days without activity, and added close date as a required field during deal creation. Within six weeks, their contact rate on existing pipeline had doubled — without adding a single new lead.</p>
+<p>The data was always there. Nobody had looked.</p>
+<h2>How to Get Started</h2>
+<p>If you want to run this manually on your own monday.com board, start here:</p>
+<ul><li>Filter by last activity date — flag anything over 30 days with no update</li>
+<li>Check column stats on Owner, Close Date, and Deal Value — note every blank</li>
+<li>Cross-reference stage with activity — "Proposal Sent" for 45+ days is a red flag</li>
+<li>Export to a spreadsheet and assign a severity score to each issue</li>
+<li>Fix ownership first, then missing close dates, then activity gaps</li>
+<p></ul></p>
+<p>Prioritise ruthlessly. If everything looks broken, start with unowned deals — they are your most immediate revenue risk.</p>
+<p>Want to see what your own pipeline is losing? Run the free CRM Audit for monday.com — it scores your pipeline health and shows exactly where revenue is leaking. <a href="https://agent7d.com/tools/crm-audit/">Get your free audit</a></p>
+  </div>
+  <div class="cta-box">
+    <h3>Generate documents from monday.com in seconds</h3>
+    <p>DocuAI turns your item data into professional proposals, contracts, and reports — automatically.</p>
+    <a href="https://agent7d.com/products/docuai/" class="btn-primary">Try DocuAI Free →</a>
+  </div>
+</div>
+
+<footer>
+  <p>© 2026 agent7d · <a href="/products/docuai/privacy/">Privacy</a> · <a href="/products/docuai/terms/">Terms</a> · <a href="/blog/">Blog</a></p>
+</footer>
+<script>
+function toggleTheme(){
+  const cur=document.documentElement.getAttribute('data-theme');
+  const next=cur==='dark'?'light':'dark';
+  document.documentElement.setAttribute('data-theme',next);
+  localStorage.setItem('theme',next);
+  document.querySelector('.theme-btn').textContent=next==='dark'?'🌙':'☀️';
+}
+document.querySelector('.theme-btn').textContent=
+  document.documentElement.getAttribute('data-theme')==='dark'?'🌙':'☀️';
+</script>
+</body>
+</html>
