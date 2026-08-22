@@ -159,6 +159,16 @@
     .badge-null, .badge-unknown      { background: var(--bg-3); color: var(--text-4); border: 1px solid var(--border); }
     .badge-p1 { background: rgba(239,68,68,0.12);  color: #f87171; border: 1px solid rgba(239,68,68,0.2); }
     .badge-p2 { background: var(--bg-3); color: var(--text-4); border: 1px solid var(--border); }
+    .badge-paused { background: var(--bg-3); color: var(--text-4); border: 1px solid var(--border-2); }
+
+    /* ── PAUSED (stage 1) ──
+       Deliberately suspended, not broken and not deleted. Dimmed and sorted to
+       the bottom so it leaves the active view without vanishing — the point is
+       to stop it reading as "healthy", not to forget it exists. */
+    .is-paused, .paused-row td { opacity: 0.45; }
+    .is-paused:hover, .paused-row:hover td { opacity: 0.8; }
+    .card.is-paused:hover { transform: none; box-shadow: none; border-color: var(--border); }
+    .card.is-paused:hover::before { transform: scaleX(0); }
 
     /* ── TABLES ── */
     .table-wrap { overflow-x: auto; border-radius: var(--radius-lg); border: 1px solid var(--border); }
@@ -490,7 +500,26 @@
         grid.innerHTML = "<p style='color:var(--text-4)'>אין נתוני סוכנים</p>";
         return;
       }
-      grid.innerHTML = Object.entries(agents).map(([key, a]) => `
+      // Paused agents sort last — see the .is-paused note in the stylesheet.
+      const entries = Object.entries(agents)
+        .sort((a, b) => (a[1].paused ? 1 : 0) - (b[1].paused ? 1 : 0));
+
+      grid.innerHTML = entries.map(([key, a]) => {
+        // A paused agent has no live schedule, so next_scheduled / open_positions
+        // are stale claims rather than data. Show why it's paused instead.
+        if (a.paused) {
+          return `
+        <div class="card agent-card is-paused">
+          <div class="agent-meta">
+            <div class="status-dot dot-idle"></div>
+            <div class="agent-name">${LABELS[key] || key}</div>
+            <span class="badge badge-paused">⏸ PAUSED</span>
+          </div>
+          <div class="card-note">${a.paused.reason || "מושהה"}</div>
+          <div class="agent-next">⏸ מושהה מאז ${a.paused.since || "—"}</div>
+        </div>`;
+        }
+        return `
         <div class="card agent-card">
           <div class="agent-meta">
             <div class="status-dot ${statusDotClass(a.status)}"></div>
@@ -500,7 +529,8 @@
           <div class="agent-next">🕐 ${a.next_scheduled || "—"}</div>
           ${a.queue != null ? `<div class="agent-next" style="margin-top:4px">📥 Queue: ${a.queue}</div>` : ""}
           ${a.open_positions != null ? `<div class="agent-next" style="margin-top:4px">👤 Open positions: ${a.open_positions}</div>` : ""}
-        </div>`).join("");
+        </div>`;
+      }).join("");
     }
 
     /* Agent Runs */
@@ -508,21 +538,39 @@
       const LABELS = {
         "bar-blog": "Bar — Blog",
         "bar-linkedin": "Bar — LinkedIn",
-        "routine-email": "Routine — Morning Email"
+        "routine-email": "Routine — Morning Email",
+        "bclarity-routine": "bClarity — Routine Worker",
+        "test": "Test — GitHub token"
       };
       const tbody = document.getElementById("runs-body");
       if (!runs || !Object.keys(runs).length) {
         tbody.innerHTML = `<tr><td colspan="5" style="text-align:center;color:var(--text-4);padding:24px">אין נתוני ריצות</td></tr>`;
         return;
       }
-      tbody.innerHTML = Object.entries(runs).map(([key, r]) => `
+      tbody.innerHTML = Object.entries(runs)
+        .sort((a, b) => (a[1].paused ? 1 : 0) - (b[1].paused ? 1 : 0))
+        .map(([key, r]) => {
+          // ⏸️ instead of ✅: a paused run's last result was a success, but
+          // showing it green claims the service is still running.
+          if (r.paused) {
+            return `
+        <tr class="paused-row">
+          <td><strong>${LABELS[key] || key}</strong> <span class="badge badge-paused">⏸ PAUSED</span></td>
+          <td class="run-icon">⏸️</td>
+          <td class="td-muted">${fmt(r.lastRun)}</td>
+          <td class="td-muted">${r.paused.reason || "מושהה"}</td>
+          <td class="td-muted">—</td>
+        </tr>`;
+          }
+          return `
         <tr>
           <td><strong>${LABELS[key] || key}</strong></td>
           <td class="run-icon">${runIcon(r.status)}</td>
           <td class="td-muted">${fmt(r.lastRun)}</td>
           <td class="td-muted">${r.lastAction || "—"}</td>
           <td class="${r.error ? "td-error" : "td-muted"}">${r.error || "—"}</td>
-        </tr>`).join("");
+        </tr>`;
+        }).join("");
     }
 
     /* Backlog */
