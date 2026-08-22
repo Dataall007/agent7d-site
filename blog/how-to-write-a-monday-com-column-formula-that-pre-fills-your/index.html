@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How to Write a monday.com Column Formula That Pre-Fills Your Proposal Fields Automatically — agent7d Blog</title>
+<meta name="description" content="Most monday.com users send proposals the same way: open a Word doc or PDF template, switch back to the board, copy the client name, paste it in, grab the deal v">
+<meta property="og:title" content="How to Write a monday.com Column Formula That Pre-Fills Your Proposal Fields Automatically">
+<meta property="og:description" content="Most monday.com users send proposals the same way: open a Word doc or PDF template, switch back to the board, copy the client name, paste it in, grab the deal v">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script>
+  const t=localStorage.getItem('theme')||(window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');
+  document.documentElement.setAttribute('data-theme',t);
+</script>
+<style>
+:root{
+  --primary:#e11d48;--primary-hover:#be123c;--primary-light:#fef2f5;
+  --bg:#ffffff;--bg-2:#f9fafb;--bg-3:#f3f4f6;
+  --border:#e5e7eb;--text-1:#111827;--text-2:#374151;--text-3:#6b7280;--text-4:#9ca3af;
+  --font:'Plus Jakarta Sans',sans-serif;--t:0.15s ease;
+  --shadow-sm:0 1px 3px rgba(0,0,0,0.08);--shadow-md:0 4px 12px rgba(0,0,0,0.08);
+}
+[data-theme="dark"]{
+  --bg:#0a0a0a;--bg-2:#111111;--bg-3:#1a1a1a;--border:#262626;
+  --text-1:#f9fafb;--text-2:#e5e7eb;--text-3:#9ca3af;--text-4:#6b7280;
+  --primary:#ff2056;--primary-light:rgba(255,32,86,0.1);
+  --shadow-sm:0 1px 3px rgba(0,0,0,0.3);--shadow-md:0 4px 12px rgba(0,0,0,0.4);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font);background:var(--bg);color:var(--text-1);line-height:1.6;-webkit-font-smoothing:antialiased;transition:background var(--t),color var(--t)}
+a{color:var(--primary);text-decoration:none}
+a:hover{text-decoration:underline}
+
+.nav-wrap{width:100%;border-bottom:1px solid var(--border);background:var(--bg);position:sticky;top:0;z-index:100}
+.nav-inner{max-width:1100px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:64px}
+.logo{font-size:20px;font-weight:800;color:var(--text-1);text-decoration:none;letter-spacing:-0.02em}
+.logo span{color:var(--primary)}
+.nav-links{display:flex;align-items:center;gap:24px}
+.nav-links a{font-size:14px;font-weight:500;color:var(--text-3);text-decoration:none;transition:color var(--t)}
+.nav-links a:hover{color:var(--text-1)}
+.theme-btn{background:none;border:1px solid var(--border);border-radius:8px;padding:6px 10px;cursor:pointer;color:var(--text-3);font-size:16px;transition:all var(--t)}
+.theme-btn:hover{border-color:var(--primary);color:var(--primary)}
+
+.article-wrap{max-width:720px;margin:0 auto;padding:64px 24px 96px}
+.breadcrumb{font-size:13px;color:var(--text-4);margin-bottom:32px}
+.breadcrumb a{color:var(--text-3);text-decoration:none}
+.breadcrumb a:hover{color:var(--primary)}
+.article-category{font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--primary);margin-bottom:14px}
+.article-title{font-size:42px;font-weight:800;line-height:1.15;letter-spacing:-0.02em;color:var(--text-1);margin-bottom:16px}
+.article-meta{font-size:13px;color:var(--text-4);margin-bottom:40px;display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+.article-meta span{display:flex;align-items:center;gap:5px}
+.article-divider{height:1px;background:var(--border);margin-bottom:40px}
+
+.article-body{font-size:17px;line-height:1.8;color:var(--text-2)}
+.article-body h2{font-size:26px;font-weight:700;color:var(--text-1);margin:40px 0 16px;line-height:1.3}
+.article-body h3{font-size:20px;font-weight:600;color:var(--text-1);margin:28px 0 12px}
+.article-body p{margin-bottom:20px}
+.article-body ul,.article-body ol{padding-right:24px;margin-bottom:20px}
+.article-body li{margin-bottom:8px}
+.article-body strong{color:var(--text-1);font-weight:600}
+.article-body code{background:var(--bg-3);border:1px solid var(--border);border-radius:4px;padding:2px 6px;font-size:14px;font-family:monospace}
+.article-body blockquote{border-right:4px solid var(--primary);padding:12px 20px;margin:24px 0;background:var(--bg-2);border-radius:0 8px 8px 0;color:var(--text-2);font-style:italic}
+
+.cta-box{background:var(--primary-light);border:1px solid rgba(225,29,72,0.2);border-radius:14px;padding:32px;margin:48px 0;text-align:center}
+.cta-box h3{font-size:22px;font-weight:700;color:var(--text-1);margin-bottom:8px}
+.cta-box p{color:var(--text-3);margin-bottom:20px;font-size:15px}
+.btn-primary{display:inline-block;background:var(--primary);color:#fff;padding:12px 28px;border-radius:10px;font-size:14px;font-weight:600;text-decoration:none;transition:all var(--t);box-shadow:0 4px 20px rgba(225,29,72,0.25)}
+.btn-primary:hover{background:var(--primary-hover);transform:translateY(-1px);text-decoration:none}
+
+footer{border-top:1px solid var(--border);padding:32px 24px;text-align:center;color:var(--text-4);font-size:13px}
+footer a{color:var(--text-3)}
+footer a:hover{color:var(--primary)}
+</style>
+</head>
+<body>
+<div class="nav-wrap">
+  <div class="nav-inner">
+    <a href="/" class="logo">agent7<span>d</span></a>
+    <div class="nav-links">
+      <a href="/">Home</a>
+      <a href="/blog/">Blog</a>
+      <a href="/products/docuai/support/">DocuAI</a>
+      <button class="theme-btn" onclick="toggleTheme()" title="Toggle theme">☀️</button>
+    </div>
+  </div>
+</div>
+
+<div class="article-wrap">
+  <div class="breadcrumb"><a href="/">Home</a> → <a href="/blog/">Blog</a> → How to Write a monday.com Column Formula That Pre-Fills Your Proposal Fields Automatically</div>
+  <div class="article-category">Sales & CRM</div>
+  <h1 class="article-title">How to Write a monday.com Column Formula That Pre-Fills Your Proposal Fields Automatically</h1>
+  <div class="article-meta">
+    <span>📅 August 22, 2026</span>
+    <span>✍️ agent7d Team</span>
+    <span>⏱ 5 min read</span>
+  </div>
+  <div class="article-divider"></div>
+  <div class="article-body">
+    
+<p>Most monday.com users send proposals the same way: open a Word doc or PDF template, switch back to the board, copy the client name, paste it in, grab the deal value, paste that, check the timeline, paste that too. Repeat for every field. Somewhere in that process, a number gets transposed, a date is yesterday's, or a scope description still says "TBD."</p>
+<p>The fix isn't a better template. It's fixing what's on your board before a document is ever opened. monday.com formula columns can do the heavy lifting — and once your board is structured correctly, generating a proposal becomes a one-click action instead of a 40-minute ordeal.</p>
+<p>---</p>
+<h2>The Problem</h2>
+<p>Blank or mismatched fields are the single biggest source of delay in client documents — and they almost always trace back to the same root cause: data lives in the board in one format and needs to appear in a document in a completely different format.</p>
+<p>A deal value stored as a raw number becomes "$12,500.00" in the proposal. A start date stored in a Date column needs to read "Monday, June 9, 2025" in a contract. A scope stored across five checklist items needs to appear as a clean paragraph summary.</p>
+<p>When none of that transformation happens automatically, someone has to do it by hand. And when it's done by hand under deadline pressure, errors follow. Clients notice. Deals slow down.</p>
+<p>The deeper problem is that most boards aren't built with document output in mind. Columns get added reactively, naming is inconsistent, and critical fields — the ones that show up in every proposal — are scattered or missing entirely.</p>
+<p>---</p>
+<h2>The Solution</h2>
+<p>Four monday.com column types map cleanly onto the fields that appear in almost every client proposal: <strong>Text</strong>, <strong>Numbers</strong>, <strong>Date</strong>, and <strong>Mirror</strong>. When you structure your board around these four intentionally, and use Formula columns to transform raw data into document-ready output, you eliminate the manual step entirely.</p>
+<p>Formula columns are the bridge. They sit between the raw data your team enters and the clean, formatted strings a document tool can pull directly. Think of them as invisible pre-formatters that run every time a value changes.</p>
+<p>The goal is simple: by the time a proposal needs to be generated, every field it requires should already exist on the item — formatted, accurate, and current — with zero manual intervention.</p>
+<p>---</p>
+<h2>Step by Step</h2>
+<p><strong>1. Build your four anchor columns first.</strong></p>
+<p>On every deal item, ensure you have: a plain Text column for Client Name, a Numbers column (set to currency) for Deal Value, a Date column for Proposal Date, and a Timeline column for project start and end.</p>
+<p><strong>2. Create a formatted Deal Value formula column.</strong></p>
+<p>Add a Formula column and use: <code>CONCATENATE("$", TEXT({Deal Value}, "#,##0"))</code>. This converts the raw number into a formatted currency string like "$12,500" — exactly what belongs in a proposal.</p>
+<p><strong>3. Create a Timeline Summary formula column.</strong></p>
+<p>Use: <code>CONCATENATE(TEXT({Start Date}, "MMMM D, YYYY"), " – ", TEXT({End Date}, "MMMM D, YYYY"))</code>. This produces clean output like "July 1, 2025 – September 30, 2025" without anyone typing a word.</p>
+<p><strong>4. Use Mirror columns for scope data from subitems.</strong></p>
+<p>If your scope lives in subitems (deliverables, phases, line items), set up a Mirror column on the parent item that reflects a Long Text column from those subitems. Keep that Long Text column disciplined — one sentence per subitem, no line breaks inside a cell.</p>
+<p><strong>5. Name every formula column with a document prefix.</strong></p>
+<p>Use a naming convention like <code>[DOC] Deal Value</code>, <code>[DOC] Timeline</code>, <code>[DOC] Scope Summary</code>. This makes it immediately obvious which columns are document-ready and which are working columns for your team.</p>
+<p><strong>6. Audit for completeness before any document runs.</strong></p>
+<p>Add a Status column called "Proposal Ready" that your team flips manually once all <code>[DOC]</code> columns are populated. This single gate eliminates blank-field errors downstream.</p>
+<p>---</p>
+<h2>Real Example</h2>
+<p>A digital agency running eight to twelve proposals per month was spending roughly 40 minutes per proposal — most of it copying data between their monday.com board and a Word template. Dates were frequently wrong because someone updated the Timeline column after the proposal was already drafted. Scope descriptions were copy-pasted from Slack threads, not the board.</p>
+<p>They restructured their board using the approach above: four anchor columns, three formula columns with the <code>[DOC]</code> prefix, Mirror columns pulling from subitems, and a "Proposal Ready" status gate.</p>
+<p>Once the board was clean, they connected DocuAI to pull directly from those <code>[DOC]</code> columns. Proposal generation dropped from 40 minutes to under five. The remaining time is spent on the client-specific cover message — which is exactly where human attention belongs.</p>
+<p>The column work took one afternoon. The return has been permanent.</p>
+<p>---</p>
+<h2>How to Get Started</h2>
+<p>Start with one board — your most active deals board. Audit which fields appear in every proposal you send. Build those as anchor columns first, then layer the formula columns on top using the recipes above. Name everything with the <code>[DOC]</code> prefix so your team knows what's document-ready at a glance.</p>
+<p>Once your columns are clean and consistent, document generation becomes a data-pull, not a copy-paste session. That's exactly what DocuAI is built for.</p>
+<p>Ready to stop copying data into documents? Try DocuAI for monday.com — it generates professional proposals, contracts, and reports from your item data in seconds. <a href="https://agent7d.com/products/docuai/">Get started free</a></p>
+  </div>
+  <div class="cta-box">
+    <h3>Generate documents from monday.com in seconds</h3>
+    <p>DocuAI turns your item data into professional proposals, contracts, and reports — automatically.</p>
+    <a href="https://agent7d.com/products/docuai/" class="btn-primary">Try DocuAI Free →</a>
+  </div>
+</div>
+
+<footer>
+  <p>© 2026 agent7d · <a href="/products/docuai/privacy/">Privacy</a> · <a href="/products/docuai/terms/">Terms</a> · <a href="/blog/">Blog</a></p>
+</footer>
+<script>
+function toggleTheme(){
+  const cur=document.documentElement.getAttribute('data-theme');
+  const next=cur==='dark'?'light':'dark';
+  document.documentElement.setAttribute('data-theme',next);
+  localStorage.setItem('theme',next);
+  document.querySelector('.theme-btn').textContent=next==='dark'?'🌙':'☀️';
+}
+document.querySelector('.theme-btn').textContent=
+  document.documentElement.getAttribute('data-theme')==='dark'?'🌙':'☀️';
+</script>
+</body>
+</html>
