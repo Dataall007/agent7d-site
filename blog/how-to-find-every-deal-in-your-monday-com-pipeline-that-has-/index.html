@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How to Find Every Deal in Your monday.com Pipeline That Has No Next Action — Before It Goes Cold — agent7d Blog</title>
+<meta name="description" content="A deal without a next action is not a deal on hold. It is a deal dying quietly while your pipeline report makes everything look fine.">
+<meta property="og:title" content="How to Find Every Deal in Your monday.com Pipeline That Has No Next Action — Before It Goes Cold">
+<meta property="og:description" content="A deal without a next action is not a deal on hold. It is a deal dying quietly while your pipeline report makes everything look fine.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script>
+  const t=localStorage.getItem('theme')||(window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');
+  document.documentElement.setAttribute('data-theme',t);
+</script>
+<style>
+:root{
+  --primary:#e11d48;--primary-hover:#be123c;--primary-light:#fef2f5;
+  --bg:#ffffff;--bg-2:#f9fafb;--bg-3:#f3f4f6;
+  --border:#e5e7eb;--text-1:#111827;--text-2:#374151;--text-3:#6b7280;--text-4:#9ca3af;
+  --font:'Plus Jakarta Sans',sans-serif;--t:0.15s ease;
+  --shadow-sm:0 1px 3px rgba(0,0,0,0.08);--shadow-md:0 4px 12px rgba(0,0,0,0.08);
+}
+[data-theme="dark"]{
+  --bg:#0a0a0a;--bg-2:#111111;--bg-3:#1a1a1a;--border:#262626;
+  --text-1:#f9fafb;--text-2:#e5e7eb;--text-3:#9ca3af;--text-4:#6b7280;
+  --primary:#ff2056;--primary-light:rgba(255,32,86,0.1);
+  --shadow-sm:0 1px 3px rgba(0,0,0,0.3);--shadow-md:0 4px 12px rgba(0,0,0,0.4);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font);background:var(--bg);color:var(--text-1);line-height:1.6;-webkit-font-smoothing:antialiased;transition:background var(--t),color var(--t)}
+a{color:var(--primary);text-decoration:none}
+a:hover{text-decoration:underline}
+
+.nav-wrap{width:100%;border-bottom:1px solid var(--border);background:var(--bg);position:sticky;top:0;z-index:100}
+.nav-inner{max-width:1100px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:64px}
+.logo{font-size:20px;font-weight:800;color:var(--text-1);text-decoration:none;letter-spacing:-0.02em}
+.logo span{color:var(--primary)}
+.nav-links{display:flex;align-items:center;gap:24px}
+.nav-links a{font-size:14px;font-weight:500;color:var(--text-3);text-decoration:none;transition:color var(--t)}
+.nav-links a:hover{color:var(--text-1)}
+.theme-btn{background:none;border:1px solid var(--border);border-radius:8px;padding:6px 10px;cursor:pointer;color:var(--text-3);font-size:16px;transition:all var(--t)}
+.theme-btn:hover{border-color:var(--primary);color:var(--primary)}
+
+.article-wrap{max-width:720px;margin:0 auto;padding:64px 24px 96px}
+.breadcrumb{font-size:13px;color:var(--text-4);margin-bottom:32px}
+.breadcrumb a{color:var(--text-3);text-decoration:none}
+.breadcrumb a:hover{color:var(--primary)}
+.article-category{font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--primary);margin-bottom:14px}
+.article-title{font-size:42px;font-weight:800;line-height:1.15;letter-spacing:-0.02em;color:var(--text-1);margin-bottom:16px}
+.article-meta{font-size:13px;color:var(--text-4);margin-bottom:40px;display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+.article-meta span{display:flex;align-items:center;gap:5px}
+.article-divider{height:1px;background:var(--border);margin-bottom:40px}
+
+.article-body{font-size:17px;line-height:1.8;color:var(--text-2)}
+.article-body h2{font-size:26px;font-weight:700;color:var(--text-1);margin:40px 0 16px;line-height:1.3}
+.article-body h3{font-size:20px;font-weight:600;color:var(--text-1);margin:28px 0 12px}
+.article-body p{margin-bottom:20px}
+.article-body ul,.article-body ol{padding-right:24px;margin-bottom:20px}
+.article-body li{margin-bottom:8px}
+.article-body strong{color:var(--text-1);font-weight:600}
+.article-body code{background:var(--bg-3);border:1px solid var(--border);border-radius:4px;padding:2px 6px;font-size:14px;font-family:monospace}
+.article-body blockquote{border-right:4px solid var(--primary);padding:12px 20px;margin:24px 0;background:var(--bg-2);border-radius:0 8px 8px 0;color:var(--text-2);font-style:italic}
+
+.cta-box{background:var(--primary-light);border:1px solid rgba(225,29,72,0.2);border-radius:14px;padding:32px;margin:48px 0;text-align:center}
+.cta-box h3{font-size:22px;font-weight:700;color:var(--text-1);margin-bottom:8px}
+.cta-box p{color:var(--text-3);margin-bottom:20px;font-size:15px}
+.btn-primary{display:inline-block;background:var(--primary);color:#fff;padding:12px 28px;border-radius:10px;font-size:14px;font-weight:600;text-decoration:none;transition:all var(--t);box-shadow:0 4px 20px rgba(225,29,72,0.25)}
+.btn-primary:hover{background:var(--primary-hover);transform:translateY(-1px);text-decoration:none}
+
+footer{border-top:1px solid var(--border);padding:32px 24px;text-align:center;color:var(--text-4);font-size:13px}
+footer a{color:var(--text-3)}
+footer a:hover{color:var(--primary)}
+</style>
+</head>
+<body>
+<div class="nav-wrap">
+  <div class="nav-inner">
+    <a href="/" class="logo">agent7<span>d</span></a>
+    <div class="nav-links">
+      <a href="/">Home</a>
+      <a href="/blog/">Blog</a>
+      <a href="/products/docuai/support/">DocuAI</a>
+      <button class="theme-btn" onclick="toggleTheme()" title="Toggle theme">☀️</button>
+    </div>
+  </div>
+</div>
+
+<div class="article-wrap">
+  <div class="breadcrumb"><a href="/">Home</a> → <a href="/blog/">Blog</a> → How to Find Every Deal in Your monday.com Pipeline That Has No Next Action — Before It Goes Cold</div>
+  <div class="article-category">monday.com</div>
+  <h1 class="article-title">How to Find Every Deal in Your monday.com Pipeline That Has No Next Action — Before It Goes Cold</h1>
+  <div class="article-meta">
+    <span>📅 August 23, 2026</span>
+    <span>✍️ agent7d Team</span>
+    <span>⏱ 5 min read</span>
+  </div>
+  <div class="article-divider"></div>
+  <div class="article-body">
+    
+<p>A deal without a next action is not a deal on hold. It is a deal dying quietly while your pipeline report makes everything look fine.</p>
+<p>Most monday.com pipelines are full of them. Deals that were once real, that somebody worked for months to get into the funnel, sitting there with a status of "Proposal Sent" or "In Negotiation" and absolutely nothing scheduled to happen next. No follow-up date. No owner activity. No logged note. Just a row in a board that someone will eventually mark Closed Lost — if they remember to do it at all.</p>
+<p>This post gives sales managers a concrete method to find those deals, rescue the ones worth saving, and make sure the problem stops happening at the top of the funnel.</p>
+<p>---</p>
+<h2>The Problem</h2>
+<p>"No next action" is the most dangerous deal state in any pipeline because it looks active. The deal has a stage. It has a value. It counts toward your total open pipeline number. But nothing is moving.</p>
+<p>The reason this is so insidious: most CRM hygiene conversations focus on deals that are obviously stalled — long time-in-stage, overdue close dates. Those are visible. A deal with no next action is invisible. It sits in whatever stage it was last touched and waits. No alarm fires. No automation catches it. It just drifts.</p>
+<p>The result is pipeline inflation. Your board shows 60 open deals. Your reps can actively describe maybe 15. The other 45 are ghosts — and every month they stay open, they skew your forecasting, distort your conversion metrics, and give leadership a false sense of coverage.</p>
+<p>---</p>
+<h2>The Solution</h2>
+<p>Surface every deal in your monday.com pipeline that has no scheduled next step, then triage them. The columns that expose this are already on your board — they just need to be read together:</p>
+<ul><li><strong>Empty "Next Action Date" or "Follow-Up Date" column</strong> — no date means nothing is planned</li>
+<li><strong>"Last Activity" date older than 30 days</strong> — if monday.com is logging activity, this is your clearest signal</li>
+<li><strong>Status unchanged for 3+ weeks</strong> — stage movement is a proxy for momentum</li>
+<li><strong>No owner assigned or the same owner with zero recent notes</strong> — unowned deals are orphaned by definition</li>
+<p></ul></p>
+<p>Any deal that triggers two or more of these conditions is at risk. Three or more and it is almost certainly dead unless someone intervenes today.</p>
+<p>---</p>
+<h2>Step by Step</h2>
+<p><strong>1. Create a dedicated view.</strong> In your Deals board, add a new Table view and name it "No Next Action Audit."</p>
+<p><strong>2. Filter for the danger signals.</strong> Apply filters: Next Action Date is blank AND Last Updated is before [30 days ago]. If you track status changes, add a condition for status unchanged in the last 21 days.</p>
+<p><strong>3. Sort by deal value descending.</strong> You want the highest-risk revenue at the top of the list.</p>
+<p><strong>4. Add a "Rescue Status" column.</strong> Use a Status column with options: Revive / Close Lost / Needs Info. Work through every row and assign one.</p>
+<p><strong>5. Assign ownership immediately.</strong> Every deal on this list needs a named human responsible for deciding what happens to it within 48 hours.</p>
+<p><strong>6. Build an automation to catch future cases.</strong> In monday.com's Automation Center, create: <em>When Next Action Date is blank AND item hasn't been updated in 14 days → notify deal owner and set a tag "No Next Action."</em> This catches the problem before it reaches 30 days.</p>
+<p><strong>7. Make Next Action Date required at stage entry.</strong> Use Column Rules or a board automation to prompt reps to fill in the next action date whenever a deal moves into a new stage. Remove friction as an excuse.</p>
+<p>---</p>
+<h2>Real Example</h2>
+<p>A 10-person B2B SaaS team came to us with 60 open deals across their monday.com pipeline. During a pipeline review call, we asked each rep to name the deals they were actively working. Between the whole team, they could confidently describe 15.</p>
+<p>The remaining 45 had not had a single logged note, status change, or date update in over 30 days. Several had been sitting in "Proposal Sent" since the previous quarter. Two had contacts who had left the companies entirely.</p>
+<p>After running the audit process above, they closed 31 deals as lost (cleaning up $480,000 in phantom pipeline), revived 8 deals with fresh outreach (two converted within three weeks), and established an automation that now flags any deal going 14 days without a next action.</p>
+<p>Their pipeline went from 60 open deals to 29 — and their forecast accuracy improved immediately because the number finally reflected reality.</p>
+<p>---</p>
+<h2>How to Get Started</h2>
+<p>Open your monday.com Deals board right now and filter for items where the Next Action Date is blank. That number — whatever it is — is your starting point. If it is higher than 20% of your open deals, you have a pipeline hygiene problem that is actively costing you revenue.</p>
+<p>Work through the Step by Step process above this week. Build the automation. Lock down the required fields. Then review the list every Monday morning as a standing team ritual.</p>
+<p>The deals are there. Most of them can still be saved. You just have to find them before they go completely cold.</p>
+<p>---</p>
+<p>Want to see what your own pipeline is losing? Run the free CRM Audit for monday.com — it scores your pipeline health and shows exactly where revenue is leaking. <a href="https://agent7d.com/tools/crm-audit/">Get your free audit</a></p>
+  </div>
+  <div class="cta-box">
+    <h3>Generate documents from monday.com in seconds</h3>
+    <p>DocuAI turns your item data into professional proposals, contracts, and reports — automatically.</p>
+    <a href="https://agent7d.com/products/docuai/" class="btn-primary">Try DocuAI Free →</a>
+  </div>
+</div>
+
+<footer>
+  <p>© 2026 agent7d · <a href="/products/docuai/privacy/">Privacy</a> · <a href="/products/docuai/terms/">Terms</a> · <a href="/blog/">Blog</a></p>
+</footer>
+<script>
+function toggleTheme(){
+  const cur=document.documentElement.getAttribute('data-theme');
+  const next=cur==='dark'?'light':'dark';
+  document.documentElement.setAttribute('data-theme',next);
+  localStorage.setItem('theme',next);
+  document.querySelector('.theme-btn').textContent=next==='dark'?'🌙':'☀️';
+}
+document.querySelector('.theme-btn').textContent=
+  document.documentElement.getAttribute('data-theme')==='dark'?'🌙':'☀️';
+</script>
+</body>
+</html>
