@@ -1,5 +1,19 @@
 [
   {
+    "slug": "how-to-build-a-client-facing-status-report-straight-from-you",
+    "title": "How to Build a Client-Facing Status Report Straight from Your monday.com Board",
+    "excerpt": "Every Friday afternoon, someone on your team opens a blank Word document and starts copying. Status column: green. Timeline: on track. Owner: Sarah. They paste ",
+    "category": "AI & Automation",
+    "tags": [
+      "monday",
+      "ai"
+    ],
+    "product": "docuai",
+    "date": "2026-08-24",
+    "dateStr": "August 24, 2026",
+    "readTime": "5 min read"
+  },
+  {
     "slug": "how-to-find-every-deal-in-your-monday-com-pipeline-that-has-",
     "title": "How to Find Every Deal in Your monday.com Pipeline That Has No Next Action — Before It Goes Cold",
     "excerpt": "A deal without a next action is not a deal on hold. It is a deal dying quietly while your pipeline report makes everything look fine.",
