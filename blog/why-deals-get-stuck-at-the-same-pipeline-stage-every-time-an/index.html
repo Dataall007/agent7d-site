@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Why Deals Get Stuck at the Same Pipeline Stage Every Time — and How to Find the Pattern in monday.com — agent7d Blog</title>
+<meta name="description" content="There is a version of this story playing out on thousands of monday.com boards right now. Deals flow cleanly through the early stages, then pile up somewhere in">
+<meta property="og:title" content="Why Deals Get Stuck at the Same Pipeline Stage Every Time — and How to Find the Pattern in monday.com">
+<meta property="og:description" content="There is a version of this story playing out on thousands of monday.com boards right now. Deals flow cleanly through the early stages, then pile up somewhere in">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script>
+  const t=localStorage.getItem('theme')||(window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');
+  document.documentElement.setAttribute('data-theme',t);
+</script>
+<style>
+:root{
+  --primary:#e11d48;--primary-hover:#be123c;--primary-light:#fef2f5;
+  --bg:#ffffff;--bg-2:#f9fafb;--bg-3:#f3f4f6;
+  --border:#e5e7eb;--text-1:#111827;--text-2:#374151;--text-3:#6b7280;--text-4:#9ca3af;
+  --font:'Plus Jakarta Sans',sans-serif;--t:0.15s ease;
+  --shadow-sm:0 1px 3px rgba(0,0,0,0.08);--shadow-md:0 4px 12px rgba(0,0,0,0.08);
+}
+[data-theme="dark"]{
+  --bg:#0a0a0a;--bg-2:#111111;--bg-3:#1a1a1a;--border:#262626;
+  --text-1:#f9fafb;--text-2:#e5e7eb;--text-3:#9ca3af;--text-4:#6b7280;
+  --primary:#ff2056;--primary-light:rgba(255,32,86,0.1);
+  --shadow-sm:0 1px 3px rgba(0,0,0,0.3);--shadow-md:0 4px 12px rgba(0,0,0,0.4);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font);background:var(--bg);color:var(--text-1);line-height:1.6;-webkit-font-smoothing:antialiased;transition:background var(--t),color var(--t)}
+a{color:var(--primary);text-decoration:none}
+a:hover{text-decoration:underline}
+
+.nav-wrap{width:100%;border-bottom:1px solid var(--border);background:var(--bg);position:sticky;top:0;z-index:100}
+.nav-inner{max-width:1100px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:64px}
+.logo{font-size:20px;font-weight:800;color:var(--text-1);text-decoration:none;letter-spacing:-0.02em}
+.logo span{color:var(--primary)}
+.nav-links{display:flex;align-items:center;gap:24px}
+.nav-links a{font-size:14px;font-weight:500;color:var(--text-3);text-decoration:none;transition:color var(--t)}
+.nav-links a:hover{color:var(--text-1)}
+.theme-btn{background:none;border:1px solid var(--border);border-radius:8px;padding:6px 10px;cursor:pointer;color:var(--text-3);font-size:16px;transition:all var(--t)}
+.theme-btn:hover{border-color:var(--primary);color:var(--primary)}
+
+.article-wrap{max-width:720px;margin:0 auto;padding:64px 24px 96px}
+.breadcrumb{font-size:13px;color:var(--text-4);margin-bottom:32px}
+.breadcrumb a{color:var(--text-3);text-decoration:none}
+.breadcrumb a:hover{color:var(--primary)}
+.article-category{font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--primary);margin-bottom:14px}
+.article-title{font-size:42px;font-weight:800;line-height:1.15;letter-spacing:-0.02em;color:var(--text-1);margin-bottom:16px}
+.article-meta{font-size:13px;color:var(--text-4);margin-bottom:40px;display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+.article-meta span{display:flex;align-items:center;gap:5px}
+.article-divider{height:1px;background:var(--border);margin-bottom:40px}
+
+.article-body{font-size:17px;line-height:1.8;color:var(--text-2)}
+.article-body h2{font-size:26px;font-weight:700;color:var(--text-1);margin:40px 0 16px;line-height:1.3}
+.article-body h3{font-size:20px;font-weight:600;color:var(--text-1);margin:28px 0 12px}
+.article-body p{margin-bottom:20px}
+.article-body ul,.article-body ol{padding-right:24px;margin-bottom:20px}
+.article-body li{margin-bottom:8px}
+.article-body strong{color:var(--text-1);font-weight:600}
+.article-body code{background:var(--bg-3);border:1px solid var(--border);border-radius:4px;padding:2px 6px;font-size:14px;font-family:monospace}
+.article-body blockquote{border-right:4px solid var(--primary);padding:12px 20px;margin:24px 0;background:var(--bg-2);border-radius:0 8px 8px 0;color:var(--text-2);font-style:italic}
+
+.cta-box{background:var(--primary-light);border:1px solid rgba(225,29,72,0.2);border-radius:14px;padding:32px;margin:48px 0;text-align:center}
+.cta-box h3{font-size:22px;font-weight:700;color:var(--text-1);margin-bottom:8px}
+.cta-box p{color:var(--text-3);margin-bottom:20px;font-size:15px}
+.btn-primary{display:inline-block;background:var(--primary);color:#fff;padding:12px 28px;border-radius:10px;font-size:14px;font-weight:600;text-decoration:none;transition:all var(--t);box-shadow:0 4px 20px rgba(225,29,72,0.25)}
+.btn-primary:hover{background:var(--primary-hover);transform:translateY(-1px);text-decoration:none}
+
+footer{border-top:1px solid var(--border);padding:32px 24px;text-align:center;color:var(--text-4);font-size:13px}
+footer a{color:var(--text-3)}
+footer a:hover{color:var(--primary)}
+</style>
+</head>
+<body>
+<div class="nav-wrap">
+  <div class="nav-inner">
+    <a href="/" class="logo">agent7<span>d</span></a>
+    <div class="nav-links">
+      <a href="/">Home</a>
+      <a href="/blog/">Blog</a>
+      <a href="/products/docuai/support/">DocuAI</a>
+      <button class="theme-btn" onclick="toggleTheme()" title="Toggle theme">☀️</button>
+    </div>
+  </div>
+</div>
+
+<div class="article-wrap">
+  <div class="breadcrumb"><a href="/">Home</a> → <a href="/blog/">Blog</a> → Why Deals Get Stuck at the Same Pipeline Stage Every Time — and How to Find the Pattern in monday.com</div>
+  <div class="article-category">monday.com</div>
+  <h1 class="article-title">Why Deals Get Stuck at the Same Pipeline Stage Every Time — and How to Find the Pattern in monday.com</h1>
+  <div class="article-meta">
+    <span>📅 August 27, 2026</span>
+    <span>✍️ agent7d Team</span>
+    <span>⏱ 5 min read</span>
+  </div>
+  <div class="article-divider"></div>
+  <div class="article-body">
+    
+<p>There is a version of this story playing out on thousands of monday.com boards right now. Deals flow cleanly through the early stages, then pile up somewhere in the middle — and nobody treats it as a system failure. Managers coach individual reps. Reps chase individual contacts. The pile stays.</p>
+<p>If the same stage keeps collecting deals month after month, that is not a rep problem. That is a process problem, and monday.com gives you everything you need to prove it.</p>
+<h2>The Problem</h2>
+<p>Most sales teams confuse a <strong>temporarily busy stage</strong> with a <strong>genuine bottleneck</strong>, and that confusion is expensive.</p>
+<p>A busy stage is normal. If you just ran a webinar and pushed fifty new leads into "Qualified," that stage will look full — for a week or two, until activity processes them forward. That is volume lag, not structural failure.</p>
+<p>A genuine bottleneck looks different: deals accumulate over weeks or months, the mix of deal sizes and rep assignments is varied, and yet forward movement is consistently rare. The stage is not busy because business is booming. It is busy because deals are dying there quietly, without anyone declaring them lost.</p>
+<p>The risk of misdiagnosing this is real. If you treat a systemic bottleneck as individual underperformance, you will coach the wrong thing, lose winnable deals, and eventually lose reps who cannot hit targets against a broken process.</p>
+<h2>The Solution</h2>
+<p>Measure time-in-stage explicitly, visualize the distribution across your whole pipeline, and compare stuck deals against recently closed-won deals to isolate what is actually different between the two groups.</p>
+<p>monday.com does not have a native "time in stage" metric built into a single column — but you can construct one without any integrations or code. Once you have the data, the pattern becomes undeniable, and you can stop guessing about root cause.</p>
+<h2>Step by Step</h2>
+<p><strong>1. Add a "Stage Entry Date" date column to your deals board.</strong></p>
+<p>Every time a deal moves into a stage, the owner updates this column. You can automate this: create a status-change automation that sets a date column to today when the status changes. One automation per stage you care about is enough to start.</p>
+<p><strong>2. Add a "Days in Stage" formula column.</strong></p>
+<p>Use monday.com's formula column with <code>DAYS_DIFF({Today}, {Stage Entry Date})</code>. This gives you a live, always-current number for every deal.</p>
+<p><strong>3. Build a dashboard widget filtered to your suspected bottleneck stage.</strong></p>
+<p>Use a Numbers widget to show average days in stage for that status group. Add a Chart widget showing deal count by stage to visualize distribution. A healthy pipeline looks roughly like a funnel — fewer deals as you move right. A clogged pipeline looks like a python that swallowed something: one stage bloated, everything else thin.</p>
+<p><strong>4. Identify the four most common causes of a stuck stage and test which one applies.</strong></p>
+<ul><li><strong>Unclear exit criteria.</strong> Reps do not know what "done" looks like in this stage, so they leave deals parked.</li>
+<li><strong>Missing collateral.</strong> The stage requires something — a case study, a security questionnaire, a pricing deck — that does not exist or is hard to find.</li>
+<li><strong>Wrong person in the conversation.</strong> The deal is with a champion who cannot say yes. The actual decision-maker has never been engaged.</li>
+<li><strong>Pricing friction.</strong> The proposal number created sticker shock and the prospect went quiet, but the deal was never moved to lost.</li>
+<p></ul></p>
+<p><strong>5. Test your hypothesis against recently closed-won deals.</strong></p>
+<p>Pull every deal closed-won in the last 90 days. How long did they spend in the bottleneck stage? What activity was logged during that time? What happened that moved them forward? If your stuck deals have no logged activity and your won deals had two or three touchpoints during the same stage, you have identified both the cause and the fix.</p>
+<p><strong>6. Build a manager alert automation.</strong></p>
+<p>In monday.com's automation center: <em>When Days in Stage exceeds 21, notify [Manager] and change item color to red.</em> This removes the need for a manager to audit the board manually. The board surfaces problems proactively.</p>
+<h2>Real Example</h2>
+<p>A SaaS sales team came to us with a classic pattern. Their monday.com board showed that 70% of all open deals were sitting in "Proposal Sent." Average time in that stage: 24 days. Logged activity since the proposal send: zero on most items.</p>
+<p>The easy diagnosis would have been "reps are not following up." The real diagnosis, once we compared against their closed-won deals: their proposals contained no ROI section, and every deal that eventually closed had required a second conversation where the rep walked through value verbally. The proposal alone was not closing anything — it was just creating a waiting room.</p>
+<p>The fix was not a coaching session. It was a new proposal template and an exit-criteria rule: a deal cannot stay in "Proposal Sent" past day seven without a follow-up call logged. The bottleneck cleared within six weeks.</p>
+<h2>How to Get Started</h2>
+<p>Start with your own monday.com board today. Add the Stage Entry Date column, build the formula, and look at your distribution widget. If one stage holds more than 40% of your open pipeline, you have your bottleneck. Then do the comparison exercise against your recent closed-won deals — the pattern will be obvious once you are looking at the right data.</p>
+<p>The most important thing is to stop treating the symptom (individual deals stuck) and start treating the cause (the stage itself is broken).</p>
+<p>---</p>
+<p>Want to see what your own pipeline is losing? Run the free CRM Audit for monday.com — it scores your pipeline health and shows exactly where revenue is leaking. <a href="https://agent7d.com/tools/crm-audit/">Get your free audit</a></p>
+  </div>
+  <div class="cta-box">
+    <h3>Generate documents from monday.com in seconds</h3>
+    <p>DocuAI turns your item data into professional proposals, contracts, and reports — automatically.</p>
+    <a href="https://agent7d.com/products/docuai/" class="btn-primary">Try DocuAI Free →</a>
+  </div>
+</div>
+
+<footer>
+  <p>© 2026 agent7d · <a href="/products/docuai/privacy/">Privacy</a> · <a href="/products/docuai/terms/">Terms</a> · <a href="/blog/">Blog</a></p>
+</footer>
+<script>
+function toggleTheme(){
+  const cur=document.documentElement.getAttribute('data-theme');
+  const next=cur==='dark'?'light':'dark';
+  document.documentElement.setAttribute('data-theme',next);
+  localStorage.setItem('theme',next);
+  document.querySelector('.theme-btn').textContent=next==='dark'?'🌙':'☀️';
+}
+document.querySelector('.theme-btn').textContent=
+  document.documentElement.getAttribute('data-theme')==='dark'?'🌙':'☀️';
+</script>
+</body>
+</html>
