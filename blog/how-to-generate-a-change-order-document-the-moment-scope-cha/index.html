@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How to Generate a Change Order Document the Moment Scope Changes in monday.com — agent7d Blog</title>
+<meta name="description" content="Scope creep doesn't announce itself. It arrives as a Slack message: *"Hey, can we add a blog section to the site?"* Your project manager says sure, makes a ment">
+<meta property="og:title" content="How to Generate a Change Order Document the Moment Scope Changes in monday.com">
+<meta property="og:description" content="Scope creep doesn't announce itself. It arrives as a Slack message: *"Hey, can we add a blog section to the site?"* Your project manager says sure, makes a ment">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script>
+  const t=localStorage.getItem('theme')||(window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');
+  document.documentElement.setAttribute('data-theme',t);
+</script>
+<style>
+:root{
+  --primary:#e11d48;--primary-hover:#be123c;--primary-light:#fef2f5;
+  --bg:#ffffff;--bg-2:#f9fafb;--bg-3:#f3f4f6;
+  --border:#e5e7eb;--text-1:#111827;--text-2:#374151;--text-3:#6b7280;--text-4:#9ca3af;
+  --font:'Plus Jakarta Sans',sans-serif;--t:0.15s ease;
+  --shadow-sm:0 1px 3px rgba(0,0,0,0.08);--shadow-md:0 4px 12px rgba(0,0,0,0.08);
+}
+[data-theme="dark"]{
+  --bg:#0a0a0a;--bg-2:#111111;--bg-3:#1a1a1a;--border:#262626;
+  --text-1:#f9fafb;--text-2:#e5e7eb;--text-3:#9ca3af;--text-4:#6b7280;
+  --primary:#ff2056;--primary-light:rgba(255,32,86,0.1);
+  --shadow-sm:0 1px 3px rgba(0,0,0,0.3);--shadow-md:0 4px 12px rgba(0,0,0,0.4);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font);background:var(--bg);color:var(--text-1);line-height:1.6;-webkit-font-smoothing:antialiased;transition:background var(--t),color var(--t)}
+a{color:var(--primary);text-decoration:none}
+a:hover{text-decoration:underline}
+
+.nav-wrap{width:100%;border-bottom:1px solid var(--border);background:var(--bg);position:sticky;top:0;z-index:100}
+.nav-inner{max-width:1100px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:64px}
+.logo{font-size:20px;font-weight:800;color:var(--text-1);text-decoration:none;letter-spacing:-0.02em}
+.logo span{color:var(--primary)}
+.nav-links{display:flex;align-items:center;gap:24px}
+.nav-links a{font-size:14px;font-weight:500;color:var(--text-3);text-decoration:none;transition:color var(--t)}
+.nav-links a:hover{color:var(--text-1)}
+.theme-btn{background:none;border:1px solid var(--border);border-radius:8px;padding:6px 10px;cursor:pointer;color:var(--text-3);font-size:16px;transition:all var(--t)}
+.theme-btn:hover{border-color:var(--primary);color:var(--primary)}
+
+.article-wrap{max-width:720px;margin:0 auto;padding:64px 24px 96px}
+.breadcrumb{font-size:13px;color:var(--text-4);margin-bottom:32px}
+.breadcrumb a{color:var(--text-3);text-decoration:none}
+.breadcrumb a:hover{color:var(--primary)}
+.article-category{font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--primary);margin-bottom:14px}
+.article-title{font-size:42px;font-weight:800;line-height:1.15;letter-spacing:-0.02em;color:var(--text-1);margin-bottom:16px}
+.article-meta{font-size:13px;color:var(--text-4);margin-bottom:40px;display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+.article-meta span{display:flex;align-items:center;gap:5px}
+.article-divider{height:1px;background:var(--border);margin-bottom:40px}
+
+.article-body{font-size:17px;line-height:1.8;color:var(--text-2)}
+.article-body h2{font-size:26px;font-weight:700;color:var(--text-1);margin:40px 0 16px;line-height:1.3}
+.article-body h3{font-size:20px;font-weight:600;color:var(--text-1);margin:28px 0 12px}
+.article-body p{margin-bottom:20px}
+.article-body ul,.article-body ol{padding-right:24px;margin-bottom:20px}
+.article-body li{margin-bottom:8px}
+.article-body strong{color:var(--text-1);font-weight:600}
+.article-body code{background:var(--bg-3);border:1px solid var(--border);border-radius:4px;padding:2px 6px;font-size:14px;font-family:monospace}
+.article-body blockquote{border-right:4px solid var(--primary);padding:12px 20px;margin:24px 0;background:var(--bg-2);border-radius:0 8px 8px 0;color:var(--text-2);font-style:italic}
+
+.cta-box{background:var(--primary-light);border:1px solid rgba(225,29,72,0.2);border-radius:14px;padding:32px;margin:48px 0;text-align:center}
+.cta-box h3{font-size:22px;font-weight:700;color:var(--text-1);margin-bottom:8px}
+.cta-box p{color:var(--text-3);margin-bottom:20px;font-size:15px}
+.btn-primary{display:inline-block;background:var(--primary);color:#fff;padding:12px 28px;border-radius:10px;font-size:14px;font-weight:600;text-decoration:none;transition:all var(--t);box-shadow:0 4px 20px rgba(225,29,72,0.25)}
+.btn-primary:hover{background:var(--primary-hover);transform:translateY(-1px);text-decoration:none}
+
+footer{border-top:1px solid var(--border);padding:32px 24px;text-align:center;color:var(--text-4);font-size:13px}
+footer a{color:var(--text-3)}
+footer a:hover{color:var(--primary)}
+</style>
+</head>
+<body>
+<div class="nav-wrap">
+  <div class="nav-inner">
+    <a href="/" class="logo">agent7<span>d</span></a>
+    <div class="nav-links">
+      <a href="/">Home</a>
+      <a href="/blog/">Blog</a>
+      <a href="/products/docuai/support/">DocuAI</a>
+      <button class="theme-btn" onclick="toggleTheme()" title="Toggle theme">☀️</button>
+    </div>
+  </div>
+</div>
+
+<div class="article-wrap">
+  <div class="breadcrumb"><a href="/">Home</a> → <a href="/blog/">Blog</a> → How to Generate a Change Order Document the Moment Scope Changes in monday.com</div>
+  <div class="article-category">monday.com</div>
+  <h1 class="article-title">How to Generate a Change Order Document the Moment Scope Changes in monday.com</h1>
+  <div class="article-meta">
+    <span>📅 August 28, 2026</span>
+    <span>✍️ agent7d Team</span>
+    <span>⏱ 5 min read</span>
+  </div>
+  <div class="article-divider"></div>
+  <div class="article-body">
+    
+<p>Scope creep doesn't announce itself. It arrives as a Slack message: <em>"Hey, can we add a blog section to the site?"</em> Your project manager says sure, makes a mental note, and moves on. Three weeks later, the client is surprised by an invoice line they never formally agreed to. You've done the work, but you have no paper trail. That's not a billing problem — it's a trust problem.</p>
+<p>Here's how to close that gap entirely inside monday.com.</p>
+<p>---</p>
+<h2>The Problem</h2>
+<p>Undocumented scope changes are one of the most reliable ways to quietly destroy project margins and client relationships at the same time.</p>
+<p>When scope changes live in Slack threads, email chains, or verbal agreements, two things happen. First, they frequently get invoiced late, partially, or not at all because someone has to <em>remember</em> to bill for them. Second, when you do invoice, the client has no signed document confirming they approved the change. Now you're in a dispute over something that was genuinely agreed to.</p>
+<p>A change order document solves both problems. It creates a clear record of what changed, what it costs, and who approved it — before anyone does the extra work. The problem is that most teams skip it because generating one feels like stopping the project to do paperwork. So they default to Slack, and the cycle continues.</p>
+<p>---</p>
+<h2>The Solution</h2>
+<p>The fix is to make change orders the path of least resistance by building the capture and generation process directly into monday.com.</p>
+<p>When a scope change is logged as a monday.com item — with the right columns — you already have all the data needed for a formal change order document. The missing piece is converting that structured item data into a formatted, professional document without manually copying anything. That's exactly where DocuAI comes in. It reads your monday.com item data and generates a ready-to-send change order document in seconds, triggered by a status change on the board.</p>
+<p>---</p>
+<h2>Step by Step</h2>
+<p><strong>1. Create a dedicated Scope Changes board (or group)</strong></p>
+<p>Keep scope change requests separate from your main task board so they're easy to review, approve, and track over the life of a project.</p>
+<p><strong>2. Add the right columns</strong></p>
+<p>Your change order document is only as useful as the data behind it. Include these columns at minimum:</p>
+<ul><li><strong>Original Scope</strong> (text) — what was in the baseline agreement</li>
+<li><strong>New Scope</strong> (text) — exactly what the client is requesting</li>
+<li><strong>Cost Delta</strong> (numbers) — the additional fee for the change</li>
+<li><strong>Requestor</strong> (person or text) — who asked for it, client-side</li>
+<li><strong>Request Date</strong> (date) — when the request was received</li>
+<li><strong>Approval Status</strong> (status) — the column that drives your automation</li>
+<p></ul></p>
+<p><strong>3. Set up an automation triggered by status</strong></p>
+<p>When <strong>Approval Status</strong> flips to <em>"Scope Change Approved,"</em> trigger DocuAI to generate a change order document from that item's data. No manual export, no copy-paste.</p>
+<p><strong>4. Review and send</strong></p>
+<p>DocuAI generates a formatted change order populated with your item data. Review it, add your branding if needed, and send it for signature — all without leaving the platform.</p>
+<p><strong>5. Store the signed copy back on the item</strong></p>
+<p>Once signed, upload the PDF directly to the monday.com item as a file attachment. That item is now the single source of truth for everything related to that scope change.</p>
+<p>---</p>
+<h2>Real Example</h2>
+<p>A web development agency with a team of eight project managers was routinely handling scope changes over email. No formal process, no templates. An internal audit revealed they were only invoicing for roughly 60% of scope changes — the rest were lost in thread history or simply forgotten by billing time.</p>
+<p>They restructured their workflow in monday.com with a dedicated Scope Changes board and connected DocuAI. Now, the moment a project manager marks a scope change as approved, a change order document is generated automatically. The client receives it for signature the same day. Billing now has a 1:1 match between approved changes and invoiced items. The margin recovery in the first quarter alone covered the cost of the tooling many times over.</p>
+<p>---</p>
+<h2>How to Get Started</h2>
+<li>Build your Scope Changes board in monday.com using the columns listed above</li>
+<li>Install DocuAI from the monday.com marketplace</li>
+<li>Configure your change order template once — map each column to the corresponding field in the document</li>
+<li>Set the automation: when status changes to <em>"Scope Change Approved,"</em> generate document</li>
+<li>Start logging scope changes as items instead of Slack messages</li>
+<p>That's the entire system. It takes an afternoon to set up and eliminates a billing gap that costs most agencies thousands per quarter.</p>
+<p>---</p>
+<p>Ready to stop copying data into documents? Try DocuAI for monday.com — it generates professional proposals, contracts, and reports from your item data in seconds. <a href="https://agent7d.com/products/docuai/">Get started free</a></p>
+  </div>
+  <div class="cta-box">
+    <h3>Generate documents from monday.com in seconds</h3>
+    <p>DocuAI turns your item data into professional proposals, contracts, and reports — automatically.</p>
+    <a href="https://agent7d.com/products/docuai/" class="btn-primary">Try DocuAI Free →</a>
+  </div>
+</div>
+
+<footer>
+  <p>© 2026 agent7d · <a href="/products/docuai/privacy/">Privacy</a> · <a href="/products/docuai/terms/">Terms</a> · <a href="/blog/">Blog</a></p>
+</footer>
+<script>
+function toggleTheme(){
+  const cur=document.documentElement.getAttribute('data-theme');
+  const next=cur==='dark'?'light':'dark';
+  document.documentElement.setAttribute('data-theme',next);
+  localStorage.setItem('theme',next);
+  document.querySelector('.theme-btn').textContent=next==='dark'?'🌙':'☀️';
+}
+document.querySelector('.theme-btn').textContent=
+  document.documentElement.getAttribute('data-theme')==='dark'?'🌙':'☀️';
+</script>
+</body>
+</html>
