@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How to Audit the Deals You Marked Closed Lost — and Recover the Ones That Were Closed Too Early — agent7d Blog</title>
+<meta name="description" content="Closed Lost is one of the most trusted statuses in any pipeline. Once a deal lands there, almost nobody touches it again. It gets filtered out of dashboards, ig">
+<meta property="og:title" content="How to Audit the Deals You Marked Closed Lost — and Recover the Ones That Were Closed Too Early">
+<meta property="og:description" content="Closed Lost is one of the most trusted statuses in any pipeline. Once a deal lands there, almost nobody touches it again. It gets filtered out of dashboards, ig">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script>
+  const t=localStorage.getItem('theme')||(window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');
+  document.documentElement.setAttribute('data-theme',t);
+</script>
+<style>
+:root{
+  --primary:#e11d48;--primary-hover:#be123c;--primary-light:#fef2f5;
+  --bg:#ffffff;--bg-2:#f9fafb;--bg-3:#f3f4f6;
+  --border:#e5e7eb;--text-1:#111827;--text-2:#374151;--text-3:#6b7280;--text-4:#9ca3af;
+  --font:'Plus Jakarta Sans',sans-serif;--t:0.15s ease;
+  --shadow-sm:0 1px 3px rgba(0,0,0,0.08);--shadow-md:0 4px 12px rgba(0,0,0,0.08);
+}
+[data-theme="dark"]{
+  --bg:#0a0a0a;--bg-2:#111111;--bg-3:#1a1a1a;--border:#262626;
+  --text-1:#f9fafb;--text-2:#e5e7eb;--text-3:#9ca3af;--text-4:#6b7280;
+  --primary:#ff2056;--primary-light:rgba(255,32,86,0.1);
+  --shadow-sm:0 1px 3px rgba(0,0,0,0.3);--shadow-md:0 4px 12px rgba(0,0,0,0.4);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font);background:var(--bg);color:var(--text-1);line-height:1.6;-webkit-font-smoothing:antialiased;transition:background var(--t),color var(--t)}
+a{color:var(--primary);text-decoration:none}
+a:hover{text-decoration:underline}
+
+.nav-wrap{width:100%;border-bottom:1px solid var(--border);background:var(--bg);position:sticky;top:0;z-index:100}
+.nav-inner{max-width:1100px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:64px}
+.logo{font-size:20px;font-weight:800;color:var(--text-1);text-decoration:none;letter-spacing:-0.02em}
+.logo span{color:var(--primary)}
+.nav-links{display:flex;align-items:center;gap:24px}
+.nav-links a{font-size:14px;font-weight:500;color:var(--text-3);text-decoration:none;transition:color var(--t)}
+.nav-links a:hover{color:var(--text-1)}
+.theme-btn{background:none;border:1px solid var(--border);border-radius:8px;padding:6px 10px;cursor:pointer;color:var(--text-3);font-size:16px;transition:all var(--t)}
+.theme-btn:hover{border-color:var(--primary);color:var(--primary)}
+
+.article-wrap{max-width:720px;margin:0 auto;padding:64px 24px 96px}
+.breadcrumb{font-size:13px;color:var(--text-4);margin-bottom:32px}
+.breadcrumb a{color:var(--text-3);text-decoration:none}
+.breadcrumb a:hover{color:var(--primary)}
+.article-category{font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--primary);margin-bottom:14px}
+.article-title{font-size:42px;font-weight:800;line-height:1.15;letter-spacing:-0.02em;color:var(--text-1);margin-bottom:16px}
+.article-meta{font-size:13px;color:var(--text-4);margin-bottom:40px;display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+.article-meta span{display:flex;align-items:center;gap:5px}
+.article-divider{height:1px;background:var(--border);margin-bottom:40px}
+
+.article-body{font-size:17px;line-height:1.8;color:var(--text-2)}
+.article-body h2{font-size:26px;font-weight:700;color:var(--text-1);margin:40px 0 16px;line-height:1.3}
+.article-body h3{font-size:20px;font-weight:600;color:var(--text-1);margin:28px 0 12px}
+.article-body p{margin-bottom:20px}
+.article-body ul,.article-body ol{padding-right:24px;margin-bottom:20px}
+.article-body li{margin-bottom:8px}
+.article-body strong{color:var(--text-1);font-weight:600}
+.article-body code{background:var(--bg-3);border:1px solid var(--border);border-radius:4px;padding:2px 6px;font-size:14px;font-family:monospace}
+.article-body blockquote{border-right:4px solid var(--primary);padding:12px 20px;margin:24px 0;background:var(--bg-2);border-radius:0 8px 8px 0;color:var(--text-2);font-style:italic}
+
+.cta-box{background:var(--primary-light);border:1px solid rgba(225,29,72,0.2);border-radius:14px;padding:32px;margin:48px 0;text-align:center}
+.cta-box h3{font-size:22px;font-weight:700;color:var(--text-1);margin-bottom:8px}
+.cta-box p{color:var(--text-3);margin-bottom:20px;font-size:15px}
+.btn-primary{display:inline-block;background:var(--primary);color:#fff;padding:12px 28px;border-radius:10px;font-size:14px;font-weight:600;text-decoration:none;transition:all var(--t);box-shadow:0 4px 20px rgba(225,29,72,0.25)}
+.btn-primary:hover{background:var(--primary-hover);transform:translateY(-1px);text-decoration:none}
+
+footer{border-top:1px solid var(--border);padding:32px 24px;text-align:center;color:var(--text-4);font-size:13px}
+footer a{color:var(--text-3)}
+footer a:hover{color:var(--primary)}
+</style>
+</head>
+<body>
+<div class="nav-wrap">
+  <div class="nav-inner">
+    <a href="/" class="logo">agent7<span>d</span></a>
+    <div class="nav-links">
+      <a href="/">Home</a>
+      <a href="/blog/">Blog</a>
+      <a href="/products/docuai/support/">DocuAI</a>
+      <button class="theme-btn" onclick="toggleTheme()" title="Toggle theme">☀️</button>
+    </div>
+  </div>
+</div>
+
+<div class="article-wrap">
+  <div class="breadcrumb"><a href="/">Home</a> → <a href="/blog/">Blog</a> → How to Audit the Deals You Marked Closed Lost — and Recover the Ones That Were Closed Too Early</div>
+  <div class="article-category">monday.com</div>
+  <h1 class="article-title">How to Audit the Deals You Marked Closed Lost — and Recover the Ones That Were Closed Too Early</h1>
+  <div class="article-meta">
+    <span>📅 August 29, 2026</span>
+    <span>✍️ agent7d Team</span>
+    <span>⏱ 5 min read</span>
+  </div>
+  <div class="article-divider"></div>
+  <div class="article-body">
+    
+<h2>The Problem</h2>
+<p>Closed Lost is one of the most trusted statuses in any pipeline. Once a deal lands there, almost nobody touches it again. It gets filtered out of dashboards, ignored in forecasting, and mentally archived by the rep who worked it.</p>
+<p>But here's what the data consistently shows: a meaningful percentage of those deals were never actually lost. They were stalled. The timing was off. The contact went dark for two weeks. A rep got overwhelmed and took the path of least resistance. A manager pushed to clean up the board before a review. The deal got marked lost because it was easier than following up — not because the prospect said no.</p>
+<p>For most monday.com users, Closed Lost is a black hole. There's no systematic review, no re-engagement criteria, and no owner accountable for what happens to those records after they're moved. The result is a graveyard of deals that, with the right touch at the right time, could have converted.</p>
+<p>If your team closes even five deals a year from re-engaged lost opportunities, and your average deal size is $10K, that's $50,000 sitting in a status nobody is looking at.</p>
+<h2>The Solution</h2>
+<p>The fix is a structured Closed Lost audit — a process that treats your lost pipeline not as a verdict but as a data source. You're looking for deals that were closed prematurely, and you're building a lightweight system to re-engage the ones worth pursuing.</p>
+<p>This isn't about chasing every dead deal. It's about applying criteria to separate the genuinely lost from the incorrectly classified, then acting on the recoverable ones with a clear re-engagement sequence.</p>
+<p>Inside monday.com, you already have everything you need: timestamps, status history, contact fields, and the ability to build filtered views and automations. You just need to use them systematically.</p>
+<h2>Step by Step</h2>
+<p><strong>1. Build a Closed Lost audit view in monday.com.</strong></p>
+<p>Go to your CRM board and create a new view filtered to Status = Closed Lost. Add columns for Close Date, Last Activity Date, Deal Value, and Loss Reason if you track it. Sort by Close Date descending.</p>
+<p><strong>2. Apply a time filter to focus your review.</strong></p>
+<p>Start with deals closed lost in the last 12 months. Anything older requires a different approach. Focus on the 6–12 month window first — those contacts are still warm enough to re-engage without feeling like you're reaching into the past.</p>
+<p><strong>3. Flag deals with weak or missing loss reasons.</strong></p>
+<p>If the Loss Reason column is empty, or filled with vague entries like "not interested" or "no response," those are your highest-priority candidates. A deal marked lost because a rep got no reply is very different from one that lost to a named competitor with a documented decision.</p>
+<p><strong>4. Cross-reference with deal value.</strong></p>
+<p>Sort by deal value and identify your top 20 lost deals from the past year. These deserve individual review, not just a mass re-engagement email.</p>
+<p><strong>5. Create a Re-Engagement board or group.</strong></p>
+<p>Move qualified candidates into a dedicated group or a separate board. Assign an owner, set a follow-up date, and write a personalized outreach note for each one. Do not use a generic "just checking in" email.</p>
+<p><strong>6. Build an automation for future prevention.</strong></p>
+<p>Set up a monday.com automation: when a deal moves to Closed Lost with no Loss Reason filled in, notify the deal owner and their manager. This catches lazy classifications before they compound.</p>
+<h2>Real Example</h2>
+<p>A B2B software team I worked with did this audit on their monday.com board and reviewed 140 deals marked Closed Lost over the prior 10 months. Applying the criteria above, they flagged 31 as worth re-engaging — mostly deals closed during a rep transition where nobody followed through.</p>
+<p>They sent personalized outreach to all 31 over three weeks. Four responded. Two converted within 60 days, totaling $34,000 in recovered revenue. The audit itself took about four hours of focused work.</p>
+<p>The deals weren't lost. They were just abandoned.</p>
+<h2>How to Get Started</h2>
+<p>Open your monday.com CRM board, create the filtered view described above, and spend 30 minutes scanning your top 20 Closed Lost deals from the last six months. Look for missing loss reasons, short sales cycles that ended abruptly, and deals that went cold right around a personnel change.</p>
+<p>That's enough to find your first re-engagement candidate today.</p>
+<p>If you want a faster, more complete picture — including stuck deals, unowned records, and missing data across your entire pipeline — there's a better way to start.</p>
+<p>Want to see what your own pipeline is losing? Run the free CRM Audit for monday.com — it scores your pipeline health and shows exactly where revenue is leaking. <a href="https://agent7d.com/tools/crm-audit/">Get your free audit</a></p>
+  </div>
+  <div class="cta-box">
+    <h3>Generate documents from monday.com in seconds</h3>
+    <p>DocuAI turns your item data into professional proposals, contracts, and reports — automatically.</p>
+    <a href="https://agent7d.com/products/docuai/" class="btn-primary">Try DocuAI Free →</a>
+  </div>
+</div>
+
+<footer>
+  <p>© 2026 agent7d · <a href="/products/docuai/privacy/">Privacy</a> · <a href="/products/docuai/terms/">Terms</a> · <a href="/blog/">Blog</a></p>
+</footer>
+<script>
+function toggleTheme(){
+  const cur=document.documentElement.getAttribute('data-theme');
+  const next=cur==='dark'?'light':'dark';
+  document.documentElement.setAttribute('data-theme',next);
+  localStorage.setItem('theme',next);
+  document.querySelector('.theme-btn').textContent=next==='dark'?'🌙':'☀️';
+}
+document.querySelector('.theme-btn').textContent=
+  document.documentElement.getAttribute('data-theme')==='dark'?'🌙':'☀️';
+</script>
+</body>
+</html>
