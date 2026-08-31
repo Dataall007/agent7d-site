@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How to Find Every Contact in Your monday.com CRM That Has Never Been Contacted — and What to Do With Them — agent7d Blog</title>
+<meta name="description" content="Most monday.com pipelines have a graveyard hiding in plain sight. Contacts were added, assigned to a stage, and then nothing. No call logged. No email sent. No ">
+<meta property="og:title" content="How to Find Every Contact in Your monday.com CRM That Has Never Been Contacted — and What to Do With Them">
+<meta property="og:description" content="Most monday.com pipelines have a graveyard hiding in plain sight. Contacts were added, assigned to a stage, and then nothing. No call logged. No email sent. No ">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script>
+  const t=localStorage.getItem('theme')||(window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');
+  document.documentElement.setAttribute('data-theme',t);
+</script>
+<style>
+:root{
+  --primary:#e11d48;--primary-hover:#be123c;--primary-light:#fef2f5;
+  --bg:#ffffff;--bg-2:#f9fafb;--bg-3:#f3f4f6;
+  --border:#e5e7eb;--text-1:#111827;--text-2:#374151;--text-3:#6b7280;--text-4:#9ca3af;
+  --font:'Plus Jakarta Sans',sans-serif;--t:0.15s ease;
+  --shadow-sm:0 1px 3px rgba(0,0,0,0.08);--shadow-md:0 4px 12px rgba(0,0,0,0.08);
+}
+[data-theme="dark"]{
+  --bg:#0a0a0a;--bg-2:#111111;--bg-3:#1a1a1a;--border:#262626;
+  --text-1:#f9fafb;--text-2:#e5e7eb;--text-3:#9ca3af;--text-4:#6b7280;
+  --primary:#ff2056;--primary-light:rgba(255,32,86,0.1);
+  --shadow-sm:0 1px 3px rgba(0,0,0,0.3);--shadow-md:0 4px 12px rgba(0,0,0,0.4);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font);background:var(--bg);color:var(--text-1);line-height:1.6;-webkit-font-smoothing:antialiased;transition:background var(--t),color var(--t)}
+a{color:var(--primary);text-decoration:none}
+a:hover{text-decoration:underline}
+
+.nav-wrap{width:100%;border-bottom:1px solid var(--border);background:var(--bg);position:sticky;top:0;z-index:100}
+.nav-inner{max-width:1100px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:64px}
+.logo{font-size:20px;font-weight:800;color:var(--text-1);text-decoration:none;letter-spacing:-0.02em}
+.logo span{color:var(--primary)}
+.nav-links{display:flex;align-items:center;gap:24px}
+.nav-links a{font-size:14px;font-weight:500;color:var(--text-3);text-decoration:none;transition:color var(--t)}
+.nav-links a:hover{color:var(--text-1)}
+.theme-btn{background:none;border:1px solid var(--border);border-radius:8px;padding:6px 10px;cursor:pointer;color:var(--text-3);font-size:16px;transition:all var(--t)}
+.theme-btn:hover{border-color:var(--primary);color:var(--primary)}
+
+.article-wrap{max-width:720px;margin:0 auto;padding:64px 24px 96px}
+.breadcrumb{font-size:13px;color:var(--text-4);margin-bottom:32px}
+.breadcrumb a{color:var(--text-3);text-decoration:none}
+.breadcrumb a:hover{color:var(--primary)}
+.article-category{font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--primary);margin-bottom:14px}
+.article-title{font-size:42px;font-weight:800;line-height:1.15;letter-spacing:-0.02em;color:var(--text-1);margin-bottom:16px}
+.article-meta{font-size:13px;color:var(--text-4);margin-bottom:40px;display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+.article-meta span{display:flex;align-items:center;gap:5px}
+.article-divider{height:1px;background:var(--border);margin-bottom:40px}
+
+.article-body{font-size:17px;line-height:1.8;color:var(--text-2)}
+.article-body h2{font-size:26px;font-weight:700;color:var(--text-1);margin:40px 0 16px;line-height:1.3}
+.article-body h3{font-size:20px;font-weight:600;color:var(--text-1);margin:28px 0 12px}
+.article-body p{margin-bottom:20px}
+.article-body ul,.article-body ol{padding-right:24px;margin-bottom:20px}
+.article-body li{margin-bottom:8px}
+.article-body strong{color:var(--text-1);font-weight:600}
+.article-body code{background:var(--bg-3);border:1px solid var(--border);border-radius:4px;padding:2px 6px;font-size:14px;font-family:monospace}
+.article-body blockquote{border-right:4px solid var(--primary);padding:12px 20px;margin:24px 0;background:var(--bg-2);border-radius:0 8px 8px 0;color:var(--text-2);font-style:italic}
+
+.cta-box{background:var(--primary-light);border:1px solid rgba(225,29,72,0.2);border-radius:14px;padding:32px;margin:48px 0;text-align:center}
+.cta-box h3{font-size:22px;font-weight:700;color:var(--text-1);margin-bottom:8px}
+.cta-box p{color:var(--text-3);margin-bottom:20px;font-size:15px}
+.btn-primary{display:inline-block;background:var(--primary);color:#fff;padding:12px 28px;border-radius:10px;font-size:14px;font-weight:600;text-decoration:none;transition:all var(--t);box-shadow:0 4px 20px rgba(225,29,72,0.25)}
+.btn-primary:hover{background:var(--primary-hover);transform:translateY(-1px);text-decoration:none}
+
+footer{border-top:1px solid var(--border);padding:32px 24px;text-align:center;color:var(--text-4);font-size:13px}
+footer a{color:var(--text-3)}
+footer a:hover{color:var(--primary)}
+</style>
+</head>
+<body>
+<div class="nav-wrap">
+  <div class="nav-inner">
+    <a href="/" class="logo">agent7<span>d</span></a>
+    <div class="nav-links">
+      <a href="/">Home</a>
+      <a href="/blog/">Blog</a>
+      <a href="/products/docuai/support/">DocuAI</a>
+      <button class="theme-btn" onclick="toggleTheme()" title="Toggle theme">☀️</button>
+    </div>
+  </div>
+</div>
+
+<div class="article-wrap">
+  <div class="breadcrumb"><a href="/">Home</a> → <a href="/blog/">Blog</a> → How to Find Every Contact in Your monday.com CRM That Has Never Been Contacted — and What to Do With Them</div>
+  <div class="article-category">monday.com</div>
+  <h1 class="article-title">How to Find Every Contact in Your monday.com CRM That Has Never Been Contacted — and What to Do With Them</h1>
+  <div class="article-meta">
+    <span>📅 August 31, 2026</span>
+    <span>✍️ agent7d Team</span>
+    <span>⏱ 5 min read</span>
+  </div>
+  <div class="article-divider"></div>
+  <div class="article-body">
+    
+<p>Most monday.com pipelines have a graveyard hiding in plain sight. Contacts were added, assigned to a stage, and then nothing. No call logged. No email sent. No next-action date. They sit there, slowly going cold, while your team focuses on the deals already in motion.</p>
+<p>This is not a laziness problem. It is a visibility problem. Here is how to fix it.</p>
+<p>---</p>
+<h2>The Problem</h2>
+<p>Uncontacted leads in a monday.com CRM accumulate for three predictable reasons.</p>
+<p><strong>First, intake is faster than capacity.</strong> Inbound enquiries get added — from web forms, referrals, direct calls — but there is no enforced handoff. The lead exists in the board. No one owns the next step.</p>
+<p><strong>Second, ownership is ambiguous.</strong> A contact is assigned to a rep who is overloaded, on holiday, or no longer with the company. The record stays in the pipeline but effectively belongs to no one.</p>
+<p><strong>Third, there is no visibility mechanism.</strong> If your board does not surface "zero activity" contacts visually, you will never naturally encounter them. The pipeline view shows movement and urgency. Dormant records are invisible until someone goes looking — and without a process, no one goes looking.</p>
+<p>The result is predictable. A meaningful percentage of your pipeline represents real revenue that has simply been abandoned by accident.</p>
+<p>---</p>
+<h2>The Solution</h2>
+<p>Two columns make "never contacted" visible without any automation or paid add-ons.</p>
+<p><strong>Column one: Last Activity Date.</strong> This is a Date column that your team updates — or that you populate via automation — every time a meaningful touchpoint occurs. A call, an email reply, a meeting. If this column is blank or more than 30 days old, that contact has gone quiet.</p>
+<p><strong>Column two: Next Action Date.</strong> Also a Date column. This represents the committed next step. If it is blank, there is no follow-up scheduled. If it is in the past, it was missed.</p>
+<p>Together, these two columns create a binary test: a contact with no Last Activity Date and no Next Action Date has never been meaningfully touched. That is your uncontacted leads list.</p>
+<p>---</p>
+<h2>Step by Step</h2>
+<p>Here is the filter recipe to build a zero-activity view in monday.com right now.</p>
+<li>Open your CRM board and click <strong>Filter</strong> in the top toolbar.</li>
+<li>Add a filter: <strong>Last Activity Date</strong> → <strong>is empty</strong>.</li>
+<li>Add a second filter: <strong>Next Action Date</strong> → <strong>is empty</strong>.</li>
+<li>Set the filter logic to <strong>AND</strong> so both conditions must be true simultaneously.</li>
+<li>Save this as a new View — name it something direct like <strong>"Never Contacted"</strong>.</li>
+<li>Add a secondary sort by <strong>Date Added</strong> (ascending) so the oldest uncontacted records surface first.</li>
+<p>You now have a permanent, live view that shows every contact with no logged activity and no scheduled follow-up. Bookmark it. Review it weekly.</p>
+<p>To age the list, add a Formula column that calculates days since the record was created. Contacts under 30 days are recoverable with a simple outreach sequence. Contacts over 90 days need a different approach entirely — the context has changed, and your opening message needs to acknowledge the gap honestly rather than pretending time has not passed.</p>
+<p>---</p>
+<h2>Real Example</h2>
+<p>A commercial real estate broker was pulling inbound enquiries from three sources into monday.com: a web form, referrals from two partner firms, and direct calls logged manually by the front desk. The pipeline looked active. Deals were moving.</p>
+<p>When they built the Never Contacted view using the method above, the number stopped them cold. Thirty-four percent of contacts in the CRM had no activity logged and no next-action date set. Some were three weeks old. Several were from the previous quarter.</p>
+<p>The triage framework they applied was straightforward. Contacts added within 30 days: immediate personal outreach with a specific, relevant opener tied to their original enquiry. Contacts between 30 and 90 days: a re-engagement sequence acknowledging the delay, offering something concrete. Contacts over 90 days: a one-time honest re-engagement attempt, and if no response within two weeks, archived with a tag so the record stays clean but retrievable.</p>
+<p>Within six weeks, they had converted three deals directly from that dormant list. One had been sitting untouched for 67 days.</p>
+<p>---</p>
+<h2>How to Get Started</h2>
+<p>Build the filter view today. It takes under five minutes and will immediately show you what percentage of your pipeline has gone dark without you realising.</p>
+<p>If you want a faster answer — and a full picture of where else your pipeline is leaking — there is a better starting point.</p>
+<p>Want to see what your own pipeline is losing? Run the free CRM Audit for monday.com — it scores your pipeline health and shows exactly where revenue is leaking. <a href="https://agent7d.com/tools/crm-audit/">Get your free audit</a></p>
+  </div>
+  <div class="cta-box">
+    <h3>Generate documents from monday.com in seconds</h3>
+    <p>DocuAI turns your item data into professional proposals, contracts, and reports — automatically.</p>
+    <a href="https://agent7d.com/products/docuai/" class="btn-primary">Try DocuAI Free →</a>
+  </div>
+</div>
+
+<footer>
+  <p>© 2026 agent7d · <a href="/products/docuai/privacy/">Privacy</a> · <a href="/products/docuai/terms/">Terms</a> · <a href="/blog/">Blog</a></p>
+</footer>
+<script>
+function toggleTheme(){
+  const cur=document.documentElement.getAttribute('data-theme');
+  const next=cur==='dark'?'light':'dark';
+  document.documentElement.setAttribute('data-theme',next);
+  localStorage.setItem('theme',next);
+  document.querySelector('.theme-btn').textContent=next==='dark'?'🌙':'☀️';
+}
+document.querySelector('.theme-btn').textContent=
+  document.documentElement.getAttribute('data-theme')==='dark'?'🌙':'☀️';
+</script>
+</body>
+</html>
