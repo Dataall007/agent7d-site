@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How to Generate a Client-Ready Invoice Summary Straight from Your monday.com Project Board — agent7d Blog</title>
+<meta name="description" content="Every piece of data your client invoice needs already lives inside your monday.com project board. Item names map to deliverables. Number columns hold logged hou">
+<meta property="og:title" content="How to Generate a Client-Ready Invoice Summary Straight from Your monday.com Project Board">
+<meta property="og:description" content="Every piece of data your client invoice needs already lives inside your monday.com project board. Item names map to deliverables. Number columns hold logged hou">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script>
+  const t=localStorage.getItem('theme')||(window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');
+  document.documentElement.setAttribute('data-theme',t);
+</script>
+<style>
+:root{
+  --primary:#e11d48;--primary-hover:#be123c;--primary-light:#fef2f5;
+  --bg:#ffffff;--bg-2:#f9fafb;--bg-3:#f3f4f6;
+  --border:#e5e7eb;--text-1:#111827;--text-2:#374151;--text-3:#6b7280;--text-4:#9ca3af;
+  --font:'Plus Jakarta Sans',sans-serif;--t:0.15s ease;
+  --shadow-sm:0 1px 3px rgba(0,0,0,0.08);--shadow-md:0 4px 12px rgba(0,0,0,0.08);
+}
+[data-theme="dark"]{
+  --bg:#0a0a0a;--bg-2:#111111;--bg-3:#1a1a1a;--border:#262626;
+  --text-1:#f9fafb;--text-2:#e5e7eb;--text-3:#9ca3af;--text-4:#6b7280;
+  --primary:#ff2056;--primary-light:rgba(255,32,86,0.1);
+  --shadow-sm:0 1px 3px rgba(0,0,0,0.3);--shadow-md:0 4px 12px rgba(0,0,0,0.4);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font);background:var(--bg);color:var(--text-1);line-height:1.6;-webkit-font-smoothing:antialiased;transition:background var(--t),color var(--t)}
+a{color:var(--primary);text-decoration:none}
+a:hover{text-decoration:underline}
+
+.nav-wrap{width:100%;border-bottom:1px solid var(--border);background:var(--bg);position:sticky;top:0;z-index:100}
+.nav-inner{max-width:1100px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:64px}
+.logo{font-size:20px;font-weight:800;color:var(--text-1);text-decoration:none;letter-spacing:-0.02em}
+.logo span{color:var(--primary)}
+.nav-links{display:flex;align-items:center;gap:24px}
+.nav-links a{font-size:14px;font-weight:500;color:var(--text-3);text-decoration:none;transition:color var(--t)}
+.nav-links a:hover{color:var(--text-1)}
+.theme-btn{background:none;border:1px solid var(--border);border-radius:8px;padding:6px 10px;cursor:pointer;color:var(--text-3);font-size:16px;transition:all var(--t)}
+.theme-btn:hover{border-color:var(--primary);color:var(--primary)}
+
+.article-wrap{max-width:720px;margin:0 auto;padding:64px 24px 96px}
+.breadcrumb{font-size:13px;color:var(--text-4);margin-bottom:32px}
+.breadcrumb a{color:var(--text-3);text-decoration:none}
+.breadcrumb a:hover{color:var(--primary)}
+.article-category{font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--primary);margin-bottom:14px}
+.article-title{font-size:42px;font-weight:800;line-height:1.15;letter-spacing:-0.02em;color:var(--text-1);margin-bottom:16px}
+.article-meta{font-size:13px;color:var(--text-4);margin-bottom:40px;display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+.article-meta span{display:flex;align-items:center;gap:5px}
+.article-divider{height:1px;background:var(--border);margin-bottom:40px}
+
+.article-body{font-size:17px;line-height:1.8;color:var(--text-2)}
+.article-body h2{font-size:26px;font-weight:700;color:var(--text-1);margin:40px 0 16px;line-height:1.3}
+.article-body h3{font-size:20px;font-weight:600;color:var(--text-1);margin:28px 0 12px}
+.article-body p{margin-bottom:20px}
+.article-body ul,.article-body ol{padding-right:24px;margin-bottom:20px}
+.article-body li{margin-bottom:8px}
+.article-body strong{color:var(--text-1);font-weight:600}
+.article-body code{background:var(--bg-3);border:1px solid var(--border);border-radius:4px;padding:2px 6px;font-size:14px;font-family:monospace}
+.article-body blockquote{border-right:4px solid var(--primary);padding:12px 20px;margin:24px 0;background:var(--bg-2);border-radius:0 8px 8px 0;color:var(--text-2);font-style:italic}
+
+.cta-box{background:var(--primary-light);border:1px solid rgba(225,29,72,0.2);border-radius:14px;padding:32px;margin:48px 0;text-align:center}
+.cta-box h3{font-size:22px;font-weight:700;color:var(--text-1);margin-bottom:8px}
+.cta-box p{color:var(--text-3);margin-bottom:20px;font-size:15px}
+.btn-primary{display:inline-block;background:var(--primary);color:#fff;padding:12px 28px;border-radius:10px;font-size:14px;font-weight:600;text-decoration:none;transition:all var(--t);box-shadow:0 4px 20px rgba(225,29,72,0.25)}
+.btn-primary:hover{background:var(--primary-hover);transform:translateY(-1px);text-decoration:none}
+
+footer{border-top:1px solid var(--border);padding:32px 24px;text-align:center;color:var(--text-4);font-size:13px}
+footer a{color:var(--text-3)}
+footer a:hover{color:var(--primary)}
+</style>
+</head>
+<body>
+<div class="nav-wrap">
+  <div class="nav-inner">
+    <a href="/" class="logo">agent7<span>d</span></a>
+    <div class="nav-links">
+      <a href="/">Home</a>
+      <a href="/blog/">Blog</a>
+      <a href="/products/docuai/support/">DocuAI</a>
+      <button class="theme-btn" onclick="toggleTheme()" title="Toggle theme">☀️</button>
+    </div>
+  </div>
+</div>
+
+<div class="article-wrap">
+  <div class="breadcrumb"><a href="/">Home</a> → <a href="/blog/">Blog</a> → How to Generate a Client-Ready Invoice Summary Straight from Your monday.com Project Board</div>
+  <div class="article-category">AI & Automation</div>
+  <h1 class="article-title">How to Generate a Client-Ready Invoice Summary Straight from Your monday.com Project Board</h1>
+  <div class="article-meta">
+    <span>📅 September 1, 2026</span>
+    <span>✍️ agent7d Team</span>
+    <span>⏱ 5 min read</span>
+  </div>
+  <div class="article-divider"></div>
+  <div class="article-body">
+    
+<p>Every piece of data your client invoice needs already lives inside your monday.com project board. Item names map to deliverables. Number columns hold logged hours. Formula columns calculate totals. Status columns tell you what's done and billable. Yet at the end of every billing cycle, someone on your team opens a blank Word document and starts typing it all over again.</p>
+<p>That's not a workflow problem. That's a tax — one you're paying with time you could spend on actual work.</p>
+<h2>The Problem</h2>
+<p>The scenario plays out the same way across digital agencies, consultancies, and service teams: you've done the work, you've tracked everything diligently in monday.com, and now you have to <em>reconstruct</em> that information in a separate document before your client sees a single number.</p>
+<p>For a project manager at a digital agency billing monthly per milestone, this means manually cross-referencing the project board, pulling logged hours from a time tracking column, matching them against agreed rates, and formatting the whole thing into something that looks professional enough to send. On a complex project with five to ten line items, that process can eat ninety minutes per invoice — every single month.</p>
+<p>Multiply that across four active client projects and you're losing a full workday each billing cycle to pure data transcription. And transcription introduces errors. Wrong hours, wrong rates, wrong totals — mistakes that delay payment and erode client trust.</p>
+<p>The irony is that your monday.com board is already structured like an invoice. You just haven't connected it to one yet.</p>
+<h2>The Solution</h2>
+<p>The fix is template-driven document generation directly from your monday.com board data. Instead of exporting data or copying it manually, you define a document template once — with invoice layout, your branding, line item structure — and then generate the populated document from the board in a single action.</p>
+<p>DocuAI is a monday.com app built specifically for this. It reads your item and column data, merges it into your template, and produces a clean, client-ready invoice summary without you touching a copy-paste shortcut once.</p>
+<p>But before any tool can help you, your board needs to be set up correctly.</p>
+<h2>Step by Step</h2>
+<p><strong>1. Standardise your columns before you automate anything.</strong></p>
+<p>Document generation lives and dies by data consistency. At minimum, your project board needs: an Item Name column (deliverable or milestone label), a Numbers column for hours logged, a Numbers column for agreed rate, a Formula column that calculates line item totals, a Status column to flag billable vs. in-progress work, and a Date column for the billing period. If these columns exist but are named inconsistently across boards, fix that first.</p>
+<p><strong>2. Filter to billable items only.</strong></p>
+<p>Before generating, use a monday.com filter or a dedicated Group (e.g. "Billable — October") to isolate only the items that belong on this invoice. This scopes the document so nothing incomplete or internal slips through.</p>
+<p><strong>3. Build your invoice template in DocuAI.</strong></p>
+<p>Create a template that includes your agency header, client details placeholders, a line item table, and a totals section. Map each table row to your monday.com columns using DocuAI's variable syntax — item name, hours, rate, line total. Set static fields like payment terms and bank details once, and they'll appear in every generated document automatically.</p>
+<p><strong>4. Generate the invoice summary from the board.</strong></p>
+<p>With your group or item selected, trigger DocuAI directly from the monday.com interface. It pulls the live column data, populates your template, and outputs a formatted PDF or Word document in seconds.</p>
+<p><strong>5. Route it for internal approval before it goes to the client.</strong></p>
+<p>Generated documents shouldn't go straight out the door. Use monday.com's built-in notification or approval automation to ping your account lead or finance contact. They review the generated invoice, approve it in the board, and only then does it get sent. This catches any data errors before the client sees them.</p>
+<h2>Real Example</h2>
+<p>A ten-person digital agency bills three enterprise clients monthly, each project tracked on its own monday.com board. Deliverables are grouped by sprint, with columns for logged hours, hourly rate, and a formula calculating the line total. Previously, their project coordinator spent around two hours per client rebuilding invoice summaries in Word.</p>
+<p>After standardising their column structure and setting up a DocuAI template, the process changed: filter to the billing group, click generate, review, send. Total time per invoice dropped to under ten minutes. Three clients, three invoices, thirty minutes — compared to six hours before.</p>
+<h2>How to Get Started</h2>
+<p>If you want to test the logic today without any tool, work through this checklist:</p>
+<ul><li>[ ] Open one active project board and confirm it has columns for item name, hours, rate, line total, and status</li>
+<li>[ ] Create a Group called "Billable — [Month]" and move completed, approved items into it</li>
+<li>[ ] Build a manually formatted invoice from just those items and time how long it takes</li>
+<li>[ ] Note every column you had to reference — that list becomes your template variable map</li>
+<li>[ ] Identify where errors crept in (wrong rate pulled, hours miscounted) — those are your automation justification points</li>
+<p></ul></p>
+<p>Once you've done this once manually, you have everything you need to automate it with DocuAI.</p>
+<p>Ready to stop copying data into documents? Try DocuAI for monday.com — it generates professional proposals, contracts, and reports from your item data in seconds. <a href="https://agent7d.com/products/docuai/">Get started free</a></p>
+  </div>
+  <div class="cta-box">
+    <h3>Generate documents from monday.com in seconds</h3>
+    <p>DocuAI turns your item data into professional proposals, contracts, and reports — automatically.</p>
+    <a href="https://agent7d.com/products/docuai/" class="btn-primary">Try DocuAI Free →</a>
+  </div>
+</div>
+
+<footer>
+  <p>© 2026 agent7d · <a href="/products/docuai/privacy/">Privacy</a> · <a href="/products/docuai/terms/">Terms</a> · <a href="/blog/">Blog</a></p>
+</footer>
+<script>
+function toggleTheme(){
+  const cur=document.documentElement.getAttribute('data-theme');
+  const next=cur==='dark'?'light':'dark';
+  document.documentElement.setAttribute('data-theme',next);
+  localStorage.setItem('theme',next);
+  document.querySelector('.theme-btn').textContent=next==='dark'?'🌙':'☀️';
+}
+document.querySelector('.theme-btn').textContent=
+  document.documentElement.getAttribute('data-theme')==='dark'?'🌙':'☀️';
+</script>
+</body>
+</html>

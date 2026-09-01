@@ -1,5 +1,19 @@
 [
   {
+    "slug": "how-to-generate-a-client-ready-invoice-summary-straight-from",
+    "title": "How to Generate a Client-Ready Invoice Summary Straight from Your monday.com Project Board",
+    "excerpt": "Every piece of data your client invoice needs already lives inside your monday.com project board. Item names map to deliverables. Number columns hold logged hou",
+    "category": "AI & Automation",
+    "tags": [
+      "monday",
+      "ai"
+    ],
+    "product": "docuai",
+    "date": "2026-09-01",
+    "dateStr": "September 1, 2026",
+    "readTime": "5 min read"
+  },
+  {
     "slug": "how-to-find-every-contact-in-your-monday-com-crm-that-has-ne",
     "title": "How to Find Every Contact in Your monday.com CRM That Has Never Been Contacted — and What to Do With Them",
     "excerpt": "Most monday.com pipelines have a graveyard hiding in plain sight. Contacts were added, assigned to a stage, and then nothing. No call logged. No email sent. No ",
