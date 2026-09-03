@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How to Create a Project Closure Report from monday.com Without Writing a Single Word — agent7d Blog</title>
+<meta name="description" content="Every piece of data you need for a project closure report already exists in your monday.com board. The timeline, the budget figures, the deliverables list, the ">
+<meta property="og:title" content="How to Create a Project Closure Report from monday.com Without Writing a Single Word">
+<meta property="og:description" content="Every piece of data you need for a project closure report already exists in your monday.com board. The timeline, the budget figures, the deliverables list, the ">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script>
+  const t=localStorage.getItem('theme')||(window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');
+  document.documentElement.setAttribute('data-theme',t);
+</script>
+<style>
+:root{
+  --primary:#e11d48;--primary-hover:#be123c;--primary-light:#fef2f5;
+  --bg:#ffffff;--bg-2:#f9fafb;--bg-3:#f3f4f6;
+  --border:#e5e7eb;--text-1:#111827;--text-2:#374151;--text-3:#6b7280;--text-4:#9ca3af;
+  --font:'Plus Jakarta Sans',sans-serif;--t:0.15s ease;
+  --shadow-sm:0 1px 3px rgba(0,0,0,0.08);--shadow-md:0 4px 12px rgba(0,0,0,0.08);
+}
+[data-theme="dark"]{
+  --bg:#0a0a0a;--bg-2:#111111;--bg-3:#1a1a1a;--border:#262626;
+  --text-1:#f9fafb;--text-2:#e5e7eb;--text-3:#9ca3af;--text-4:#6b7280;
+  --primary:#ff2056;--primary-light:rgba(255,32,86,0.1);
+  --shadow-sm:0 1px 3px rgba(0,0,0,0.3);--shadow-md:0 4px 12px rgba(0,0,0,0.4);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font);background:var(--bg);color:var(--text-1);line-height:1.6;-webkit-font-smoothing:antialiased;transition:background var(--t),color var(--t)}
+a{color:var(--primary);text-decoration:none}
+a:hover{text-decoration:underline}
+
+.nav-wrap{width:100%;border-bottom:1px solid var(--border);background:var(--bg);position:sticky;top:0;z-index:100}
+.nav-inner{max-width:1100px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:64px}
+.logo{font-size:20px;font-weight:800;color:var(--text-1);text-decoration:none;letter-spacing:-0.02em}
+.logo span{color:var(--primary)}
+.nav-links{display:flex;align-items:center;gap:24px}
+.nav-links a{font-size:14px;font-weight:500;color:var(--text-3);text-decoration:none;transition:color var(--t)}
+.nav-links a:hover{color:var(--text-1)}
+.theme-btn{background:none;border:1px solid var(--border);border-radius:8px;padding:6px 10px;cursor:pointer;color:var(--text-3);font-size:16px;transition:all var(--t)}
+.theme-btn:hover{border-color:var(--primary);color:var(--primary)}
+
+.article-wrap{max-width:720px;margin:0 auto;padding:64px 24px 96px}
+.breadcrumb{font-size:13px;color:var(--text-4);margin-bottom:32px}
+.breadcrumb a{color:var(--text-3);text-decoration:none}
+.breadcrumb a:hover{color:var(--primary)}
+.article-category{font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--primary);margin-bottom:14px}
+.article-title{font-size:42px;font-weight:800;line-height:1.15;letter-spacing:-0.02em;color:var(--text-1);margin-bottom:16px}
+.article-meta{font-size:13px;color:var(--text-4);margin-bottom:40px;display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+.article-meta span{display:flex;align-items:center;gap:5px}
+.article-divider{height:1px;background:var(--border);margin-bottom:40px}
+
+.article-body{font-size:17px;line-height:1.8;color:var(--text-2)}
+.article-body h2{font-size:26px;font-weight:700;color:var(--text-1);margin:40px 0 16px;line-height:1.3}
+.article-body h3{font-size:20px;font-weight:600;color:var(--text-1);margin:28px 0 12px}
+.article-body p{margin-bottom:20px}
+.article-body ul,.article-body ol{padding-right:24px;margin-bottom:20px}
+.article-body li{margin-bottom:8px}
+.article-body strong{color:var(--text-1);font-weight:600}
+.article-body code{background:var(--bg-3);border:1px solid var(--border);border-radius:4px;padding:2px 6px;font-size:14px;font-family:monospace}
+.article-body blockquote{border-right:4px solid var(--primary);padding:12px 20px;margin:24px 0;background:var(--bg-2);border-radius:0 8px 8px 0;color:var(--text-2);font-style:italic}
+
+.cta-box{background:var(--primary-light);border:1px solid rgba(225,29,72,0.2);border-radius:14px;padding:32px;margin:48px 0;text-align:center}
+.cta-box h3{font-size:22px;font-weight:700;color:var(--text-1);margin-bottom:8px}
+.cta-box p{color:var(--text-3);margin-bottom:20px;font-size:15px}
+.btn-primary{display:inline-block;background:var(--primary);color:#fff;padding:12px 28px;border-radius:10px;font-size:14px;font-weight:600;text-decoration:none;transition:all var(--t);box-shadow:0 4px 20px rgba(225,29,72,0.25)}
+.btn-primary:hover{background:var(--primary-hover);transform:translateY(-1px);text-decoration:none}
+
+footer{border-top:1px solid var(--border);padding:32px 24px;text-align:center;color:var(--text-4);font-size:13px}
+footer a{color:var(--text-3)}
+footer a:hover{color:var(--primary)}
+</style>
+</head>
+<body>
+<div class="nav-wrap">
+  <div class="nav-inner">
+    <a href="/" class="logo">agent7<span>d</span></a>
+    <div class="nav-links">
+      <a href="/">Home</a>
+      <a href="/blog/">Blog</a>
+      <a href="/products/docuai/support/">DocuAI</a>
+      <button class="theme-btn" onclick="toggleTheme()" title="Toggle theme">☀️</button>
+    </div>
+  </div>
+</div>
+
+<div class="article-wrap">
+  <div class="breadcrumb"><a href="/">Home</a> → <a href="/blog/">Blog</a> → How to Create a Project Closure Report from monday.com Without Writing a Single Word</div>
+  <div class="article-category">monday.com</div>
+  <h1 class="article-title">How to Create a Project Closure Report from monday.com Without Writing a Single Word</h1>
+  <div class="article-meta">
+    <span>📅 September 3, 2026</span>
+    <span>✍️ agent7d Team</span>
+    <span>⏱ 5 min read</span>
+  </div>
+  <div class="article-divider"></div>
+  <div class="article-body">
+    
+<p>Every piece of data you need for a project closure report already exists in your monday.com board. The timeline, the budget figures, the deliverables list, the open items — it's all there. Yet most teams still spend hours manually copying that information into a Word document or a slide deck before they can send anything to a client.</p>
+<p>That's not a monday.com problem. It's a documentation workflow problem. And it has a straightforward fix.</p>
+<p>---</p>
+<h2>The Problem</h2>
+<p>Project closure reports are one of the most consistently skipped or delayed deliverables in professional services. Not because teams don't understand their value, but because writing one feels like starting from scratch at exactly the moment everyone wants to move on to the next job.</p>
+<p>Consider a mid-sized construction management firm closing six to ten projects per month. Their current process: a project coordinator pulls up the board, opens a closure report template in Word, and manually transcribes scope items, milestone dates, budget actuals, punch list status, and lessons learned — field by field, row by row. That's roughly two hours per project. At eight projects a month, that's sixteen hours of a coordinator's time spent re-entering data that already exists somewhere else.</p>
+<p>Delayed or missing closure documents also carry a real cost to client relationships. A closure report signals professionalism. It says: <em>we tracked everything, we delivered what we promised, and here's the proof.</em> When it doesn't arrive — or arrives weeks late — clients notice. It colors their memory of the entire engagement.</p>
+<p>---</p>
+<h2>The Solution</h2>
+<p>The solution is to treat your monday.com board as the single source of truth it already is, and generate the closure report directly from it the moment a project wraps.</p>
+<p>DocuAI is a monday.com app that maps your board columns to a pre-built document template, then generates a fully formatted closure report — complete with your branding — from the project item data. No copy-paste. No manual formatting. No blank page to stare at.</p>
+<p>When the project status flips to Done, the document builds itself.</p>
+<p>---</p>
+<h2>Step by Step</h2>
+<p><strong>1. Identify what a good project closure report actually contains.</strong></p>
+<p>The core sections: scope delivered, planned vs. actual timeline, budget vs. actuals, open or outstanding items, and lessons learned. Every one of these has a natural home in your monday.com board — status columns, date columns, number columns, text fields, subitems.</p>
+<p><strong>2. Audit your board columns against those sections.</strong></p>
+<p>Map each section of your closure report to the column that holds that data. Scope delivered → your task or deliverable group. Timeline comparison → start date and end date columns vs. baseline dates. Budget vs. actuals → your budget and spend columns. Open items → subitems still marked In Progress or On Hold. Lessons learned → a long-text column you populate during the project (or at close).</p>
+<p><strong>3. Build your closure report template in DocuAI.</strong></p>
+<p>Using DocuAI's template editor, place dynamic tags wherever you want board data to appear. <code>{{project_name}}</code>, <code>{{actual_end_date}}</code>, <code>{{total_budget}}</code>, <code>{{lessons_learned}}</code> — each tag pulls directly from the corresponding column when the document generates.</p>
+<p><strong>4. Set the trigger.</strong></p>
+<p>Configure DocuAI to generate the report automatically when the project's Status column changes to Done. No one has to remember to run it.</p>
+<p><strong>5. Review and personalise before sending.</strong></p>
+<p>The generated document lands in your monday.com item as an attachment. Open it, add any context-specific commentary that isn't captured in board data — a paragraph about a particular challenge, a note of thanks to the client — and send.</p>
+<p>---</p>
+<h2>Real Example</h2>
+<p>Back to that construction management firm. After implementing DocuAI with a closure report template mapped to their project boards, the coordinator's two-hour manual process became a five-minute review. The report generates the moment the project status updates. The coordinator opens it, reads through it, adds a short personal note at the top, and it's out the door.</p>
+<p>Eight projects a month. Fifteen hours returned to productive work. Clients now consistently receive a polished, branded document within 24 hours of project completion instead of waiting weeks.</p>
+<p>---</p>
+<h2>How to Get Started</h2>
+<p>Start with the manual version today. Build a checklist with five sections — scope delivered, timeline comparison, budget vs. actuals, open items, lessons learned — and map each one to the exact column in your monday.com board where that data lives. That mapping exercise alone will change how clearly you think about closure documentation.</p>
+<p>Then, when you're ready to automate it entirely, bring in DocuAI and let the template do the rest.</p>
+<p><strong>Your free project closure checklist:</strong></p>
+<ul><li>[ ] Confirm all deliverables marked complete in the board</li>
+<li>[ ] Compare planned vs. actual dates across key milestones</li>
+<li>[ ] Pull final budget vs. spend figures from number columns</li>
+<li>[ ] Identify any open subitems and assign or close them</li>
+<li>[ ] Record lessons learned in the designated text field before archiving the board</li>
+<p></ul></p>
+<p>---</p>
+<p>Ready to stop copying data into documents? Try DocuAI for monday.com — it generates professional proposals, contracts, and reports from your item data in seconds. <a href="https://agent7d.com/products/docuai/">Get started free</a></p>
+  </div>
+  <div class="cta-box">
+    <h3>Generate documents from monday.com in seconds</h3>
+    <p>DocuAI turns your item data into professional proposals, contracts, and reports — automatically.</p>
+    <a href="https://agent7d.com/products/docuai/" class="btn-primary">Try DocuAI Free →</a>
+  </div>
+</div>
+
+<footer>
+  <p>© 2026 agent7d · <a href="/products/docuai/privacy/">Privacy</a> · <a href="/products/docuai/terms/">Terms</a> · <a href="/blog/">Blog</a></p>
+</footer>
+<script>
+function toggleTheme(){
+  const cur=document.documentElement.getAttribute('data-theme');
+  const next=cur==='dark'?'light':'dark';
+  document.documentElement.setAttribute('data-theme',next);
+  localStorage.setItem('theme',next);
+  document.querySelector('.theme-btn').textContent=next==='dark'?'🌙':'☀️';
+}
+document.querySelector('.theme-btn').textContent=
+  document.documentElement.getAttribute('data-theme')==='dark'?'🌙':'☀️';
+</script>
+</body>
+</html>
