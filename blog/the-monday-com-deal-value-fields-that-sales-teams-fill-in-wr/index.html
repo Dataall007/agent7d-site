@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The monday.com Deal Value Fields That Sales Teams Fill In Wrong — and How It Breaks Your Revenue Forecast — agent7d Blog</title>
+<meta name="description" content="Most sales leaders who come to me with a forecast accuracy problem assume the issue is deal velocity — deals taking longer to close than expected. Nine times ou">
+<meta property="og:title" content="The monday.com Deal Value Fields That Sales Teams Fill In Wrong — and How It Breaks Your Revenue Forecast">
+<meta property="og:description" content="Most sales leaders who come to me with a forecast accuracy problem assume the issue is deal velocity — deals taking longer to close than expected. Nine times ou">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script>
+  const t=localStorage.getItem('theme')||(window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');
+  document.documentElement.setAttribute('data-theme',t);
+</script>
+<style>
+:root{
+  --primary:#e11d48;--primary-hover:#be123c;--primary-light:#fef2f5;
+  --bg:#ffffff;--bg-2:#f9fafb;--bg-3:#f3f4f6;
+  --border:#e5e7eb;--text-1:#111827;--text-2:#374151;--text-3:#6b7280;--text-4:#9ca3af;
+  --font:'Plus Jakarta Sans',sans-serif;--t:0.15s ease;
+  --shadow-sm:0 1px 3px rgba(0,0,0,0.08);--shadow-md:0 4px 12px rgba(0,0,0,0.08);
+}
+[data-theme="dark"]{
+  --bg:#0a0a0a;--bg-2:#111111;--bg-3:#1a1a1a;--border:#262626;
+  --text-1:#f9fafb;--text-2:#e5e7eb;--text-3:#9ca3af;--text-4:#6b7280;
+  --primary:#ff2056;--primary-light:rgba(255,32,86,0.1);
+  --shadow-sm:0 1px 3px rgba(0,0,0,0.3);--shadow-md:0 4px 12px rgba(0,0,0,0.4);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font);background:var(--bg);color:var(--text-1);line-height:1.6;-webkit-font-smoothing:antialiased;transition:background var(--t),color var(--t)}
+a{color:var(--primary);text-decoration:none}
+a:hover{text-decoration:underline}
+
+.nav-wrap{width:100%;border-bottom:1px solid var(--border);background:var(--bg);position:sticky;top:0;z-index:100}
+.nav-inner{max-width:1100px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:64px}
+.logo{font-size:20px;font-weight:800;color:var(--text-1);text-decoration:none;letter-spacing:-0.02em}
+.logo span{color:var(--primary)}
+.nav-links{display:flex;align-items:center;gap:24px}
+.nav-links a{font-size:14px;font-weight:500;color:var(--text-3);text-decoration:none;transition:color var(--t)}
+.nav-links a:hover{color:var(--text-1)}
+.theme-btn{background:none;border:1px solid var(--border);border-radius:8px;padding:6px 10px;cursor:pointer;color:var(--text-3);font-size:16px;transition:all var(--t)}
+.theme-btn:hover{border-color:var(--primary);color:var(--primary)}
+
+.article-wrap{max-width:720px;margin:0 auto;padding:64px 24px 96px}
+.breadcrumb{font-size:13px;color:var(--text-4);margin-bottom:32px}
+.breadcrumb a{color:var(--text-3);text-decoration:none}
+.breadcrumb a:hover{color:var(--primary)}
+.article-category{font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--primary);margin-bottom:14px}
+.article-title{font-size:42px;font-weight:800;line-height:1.15;letter-spacing:-0.02em;color:var(--text-1);margin-bottom:16px}
+.article-meta{font-size:13px;color:var(--text-4);margin-bottom:40px;display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+.article-meta span{display:flex;align-items:center;gap:5px}
+.article-divider{height:1px;background:var(--border);margin-bottom:40px}
+
+.article-body{font-size:17px;line-height:1.8;color:var(--text-2)}
+.article-body h2{font-size:26px;font-weight:700;color:var(--text-1);margin:40px 0 16px;line-height:1.3}
+.article-body h3{font-size:20px;font-weight:600;color:var(--text-1);margin:28px 0 12px}
+.article-body p{margin-bottom:20px}
+.article-body ul,.article-body ol{padding-right:24px;margin-bottom:20px}
+.article-body li{margin-bottom:8px}
+.article-body strong{color:var(--text-1);font-weight:600}
+.article-body code{background:var(--bg-3);border:1px solid var(--border);border-radius:4px;padding:2px 6px;font-size:14px;font-family:monospace}
+.article-body blockquote{border-right:4px solid var(--primary);padding:12px 20px;margin:24px 0;background:var(--bg-2);border-radius:0 8px 8px 0;color:var(--text-2);font-style:italic}
+
+.cta-box{background:var(--primary-light);border:1px solid rgba(225,29,72,0.2);border-radius:14px;padding:32px;margin:48px 0;text-align:center}
+.cta-box h3{font-size:22px;font-weight:700;color:var(--text-1);margin-bottom:8px}
+.cta-box p{color:var(--text-3);margin-bottom:20px;font-size:15px}
+.btn-primary{display:inline-block;background:var(--primary);color:#fff;padding:12px 28px;border-radius:10px;font-size:14px;font-weight:600;text-decoration:none;transition:all var(--t);box-shadow:0 4px 20px rgba(225,29,72,0.25)}
+.btn-primary:hover{background:var(--primary-hover);transform:translateY(-1px);text-decoration:none}
+
+footer{border-top:1px solid var(--border);padding:32px 24px;text-align:center;color:var(--text-4);font-size:13px}
+footer a{color:var(--text-3)}
+footer a:hover{color:var(--primary)}
+</style>
+</head>
+<body>
+<div class="nav-wrap">
+  <div class="nav-inner">
+    <a href="/" class="logo">agent7<span>d</span></a>
+    <div class="nav-links">
+      <a href="/">Home</a>
+      <a href="/blog/">Blog</a>
+      <a href="/products/docuai/support/">DocuAI</a>
+      <button class="theme-btn" onclick="toggleTheme()" title="Toggle theme">☀️</button>
+    </div>
+  </div>
+</div>
+
+<div class="article-wrap">
+  <div class="breadcrumb"><a href="/">Home</a> → <a href="/blog/">Blog</a> → The monday.com Deal Value Fields That Sales Teams Fill In Wrong — and How It Breaks Your Revenue Forecast</div>
+  <div class="article-category">Sales & CRM</div>
+  <h1 class="article-title">The monday.com Deal Value Fields That Sales Teams Fill In Wrong — and How It Breaks Your Revenue Forecast</h1>
+  <div class="article-meta">
+    <span>📅 September 10, 2026</span>
+    <span>✍️ agent7d Team</span>
+    <span>⏱ 5 min read</span>
+  </div>
+  <div class="article-divider"></div>
+  <div class="article-body">
+    
+<p>Most sales leaders who come to me with a forecast accuracy problem assume the issue is deal velocity — deals taking longer to close than expected. Nine times out of ten, the real problem is sitting in the Deal Value column, and it was created on the day the record was first added.</p>
+<p>Bad forecast numbers in monday.com are rarely caused by missing deal values. They're caused by deal values that were entered inconsistently and never corrected. By the time you're trying to call a number at the end of the quarter, you're averaging over a field that contains five different things, all labeled the same way.</p>
+<p>---</p>
+<h2>The Problem</h2>
+<p>Your monday.com pipeline total is a sum. Every value in your Deal Value column gets added together and presented as a single figure. The problem is that column has no memory — it doesn't know whether the number inside it represents an annual contract value, a three-year total, a pre-discount estimate, or a figure in the wrong currency that your board member entered after a flight from New York.</p>
+<p>When your revenue forecast pulls from that column, it treats every number as equivalent. A £40,000 entry that represents year one of a three-year contract sits next to a £40,000 entry that represents the total contract value. They look identical. Your pipeline total is wrong before you've even thought about close probability.</p>
+<p>The five most common deal value mistakes monday.com teams make are:</p>
+<li><strong>Estimated vs contracted values mixed in the same column</strong> — Some reps enter what they hope to close; others enter what's been verbally agreed; others wait for the signed contract. No standard, no consistency.</li>
+<li><strong>Multi-year contract totals entered as single-year values</strong> — A three-year deal worth £120,000 gets entered as £120,000 instead of £40,000 ARR, inflating the pipeline artificially.</li>
+<li><strong>Discounts baked in before the column standard requires them</strong> — One rep enters list price; another knocks 20% off upfront. Your average deal size becomes meaningless.</li>
+<li><strong>Currency inconsistencies</strong> — International deals entered in local currency without conversion, or converted incorrectly at the time of entry and never updated.</li>
+<li><strong>Values updated at close but not corrected retroactively</strong> — A deal that expanded from £25,000 to £35,000 has the original figure sitting in the column because nobody went back to fix it.</li>
+<p>Each of these errors is small on its own. Together, they make your monday.com pipeline figure a number you can't trust.</p>
+<p>---</p>
+<h2>The Solution</h2>
+<p>The fix is not to rebuild your board. It's to establish one authoritative definition of what "Deal Value" means in your pipeline, audit your existing records against that definition, and create a lightweight entry standard that prevents the problem recurring.</p>
+<p>Your deal value column should represent one thing: the anticipated closed revenue attributable to this deal in the current contract term, at list price, in your base currency. Everything else — discounts, multi-year projections, currency conversions — should live in separate columns where you control how they're aggregated.</p>
+<p>---</p>
+<h2>Step by Step</h2>
+<p><strong>1. Define your standard in writing before you touch any data.</strong></p>
+<p>Decide: estimated or contracted? Annual or total contract value? List price or net of discount? Write it down. One sentence. Share it with the team before you do anything else.</p>
+<p><strong>2. Add supporting columns to your monday.com board.</strong></p>
+<p>Create columns for Contract Term (years), Discount %, Currency, and Converted Value. These give you the raw data you need to audit without overwriting the values your reps entered.</p>
+<p><strong>3. Use filters to isolate each error category.</strong></p>
+<p>In monday.com, use the Filter function to surface deals where Contract Term is greater than 1 — these are your potential multi-year entries that need to be recalculated. Filter by Currency to find non-base-currency entries. Sort by Deal Value descending and cross-reference against your Discount column to find pre-discounted entries.</p>
+<p><strong>4. Build a formula column for normalized deal value.</strong></p>
+<p>Use monday.com's Formula column to calculate: <code>{Deal Value} / {Contract Term}</code> for ARR normalization, and build in currency conversion using a fixed-rate reference column. This normalized figure becomes your forecast input — not the raw Deal Value column.</p>
+<p><strong>5. Create a board automation that flags value inconsistencies.</strong></p>
+<p>Set an automation: when a new item is created and Deal Value is empty, notify the owner. When Contract Term is greater than 1, send a prompt to confirm whether the value is total or annual. Small friction at entry point prevents large cleanup jobs later.</p>
+<p><strong>6. Lock in the standard with a Monday form.</strong></p>
+<p>If your reps create deals via a monday.com form rather than directly on the board, you can enforce required fields and add helper text that defines exactly what to enter. This is the fastest way to drive consistent behavior without a training session.</p>
+<p>---</p>
+<h2>Real Example</h2>
+<p>A professional services firm came to me with a monday.com pipeline showing £1.4m in open deals. Their board looked healthy. Their close rate looked reasonable. But their actual quarterly closes were consistently running 30-35% below forecast.</p>
+<p>We ran a systematic filter audit across their pipeline board:</p>
+<p><strong>Step 1: Multi-year contract totals.</strong></p>
+<p>Filtered for all deals where the notes field mentioned "year" or "annual." Cross-referenced against deal values. Found 14 deals where the value entered was the full contract total, not the annual value. Combined overstatement: £380,000. These weren't bad deals — they were good deals, misrepresented. A three-year managed services contract worth £90,000 total had been entered as £90,000 when it should have been £30,000 ARR.</p>
+<p><strong>Step 2: Pre-discounted values.</strong></p>
+<p>Built a formula column: <code>{Deal Value} * 1.2</code> (reversing a standard 20% discount). Filtered for deals where the rep had left a note referencing a discount. Found 8 deals where the value in the column was already net of discount, meaning list-price comparisons and pipeline benchmarks were understating deal size. Combined impact on average deal value calculation: £90,000 misclassified.</p>
+<p><strong>Step 3: Currency inconsistencies.</strong></p>
+<p>Filtered the Currency column for anything other than GBP. Found 6 deals entered in USD at the rate on the day of entry — six months prior. Current conversion moved those values by roughly 8%. Actual misstatement against current rates: £60,000.</p>
+<p>Total pipeline misstatement: £530,000 on a £1.4m board — 38% of their visible pipeline was giving the wrong signal. Once we normalized all values to GBP ARR at list price, the real open pipeline was £870,000. Still a solid number, but one they could actually forecast from.</p>
+<p>The fix took one afternoon of filter work and two hours of data correction across the board. The formula column now handles the normalization automatically for every new deal.</p>
+<p>---</p>
+<h2>How to Get Started</h2>
+<p>Before you build a new standard or touch any records, you need to know what you're actually dealing with. Pull your board, apply the three filter sequences above — multi-year flags, discount inconsistencies, currency mismatches — and count how many records fall into each category. That number tells you the scope of the problem and where to focus first.</p>
+<p>If that audit sounds like more work than you have time for this week, there's a faster way.</p>
+<p>Want to see what your own pipeline is losing? Run the free CRM Audit for monday.com — it scores your pipeline health and shows exactly where revenue is leaking. <a href="https://agent7d.com/tools/crm-audit/">Get your free audit</a></p>
+  </div>
+  <div class="cta-box">
+    <h3>Generate documents from monday.com in seconds</h3>
+    <p>DocuAI turns your item data into professional proposals, contracts, and reports — automatically.</p>
+    <a href="https://agent7d.com/products/docuai/" class="btn-primary">Try DocuAI Free →</a>
+  </div>
+</div>
+
+<footer>
+  <p>© 2026 agent7d · <a href="/products/docuai/privacy/">Privacy</a> · <a href="/products/docuai/terms/">Terms</a> · <a href="/blog/">Blog</a></p>
+</footer>
+<script>
+function toggleTheme(){
+  const cur=document.documentElement.getAttribute('data-theme');
+  const next=cur==='dark'?'light':'dark';
+  document.documentElement.setAttribute('data-theme',next);
+  localStorage.setItem('theme',next);
+  document.querySelector('.theme-btn').textContent=next==='dark'?'🌙':'☀️';
+}
+document.querySelector('.theme-btn').textContent=
+  document.documentElement.getAttribute('data-theme')==='dark'?'🌙':'☀️';
+</script>
+</body>
+</html>
