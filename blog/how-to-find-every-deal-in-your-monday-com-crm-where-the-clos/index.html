@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How to Find Every Deal in Your monday.com CRM Where the Close Date Has Passed but the Deal Is Still Open — agent7d Blog</title>
+<meta name="description" content="Expired close dates are quiet. They do not trigger alerts. They do not show up in dashboards unless you build specifically for them. They just sit there, accumu">
+<meta property="og:title" content="How to Find Every Deal in Your monday.com CRM Where the Close Date Has Passed but the Deal Is Still Open">
+<meta property="og:description" content="Expired close dates are quiet. They do not trigger alerts. They do not show up in dashboards unless you build specifically for them. They just sit there, accumu">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script>
+  const t=localStorage.getItem('theme')||(window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');
+  document.documentElement.setAttribute('data-theme',t);
+</script>
+<style>
+:root{
+  --primary:#e11d48;--primary-hover:#be123c;--primary-light:#fef2f5;
+  --bg:#ffffff;--bg-2:#f9fafb;--bg-3:#f3f4f6;
+  --border:#e5e7eb;--text-1:#111827;--text-2:#374151;--text-3:#6b7280;--text-4:#9ca3af;
+  --font:'Plus Jakarta Sans',sans-serif;--t:0.15s ease;
+  --shadow-sm:0 1px 3px rgba(0,0,0,0.08);--shadow-md:0 4px 12px rgba(0,0,0,0.08);
+}
+[data-theme="dark"]{
+  --bg:#0a0a0a;--bg-2:#111111;--bg-3:#1a1a1a;--border:#262626;
+  --text-1:#f9fafb;--text-2:#e5e7eb;--text-3:#9ca3af;--text-4:#6b7280;
+  --primary:#ff2056;--primary-light:rgba(255,32,86,0.1);
+  --shadow-sm:0 1px 3px rgba(0,0,0,0.3);--shadow-md:0 4px 12px rgba(0,0,0,0.4);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font);background:var(--bg);color:var(--text-1);line-height:1.6;-webkit-font-smoothing:antialiased;transition:background var(--t),color var(--t)}
+a{color:var(--primary);text-decoration:none}
+a:hover{text-decoration:underline}
+
+.nav-wrap{width:100%;border-bottom:1px solid var(--border);background:var(--bg);position:sticky;top:0;z-index:100}
+.nav-inner{max-width:1100px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:64px}
+.logo{font-size:20px;font-weight:800;color:var(--text-1);text-decoration:none;letter-spacing:-0.02em}
+.logo span{color:var(--primary)}
+.nav-links{display:flex;align-items:center;gap:24px}
+.nav-links a{font-size:14px;font-weight:500;color:var(--text-3);text-decoration:none;transition:color var(--t)}
+.nav-links a:hover{color:var(--text-1)}
+.theme-btn{background:none;border:1px solid var(--border);border-radius:8px;padding:6px 10px;cursor:pointer;color:var(--text-3);font-size:16px;transition:all var(--t)}
+.theme-btn:hover{border-color:var(--primary);color:var(--primary)}
+
+.article-wrap{max-width:720px;margin:0 auto;padding:64px 24px 96px}
+.breadcrumb{font-size:13px;color:var(--text-4);margin-bottom:32px}
+.breadcrumb a{color:var(--text-3);text-decoration:none}
+.breadcrumb a:hover{color:var(--primary)}
+.article-category{font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--primary);margin-bottom:14px}
+.article-title{font-size:42px;font-weight:800;line-height:1.15;letter-spacing:-0.02em;color:var(--text-1);margin-bottom:16px}
+.article-meta{font-size:13px;color:var(--text-4);margin-bottom:40px;display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+.article-meta span{display:flex;align-items:center;gap:5px}
+.article-divider{height:1px;background:var(--border);margin-bottom:40px}
+
+.article-body{font-size:17px;line-height:1.8;color:var(--text-2)}
+.article-body h2{font-size:26px;font-weight:700;color:var(--text-1);margin:40px 0 16px;line-height:1.3}
+.article-body h3{font-size:20px;font-weight:600;color:var(--text-1);margin:28px 0 12px}
+.article-body p{margin-bottom:20px}
+.article-body ul,.article-body ol{padding-right:24px;margin-bottom:20px}
+.article-body li{margin-bottom:8px}
+.article-body strong{color:var(--text-1);font-weight:600}
+.article-body code{background:var(--bg-3);border:1px solid var(--border);border-radius:4px;padding:2px 6px;font-size:14px;font-family:monospace}
+.article-body blockquote{border-right:4px solid var(--primary);padding:12px 20px;margin:24px 0;background:var(--bg-2);border-radius:0 8px 8px 0;color:var(--text-2);font-style:italic}
+
+.cta-box{background:var(--primary-light);border:1px solid rgba(225,29,72,0.2);border-radius:14px;padding:32px;margin:48px 0;text-align:center}
+.cta-box h3{font-size:22px;font-weight:700;color:var(--text-1);margin-bottom:8px}
+.cta-box p{color:var(--text-3);margin-bottom:20px;font-size:15px}
+.btn-primary{display:inline-block;background:var(--primary);color:#fff;padding:12px 28px;border-radius:10px;font-size:14px;font-weight:600;text-decoration:none;transition:all var(--t);box-shadow:0 4px 20px rgba(225,29,72,0.25)}
+.btn-primary:hover{background:var(--primary-hover);transform:translateY(-1px);text-decoration:none}
+
+footer{border-top:1px solid var(--border);padding:32px 24px;text-align:center;color:var(--text-4);font-size:13px}
+footer a{color:var(--text-3)}
+footer a:hover{color:var(--primary)}
+</style>
+</head>
+<body>
+<div class="nav-wrap">
+  <div class="nav-inner">
+    <a href="/" class="logo">agent7<span>d</span></a>
+    <div class="nav-links">
+      <a href="/">Home</a>
+      <a href="/blog/">Blog</a>
+      <a href="/products/docuai/support/">DocuAI</a>
+      <button class="theme-btn" onclick="toggleTheme()" title="Toggle theme">☀️</button>
+    </div>
+  </div>
+</div>
+
+<div class="article-wrap">
+  <div class="breadcrumb"><a href="/">Home</a> → <a href="/blog/">Blog</a> → How to Find Every Deal in Your monday.com CRM Where the Close Date Has Passed but the Deal Is Still Open</div>
+  <div class="article-category">monday.com</div>
+  <h1 class="article-title">How to Find Every Deal in Your monday.com CRM Where the Close Date Has Passed but the Deal Is Still Open</h1>
+  <div class="article-meta">
+    <span>📅 September 14, 2026</span>
+    <span>✍️ agent7d Team</span>
+    <span>⏱ 5 min read</span>
+  </div>
+  <div class="article-divider"></div>
+  <div class="article-body">
+    
+<p>Expired close dates are quiet. They do not trigger alerts. They do not show up in dashboards unless you build specifically for them. They just sit there, accumulating, while your pipeline numbers look more optimistic than they have any right to be.</p>
+<p>If you manage a monday.com CRM and have not audited your close dates recently, there is a reasonable chance that a significant portion of your open deals are already overdue — and nobody has touched them.</p>
+<p>Here is how to find every one of them, interpret what they are telling you, and decide what to do next.</p>
+<p>---</p>
+<h2>The Problem</h2>
+<p>A close date is a commitment. When a rep sets one, they are forecasting that a deal will resolve by a specific date. When that date passes and the deal is still sitting open with no update, something has broken — either the deal, the process, or both.</p>
+<p>The issue is not just data hygiene. Expired close dates distort your forecast, inflate your pipeline value, and mask what is actually moving. When leadership pulls a pipeline report and it shows £400,000 in open opportunities, they assume that number reflects active, workable deals. If thirty percent of those deals have close dates from last quarter, the real number is materially different — and decisions get made on false information.</p>
+<p>Expired close dates also signal rep behavior worth understanding. Sometimes a deal genuinely slipped and needs a new date. Sometimes a rep knows the deal is dead but has not logged the loss. Sometimes a deal was never real and was added to meet pipeline coverage targets. Each of these situations requires a different response, but you cannot respond to any of them until you find them.</p>
+<p>---</p>
+<h2>The Solution</h2>
+<p>monday.com gives you everything you need to surface overdue deals in a few minutes. The approach is a filtered board view that isolates every item where the status column still shows an open stage and the close date column shows a date in the past. Once you have that view, you triage what you find into three categories — genuinely alive, stalled, or dead — and handle each accordingly.</p>
+<p>The goal is not to shame reps or mass-close deals. The goal is to make your pipeline reflect reality, which makes your forecast trustworthy and your sales conversations more honest.</p>
+<p>---</p>
+<h2>Step by Step</h2>
+<p><strong>1. Create a new view on your deals board.</strong></p>
+<p>Go to your monday.com CRM board, click the Views sidebar, and add a new Table view. Name it "Overdue Open Deals."</p>
+<p><strong>2. Apply two filters.</strong></p>
+<p>Open the Filter menu and set the following conditions:</p>
+<ul><li>Close Date → is before → today</li>
+<li>Deal Stage (or Status column) → does not contain → Won / Lost / Dead (whatever your closed labels are)</li>
+<p></ul></p>
+<p>This returns every deal that should have closed but has not been marked as resolved.</p>
+<p><strong>3. Sort by close date, oldest first.</strong></p>
+<p>This puts the most neglected deals at the top. A deal from eight months ago is a different problem than one from three weeks ago.</p>
+<p><strong>4. Add a "Last Activity" column if you do not already have one.</strong></p>
+<p>monday.com allows you to track last update timestamps. This tells you whether anyone has touched the deal since the close date passed. No activity plus expired date is your clearest signal that a deal is effectively dead.</p>
+<p><strong>5. Categorise every deal using a new column.</strong></p>
+<p>Add a dropdown column called "Audit Status" with three options: Alive, Stalled, Dead. Go through each deal and assign one. Use the following logic:</p>
+<ul><li><strong>Alive:</strong> There has been recent communication, a clear next step exists, and the rep can articulate why it is still open.</li>
+<li><strong>Stalled:</strong> The deal had momentum but something stopped. No recent contact, but there is a realistic path back.</li>
+<li><strong>Dead:</strong> No activity, no response from the prospect, or the rep privately knows it is gone.</li>
+<p></ul></p>
+<p><strong>6. Act on each category.</strong></p>
+<ul><li>Alive deals get a new close date with a documented reason and a next action assigned.</li>
+<li>Stalled deals get one re-engagement attempt — a templated outreach with a two-week deadline before they move to Dead.</li>
+<li>Dead deals get closed as Lost with a reason logged. This is non-negotiable. Loss reasons are the most valuable data your CRM produces.</li>
+<p></ul></p>
+<p><strong>7. Set an automation to prevent recurrence.</strong></p>
+<p>In monday.com Automations, create a rule: when a Close Date arrives and the deal status is still open, notify the deal owner and their manager. This creates a lightweight accountability layer without requiring manual oversight.</p>
+<p>---</p>
+<h2>Real Example</h2>
+<p>A sales manager at a software reseller was preparing a pipeline review for the executive team. She ran the filter above for the first time and found that 31 of her 98 open deals had close dates from the previous quarter. None had been flagged. None had follow-up tasks assigned.</p>
+<p>When she worked through the triage, the breakdown looked like this: nine deals were genuinely still alive with sloppy date management, fourteen were stalled with a reasonable re-engagement path, and eight were effectively dead but had never been closed. The remaining fourteen were questionable enough that she scheduled a call with each rep before deciding.</p>
+<p>The result was a pipeline that dropped from £520,000 to £310,000 in reported open value. That sounds like bad news. It was not. It meant the forecast the executive team had been using was off by forty percent, and every resource decision based on it had been distorted. Fixing that number — even though it meant a smaller pipeline — was the single most useful thing that sales team did that quarter.</p>
+<p>---</p>
+<h2>How to Get Started</h2>
+<p>Run this audit today. It takes under an hour if your board is reasonably structured, and the output — a clear picture of what is actually alive in your pipeline — is worth considerably more than the time it takes.</p>
+<p>If you find a lot of overdue deals, do not panic. Find them, triage them honestly, close what needs closing, and put an automation in place so the same accumulation does not happen again. The filter is the easy part. The harder discipline is committing to a pipeline that only contains deals you would actually defend in a forecast meeting.</p>
+<p>Want to see what your own pipeline is losing? Run the free CRM Audit for monday.com — it scores your pipeline health and shows exactly where revenue is leaking. <a href="https://agent7d.com/tools/crm-audit/">Get your free audit</a></p>
+  </div>
+  <div class="cta-box">
+    <h3>Generate documents from monday.com in seconds</h3>
+    <p>DocuAI turns your item data into professional proposals, contracts, and reports — automatically.</p>
+    <a href="https://agent7d.com/products/docuai/" class="btn-primary">Try DocuAI Free →</a>
+  </div>
+</div>
+
+<footer>
+  <p>© 2026 agent7d · <a href="/products/docuai/privacy/">Privacy</a> · <a href="/products/docuai/terms/">Terms</a> · <a href="/blog/">Blog</a></p>
+</footer>
+<script>
+function toggleTheme(){
+  const cur=document.documentElement.getAttribute('data-theme');
+  const next=cur==='dark'?'light':'dark';
+  document.documentElement.setAttribute('data-theme',next);
+  localStorage.setItem('theme',next);
+  document.querySelector('.theme-btn').textContent=next==='dark'?'🌙':'☀️';
+}
+document.querySelector('.theme-btn').textContent=
+  document.documentElement.getAttribute('data-theme')==='dark'?'🌙':'☀️';
+</script>
+</body>
+</html>

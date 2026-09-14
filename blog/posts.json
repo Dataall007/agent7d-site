@@ -1,5 +1,18 @@
 [
   {
+    "slug": "how-to-find-every-deal-in-your-monday-com-crm-where-the-clos",
+    "title": "How to Find Every Deal in Your monday.com CRM Where the Close Date Has Passed but the Deal Is Still Open",
+    "excerpt": "Expired close dates are quiet. They do not trigger alerts. They do not show up in dashboards unless you build specifically for them. They just sit there, accumu",
+    "category": "monday.com",
+    "tags": [
+      "monday"
+    ],
+    "product": "crm-audit",
+    "date": "2026-09-14",
+    "dateStr": "September 14, 2026",
+    "readTime": "5 min read"
+  },
+  {
     "slug": "how-to-auto-generate-a-project-budget-summary-document-from-",
     "title": "How to Auto-Generate a Project Budget Summary Document from monday.com Before Every Client Check-In",
     "excerpt": "Client check-ins run long. Budget conversations are usually why. Someone shares a screen, scrolls through a board, reads numbers aloud, and the client is left t",
