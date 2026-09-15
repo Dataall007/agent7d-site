@@ -1,5 +1,18 @@
 [
   {
+    "slug": "how-to-generate-a-lessons-learned-document-from-monday-com-t",
+    "title": "How to Generate a Lessons Learned Document from monday.com the Right Way — While the Project Is Still Fresh",
+    "excerpt": "Every project team intends to write a lessons learned document. Almost none of them actually do it.",
+    "category": "monday.com",
+    "tags": [
+      "monday"
+    ],
+    "product": "docuai",
+    "date": "2026-09-15",
+    "dateStr": "September 15, 2026",
+    "readTime": "5 min read"
+  },
+  {
     "slug": "how-to-find-every-deal-in-your-monday-com-crm-where-the-clos",
     "title": "How to Find Every Deal in Your monday.com CRM Where the Close Date Has Passed but the Deal Is Still Open",
     "excerpt": "Expired close dates are quiet. They do not trigger alerts. They do not show up in dashboards unless you build specifically for them. They just sit there, accumu",
