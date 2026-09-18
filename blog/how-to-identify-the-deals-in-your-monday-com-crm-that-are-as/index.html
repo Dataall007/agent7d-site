@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How to Identify the Deals in Your monday.com CRM That Are Assigned to the Wrong Rep — and Why It Happens More Than You Think — agent7d Blog</title>
+<meta name="description" content="Deal ownership errors in monday.com CRM don't announce themselves. They sit quietly inside your board, accumulating zero activity, while the rep who owns them e">
+<meta property="og:title" content="How to Identify the Deals in Your monday.com CRM That Are Assigned to the Wrong Rep — and Why It Happens More Than You Think">
+<meta property="og:description" content="Deal ownership errors in monday.com CRM don't announce themselves. They sit quietly inside your board, accumulating zero activity, while the rep who owns them e">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script>
+  const t=localStorage.getItem('theme')||(window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');
+  document.documentElement.setAttribute('data-theme',t);
+</script>
+<style>
+:root{
+  --primary:#e11d48;--primary-hover:#be123c;--primary-light:#fef2f5;
+  --bg:#ffffff;--bg-2:#f9fafb;--bg-3:#f3f4f6;
+  --border:#e5e7eb;--text-1:#111827;--text-2:#374151;--text-3:#6b7280;--text-4:#9ca3af;
+  --font:'Plus Jakarta Sans',sans-serif;--t:0.15s ease;
+  --shadow-sm:0 1px 3px rgba(0,0,0,0.08);--shadow-md:0 4px 12px rgba(0,0,0,0.08);
+}
+[data-theme="dark"]{
+  --bg:#0a0a0a;--bg-2:#111111;--bg-3:#1a1a1a;--border:#262626;
+  --text-1:#f9fafb;--text-2:#e5e7eb;--text-3:#9ca3af;--text-4:#6b7280;
+  --primary:#ff2056;--primary-light:rgba(255,32,86,0.1);
+  --shadow-sm:0 1px 3px rgba(0,0,0,0.3);--shadow-md:0 4px 12px rgba(0,0,0,0.4);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font);background:var(--bg);color:var(--text-1);line-height:1.6;-webkit-font-smoothing:antialiased;transition:background var(--t),color var(--t)}
+a{color:var(--primary);text-decoration:none}
+a:hover{text-decoration:underline}
+
+.nav-wrap{width:100%;border-bottom:1px solid var(--border);background:var(--bg);position:sticky;top:0;z-index:100}
+.nav-inner{max-width:1100px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:64px}
+.logo{font-size:20px;font-weight:800;color:var(--text-1);text-decoration:none;letter-spacing:-0.02em}
+.logo span{color:var(--primary)}
+.nav-links{display:flex;align-items:center;gap:24px}
+.nav-links a{font-size:14px;font-weight:500;color:var(--text-3);text-decoration:none;transition:color var(--t)}
+.nav-links a:hover{color:var(--text-1)}
+.theme-btn{background:none;border:1px solid var(--border);border-radius:8px;padding:6px 10px;cursor:pointer;color:var(--text-3);font-size:16px;transition:all var(--t)}
+.theme-btn:hover{border-color:var(--primary);color:var(--primary)}
+
+.article-wrap{max-width:720px;margin:0 auto;padding:64px 24px 96px}
+.breadcrumb{font-size:13px;color:var(--text-4);margin-bottom:32px}
+.breadcrumb a{color:var(--text-3);text-decoration:none}
+.breadcrumb a:hover{color:var(--primary)}
+.article-category{font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--primary);margin-bottom:14px}
+.article-title{font-size:42px;font-weight:800;line-height:1.15;letter-spacing:-0.02em;color:var(--text-1);margin-bottom:16px}
+.article-meta{font-size:13px;color:var(--text-4);margin-bottom:40px;display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+.article-meta span{display:flex;align-items:center;gap:5px}
+.article-divider{height:1px;background:var(--border);margin-bottom:40px}
+
+.article-body{font-size:17px;line-height:1.8;color:var(--text-2)}
+.article-body h2{font-size:26px;font-weight:700;color:var(--text-1);margin:40px 0 16px;line-height:1.3}
+.article-body h3{font-size:20px;font-weight:600;color:var(--text-1);margin:28px 0 12px}
+.article-body p{margin-bottom:20px}
+.article-body ul,.article-body ol{padding-right:24px;margin-bottom:20px}
+.article-body li{margin-bottom:8px}
+.article-body strong{color:var(--text-1);font-weight:600}
+.article-body code{background:var(--bg-3);border:1px solid var(--border);border-radius:4px;padding:2px 6px;font-size:14px;font-family:monospace}
+.article-body blockquote{border-right:4px solid var(--primary);padding:12px 20px;margin:24px 0;background:var(--bg-2);border-radius:0 8px 8px 0;color:var(--text-2);font-style:italic}
+
+.cta-box{background:var(--primary-light);border:1px solid rgba(225,29,72,0.2);border-radius:14px;padding:32px;margin:48px 0;text-align:center}
+.cta-box h3{font-size:22px;font-weight:700;color:var(--text-1);margin-bottom:8px}
+.cta-box p{color:var(--text-3);margin-bottom:20px;font-size:15px}
+.btn-primary{display:inline-block;background:var(--primary);color:#fff;padding:12px 28px;border-radius:10px;font-size:14px;font-weight:600;text-decoration:none;transition:all var(--t);box-shadow:0 4px 20px rgba(225,29,72,0.25)}
+.btn-primary:hover{background:var(--primary-hover);transform:translateY(-1px);text-decoration:none}
+
+footer{border-top:1px solid var(--border);padding:32px 24px;text-align:center;color:var(--text-4);font-size:13px}
+footer a{color:var(--text-3)}
+footer a:hover{color:var(--primary)}
+</style>
+</head>
+<body>
+<div class="nav-wrap">
+  <div class="nav-inner">
+    <a href="/" class="logo">agent7<span>d</span></a>
+    <div class="nav-links">
+      <a href="/">Home</a>
+      <a href="/blog/">Blog</a>
+      <a href="/products/docuai/support/">DocuAI</a>
+      <button class="theme-btn" onclick="toggleTheme()" title="Toggle theme">☀️</button>
+    </div>
+  </div>
+</div>
+
+<div class="article-wrap">
+  <div class="breadcrumb"><a href="/">Home</a> → <a href="/blog/">Blog</a> → How to Identify the Deals in Your monday.com CRM That Are Assigned to the Wrong Rep — and Why It Happens More Than You Think</div>
+  <div class="article-category">monday.com</div>
+  <h1 class="article-title">How to Identify the Deals in Your monday.com CRM That Are Assigned to the Wrong Rep — and Why It Happens More Than You Think</h1>
+  <div class="article-meta">
+    <span>📅 September 18, 2026</span>
+    <span>✍️ agent7d Team</span>
+    <span>⏱ 5 min read</span>
+  </div>
+  <div class="article-divider"></div>
+  <div class="article-body">
+    
+<p>Deal ownership errors in monday.com CRM don't announce themselves. They sit quietly inside your board, accumulating zero activity, while the rep who owns them either no longer works at the company, moved to a different territory, or never should have been listed in the first place. By the time someone notices, months have passed and the prospect has either gone cold or signed with a competitor.</p>
+<p>This is a more common problem than most sales teams want to admit — and it's completely fixable if you know where to look.</p>
+<p>---</p>
+<h2>The Problem</h2>
+<p>Misassigned deals don't just create awkward conversations. They create dead zones in your pipeline — records that appear healthy in a board view because they have an owner and a stage, but are functionally abandoned because no one with actual accountability is watching them.</p>
+<p>The core issue is that deal ownership in monday.com is only as accurate as the last person who touched it. And in a fast-moving sales team, that means assignment errors accumulate constantly: through rep turnover, territory realignments, bulk imports, and the very human habit of sales reps assigning new deals to themselves in the moment, without checking whether they're the right owner.</p>
+<p>These errors don't just cost you deals. They distort your pipeline reporting, skew rep performance metrics, and make forecasting unreliable. A stage with twelve "open" deals sounds healthy until you realize four of them belong to someone who left six months ago.</p>
+<p>---</p>
+<h2>The Solution</h2>
+<p>A structured deal ownership audit — run directly inside monday.com using filters, group-by views, and a handful of targeted automations — gives you a clean picture of which records are assigned incorrectly, which are sitting untouched, and which have no owner at all.</p>
+<p>This isn't a one-time fix. It's a repeatable process you build into your normal pipeline review rhythm so ownership gaps get caught before they become revenue leaks.</p>
+<p>---</p>
+<h2>Step by Step</h2>
+<p><strong>1. Identify the four failure modes first.</strong></p>
+<p>Deal ownership errors in monday.com typically come from the same four sources: rep turnover (the person still shows as owner after they leave), territory changes (deals weren't reassigned when accounts shifted), import errors (bulk imports defaulted to whoever ran the import), and self-assignment at creation (reps grabbed deals they shouldn't own). Knowing which you're dealing with tells you how to fix it systematically.</p>
+<p><strong>2. Filter for inactive owners.</strong></p>
+<p>In your CRM board, use the Filter function to isolate deals assigned to users who are no longer active in your monday.com account. Deactivated users often remain on records — their name stays, but no one's getting notifications or working those deals.</p>
+<p><strong>3. Group by Owner, then sort by Last Activity.</strong></p>
+<p>This view immediately surfaces deals where the assigned rep has had zero logged activity in the past 30, 60, or 90 days. Combine this with your pipeline stage — a deal in "Proposal Sent" with no activity in 45 days and a potentially wrong owner is a genuine emergency.</p>
+<p><strong>4. Check for unowned records.</strong></p>
+<p>Filter for the People column being blank. These deals have fallen through every net — no owner, no accountability, no follow-up. They're the most urgent category.</p>
+<p><strong>5. Reassign without losing history.</strong></p>
+<p>When you reassign a deal, do it directly in the People column and use monday.com's Update section to leave a note documenting why the reassignment happened. This preserves context for the incoming rep and keeps your audit trail clean. Do not duplicate the item or move it to a different group — you'll break automation logic and reporting.</p>
+<p><strong>6. Build automations to catch ownership gaps early.</strong></p>
+<p>Set up a monday.com automation: "When a deal has no activity for X days, notify [Sales Ops] and flag the item." A second automation: "When a user is deactivated, notify [CRM Admin] of all records assigned to that user." These two rules alone will prevent most ownership errors from aging past two weeks.</p>
+<p><strong>7. Add an ownership check to your pipeline review cadence.</strong></p>
+<p>Make deal ownership validation a standing agenda item in your weekly or bi-weekly pipeline review. It takes less than ten minutes when it's routine. It takes weeks of recovery when it's not.</p>
+<p>---</p>
+<h2>Real Example</h2>
+<p>A sales ops manager at a mid-sized staffing agency flagged this exact issue during a quarterly pipeline review. Running a grouped owner view sorted by last activity, she found seventeen open deals assigned to reps who had either left the company, moved to different service lines, or were listed as owner purely because they'd entered the deal during a bulk import six months prior. Several of those deals had been sitting in "Qualification" for over 90 days with no outreach logged. Two of the prospects, she later confirmed, had already signed contracts with competitors. The total estimated pipeline value sitting in those seventeen records: just over $400,000. None of it was being actively worked.</p>
+<p>The fix took her team three hours. The audit that caught it took twenty minutes.</p>
+<p>---</p>
+<h2>How to Get Started</h2>
+<p>Start with your own board today. Pull up your CRM board in monday.com, run a grouped-by-owner view, sort by last activity date, and apply a filter for deals created more than 30 days ago. What you find in the next ten minutes will tell you whether this is a small cleanup job or a systemic problem that needs a dedicated audit pass.</p>
+<p>If you want a faster, more complete picture — including deals with missing values, stuck stages, and unowned records across your entire pipeline — there's a tool built specifically for this.</p>
+<p>Want to see what your own pipeline is losing? Run the free CRM Audit for monday.com — it scores your pipeline health and shows exactly where revenue is leaking. <a href="https://agent7d.com/tools/crm-audit/">Get your free audit</a></p>
+  </div>
+  <div class="cta-box">
+    <h3>Generate documents from monday.com in seconds</h3>
+    <p>DocuAI turns your item data into professional proposals, contracts, and reports — automatically.</p>
+    <a href="https://agent7d.com/products/docuai/" class="btn-primary">Try DocuAI Free →</a>
+  </div>
+</div>
+
+<footer>
+  <p>© 2026 agent7d · <a href="/products/docuai/privacy/">Privacy</a> · <a href="/products/docuai/terms/">Terms</a> · <a href="/blog/">Blog</a></p>
+</footer>
+<script>
+function toggleTheme(){
+  const cur=document.documentElement.getAttribute('data-theme');
+  const next=cur==='dark'?'light':'dark';
+  document.documentElement.setAttribute('data-theme',next);
+  localStorage.setItem('theme',next);
+  document.querySelector('.theme-btn').textContent=next==='dark'?'🌙':'☀️';
+}
+document.querySelector('.theme-btn').textContent=
+  document.documentElement.getAttribute('data-theme')==='dark'?'🌙':'☀️';
+</script>
+</body>
+</html>
