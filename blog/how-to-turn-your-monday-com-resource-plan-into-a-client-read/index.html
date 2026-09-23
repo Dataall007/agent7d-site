@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How to Turn Your monday.com Resource Plan into a Client-Ready Staffing Proposal — agent7d Blog</title>
+<meta name="description" content="Every project manager who uses monday.com for resource planning knows the moment it happens. The client emails: "Can you send us an overview of who will be work">
+<meta property="og:title" content="How to Turn Your monday.com Resource Plan into a Client-Ready Staffing Proposal">
+<meta property="og:description" content="Every project manager who uses monday.com for resource planning knows the moment it happens. The client emails: "Can you send us an overview of who will be work">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script>
+  const t=localStorage.getItem('theme')||(window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');
+  document.documentElement.setAttribute('data-theme',t);
+</script>
+<style>
+:root{
+  --primary:#e11d48;--primary-hover:#be123c;--primary-light:#fef2f5;
+  --bg:#ffffff;--bg-2:#f9fafb;--bg-3:#f3f4f6;
+  --border:#e5e7eb;--text-1:#111827;--text-2:#374151;--text-3:#6b7280;--text-4:#9ca3af;
+  --font:'Plus Jakarta Sans',sans-serif;--t:0.15s ease;
+  --shadow-sm:0 1px 3px rgba(0,0,0,0.08);--shadow-md:0 4px 12px rgba(0,0,0,0.08);
+}
+[data-theme="dark"]{
+  --bg:#0a0a0a;--bg-2:#111111;--bg-3:#1a1a1a;--border:#262626;
+  --text-1:#f9fafb;--text-2:#e5e7eb;--text-3:#9ca3af;--text-4:#6b7280;
+  --primary:#ff2056;--primary-light:rgba(255,32,86,0.1);
+  --shadow-sm:0 1px 3px rgba(0,0,0,0.3);--shadow-md:0 4px 12px rgba(0,0,0,0.4);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font);background:var(--bg);color:var(--text-1);line-height:1.6;-webkit-font-smoothing:antialiased;transition:background var(--t),color var(--t)}
+a{color:var(--primary);text-decoration:none}
+a:hover{text-decoration:underline}
+
+.nav-wrap{width:100%;border-bottom:1px solid var(--border);background:var(--bg);position:sticky;top:0;z-index:100}
+.nav-inner{max-width:1100px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:64px}
+.logo{font-size:20px;font-weight:800;color:var(--text-1);text-decoration:none;letter-spacing:-0.02em}
+.logo span{color:var(--primary)}
+.nav-links{display:flex;align-items:center;gap:24px}
+.nav-links a{font-size:14px;font-weight:500;color:var(--text-3);text-decoration:none;transition:color var(--t)}
+.nav-links a:hover{color:var(--text-1)}
+.theme-btn{background:none;border:1px solid var(--border);border-radius:8px;padding:6px 10px;cursor:pointer;color:var(--text-3);font-size:16px;transition:all var(--t)}
+.theme-btn:hover{border-color:var(--primary);color:var(--primary)}
+
+.article-wrap{max-width:720px;margin:0 auto;padding:64px 24px 96px}
+.breadcrumb{font-size:13px;color:var(--text-4);margin-bottom:32px}
+.breadcrumb a{color:var(--text-3);text-decoration:none}
+.breadcrumb a:hover{color:var(--primary)}
+.article-category{font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--primary);margin-bottom:14px}
+.article-title{font-size:42px;font-weight:800;line-height:1.15;letter-spacing:-0.02em;color:var(--text-1);margin-bottom:16px}
+.article-meta{font-size:13px;color:var(--text-4);margin-bottom:40px;display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+.article-meta span{display:flex;align-items:center;gap:5px}
+.article-divider{height:1px;background:var(--border);margin-bottom:40px}
+
+.article-body{font-size:17px;line-height:1.8;color:var(--text-2)}
+.article-body h2{font-size:26px;font-weight:700;color:var(--text-1);margin:40px 0 16px;line-height:1.3}
+.article-body h3{font-size:20px;font-weight:600;color:var(--text-1);margin:28px 0 12px}
+.article-body p{margin-bottom:20px}
+.article-body ul,.article-body ol{padding-right:24px;margin-bottom:20px}
+.article-body li{margin-bottom:8px}
+.article-body strong{color:var(--text-1);font-weight:600}
+.article-body code{background:var(--bg-3);border:1px solid var(--border);border-radius:4px;padding:2px 6px;font-size:14px;font-family:monospace}
+.article-body blockquote{border-right:4px solid var(--primary);padding:12px 20px;margin:24px 0;background:var(--bg-2);border-radius:0 8px 8px 0;color:var(--text-2);font-style:italic}
+
+.cta-box{background:var(--primary-light);border:1px solid rgba(225,29,72,0.2);border-radius:14px;padding:32px;margin:48px 0;text-align:center}
+.cta-box h3{font-size:22px;font-weight:700;color:var(--text-1);margin-bottom:8px}
+.cta-box p{color:var(--text-3);margin-bottom:20px;font-size:15px}
+.btn-primary{display:inline-block;background:var(--primary);color:#fff;padding:12px 28px;border-radius:10px;font-size:14px;font-weight:600;text-decoration:none;transition:all var(--t);box-shadow:0 4px 20px rgba(225,29,72,0.25)}
+.btn-primary:hover{background:var(--primary-hover);transform:translateY(-1px);text-decoration:none}
+
+footer{border-top:1px solid var(--border);padding:32px 24px;text-align:center;color:var(--text-4);font-size:13px}
+footer a{color:var(--text-3)}
+footer a:hover{color:var(--primary)}
+</style>
+</head>
+<body>
+<div class="nav-wrap">
+  <div class="nav-inner">
+    <a href="/" class="logo">agent7<span>d</span></a>
+    <div class="nav-links">
+      <a href="/">Home</a>
+      <a href="/blog/">Blog</a>
+      <a href="/products/docuai/support/">DocuAI</a>
+      <button class="theme-btn" onclick="toggleTheme()" title="Toggle theme">☀️</button>
+    </div>
+  </div>
+</div>
+
+<div class="article-wrap">
+  <div class="breadcrumb"><a href="/">Home</a> → <a href="/blog/">Blog</a> → How to Turn Your monday.com Resource Plan into a Client-Ready Staffing Proposal</div>
+  <div class="article-category">Sales & CRM</div>
+  <h1 class="article-title">How to Turn Your monday.com Resource Plan into a Client-Ready Staffing Proposal</h1>
+  <div class="article-meta">
+    <span>📅 September 23, 2026</span>
+    <span>✍️ agent7d Team</span>
+    <span>⏱ 5 min read</span>
+  </div>
+  <div class="article-divider"></div>
+  <div class="article-body">
+    
+<p>Every project manager who uses monday.com for resource planning knows the moment it happens. The client emails: "Can you send us an overview of who will be working on this and when?" And instead of pointing to data you already have, you open a blank Word document and start typing.</p>
+<p>This post is about closing that gap — and making your resource plan board good enough to never start from scratch again.</p>
+<p>---</p>
+<h2>The Problem</h2>
+<p>Most teams treat their monday.com boards as internal tools and their client documents as a separate, parallel artifact. The result is a two-step process that burns time and introduces errors.</p>
+<p>Take a consulting firm project lead — let's call her Nadia. Before every new engagement, Nadia spends roughly two hours converting her internal resource plan into a client-facing team overview. She screenshots the timeline, manually types roles and allocations into a Word table, reformats job titles so they sound less like internal shorthand, and then chases down headshots or bios if the client expects them. By the time she sends it, the board has already changed.</p>
+<p>This is the staffing proposal problem: the data exists in monday.com, but the document does not. So teams leave the platform, rebuild the information by hand, and create a document that immediately starts drifting from reality.</p>
+<p>---</p>
+<h2>The Solution</h2>
+<p>The fix has two parts. First, design your resource plan board so it explicitly contains the fields a staffing proposal needs — not just the fields your operations team uses internally. Second, use a tool that reads those fields and generates the formatted document for you, without manual copying.</p>
+<p>When those two things work together, generating a staffing proposal from monday.com becomes a one-minute task, not a two-hour one.</p>
+<p>---</p>
+<h2>Step by Step</h2>
+<p><strong>Map your columns to proposal fields.</strong> A staffing proposal typically answers six questions: Who is working on this? What is their role? What will they specifically do? How much of their time is committed? When are they involved? And what do they deliver? Monday.com already supports all of this — you just need the columns to be explicit.</p>
+<ul><li><strong>People column</strong> → Who is assigned</li>
+<li><strong>Text or dropdown column labeled "Client-Facing Role"</strong> → The title the client sees (not "SR_DEV_02")</li>
+<li><strong>Numbers or formula column for effort</strong> → Hours or percentage allocation per phase</li>
+<li><strong>Timeline column</strong> → Start and end dates per assignment</li>
+<li><strong>Text column for deliverables</strong> → What this person is responsible for producing</li>
+<p></ul></p>
+<p><strong>Separate internal language from client language.</strong> Add a dedicated "Client-Facing Role" column alongside whatever internal role or job code you use. This small habit means you never have to manually clean up titles before sending a document. "Full Stack Engineer — Lead" is a client-appropriate title. "FS-L3 Backend" is not.</p>
+<p><strong>Use one item per person per phase, not one item per person.</strong> If a developer is involved in discovery and then again in build, give them two rows. This lets your timeline and effort columns reflect the actual shape of their involvement rather than a blurred average.</p>
+<p><strong>Add a "Bio Summary" text column.</strong> Keep it to two or three sentences. This is the column DocuAI pulls when building the team section of a proposal. Writing it once means you never retype it.</p>
+<p><strong>Keep deliverables at the assignee level, not just the project level.</strong> Clients want to see what each person is accountable for — not just a project-level scope summary.</p>
+<p>---</p>
+<h2>Real Example</h2>
+<p>Nadia restructured her resource plan board using exactly these columns. Before a new engagement with a financial services client, she had twelve items — three team members across four project phases. Each item had a client-facing role, a bio summary, an effort percentage, a timeline, and a deliverables note.</p>
+<p>She installed DocuAI, selected the board, and generated a staffing proposal in about forty seconds. The output included a formatted team table, a timeline section with phase-by-phase assignments, and individual team member profiles pulled from the bio summary column — all branded with her firm's logo and colors. Total time from board to sent document: under three minutes. When the timeline shifted two weeks later, she updated monday.com, regenerated the document, and sent a revised version the same day.</p>
+<p>---</p>
+<h2>How to Get Started</h2>
+<p>Open your current resource plan board and audit it against the columns listed above. Add the ones that are missing — particularly "Client-Facing Role," "Effort," and "Bio Summary." Restructure items so each row represents one person in one phase. That alone makes your board more useful internally, regardless of anything else.</p>
+<p>Once the board is clean, DocuAI reads it and assembles the staffing proposal automatically — pulling the right fields, applying your formatting, and producing a document you can send directly to the client.</p>
+<p>---</p>
+<p>Ready to stop copying data into documents? Try DocuAI for monday.com — it generates professional proposals, contracts, and reports from your item data in seconds. <a href="https://agent7d.com/products/docuai/">Get started free</a></p>
+  </div>
+  <div class="cta-box">
+    <h3>Generate documents from monday.com in seconds</h3>
+    <p>DocuAI turns your item data into professional proposals, contracts, and reports — automatically.</p>
+    <a href="https://agent7d.com/products/docuai/" class="btn-primary">Try DocuAI Free →</a>
+  </div>
+</div>
+
+<footer>
+  <p>© 2026 agent7d · <a href="/products/docuai/privacy/">Privacy</a> · <a href="/products/docuai/terms/">Terms</a> · <a href="/blog/">Blog</a></p>
+</footer>
+<script>
+function toggleTheme(){
+  const cur=document.documentElement.getAttribute('data-theme');
+  const next=cur==='dark'?'light':'dark';
+  document.documentElement.setAttribute('data-theme',next);
+  localStorage.setItem('theme',next);
+  document.querySelector('.theme-btn').textContent=next==='dark'?'🌙':'☀️';
+}
+document.querySelector('.theme-btn').textContent=
+  document.documentElement.getAttribute('data-theme')==='dark'?'🌙':'☀️';
+</script>
+</body>
+</html>
