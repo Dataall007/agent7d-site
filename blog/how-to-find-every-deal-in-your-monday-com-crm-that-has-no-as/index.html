@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How to Find Every Deal in Your monday.com CRM That Has No Associated Company — and Why It's Undermining Your Account-Based Strategy — agent7d Blog</title>
+<meta name="description" content="If you're running any kind of account-based strategy — tiered outreach, territory assignments, executive account reviews — your entire model depends on one assu">
+<meta property="og:title" content="How to Find Every Deal in Your monday.com CRM That Has No Associated Company — and Why It's Undermining Your Account-Based Strategy">
+<meta property="og:description" content="If you're running any kind of account-based strategy — tiered outreach, territory assignments, executive account reviews — your entire model depends on one assu">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script>
+  const t=localStorage.getItem('theme')||(window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');
+  document.documentElement.setAttribute('data-theme',t);
+</script>
+<style>
+:root{
+  --primary:#e11d48;--primary-hover:#be123c;--primary-light:#fef2f5;
+  --bg:#ffffff;--bg-2:#f9fafb;--bg-3:#f3f4f6;
+  --border:#e5e7eb;--text-1:#111827;--text-2:#374151;--text-3:#6b7280;--text-4:#9ca3af;
+  --font:'Plus Jakarta Sans',sans-serif;--t:0.15s ease;
+  --shadow-sm:0 1px 3px rgba(0,0,0,0.08);--shadow-md:0 4px 12px rgba(0,0,0,0.08);
+}
+[data-theme="dark"]{
+  --bg:#0a0a0a;--bg-2:#111111;--bg-3:#1a1a1a;--border:#262626;
+  --text-1:#f9fafb;--text-2:#e5e7eb;--text-3:#9ca3af;--text-4:#6b7280;
+  --primary:#ff2056;--primary-light:rgba(255,32,86,0.1);
+  --shadow-sm:0 1px 3px rgba(0,0,0,0.3);--shadow-md:0 4px 12px rgba(0,0,0,0.4);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font);background:var(--bg);color:var(--text-1);line-height:1.6;-webkit-font-smoothing:antialiased;transition:background var(--t),color var(--t)}
+a{color:var(--primary);text-decoration:none}
+a:hover{text-decoration:underline}
+
+.nav-wrap{width:100%;border-bottom:1px solid var(--border);background:var(--bg);position:sticky;top:0;z-index:100}
+.nav-inner{max-width:1100px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:64px}
+.logo{font-size:20px;font-weight:800;color:var(--text-1);text-decoration:none;letter-spacing:-0.02em}
+.logo span{color:var(--primary)}
+.nav-links{display:flex;align-items:center;gap:24px}
+.nav-links a{font-size:14px;font-weight:500;color:var(--text-3);text-decoration:none;transition:color var(--t)}
+.nav-links a:hover{color:var(--text-1)}
+.theme-btn{background:none;border:1px solid var(--border);border-radius:8px;padding:6px 10px;cursor:pointer;color:var(--text-3);font-size:16px;transition:all var(--t)}
+.theme-btn:hover{border-color:var(--primary);color:var(--primary)}
+
+.article-wrap{max-width:720px;margin:0 auto;padding:64px 24px 96px}
+.breadcrumb{font-size:13px;color:var(--text-4);margin-bottom:32px}
+.breadcrumb a{color:var(--text-3);text-decoration:none}
+.breadcrumb a:hover{color:var(--primary)}
+.article-category{font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--primary);margin-bottom:14px}
+.article-title{font-size:42px;font-weight:800;line-height:1.15;letter-spacing:-0.02em;color:var(--text-1);margin-bottom:16px}
+.article-meta{font-size:13px;color:var(--text-4);margin-bottom:40px;display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+.article-meta span{display:flex;align-items:center;gap:5px}
+.article-divider{height:1px;background:var(--border);margin-bottom:40px}
+
+.article-body{font-size:17px;line-height:1.8;color:var(--text-2)}
+.article-body h2{font-size:26px;font-weight:700;color:var(--text-1);margin:40px 0 16px;line-height:1.3}
+.article-body h3{font-size:20px;font-weight:600;color:var(--text-1);margin:28px 0 12px}
+.article-body p{margin-bottom:20px}
+.article-body ul,.article-body ol{padding-right:24px;margin-bottom:20px}
+.article-body li{margin-bottom:8px}
+.article-body strong{color:var(--text-1);font-weight:600}
+.article-body code{background:var(--bg-3);border:1px solid var(--border);border-radius:4px;padding:2px 6px;font-size:14px;font-family:monospace}
+.article-body blockquote{border-right:4px solid var(--primary);padding:12px 20px;margin:24px 0;background:var(--bg-2);border-radius:0 8px 8px 0;color:var(--text-2);font-style:italic}
+
+.cta-box{background:var(--primary-light);border:1px solid rgba(225,29,72,0.2);border-radius:14px;padding:32px;margin:48px 0;text-align:center}
+.cta-box h3{font-size:22px;font-weight:700;color:var(--text-1);margin-bottom:8px}
+.cta-box p{color:var(--text-3);margin-bottom:20px;font-size:15px}
+.btn-primary{display:inline-block;background:var(--primary);color:#fff;padding:12px 28px;border-radius:10px;font-size:14px;font-weight:600;text-decoration:none;transition:all var(--t);box-shadow:0 4px 20px rgba(225,29,72,0.25)}
+.btn-primary:hover{background:var(--primary-hover);transform:translateY(-1px);text-decoration:none}
+
+footer{border-top:1px solid var(--border);padding:32px 24px;text-align:center;color:var(--text-4);font-size:13px}
+footer a{color:var(--text-3)}
+footer a:hover{color:var(--primary)}
+</style>
+</head>
+<body>
+<div class="nav-wrap">
+  <div class="nav-inner">
+    <a href="/" class="logo">agent7<span>d</span></a>
+    <div class="nav-links">
+      <a href="/">Home</a>
+      <a href="/blog/">Blog</a>
+      <a href="/products/docuai/support/">DocuAI</a>
+      <button class="theme-btn" onclick="toggleTheme()" title="Toggle theme">☀️</button>
+    </div>
+  </div>
+</div>
+
+<div class="article-wrap">
+  <div class="breadcrumb"><a href="/">Home</a> → <a href="/blog/">Blog</a> → How to Find Every Deal in Your monday.com CRM That Has No Associated Company — and Why It's Undermining Your Account-Based Strategy</div>
+  <div class="article-category">monday.com</div>
+  <h1 class="article-title">How to Find Every Deal in Your monday.com CRM That Has No Associated Company — and Why It's Undermining Your Account-Based Strategy</h1>
+  <div class="article-meta">
+    <span>📅 September 27, 2026</span>
+    <span>✍️ agent7d Team</span>
+    <span>⏱ 5 min read</span>
+  </div>
+  <div class="article-divider"></div>
+  <div class="article-body">
+    
+<p>If you're running any kind of account-based strategy — tiered outreach, territory assignments, executive account reviews — your entire model depends on one assumption: that deals are linked to companies. When that assumption breaks, quietly and gradually, you don't get an error message. You get invisible revenue and reports that lie.</p>
+<p>The monday.com CRM missing company field problem is more common than most revenue operations teams realize, and more damaging than it looks.</p>
+<p>---</p>
+<h2>The Problem</h2>
+<p>A deal without a linked company isn't just an incomplete record. It's a record that disappears from account-level analysis entirely.</p>
+<p>When your VP of Sales asks for pipeline by account, deals with no company association don't roll up anywhere — they simply don't appear. When you're preparing for a quarterly business review and want to see total pipeline per strategic account, those unlinked deals are invisible. When a rep wants to see all open opportunities at a target account before a call, they won't see them.</p>
+<p>Account-based selling falls apart here because the strategy assumes a company-centric view of your pipeline. The whole point is to treat an account as a unit — multiple contacts, multiple deals, one relationship. Break the company link and you break the unit. Deals start belonging to individual contacts instead of the accounts they're supposed to advance, and the coordinated account picture you're trying to build simply doesn't exist.</p>
+<p>There are three ways company fields end up blank in monday.com. First: manual entry — a rep creates a deal quickly, skips the company lookup, and moves on. Second: import gaps — company data existed in a spreadsheet column that didn't map cleanly to the board's connect-boards column during a data import. Third: automation failures — a recipe that was supposed to mirror contact-to-company relationships didn't trigger correctly, or the company record didn't exist yet when the automation ran. Most teams are experiencing some combination of all three, but one usually dominates. Knowing which one tells you where to fix the process, not just the data.</p>
+<p>The reporting distortion is real. If 23% of your pipeline deals have no company linked — which is exactly what one revenue operations lead found when preparing for a board-level account review — then every account penetration metric, every territory report, and every rep-to-account assignment you're looking at is wrong. You're making prioritization decisions on incomplete data.</p>
+<p>---</p>
+<h2>The Solution</h2>
+<p>The fix has two parts: finding the deals, and triaging them systematically.</p>
+<p>Finding them in monday.com is straightforward once you know where to look. Triaging them — deciding whether to link to an existing company, create a new one, or flag the record for rep action — is the part that requires a clear process.</p>
+<p>The goal is not to get every record perfect in one sitting. The goal is to get the gaps visible, prioritized, and assigned so they get resolved before they affect your next reporting cycle.</p>
+<p>---</p>
+<h2>Step by Step</h2>
+<p><strong>1. Create a filtered view on your Deals board.</strong></p>
+<p>Go to your Deals board, click the filter icon, and add a filter for your company connect-column. Set the condition to "is empty." Save this as a named view — something like "No Company Linked." This view will automatically update as records are created or edited.</p>
+<p><strong>2. Add the deal owner column to the view.</strong></p>
+<p>Sort or group by deal owner. This immediately shows you which reps are creating the most unlinked deals, which tells you where the process breakdown is happening.</p>
+<p><strong>3. Assess the deal value.</strong></p>
+<p>Add your deal value column to this view and sort descending. High-value deals with no company link are your immediate priority. Don't clean up a $2,000 deal before you've handled a $200,000 one.</p>
+<p><strong>4. For each deal, check whether the company exists on your Companies board.</strong></p>
+<p>Search your Companies board for the company name mentioned in the deal title or contact record. If it exists, link it. If it doesn't, create the company record first, then link.</p>
+<p><strong>5. If the company genuinely doesn't exist yet, create a minimal record.</strong></p>
+<p>Don't let "we don't have a full company profile yet" become the reason the deal stays unlinked. Create a company record with name and domain. That's enough to establish the relationship. Flesh it out later.</p>
+<p><strong>6. Flag records where the company is genuinely unknown.</strong></p>
+<p>Some deals will have no company information anywhere — no contact, no email domain, no deal notes. Flag these for rep follow-up with a status column value like "Needs Company Info" and assign them back to the deal owner.</p>
+<p><strong>7. Close the process gap.</strong></p>
+<p>Once you know which of the three causes is dominant — manual entry, import gaps, or automation failures — fix the upstream issue. Add a required-field prompt in your deal creation form. Fix the import mapping. Audit the automation recipe.</p>
+<p>---</p>
+<h2>Real Example</h2>
+<p>A SaaS company with a 12-person sales team was preparing for a quarterly account review with their board. Their revenue operations lead pulled the pipeline report grouped by account. It looked reasonable — until she started cross-referencing against the rep activity logs and noticed deals she knew existed weren't showing up.</p>
+<p>She built the "No Company Linked" filter view and found 23% of open pipeline deals had no company associated. When she dug deeper, she found their second-highest performing rep had 14 deals attributed to three different spellings of the same company — "Acme Corp," "Acme Corporation," and "ACME" — plus six more deals with no company at all.</p>
+<p>The account looked like scattered, low-value activity. In reality, it was one of their top strategic accounts with significant expansion potential. Because the records were fragmented, nobody had recognized the concentration. The account wasn't getting executive attention. The rep wasn't getting account-level support.</p>
+<p>After a cleanup sprint — linking deals to a single canonical company record — the account jumped into their top five by pipeline value. It became a board-level focus for the next quarter.</p>
+<p>The data wasn't wrong. It was just disconnected.</p>
+<p>---</p>
+<h2>How to Get Started</h2>
+<p>Start by building that filter view today. It takes three minutes and will show you exactly how large your exposure is. If the number is under 5%, you can triage manually. If it's above 10%, you need a structured cleanup process and a root-cause fix before your next reporting cycle.</p>
+<p>Once you have the view, prioritize by deal value, assign ownership, and work through the triage steps above. Don't try to fix everything at once. Fix the high-value records first, then close the process gap so new unlinked deals stop being created.</p>
+<p>The underlying issue is almost always that linking a deal to a company felt optional in the moment — and nobody realized it would make the deal invisible at the account level later.</p>
+<p>---</p>
+<p>Want to see what your own pipeline is losing? Run the free CRM Audit for monday.com — it scores your pipeline health and shows exactly where revenue is leaking. <a href="https://agent7d.com/tools/crm-audit/">Get your free audit</a></p>
+  </div>
+  <div class="cta-box">
+    <h3>Generate documents from monday.com in seconds</h3>
+    <p>DocuAI turns your item data into professional proposals, contracts, and reports — automatically.</p>
+    <a href="https://agent7d.com/products/docuai/" class="btn-primary">Try DocuAI Free →</a>
+  </div>
+</div>
+
+<footer>
+  <p>© 2026 agent7d · <a href="/products/docuai/privacy/">Privacy</a> · <a href="/products/docuai/terms/">Terms</a> · <a href="/blog/">Blog</a></p>
+</footer>
+<script>
+function toggleTheme(){
+  const cur=document.documentElement.getAttribute('data-theme');
+  const next=cur==='dark'?'light':'dark';
+  document.documentElement.setAttribute('data-theme',next);
+  localStorage.setItem('theme',next);
+  document.querySelector('.theme-btn').textContent=next==='dark'?'🌙':'☀️';
+}
+document.querySelector('.theme-btn').textContent=
+  document.documentElement.getAttribute('data-theme')==='dark'?'🌙':'☀️';
+</script>
+</body>
+</html>
