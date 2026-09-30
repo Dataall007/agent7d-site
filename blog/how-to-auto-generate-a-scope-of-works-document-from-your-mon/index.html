@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How to Auto-Generate a Scope of Works Document from Your monday.com Task Board Before a Project Starts — agent7d Blog</title>
+<meta name="description" content="Most project boards are built before the scope document is written. That sequencing feels logical in the moment — get the tasks down, figure out the paperwork l">
+<meta property="og:title" content="How to Auto-Generate a Scope of Works Document from Your monday.com Task Board Before a Project Starts">
+<meta property="og:description" content="Most project boards are built before the scope document is written. That sequencing feels logical in the moment — get the tasks down, figure out the paperwork l">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script>
+  const t=localStorage.getItem('theme')||(window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');
+  document.documentElement.setAttribute('data-theme',t);
+</script>
+<style>
+:root{
+  --primary:#e11d48;--primary-hover:#be123c;--primary-light:#fef2f5;
+  --bg:#ffffff;--bg-2:#f9fafb;--bg-3:#f3f4f6;
+  --border:#e5e7eb;--text-1:#111827;--text-2:#374151;--text-3:#6b7280;--text-4:#9ca3af;
+  --font:'Plus Jakarta Sans',sans-serif;--t:0.15s ease;
+  --shadow-sm:0 1px 3px rgba(0,0,0,0.08);--shadow-md:0 4px 12px rgba(0,0,0,0.08);
+}
+[data-theme="dark"]{
+  --bg:#0a0a0a;--bg-2:#111111;--bg-3:#1a1a1a;--border:#262626;
+  --text-1:#f9fafb;--text-2:#e5e7eb;--text-3:#9ca3af;--text-4:#6b7280;
+  --primary:#ff2056;--primary-light:rgba(255,32,86,0.1);
+  --shadow-sm:0 1px 3px rgba(0,0,0,0.3);--shadow-md:0 4px 12px rgba(0,0,0,0.4);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font);background:var(--bg);color:var(--text-1);line-height:1.6;-webkit-font-smoothing:antialiased;transition:background var(--t),color var(--t)}
+a{color:var(--primary);text-decoration:none}
+a:hover{text-decoration:underline}
+
+.nav-wrap{width:100%;border-bottom:1px solid var(--border);background:var(--bg);position:sticky;top:0;z-index:100}
+.nav-inner{max-width:1100px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:64px}
+.logo{font-size:20px;font-weight:800;color:var(--text-1);text-decoration:none;letter-spacing:-0.02em}
+.logo span{color:var(--primary)}
+.nav-links{display:flex;align-items:center;gap:24px}
+.nav-links a{font-size:14px;font-weight:500;color:var(--text-3);text-decoration:none;transition:color var(--t)}
+.nav-links a:hover{color:var(--text-1)}
+.theme-btn{background:none;border:1px solid var(--border);border-radius:8px;padding:6px 10px;cursor:pointer;color:var(--text-3);font-size:16px;transition:all var(--t)}
+.theme-btn:hover{border-color:var(--primary);color:var(--primary)}
+
+.article-wrap{max-width:720px;margin:0 auto;padding:64px 24px 96px}
+.breadcrumb{font-size:13px;color:var(--text-4);margin-bottom:32px}
+.breadcrumb a{color:var(--text-3);text-decoration:none}
+.breadcrumb a:hover{color:var(--primary)}
+.article-category{font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--primary);margin-bottom:14px}
+.article-title{font-size:42px;font-weight:800;line-height:1.15;letter-spacing:-0.02em;color:var(--text-1);margin-bottom:16px}
+.article-meta{font-size:13px;color:var(--text-4);margin-bottom:40px;display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+.article-meta span{display:flex;align-items:center;gap:5px}
+.article-divider{height:1px;background:var(--border);margin-bottom:40px}
+
+.article-body{font-size:17px;line-height:1.8;color:var(--text-2)}
+.article-body h2{font-size:26px;font-weight:700;color:var(--text-1);margin:40px 0 16px;line-height:1.3}
+.article-body h3{font-size:20px;font-weight:600;color:var(--text-1);margin:28px 0 12px}
+.article-body p{margin-bottom:20px}
+.article-body ul,.article-body ol{padding-right:24px;margin-bottom:20px}
+.article-body li{margin-bottom:8px}
+.article-body strong{color:var(--text-1);font-weight:600}
+.article-body code{background:var(--bg-3);border:1px solid var(--border);border-radius:4px;padding:2px 6px;font-size:14px;font-family:monospace}
+.article-body blockquote{border-right:4px solid var(--primary);padding:12px 20px;margin:24px 0;background:var(--bg-2);border-radius:0 8px 8px 0;color:var(--text-2);font-style:italic}
+
+.cta-box{background:var(--primary-light);border:1px solid rgba(225,29,72,0.2);border-radius:14px;padding:32px;margin:48px 0;text-align:center}
+.cta-box h3{font-size:22px;font-weight:700;color:var(--text-1);margin-bottom:8px}
+.cta-box p{color:var(--text-3);margin-bottom:20px;font-size:15px}
+.btn-primary{display:inline-block;background:var(--primary);color:#fff;padding:12px 28px;border-radius:10px;font-size:14px;font-weight:600;text-decoration:none;transition:all var(--t);box-shadow:0 4px 20px rgba(225,29,72,0.25)}
+.btn-primary:hover{background:var(--primary-hover);transform:translateY(-1px);text-decoration:none}
+
+footer{border-top:1px solid var(--border);padding:32px 24px;text-align:center;color:var(--text-4);font-size:13px}
+footer a{color:var(--text-3)}
+footer a:hover{color:var(--primary)}
+</style>
+</head>
+<body>
+<div class="nav-wrap">
+  <div class="nav-inner">
+    <a href="/" class="logo">agent7<span>d</span></a>
+    <div class="nav-links">
+      <a href="/">Home</a>
+      <a href="/blog/">Blog</a>
+      <a href="/products/docuai/support/">DocuAI</a>
+      <button class="theme-btn" onclick="toggleTheme()" title="Toggle theme">☀️</button>
+    </div>
+  </div>
+</div>
+
+<div class="article-wrap">
+  <div class="breadcrumb"><a href="/">Home</a> → <a href="/blog/">Blog</a> → How to Auto-Generate a Scope of Works Document from Your monday.com Task Board Before a Project Starts</div>
+  <div class="article-category">monday.com</div>
+  <h1 class="article-title">How to Auto-Generate a Scope of Works Document from Your monday.com Task Board Before a Project Starts</h1>
+  <div class="article-meta">
+    <span>📅 September 30, 2026</span>
+    <span>✍️ agent7d Team</span>
+    <span>⏱ 5 min read</span>
+  </div>
+  <div class="article-divider"></div>
+  <div class="article-body">
+    
+<p>Most project boards are built before the scope document is written. That sequencing feels logical in the moment — get the tasks down, figure out the paperwork later — but it quietly creates one of the most common and expensive problems in project delivery: scope creep with no paper trail to stop it.</p>
+<p>This post shows you how to flip that process. If your team is already building monday.com boards before projects kick off, you're sitting on everything you need to generate a formal scope of works document. You just need a clean structure and the right tool to turn that data into a document.</p>
+<p>---</p>
+<h2>The Problem</h2>
+<p>A scope of works document should exist before a single task is actioned. When it doesn't, three things tend to go wrong.</p>
+<p><strong>Scope creep becomes invisible.</strong> Without a signed, dated reference point for what was agreed, every new request from a client feels like a continuation of the original brief. Your team delivers more than was ever contracted, and there's no documented baseline to point to when billing for extras.</p>
+<p><strong>Expectations drift.</strong> Clients remember conversations. They remember what they hoped the project would include. A scope document written and signed before work begins anchors everyone to the same version of reality. Without it, "I thought that was included" is almost impossible to push back on.</p>
+<p><strong>Change orders become unenforceable.</strong> If you haven't defined what's <em>in</em> scope, you can't formally define what's <em>outside</em> it. Change order requests get dismissed or disputed because there's no original scope to compare them against.</p>
+<p>The irony is that by the time most teams build a monday.com board for a new project, they've already defined the deliverables, assigned responsible parties, set milestones, and outlined task groupings. The scope data is there. It's just sitting in a board instead of a document.</p>
+<p>---</p>
+<h2>The Solution</h2>
+<p>Structure your monday.com board so that scope-relevant information is captured in named columns from the start — then use a document generation tool to pull that data directly into a formal scope of works template.</p>
+<p>This isn't about adding extra admin work. It's about making the board you're already building do double duty: managing the project <em>and</em> generating the document that governs it.</p>
+<p>A proper scope of works document needs to include deliverables, exclusions, assumptions, milestones, responsible parties, and acceptance criteria. Every one of those elements can be mapped to a monday.com column. The key is deciding on that column structure before you build the board, not after.</p>
+<p>---</p>
+<h2>Step by Step</h2>
+<p><strong>1. Set up your board with scope-mapped columns.</strong></p>
+<p>Before you add a single task, configure your board with columns that correspond directly to scope document sections:</p>
+<ul><li><strong>Item Name</strong> → Deliverable title</li>
+<li><strong>Description</strong> (or a Long Text column) → Deliverable detail and acceptance criteria</li>
+<li><strong>Status</strong> → Can be used to flag items as In Scope, Out of Scope, or Assumption</li>
+<li><strong>Person</strong> → Responsible party</li>
+<li><strong>Due Date</strong> → Milestone date</li>
+<li><strong>Phase/Group</strong> → Maps to project phases or deliverable categories</li>
+<p></ul></p>
+<p>If you use monday.com Groups to organise tasks by phase, those group names will map cleanly to section headings in your scope document.</p>
+<p><strong>2. Fill in the board as you normally would for project planning.</strong></p>
+<p>No change to your workflow. Just make sure every deliverable has an owner, a due date, and enough detail in the description column to stand on its own in a formal document.</p>
+<p><strong>3. Connect your board to DocuAI.</strong></p>
+<p>DocuAI is a monday.com app that maps board columns to document templates. Open the app from your board, select your scope of works template, and map each column to the corresponding section in the document.</p>
+<p><strong>4. Generate and review.</strong></p>
+<p>Hit generate. DocuAI pulls the live data from your board items and builds the document. Review it, adjust any language that needs tightening, then export as PDF or send directly for e-signature.</p>
+<p><strong>5. Timestamp and store the document before kickoff.</strong></p>
+<p>This step matters. The document needs to exist as a fixed record before work begins. Send it for signature, store the signed copy linked to the monday.com board, and treat it as the project's legal baseline.</p>
+<p>---</p>
+<h2>Real Example</h2>
+<p>A mid-sized digital agency builds a monday.com board for every new client project. They're disciplined about it — groups for each phase, items for each deliverable, due dates set, team members assigned. The board is thorough.</p>
+<p>But they had no process for turning that board into a scope document. The account manager would either write one manually after the fact (pulling information back out of the board they'd already built) or skip it entirely and rely on the proposal document — which was written before the board existed and rarely matched it.</p>
+<p>Three months into a website project, the client requested a feature that the development team considered out of scope. The account manager agreed it wasn't in the original brief. But there was no signed scope document to reference, just a proposal that predated the board and used language vague enough that the client's interpretation held up in conversation.</p>
+<p>The agency delivered the feature at cost. Estimated value: four days of senior development time.</p>
+<p>After implementing DocuAI, their process changed. The board gets built. The scope document gets generated from it and sent for signature before kickoff. The signed PDF sits linked directly to the board. When a similar request came in on the next project, the account manager opened the document, showed the client exactly where that feature wasn't listed, and issued a change order. It was approved within a day.</p>
+<p>---</p>
+<h2>How to Get Started</h2>
+<p>If your team is already building monday.com boards before projects begin, you're 80% of the way there. The missing piece is the column structure and the generation step.</p>
+<p>Start by auditing one of your existing project boards. Look at what's already there and ask: if I mapped these columns to a scope template right now, what would be missing? Usually it's an explicit "In Scope / Out of Scope" status and a structured description column. Add those, standardise them across your board templates, and you have a scope-ready board structure.</p>
+<p>Then connect DocuAI, build your scope of works template once, and make document generation the last step of your board setup — before the first task is actioned.</p>
+<p>The board you're already building should produce the document that protects the project. Make that connection explicit, and "that wasn't in scope" becomes a conversation you win every time.</p>
+<p>---</p>
+<p>Ready to stop copying data into documents? Try DocuAI for monday.com — it generates professional proposals, contracts, and reports from your item data in seconds. <a href="https://agent7d.com/products/docuai/">Get started free</a></p>
+  </div>
+  <div class="cta-box">
+    <h3>Generate documents from monday.com in seconds</h3>
+    <p>DocuAI turns your item data into professional proposals, contracts, and reports — automatically.</p>
+    <a href="https://agent7d.com/products/docuai/" class="btn-primary">Try DocuAI Free →</a>
+  </div>
+</div>
+
+<footer>
+  <p>© 2026 agent7d · <a href="/products/docuai/privacy/">Privacy</a> · <a href="/products/docuai/terms/">Terms</a> · <a href="/blog/">Blog</a></p>
+</footer>
+<script>
+function toggleTheme(){
+  const cur=document.documentElement.getAttribute('data-theme');
+  const next=cur==='dark'?'light':'dark';
+  document.documentElement.setAttribute('data-theme',next);
+  localStorage.setItem('theme',next);
+  document.querySelector('.theme-btn').textContent=next==='dark'?'🌙':'☀️';
+}
+document.querySelector('.theme-btn').textContent=
+  document.documentElement.getAttribute('data-theme')==='dark'?'🌙':'☀️';
+</script>
+</body>
+</html>
