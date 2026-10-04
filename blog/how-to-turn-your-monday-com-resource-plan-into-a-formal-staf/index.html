@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How to Turn Your monday.com Resource Plan into a Formal Staffing or Resourcing Document for Client Approval — agent7d Blog</title>
+<meta name="description" content="Most resource plans never leave monday.com. They live inside boards, visible to your team, invisible to your client — and that gap creates real problems. If you">
+<meta property="og:title" content="How to Turn Your monday.com Resource Plan into a Formal Staffing or Resourcing Document for Client Approval">
+<meta property="og:description" content="Most resource plans never leave monday.com. They live inside boards, visible to your team, invisible to your client — and that gap creates real problems. If you">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script>
+  const t=localStorage.getItem('theme')||(window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');
+  document.documentElement.setAttribute('data-theme',t);
+</script>
+<style>
+:root{
+  --primary:#e11d48;--primary-hover:#be123c;--primary-light:#fef2f5;
+  --bg:#ffffff;--bg-2:#f9fafb;--bg-3:#f3f4f6;
+  --border:#e5e7eb;--text-1:#111827;--text-2:#374151;--text-3:#6b7280;--text-4:#9ca3af;
+  --font:'Plus Jakarta Sans',sans-serif;--t:0.15s ease;
+  --shadow-sm:0 1px 3px rgba(0,0,0,0.08);--shadow-md:0 4px 12px rgba(0,0,0,0.08);
+}
+[data-theme="dark"]{
+  --bg:#0a0a0a;--bg-2:#111111;--bg-3:#1a1a1a;--border:#262626;
+  --text-1:#f9fafb;--text-2:#e5e7eb;--text-3:#9ca3af;--text-4:#6b7280;
+  --primary:#ff2056;--primary-light:rgba(255,32,86,0.1);
+  --shadow-sm:0 1px 3px rgba(0,0,0,0.3);--shadow-md:0 4px 12px rgba(0,0,0,0.4);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font);background:var(--bg);color:var(--text-1);line-height:1.6;-webkit-font-smoothing:antialiased;transition:background var(--t),color var(--t)}
+a{color:var(--primary);text-decoration:none}
+a:hover{text-decoration:underline}
+
+.nav-wrap{width:100%;border-bottom:1px solid var(--border);background:var(--bg);position:sticky;top:0;z-index:100}
+.nav-inner{max-width:1100px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:64px}
+.logo{font-size:20px;font-weight:800;color:var(--text-1);text-decoration:none;letter-spacing:-0.02em}
+.logo span{color:var(--primary)}
+.nav-links{display:flex;align-items:center;gap:24px}
+.nav-links a{font-size:14px;font-weight:500;color:var(--text-3);text-decoration:none;transition:color var(--t)}
+.nav-links a:hover{color:var(--text-1)}
+.theme-btn{background:none;border:1px solid var(--border);border-radius:8px;padding:6px 10px;cursor:pointer;color:var(--text-3);font-size:16px;transition:all var(--t)}
+.theme-btn:hover{border-color:var(--primary);color:var(--primary)}
+
+.article-wrap{max-width:720px;margin:0 auto;padding:64px 24px 96px}
+.breadcrumb{font-size:13px;color:var(--text-4);margin-bottom:32px}
+.breadcrumb a{color:var(--text-3);text-decoration:none}
+.breadcrumb a:hover{color:var(--primary)}
+.article-category{font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--primary);margin-bottom:14px}
+.article-title{font-size:42px;font-weight:800;line-height:1.15;letter-spacing:-0.02em;color:var(--text-1);margin-bottom:16px}
+.article-meta{font-size:13px;color:var(--text-4);margin-bottom:40px;display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+.article-meta span{display:flex;align-items:center;gap:5px}
+.article-divider{height:1px;background:var(--border);margin-bottom:40px}
+
+.article-body{font-size:17px;line-height:1.8;color:var(--text-2)}
+.article-body h2{font-size:26px;font-weight:700;color:var(--text-1);margin:40px 0 16px;line-height:1.3}
+.article-body h3{font-size:20px;font-weight:600;color:var(--text-1);margin:28px 0 12px}
+.article-body p{margin-bottom:20px}
+.article-body ul,.article-body ol{padding-right:24px;margin-bottom:20px}
+.article-body li{margin-bottom:8px}
+.article-body strong{color:var(--text-1);font-weight:600}
+.article-body code{background:var(--bg-3);border:1px solid var(--border);border-radius:4px;padding:2px 6px;font-size:14px;font-family:monospace}
+.article-body blockquote{border-right:4px solid var(--primary);padding:12px 20px;margin:24px 0;background:var(--bg-2);border-radius:0 8px 8px 0;color:var(--text-2);font-style:italic}
+
+.cta-box{background:var(--primary-light);border:1px solid rgba(225,29,72,0.2);border-radius:14px;padding:32px;margin:48px 0;text-align:center}
+.cta-box h3{font-size:22px;font-weight:700;color:var(--text-1);margin-bottom:8px}
+.cta-box p{color:var(--text-3);margin-bottom:20px;font-size:15px}
+.btn-primary{display:inline-block;background:var(--primary);color:#fff;padding:12px 28px;border-radius:10px;font-size:14px;font-weight:600;text-decoration:none;transition:all var(--t);box-shadow:0 4px 20px rgba(225,29,72,0.25)}
+.btn-primary:hover{background:var(--primary-hover);transform:translateY(-1px);text-decoration:none}
+
+footer{border-top:1px solid var(--border);padding:32px 24px;text-align:center;color:var(--text-4);font-size:13px}
+footer a{color:var(--text-3)}
+footer a:hover{color:var(--primary)}
+</style>
+</head>
+<body>
+<div class="nav-wrap">
+  <div class="nav-inner">
+    <a href="/" class="logo">agent7<span>d</span></a>
+    <div class="nav-links">
+      <a href="/">Home</a>
+      <a href="/blog/">Blog</a>
+      <a href="/products/docuai/support/">DocuAI</a>
+      <button class="theme-btn" onclick="toggleTheme()" title="Toggle theme">☀️</button>
+    </div>
+  </div>
+</div>
+
+<div class="article-wrap">
+  <div class="breadcrumb"><a href="/">Home</a> → <a href="/blog/">Blog</a> → How to Turn Your monday.com Resource Plan into a Formal Staffing or Resourcing Document for Client Approval</div>
+  <div class="article-category">monday.com</div>
+  <h1 class="article-title">How to Turn Your monday.com Resource Plan into a Formal Staffing or Resourcing Document for Client Approval</h1>
+  <div class="article-meta">
+    <span>📅 October 4, 2026</span>
+    <span>✍️ agent7d Team</span>
+    <span>⏱ 5 min read</span>
+  </div>
+  <div class="article-divider"></div>
+  <div class="article-body">
+    
+<p>Most resource plans never leave monday.com. They live inside boards, visible to your team, invisible to your client — and that gap creates real problems. If you manage projects or accounts where resourcing matters to the client, this post walks you through how to turn your internal data into a formal staffing document that can be approved, signed off, and referenced when things get complicated.</p>
+<p>---</p>
+<h2>The Problem</h2>
+<p>Resourcing conversations happen verbally. You tell the client that Sarah will be their senior consultant and James will handle technical delivery. They nod. You move on.</p>
+<p>Nobody writes it down.</p>
+<p>This is fine until something changes — Sarah goes on leave, James gets pulled onto another account, or the client decides three months into the project that they never agreed to junior resources. Suddenly you are in a scope dispute with no paper trail.</p>
+<p>This is not a hypothetical. Managed IT services providers deal with this constantly. A provider assigns their most experienced engineers to enterprise clients during the sales process, then shuffles resources as workload demands shift. The client never had a formal record of who was assigned, what their role was, or how many hours were allocated. When a familiar face disappears from their account, they feel blindsided — and they have every right to, because no document ever confirmed what they were getting.</p>
+<p>The root cause is not bad intent. It is a missing step: converting your internal resource plan into a client-facing document.</p>
+<p>---</p>
+<h2>The Solution</h2>
+<p>A formal staffing or resourcing document bridges your internal monday.com board and your client's expectations. It takes the data that already exists — assigned people, roles, hours, timelines, escalation contacts — and presents it in a format the client can review, approve, and reference.</p>
+<p>The document itself is not complicated. It does not need to be long. But it needs to exist, it needs to be specific, and it needs to be delivered at the right moments in the project lifecycle.</p>
+<p>The key is building your monday.com boards in a way that makes this document easy to generate — not something you manually reconstruct every time.</p>
+<p>---</p>
+<h2>Step by Step</h2>
+<p><strong>1. Structure your monday.com board to capture resourcing data cleanly</strong></p>
+<p>Your resource plan board needs at least five column types to support document generation: a People column for named assignments, a text or dropdown column for role labels (Senior Engineer, Project Lead, Support Analyst), a Numbers column for allocated hours per week or per phase, a Timeline column for availability windows, and a text column for escalation contacts or backup resources.</p>
+<p>If you are tracking multiple clients, use a Board or Group per client account so the data stays clean and queryable.</p>
+<p><strong>2. Define what the client-facing document needs to include</strong></p>
+<p>A professional resource plan document for client approval should contain: the client and project name, the document date and version, a named resource table with role, allocated hours, and engagement period, availability and notice terms (how much lead time the client gets if a resource changes), escalation contacts, and a sign-off section.</p>
+<p><strong>3. Map your monday.com columns to document fields</strong></p>
+<p>This is where DocuAI comes in. You connect your resource plan board, map each column to the corresponding section in your document template, and generate a formatted output. Named resources pull from your People columns. Hours pull from your effort columns. Dates pull from your Timeline columns. You get a clean, professional document without rebuilding it manually each time.</p>
+<p><strong>4. Deliver the document at three specific moments</strong></p>
+<p>Generate and share the resourcing document at project kickoff before work begins, whenever a resource changes mid-project, and at contract renewal when resourcing terms are renegotiated. These are the moments when having a signed document matters most.</p>
+<p>---</p>
+<h2>Real Example</h2>
+<p>A managed IT services provider with 40 enterprise clients was assigning senior engineers to accounts during onboarding. The assignments existed in monday.com. Clients were never given a formal document.</p>
+<p>When a senior engineer left the company and was replaced with a mid-level resource, two clients escalated complaints. One threatened to exit their contract. The provider had no documentation showing what had been agreed.</p>
+<p>After implementing a resourcing document process — generated directly from their monday.com boards using DocuAI — they began issuing a formal staffing agreement at kickoff and a change notice whenever assignments shifted. Client complaints about resource changes dropped significantly, and when one client did raise a concern, the provider could point to a signed document that outlined the change notification terms both parties had agreed to.</p>
+<p>---</p>
+<h2>How to Get Started</h2>
+<p>Open your current resource plan board in monday.com and check whether it has the five column types listed above. If it does, you are closer than you think. If it does not, restructuring the board takes less than an hour and the discipline it creates across your team is worth the effort on its own.</p>
+<p>Once your board is structured correctly, the document generation step is fast — especially if you are using a tool built for monday.com data rather than trying to export to a spreadsheet and format manually.</p>
+<p>---</p>
+<p>Ready to stop copying data into documents? Try DocuAI for monday.com — it generates professional proposals, contracts, and reports from your item data in seconds. <a href="https://agent7d.com/products/docuai/">Get started free</a></p>
+  </div>
+  <div class="cta-box">
+    <h3>Generate documents from monday.com in seconds</h3>
+    <p>DocuAI turns your item data into professional proposals, contracts, and reports — automatically.</p>
+    <a href="https://agent7d.com/products/docuai/" class="btn-primary">Try DocuAI Free →</a>
+  </div>
+</div>
+
+<footer>
+  <p>© 2026 agent7d · <a href="/products/docuai/privacy/">Privacy</a> · <a href="/products/docuai/terms/">Terms</a> · <a href="/blog/">Blog</a></p>
+</footer>
+<script>
+function toggleTheme(){
+  const cur=document.documentElement.getAttribute('data-theme');
+  const next=cur==='dark'?'light':'dark';
+  document.documentElement.setAttribute('data-theme',next);
+  localStorage.setItem('theme',next);
+  document.querySelector('.theme-btn').textContent=next==='dark'?'🌙':'☀️';
+}
+document.querySelector('.theme-btn').textContent=
+  document.documentElement.getAttribute('data-theme')==='dark'?'🌙':'☀️';
+</script>
+</body>
+</html>
