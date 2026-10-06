@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How to Auto-Generate a Project Handover Pack the Moment Your monday.com Project Hits 100% Complete — agent7d Blog</title>
+<meta name="description" content="Most project handover documents are written from memory, assembled in a panic, and sent to the receiving team with half the context missing. Not because anyone ">
+<meta property="og:title" content="How to Auto-Generate a Project Handover Pack the Moment Your monday.com Project Hits 100% Complete">
+<meta property="og:description" content="Most project handover documents are written from memory, assembled in a panic, and sent to the receiving team with half the context missing. Not because anyone ">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script>
+  const t=localStorage.getItem('theme')||(window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');
+  document.documentElement.setAttribute('data-theme',t);
+</script>
+<style>
+:root{
+  --primary:#e11d48;--primary-hover:#be123c;--primary-light:#fef2f5;
+  --bg:#ffffff;--bg-2:#f9fafb;--bg-3:#f3f4f6;
+  --border:#e5e7eb;--text-1:#111827;--text-2:#374151;--text-3:#6b7280;--text-4:#9ca3af;
+  --font:'Plus Jakarta Sans',sans-serif;--t:0.15s ease;
+  --shadow-sm:0 1px 3px rgba(0,0,0,0.08);--shadow-md:0 4px 12px rgba(0,0,0,0.08);
+}
+[data-theme="dark"]{
+  --bg:#0a0a0a;--bg-2:#111111;--bg-3:#1a1a1a;--border:#262626;
+  --text-1:#f9fafb;--text-2:#e5e7eb;--text-3:#9ca3af;--text-4:#6b7280;
+  --primary:#ff2056;--primary-light:rgba(255,32,86,0.1);
+  --shadow-sm:0 1px 3px rgba(0,0,0,0.3);--shadow-md:0 4px 12px rgba(0,0,0,0.4);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font);background:var(--bg);color:var(--text-1);line-height:1.6;-webkit-font-smoothing:antialiased;transition:background var(--t),color var(--t)}
+a{color:var(--primary);text-decoration:none}
+a:hover{text-decoration:underline}
+
+.nav-wrap{width:100%;border-bottom:1px solid var(--border);background:var(--bg);position:sticky;top:0;z-index:100}
+.nav-inner{max-width:1100px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:64px}
+.logo{font-size:20px;font-weight:800;color:var(--text-1);text-decoration:none;letter-spacing:-0.02em}
+.logo span{color:var(--primary)}
+.nav-links{display:flex;align-items:center;gap:24px}
+.nav-links a{font-size:14px;font-weight:500;color:var(--text-3);text-decoration:none;transition:color var(--t)}
+.nav-links a:hover{color:var(--text-1)}
+.theme-btn{background:none;border:1px solid var(--border);border-radius:8px;padding:6px 10px;cursor:pointer;color:var(--text-3);font-size:16px;transition:all var(--t)}
+.theme-btn:hover{border-color:var(--primary);color:var(--primary)}
+
+.article-wrap{max-width:720px;margin:0 auto;padding:64px 24px 96px}
+.breadcrumb{font-size:13px;color:var(--text-4);margin-bottom:32px}
+.breadcrumb a{color:var(--text-3);text-decoration:none}
+.breadcrumb a:hover{color:var(--primary)}
+.article-category{font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--primary);margin-bottom:14px}
+.article-title{font-size:42px;font-weight:800;line-height:1.15;letter-spacing:-0.02em;color:var(--text-1);margin-bottom:16px}
+.article-meta{font-size:13px;color:var(--text-4);margin-bottom:40px;display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+.article-meta span{display:flex;align-items:center;gap:5px}
+.article-divider{height:1px;background:var(--border);margin-bottom:40px}
+
+.article-body{font-size:17px;line-height:1.8;color:var(--text-2)}
+.article-body h2{font-size:26px;font-weight:700;color:var(--text-1);margin:40px 0 16px;line-height:1.3}
+.article-body h3{font-size:20px;font-weight:600;color:var(--text-1);margin:28px 0 12px}
+.article-body p{margin-bottom:20px}
+.article-body ul,.article-body ol{padding-right:24px;margin-bottom:20px}
+.article-body li{margin-bottom:8px}
+.article-body strong{color:var(--text-1);font-weight:600}
+.article-body code{background:var(--bg-3);border:1px solid var(--border);border-radius:4px;padding:2px 6px;font-size:14px;font-family:monospace}
+.article-body blockquote{border-right:4px solid var(--primary);padding:12px 20px;margin:24px 0;background:var(--bg-2);border-radius:0 8px 8px 0;color:var(--text-2);font-style:italic}
+
+.cta-box{background:var(--primary-light);border:1px solid rgba(225,29,72,0.2);border-radius:14px;padding:32px;margin:48px 0;text-align:center}
+.cta-box h3{font-size:22px;font-weight:700;color:var(--text-1);margin-bottom:8px}
+.cta-box p{color:var(--text-3);margin-bottom:20px;font-size:15px}
+.btn-primary{display:inline-block;background:var(--primary);color:#fff;padding:12px 28px;border-radius:10px;font-size:14px;font-weight:600;text-decoration:none;transition:all var(--t);box-shadow:0 4px 20px rgba(225,29,72,0.25)}
+.btn-primary:hover{background:var(--primary-hover);transform:translateY(-1px);text-decoration:none}
+
+footer{border-top:1px solid var(--border);padding:32px 24px;text-align:center;color:var(--text-4);font-size:13px}
+footer a{color:var(--text-3)}
+footer a:hover{color:var(--primary)}
+</style>
+</head>
+<body>
+<div class="nav-wrap">
+  <div class="nav-inner">
+    <a href="/" class="logo">agent7<span>d</span></a>
+    <div class="nav-links">
+      <a href="/">Home</a>
+      <a href="/blog/">Blog</a>
+      <a href="/products/docuai/support/">DocuAI</a>
+      <button class="theme-btn" onclick="toggleTheme()" title="Toggle theme">☀️</button>
+    </div>
+  </div>
+</div>
+
+<div class="article-wrap">
+  <div class="breadcrumb"><a href="/">Home</a> → <a href="/blog/">Blog</a> → How to Auto-Generate a Project Handover Pack the Moment Your monday.com Project Hits 100% Complete</div>
+  <div class="article-category">monday.com</div>
+  <h1 class="article-title">How to Auto-Generate a Project Handover Pack the Moment Your monday.com Project Hits 100% Complete</h1>
+  <div class="article-meta">
+    <span>📅 October 6, 2026</span>
+    <span>✍️ agent7d Team</span>
+    <span>⏱ 5 min read</span>
+  </div>
+  <div class="article-divider"></div>
+  <div class="article-body">
+    
+<p>Most project handover documents are written from memory, assembled in a panic, and sent to the receiving team with half the context missing. Not because anyone is incompetent — but because nobody builds the document until after the deadline has passed, the team has mentally moved on, and the details that actually matter have started to blur.</p>
+<p>If you're managing client projects in monday.com, you already have every piece of data that belongs in a proper handover pack. The problem isn't missing information. It's that the information is never assembled into something a receiving team can actually use.</p>
+<p>---</p>
+<h2>The Problem</h2>
+<p>Project handovers fail at the documentation stage, not the delivery stage.</p>
+<p>A digital agency finishes a client website. The developer pushes the final build. The account manager marks the project done. Then someone asks: "Can you send the handover doc?" And what follows is three hours of digging through monday.com boards, Slack threads, Google Drive folders, and someone's memory — producing a document that captures maybe 60% of what the next team needs to know.</p>
+<p>The institutional knowledge — decisions made, credentials stored, scope changes approved, dependencies flagged — lives scattered across updates, columns, subitems, and the heads of people who've already moved onto the next project.</p>
+<p>This is the real cost of a bad handover: not the time spent assembling it, but the questions that come back six weeks later because the receiving team didn't have the full picture on day one.</p>
+<p>---</p>
+<h2>The Solution</h2>
+<p>Your monday.com board is already a structured database. Every column is a field. Every update is a log. Every status change is a timestamp. The handover document you need is already there — it just hasn't been rendered into a format a human outside your board can read and act on.</p>
+<p>The fix is to use a Status column set to "Complete" as a document generation trigger. The moment a project hits 100% — whether that's a board status, a progress tracking column, or a manually set field — that event kicks off automatic document generation from your live item data.</p>
+<p>This is exactly what DocuAI does. It connects to your monday.com board, maps your columns to a handover pack template, and generates a fully formatted document the instant your trigger condition is met. No copy-pasting. No assembly. No one has to remember to do it.</p>
+<p>---</p>
+<h2>Step by Step</h2>
+<p><strong>1. Audit your board columns against what a handover pack actually needs.</strong></p>
+<p>A proper handover pack covers: project summary, scope and deliverables, key contacts, credentials and access details, outstanding items or known issues, decisions log, and next actions for the receiving team. Walk your existing columns — you'll find most of this already exists.</p>
+<p><strong>2. Fill the gaps before you need them.</strong></p>
+<p>If "credentials" or "known issues" isn't a column yet, add it now. The document is only as good as the data you're capturing during delivery.</p>
+<p><strong>3. Build your handover template in DocuAI.</strong></p>
+<p>Map each section of the handover pack to the corresponding monday.com column or update field. This is a one-time setup per board type.</p>
+<p><strong>4. Set your trigger.</strong></p>
+<p>Configure DocuAI to watch for a specific Status value — "Complete," "Handed Over," whatever language your team uses. When that status is applied to a project item, document generation fires automatically.</p>
+<p><strong>5. Route the output.</strong></p>
+<p>Decide where the generated document lands — emailed to the client, saved to monday.com as a file column, pushed to a shared drive. Set it once. It runs every time.</p>
+<p>---</p>
+<h2>Real Example</h2>
+<p>A web development agency with a team of eight was delivering twelve to fifteen client websites per quarter. Their handover "document" was a Slack thread, a credentials spreadsheet, and a scope-of-work PDF that was usually six weeks out of date by the time the project closed.</p>
+<p>Every handover triggered the same questions from the client's internal team: Who do we contact for changes? Where are the logins? What was decided about the mobile nav? The account manager spent two to three hours per project answering questions that should have been answered on day one.</p>
+<p>After mapping their monday.com board to a DocuAI handover template — project details, delivery checklist, key contacts, credentials reference, scope summary, and a "known issues" section — the document generates the moment the project status flips to "Complete." The client receives a clean, professional PDF within minutes of project close. The questions stopped coming.</p>
+<p>---</p>
+<h2>How to Get Started</h2>
+<p>Open one of your active project boards and list every column you have. Then write down what a new team member would need to know to take this project over from scratch. The gap between those two lists is your handover pack structure — and it's almost certainly smaller than you think.</p>
+<p>Build the template once. Connect it to your "Complete" trigger. Every project that closes from that point forward produces a consistent, complete, immediately useful handover document with zero additional admin.</p>
+<p>---</p>
+<p>Ready to stop copying data into documents? Try DocuAI for monday.com — it generates professional proposals, contracts, and reports from your item data in seconds. <a href="https://agent7d.com/products/docuai/">Get started free</a></p>
+  </div>
+  <div class="cta-box">
+    <h3>Generate documents from monday.com in seconds</h3>
+    <p>DocuAI turns your item data into professional proposals, contracts, and reports — automatically.</p>
+    <a href="https://agent7d.com/products/docuai/" class="btn-primary">Try DocuAI Free →</a>
+  </div>
+</div>
+
+<footer>
+  <p>© 2026 agent7d · <a href="/products/docuai/privacy/">Privacy</a> · <a href="/products/docuai/terms/">Terms</a> · <a href="/blog/">Blog</a></p>
+</footer>
+<script>
+function toggleTheme(){
+  const cur=document.documentElement.getAttribute('data-theme');
+  const next=cur==='dark'?'light':'dark';
+  document.documentElement.setAttribute('data-theme',next);
+  localStorage.setItem('theme',next);
+  document.querySelector('.theme-btn').textContent=next==='dark'?'🌙':'☀️';
+}
+document.querySelector('.theme-btn').textContent=
+  document.documentElement.getAttribute('data-theme')==='dark'?'🌙':'☀️';
+</script>
+</body>
+</html>
