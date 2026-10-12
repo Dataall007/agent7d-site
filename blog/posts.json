@@ -1,5 +1,18 @@
 [
   {
+    "slug": "how-to-auto-generate-a-resource-allocation-summary-for-inter",
+    "title": "How to Auto-Generate a Resource Allocation Summary for Internal Sign-Off Before Any Project Kicks Off",
+    "excerpt": "Two weeks into a project is the worst time to discover that two of your engineers were already at capacity, that the hourly rate you quoted the client doesn't m",
+    "category": "monday.com",
+    "tags": [
+      "monday"
+    ],
+    "product": "docuai",
+    "date": "2026-10-12",
+    "dateStr": "October 12, 2026",
+    "readTime": "5 min read"
+  },
+  {
     "slug": "how-to-find-every-deal-in-your-monday-com-crm-where-the-deal",
     "title": "How to Find Every Deal in Your monday.com CRM Where the Deal Size Has Never Been Updated Since It Was Created",
     "excerpt": "The estimate a rep types at deal creation is not a deal value. It's a placeholder. The problem is that most monday.com pipelines treat it like gospel — and by t",
