@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How to Generate a Client-Ready Project Plan Summary from Your monday.com Board Before the Kickoff Call — agent7d Blog</title>
+<meta name="description" content="There's a ritual that plays out in agencies and project teams everywhere, usually around 9 AM on the day of a client kickoff call. Someone opens monday.com, ope">
+<meta property="og:title" content="How to Generate a Client-Ready Project Plan Summary from Your monday.com Board Before the Kickoff Call">
+<meta property="og:description" content="There's a ritual that plays out in agencies and project teams everywhere, usually around 9 AM on the day of a client kickoff call. Someone opens monday.com, ope">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script>
+  const t=localStorage.getItem('theme')||(window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');
+  document.documentElement.setAttribute('data-theme',t);
+</script>
+<style>
+:root{
+  --primary:#e11d48;--primary-hover:#be123c;--primary-light:#fef2f5;
+  --bg:#ffffff;--bg-2:#f9fafb;--bg-3:#f3f4f6;
+  --border:#e5e7eb;--text-1:#111827;--text-2:#374151;--text-3:#6b7280;--text-4:#9ca3af;
+  --font:'Plus Jakarta Sans',sans-serif;--t:0.15s ease;
+  --shadow-sm:0 1px 3px rgba(0,0,0,0.08);--shadow-md:0 4px 12px rgba(0,0,0,0.08);
+}
+[data-theme="dark"]{
+  --bg:#0a0a0a;--bg-2:#111111;--bg-3:#1a1a1a;--border:#262626;
+  --text-1:#f9fafb;--text-2:#e5e7eb;--text-3:#9ca3af;--text-4:#6b7280;
+  --primary:#ff2056;--primary-light:rgba(255,32,86,0.1);
+  --shadow-sm:0 1px 3px rgba(0,0,0,0.3);--shadow-md:0 4px 12px rgba(0,0,0,0.4);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font);background:var(--bg);color:var(--text-1);line-height:1.6;-webkit-font-smoothing:antialiased;transition:background var(--t),color var(--t)}
+a{color:var(--primary);text-decoration:none}
+a:hover{text-decoration:underline}
+
+.nav-wrap{width:100%;border-bottom:1px solid var(--border);background:var(--bg);position:sticky;top:0;z-index:100}
+.nav-inner{max-width:1100px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:64px}
+.logo{font-size:20px;font-weight:800;color:var(--text-1);text-decoration:none;letter-spacing:-0.02em}
+.logo span{color:var(--primary)}
+.nav-links{display:flex;align-items:center;gap:24px}
+.nav-links a{font-size:14px;font-weight:500;color:var(--text-3);text-decoration:none;transition:color var(--t)}
+.nav-links a:hover{color:var(--text-1)}
+.theme-btn{background:none;border:1px solid var(--border);border-radius:8px;padding:6px 10px;cursor:pointer;color:var(--text-3);font-size:16px;transition:all var(--t)}
+.theme-btn:hover{border-color:var(--primary);color:var(--primary)}
+
+.article-wrap{max-width:720px;margin:0 auto;padding:64px 24px 96px}
+.breadcrumb{font-size:13px;color:var(--text-4);margin-bottom:32px}
+.breadcrumb a{color:var(--text-3);text-decoration:none}
+.breadcrumb a:hover{color:var(--primary)}
+.article-category{font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--primary);margin-bottom:14px}
+.article-title{font-size:42px;font-weight:800;line-height:1.15;letter-spacing:-0.02em;color:var(--text-1);margin-bottom:16px}
+.article-meta{font-size:13px;color:var(--text-4);margin-bottom:40px;display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+.article-meta span{display:flex;align-items:center;gap:5px}
+.article-divider{height:1px;background:var(--border);margin-bottom:40px}
+
+.article-body{font-size:17px;line-height:1.8;color:var(--text-2)}
+.article-body h2{font-size:26px;font-weight:700;color:var(--text-1);margin:40px 0 16px;line-height:1.3}
+.article-body h3{font-size:20px;font-weight:600;color:var(--text-1);margin:28px 0 12px}
+.article-body p{margin-bottom:20px}
+.article-body ul,.article-body ol{padding-right:24px;margin-bottom:20px}
+.article-body li{margin-bottom:8px}
+.article-body strong{color:var(--text-1);font-weight:600}
+.article-body code{background:var(--bg-3);border:1px solid var(--border);border-radius:4px;padding:2px 6px;font-size:14px;font-family:monospace}
+.article-body blockquote{border-right:4px solid var(--primary);padding:12px 20px;margin:24px 0;background:var(--bg-2);border-radius:0 8px 8px 0;color:var(--text-2);font-style:italic}
+
+.cta-box{background:var(--primary-light);border:1px solid rgba(225,29,72,0.2);border-radius:14px;padding:32px;margin:48px 0;text-align:center}
+.cta-box h3{font-size:22px;font-weight:700;color:var(--text-1);margin-bottom:8px}
+.cta-box p{color:var(--text-3);margin-bottom:20px;font-size:15px}
+.btn-primary{display:inline-block;background:var(--primary);color:#fff;padding:12px 28px;border-radius:10px;font-size:14px;font-weight:600;text-decoration:none;transition:all var(--t);box-shadow:0 4px 20px rgba(225,29,72,0.25)}
+.btn-primary:hover{background:var(--primary-hover);transform:translateY(-1px);text-decoration:none}
+
+footer{border-top:1px solid var(--border);padding:32px 24px;text-align:center;color:var(--text-4);font-size:13px}
+footer a{color:var(--text-3)}
+footer a:hover{color:var(--primary)}
+</style>
+</head>
+<body>
+<div class="nav-wrap">
+  <div class="nav-inner">
+    <a href="/" class="logo">agent7<span>d</span></a>
+    <div class="nav-links">
+      <a href="/">Home</a>
+      <a href="/blog/">Blog</a>
+      <a href="/products/docuai/support/">DocuAI</a>
+      <button class="theme-btn" onclick="toggleTheme()" title="Toggle theme">☀️</button>
+    </div>
+  </div>
+</div>
+
+<div class="article-wrap">
+  <div class="breadcrumb"><a href="/">Home</a> → <a href="/blog/">Blog</a> → How to Generate a Client-Ready Project Plan Summary from Your monday.com Board Before the Kickoff Call</div>
+  <div class="article-category">monday.com</div>
+  <h1 class="article-title">How to Generate a Client-Ready Project Plan Summary from Your monday.com Board Before the Kickoff Call</h1>
+  <div class="article-meta">
+    <span>📅 October 14, 2026</span>
+    <span>✍️ agent7d Team</span>
+    <span>⏱ 5 min read</span>
+  </div>
+  <div class="article-divider"></div>
+  <div class="article-body">
+    
+<p>There's a ritual that plays out in agencies and project teams everywhere, usually around 9 AM on the day of a client kickoff call. Someone opens monday.com, opens Word or Google Docs, and spends the next 45 minutes manually copying task names, due dates, owners, and milestones into a document that looks presentable enough to share with a client. It's repetitive, it's error-prone, and it has nothing to do with actually running the project.</p>
+<p>This post shows you how to skip that entirely and generate a polished monday.com project kickoff document directly from your board data — before the call, without touching a word processor.</p>
+<p>---</p>
+<h2>The Problem</h2>
+<p>The kickoff document is almost always the last thing that gets prepared, because it feels like a formatting task rather than a strategic one. But it matters. Clients form their first impression of your professionalism the moment they open that summary. A half-finished table pasted into a Word doc with mismatched fonts signals chaos, even when your actual project plan is solid.</p>
+<p>The deeper problem is structural: your project data already exists. It's in monday.com — tasks are assigned, phases are labeled, due dates are set, statuses are current. But none of that data is in a format a client can read before a call. So someone manually rebuilds it in a document, introducing lag, transcription errors, and a formatting tax that scales badly when you're running 20 or 30 projects simultaneously.</p>
+<p>---</p>
+<h2>The Solution</h2>
+<p>The fix is document generation mapped directly to your monday.com board columns. Instead of exporting data and reformatting it manually, you connect a document template to your board structure so that when you trigger generation, the right data flows into the right fields automatically.</p>
+<p>The output is a professional project plan summary — covering scope overview, project phases, milestones, task owners, and timeline — generated in seconds from the live data already in your board. No copying. No formatting. No Word.</p>
+<p>DocuAI for monday.com does exactly this. You build a document template once, map your board columns to the corresponding document sections, and generate a client-ready summary on demand directly from the item or board view.</p>
+<p>---</p>
+<h2>Step by Step</h2>
+<p><strong>1. Audit your board columns before you build anything.</strong></p>
+<p>A useful pre-kickoff summary needs five types of data: scope context (project name, client, brief description), phases or groups, task names, owners (people columns), due dates, and status. If your board already has these, you're ready. If some are missing, add them now — the structure you build here will serve every project going forward.</p>
+<p><strong>2. Organize tasks into groups that represent phases.</strong></p>
+<p>In monday.com, use Groups to define project phases (Discovery, Design, Development, Launch). These group names will map to the phase sections in your document, giving the client a clear view of how the project is structured over time.</p>
+<p><strong>3. Build your document template in DocuAI.</strong></p>
+<p>Create a template that mirrors a professional project plan structure: an intro section with project name and scope, a phase-by-phase breakdown with tasks, owners, due dates, and statuses, followed by a milestone summary and next steps. Use dynamic fields that reference your board columns directly.</p>
+<p><strong>4. Map your columns to document fields.</strong></p>
+<p>Connect Task Name → task rows, Person column → Owner field, Date column → Timeline field, Status column → Current status indicator, Group name → Phase heading. Once mapped, this template works for every project built on the same board structure.</p>
+<p><strong>5. Generate and send before the call.</strong></p>
+<p>Open the relevant board or item in monday.com, trigger DocuAI, and your summary is generated. Export as PDF, share the link, or send directly — all without leaving monday.com. The client receives a professional document before you've even dialed in.</p>
+<p>---</p>
+<h2>Real Example</h2>
+<p>A digital agency managing 30 active projects was spending roughly 45 minutes per kickoff reformatting monday.com board data into a client-facing plan. Multiply that across a month of new project starts and you're looking at several hours of pure admin work every week.</p>
+<p>After mapping their standard board columns — task name, assigned person, due date, status, and phase group — to a DocuAI template, they reduced that 45-minute process to under a minute. Every kickoff call now starts with a professional summary already in the client's inbox, generated from live board data with no manual intervention. The template runs once and works for every new project automatically.</p>
+<p>---</p>
+<h2>How to Get Started</h2>
+<p>If your board already has the five column types listed above, you can have a working template in under an hour. Start by auditing one of your most recent project boards, note which columns contain the data you'd normally copy into a kickoff doc, and build your template around that structure. Once it's mapped, every future project on that board template generates the same document automatically.</p>
+<p>The best time to set this up is before your next kickoff — not during it.</p>
+<p>---</p>
+<p>Ready to stop copying data into documents? Try DocuAI for monday.com — it generates professional proposals, contracts, and reports from your item data in seconds. <a href="https://agent7d.com/products/docuai/">Get started free</a></p>
+  </div>
+  <div class="cta-box">
+    <h3>Generate documents from monday.com in seconds</h3>
+    <p>DocuAI turns your item data into professional proposals, contracts, and reports — automatically.</p>
+    <a href="https://agent7d.com/products/docuai/" class="btn-primary">Try DocuAI Free →</a>
+  </div>
+</div>
+
+<footer>
+  <p>© 2026 agent7d · <a href="/products/docuai/privacy/">Privacy</a> · <a href="/products/docuai/terms/">Terms</a> · <a href="/blog/">Blog</a></p>
+</footer>
+<script>
+function toggleTheme(){
+  const cur=document.documentElement.getAttribute('data-theme');
+  const next=cur==='dark'?'light':'dark';
+  document.documentElement.setAttribute('data-theme',next);
+  localStorage.setItem('theme',next);
+  document.querySelector('.theme-btn').textContent=next==='dark'?'🌙':'☀️';
+}
+document.querySelector('.theme-btn').textContent=
+  document.documentElement.getAttribute('data-theme')==='dark'?'🌙':'☀️';
+</script>
+</body>
+</html>
