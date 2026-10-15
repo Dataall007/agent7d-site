@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>How to Find Every Deal in Your monday.com CRM Where the Contact Person Has Never Been Logged — agent7d Blog</title>
-<meta name="description" content="*Deals without contact monday.com CRM audit — if you haven't run one, you're probably sitting on more of these than you think.*">
-<meta property="og:title" content="How to Find Every Deal in Your monday.com CRM Where the Contact Person Has Never Been Logged">
-<meta property="og:description" content="*Deals without contact monday.com CRM audit — if you haven't run one, you're probably sitting on more of these than you think.*">
+<title>How to Find Every Deal in Your monday.com CRM Where the Contact, Value, and Close Date Are All Filled In — But the Deal Has Never Once Been Touched — agent7d Blog</title>
+<meta name="description" content="A deal with a contact name, a dollar value, and a close date feels like a real deal. It shows up in your pipeline views. It counts toward your forecast. Someone">
+<meta property="og:title" content="How to Find Every Deal in Your monday.com CRM Where the Contact, Value, and Close Date Are All Filled In — But the Deal Has Never Once Been Touched">
+<meta property="og:description" content="A deal with a contact name, a dollar value, and a close date feels like a real deal. It shows up in your pipeline views. It counts toward your forecast. Someone">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <script>
@@ -87,49 +87,40 @@ footer a:hover{color:var(--primary)}
 </div>
 
 <div class="article-wrap">
-  <div class="breadcrumb"><a href="/">Home</a> → <a href="/blog/">Blog</a> → How to Find Every Deal in Your monday.com CRM Where the Contact Person Has Never Been Logged</div>
+  <div class="breadcrumb"><a href="/">Home</a> → <a href="/blog/">Blog</a> → How to Find Every Deal in Your monday.com CRM Where the Contact, Value, and Close Date Are All Filled In — But the Deal Has Never Once Been Touched</div>
   <div class="article-category">monday.com</div>
-  <h1 class="article-title">How to Find Every Deal in Your monday.com CRM Where the Contact Person Has Never Been Logged</h1>
+  <h1 class="article-title">How to Find Every Deal in Your monday.com CRM Where the Contact, Value, and Close Date Are All Filled In — But the Deal Has Never Once Been Touched</h1>
   <div class="article-meta">
-    <span>📅 September 20, 2026</span>
+    <span>📅 October 15, 2026</span>
     <span>✍️ agent7d Team</span>
     <span>⏱ 5 min read</span>
   </div>
   <div class="article-divider"></div>
   <div class="article-body">
     
-<p><em>Deals without contact monday.com CRM audit — if you haven't run one, you're probably sitting on more of these than you think.</em></p>
-<p>---</p>
+<p>A deal with a contact name, a dollar value, and a close date feels like a real deal. It shows up in your pipeline views. It counts toward your forecast. Someone probably feels good about it being there. But if no one has touched that record since the day it was created, it is not a deal — it is a placeholder wearing a deal's clothes.</p>
+<p>This is one of the most common and most dangerous forms of pipeline rot, and monday.com gives you no automatic warning when it happens.</p>
 <h2>The Problem</h2>
-<p>A deal with no contact person is not a deal. It is a placeholder. There is no one to call, no one to email, no one to follow up with — just a company name sitting in a pipeline stage, aging quietly while your team assumes someone else owns it.</p>
-<p>The uncomfortable truth is that most monday.com pipelines are full of these records. Not because sales teams are careless, but because contactless deals are easy to create and invisible until you go looking for them.</p>
-<p>They arrive in three ways. First, rushed manual entry: a rep logs a conversation quickly between calls, drops in the company name, sets a deal value, and moves on — intending to add the contact later, but later never comes. Second, bulk imports: a CSV from a trade show, a webinar registration export, or a list from marketing lands in monday.com as a batch of new items. The company column gets filled. The contact column stays blank because the source data didn't have a clean name field, or nobody mapped it correctly during import. Third, deals created from email threads: someone forwards an email chain, a deal item gets spun up, and the contact field is populated with the sender domain or left entirely empty.</p>
-<p>The result is a pipeline that looks healthy by deal count but is significantly less callable than the numbers suggest.</p>
+<p>Most pipeline hygiene advice focuses on records with obvious gaps — no value, no owner, no close date. Those are easy to spot. Incomplete records look broken, so people go fix them.</p>
+<p>The records that actually damage your forecast are the ones that look fine. A deal with all the key fields filled in gets none of the scrutiny it deserves. It sits in your Proposal stage, or your Negotiation stage, and it continues to be counted in pipeline reports for weeks or months — sometimes quarters — after it stopped being a real opportunity.</p>
+<p>The reason this pattern is so hard to catch in monday.com is structural. The platform does not surface inactivity as a signal. There is no built-in alert that says "this item has had zero column updates in 90 days." A well-filled record and a recently-worked record look identical in a standard board view. The only way to tell them apart is to deliberately look for the difference.</p>
 <h2>The Solution</h2>
-<p>Surface every deal where the contact person column is empty, triage the list by value and stage, enrich the records you can still save, and close the door on future contactless entries with column validation and automation.</p>
-<p>This is not a multi-week data project. Done properly, a team of two can audit and remediate a pipeline of 200–300 deals in a focused afternoon. The filtering capability is already inside monday.com. You do not need additional software to find the problem — you just need to know where to look and what to do with what you find.</p>
+<p>The answer is to filter your board specifically for deals where surface completeness and actual activity have diverged. You are looking for records where the key data fields are populated, but the update log, column change history, and communication activity tell a different story — nothing has happened since creation.</p>
+<p>Monday.com has the filtering tools to surface this pattern. You do not need a third-party integration to get started. What you need is to know which signals to check and how to layer them into a filter that isolates these records from everything else on your board.</p>
 <h2>Step by Step</h2>
-<p><strong>1. Filter your board for empty contact fields.</strong></p>
-<p>Open your deals board. Click Filter at the top of the board. Add a condition: your contact column — this is often a People column, a Text column, or a Connect Boards column depending on how your CRM is built — and set the condition to <em>Is Empty</em>. Apply the filter. Every item that surfaces is a contactless deal. Save this as a named view so you can return to it.</p>
-<p><strong>2. Add a Group By layer for pipeline stage.</strong></p>
-<p>With the filter active, click Group By and select your status or stage column. This immediately shows you whether your contactless deals are clustered in early stages (lower urgency) or sitting in Proposal Sent, Negotiation, or Closing (high urgency, fix immediately).</p>
-<p><strong>3. Sort by deal value descending.</strong></p>
-<p>Within each stage group, sort by your deal value column from highest to lowest. This gives you a prioritised repair list: high-value deals in late stages first, low-value deals in early stages last.</p>
-<p><strong>4. Add a Last Activity column if you don't have one.</strong></p>
-<p>If your board tracks last activity date, add it to this view. A deal worth £40,000 in Negotiation with no contact and no activity in 45 days is either dead or critically at risk. You need to know which before you can act.</p>
-<p><strong>5. Enrich the records.</strong></p>
-<p>For each deal on your priority list, check three places in this order: your email history (search the company name in your inbox — someone made contact at some point), LinkedIn (find the company, identify the most likely buyer persona based on the context of the deal), and any connected boards in monday.com where a contact record might already exist but wasn't linked. Update the contact field, log a note about the source, and set a follow-up task.</p>
-<p><strong>6. Prevent future contactless deals.</strong></p>
-<p>Go to your board settings and enable column validation on your contact column — set it as required before a deal can move past your first pipeline stage. Then create an automation: <em>When an item is created and Contact is empty after 24 hours, notify the item owner.</em> This catches anything that slips through at entry.</p>
+<p>Start by opening your CRM board and switching to a table view so you can see all columns clearly.</p>
+<p><strong>Step 1 — Filter for the fields that signal "complete."</strong> Create a filter group that shows only items where Contact is not blank, Deal Value is not blank, and Close Date is not blank. This gives you the universe of deals that look complete on paper.</p>
+<p><strong>Step 2 — Add a Last Updated column.</strong> If you do not already have one, go to the column center and add a Last Updated column. This auto-populates with the timestamp of the most recent change to any column on that item. Sort this column ascending so the oldest-untouched records rise to the top.</p>
+<p><strong>Step 3 — Set a threshold.</strong> Filter for Last Updated that is more than 30, 60, or 90 days ago — choose the threshold that matches your average sales cycle. Any deal that clears the completeness filter in Step 1 and the inactivity filter here is a candidate for immediate review.</p>
+<p><strong>Step 4 — Cross-reference the Updates tab.</strong> Click into each flagged deal and check the Updates section. Zero messages, no activity log entries, and no email thread mean the deal has been untouched since creation. A Last Updated timestamp can sometimes change from a backend sync — the Updates tab confirms whether a human has ever actually engaged with the record.</p>
+<p><strong>Step 5 — Check the Close Date.</strong> If the close date is already in the past, the deal is not just inactive — it is overdue and still sitting in your active pipeline. Flag these separately. They need to be closed lost or rescheduled immediately.</p>
 <h2>Real Example</h2>
-<p>A B2B SaaS company used monday.com to manage pipeline from a series of webinar campaigns. After each event, their marketing team exported the registration list and imported it directly into their deals board. The import mapped company name, email address, and deal source correctly — but the contact name field in monday.com was a People column linked to their internal user directory, not a plain text field. The webinar registrant names never made it across.</p>
-<p>Eighty deals entered the pipeline this way across three events. The board looked active. Deal values had been estimated based on company size. But every single contact field was blank. The sales team had been following up on the company email addresses from the registration export — not from the CRM — which meant no activity was being logged and no one could tell from the board which deals had been touched.</p>
-<p>When they ran a filter for empty contacts, 80 items appeared. Sorted by deal value, the top 12 represented over £600,000 in estimated pipeline. Six of them had not been contacted in over 30 days because the assigned rep assumed a colleague had handled it.</p>
-<p>They spent one afternoon enriching the top 30 records using LinkedIn and their email history. Of those, 11 converted to booked meetings within two weeks. The remaining 50 were either disqualified or deprioritised with a task set for re-engagement.</p>
-<p>The fix took less time than the original import.</p>
+<p>A SaaS sales team using monday.com ran this exact filter during a pipeline review. They found 11 deals sitting in their Proposal stage, all with a contact, a value, and a close date filled in. Every one of those close dates had already passed — some by more than three months. Not a single column had been updated since the deals were created. No notes, no emails logged, no status changes.</p>
+<p>All 11 were still being counted in the team's quarterly forecast.</p>
+<p>The total pipeline value tied up in those records was over $280,000. None of it was real. The team had been reporting against a number that did not exist. Once they worked through each record — re-qualifying three, handing off two to a different rep, and closing eight as lost — their forecast shrank significantly but became something they could actually trust. That accuracy then let them prioritize the deals that were genuinely active and close two of them before quarter end.</p>
 <h2>How to Get Started</h2>
-<p>Open your monday.com deals board today and run the filter described above. Just look at the number. That number — the count of deals with no contact person — is the floor of what you are working with. From there, the triage and enrichment process is straightforward.</p>
-<p>If you want a faster read on the full health of your pipeline — not just missing contacts, but stuck deals, unowned records, missing values, and stage distribution — there is a better starting point than a manual filter.</p>
+<p>Run the filter sequence above on your board this week. Sort by Last Updated, set your inactivity threshold, and see what surfaces. Pay particular attention to anything in a late-stage bucket — Proposal, Negotiation, Contract Sent — because those deals carry the highest dollar values and have the most damage potential if they are phantom records.</p>
+<p>If you want to see the full picture across your entire pipeline — not just the untouched deals, but all the patterns of field gaps, unowned records, stuck stages, and forecast inflation — a manual filter-by-filter audit takes hours and still misses things.</p>
 <p>Want to see what your own pipeline is losing? Run the free CRM Audit for monday.com — it scores your pipeline health and shows exactly where revenue is leaking. <a href="https://agent7d.com/tools/crm-audit/">Get your free audit</a></p>
   </div>
   <div class="cta-box">
