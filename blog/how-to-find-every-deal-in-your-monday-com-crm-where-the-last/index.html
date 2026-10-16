@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How to Find Every Deal in Your monday.com CRM Where the Last Activity Date Is Older Than the Close Date — and What It Means for Your Pipeline — agent7d Blog</title>
+<meta name="description" content="There's a category of pipeline problem that never shows up on a forecast call. It doesn't trigger any alerts. Your monday.com board looks fine — deals are open,">
+<meta property="og:title" content="How to Find Every Deal in Your monday.com CRM Where the Last Activity Date Is Older Than the Close Date — and What It Means for Your Pipeline">
+<meta property="og:description" content="There's a category of pipeline problem that never shows up on a forecast call. It doesn't trigger any alerts. Your monday.com board looks fine — deals are open,">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script>
+  const t=localStorage.getItem('theme')||(window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');
+  document.documentElement.setAttribute('data-theme',t);
+</script>
+<style>
+:root{
+  --primary:#e11d48;--primary-hover:#be123c;--primary-light:#fef2f5;
+  --bg:#ffffff;--bg-2:#f9fafb;--bg-3:#f3f4f6;
+  --border:#e5e7eb;--text-1:#111827;--text-2:#374151;--text-3:#6b7280;--text-4:#9ca3af;
+  --font:'Plus Jakarta Sans',sans-serif;--t:0.15s ease;
+  --shadow-sm:0 1px 3px rgba(0,0,0,0.08);--shadow-md:0 4px 12px rgba(0,0,0,0.08);
+}
+[data-theme="dark"]{
+  --bg:#0a0a0a;--bg-2:#111111;--bg-3:#1a1a1a;--border:#262626;
+  --text-1:#f9fafb;--text-2:#e5e7eb;--text-3:#9ca3af;--text-4:#6b7280;
+  --primary:#ff2056;--primary-light:rgba(255,32,86,0.1);
+  --shadow-sm:0 1px 3px rgba(0,0,0,0.3);--shadow-md:0 4px 12px rgba(0,0,0,0.4);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font);background:var(--bg);color:var(--text-1);line-height:1.6;-webkit-font-smoothing:antialiased;transition:background var(--t),color var(--t)}
+a{color:var(--primary);text-decoration:none}
+a:hover{text-decoration:underline}
+
+.nav-wrap{width:100%;border-bottom:1px solid var(--border);background:var(--bg);position:sticky;top:0;z-index:100}
+.nav-inner{max-width:1100px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:64px}
+.logo{font-size:20px;font-weight:800;color:var(--text-1);text-decoration:none;letter-spacing:-0.02em}
+.logo span{color:var(--primary)}
+.nav-links{display:flex;align-items:center;gap:24px}
+.nav-links a{font-size:14px;font-weight:500;color:var(--text-3);text-decoration:none;transition:color var(--t)}
+.nav-links a:hover{color:var(--text-1)}
+.theme-btn{background:none;border:1px solid var(--border);border-radius:8px;padding:6px 10px;cursor:pointer;color:var(--text-3);font-size:16px;transition:all var(--t)}
+.theme-btn:hover{border-color:var(--primary);color:var(--primary)}
+
+.article-wrap{max-width:720px;margin:0 auto;padding:64px 24px 96px}
+.breadcrumb{font-size:13px;color:var(--text-4);margin-bottom:32px}
+.breadcrumb a{color:var(--text-3);text-decoration:none}
+.breadcrumb a:hover{color:var(--primary)}
+.article-category{font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--primary);margin-bottom:14px}
+.article-title{font-size:42px;font-weight:800;line-height:1.15;letter-spacing:-0.02em;color:var(--text-1);margin-bottom:16px}
+.article-meta{font-size:13px;color:var(--text-4);margin-bottom:40px;display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+.article-meta span{display:flex;align-items:center;gap:5px}
+.article-divider{height:1px;background:var(--border);margin-bottom:40px}
+
+.article-body{font-size:17px;line-height:1.8;color:var(--text-2)}
+.article-body h2{font-size:26px;font-weight:700;color:var(--text-1);margin:40px 0 16px;line-height:1.3}
+.article-body h3{font-size:20px;font-weight:600;color:var(--text-1);margin:28px 0 12px}
+.article-body p{margin-bottom:20px}
+.article-body ul,.article-body ol{padding-right:24px;margin-bottom:20px}
+.article-body li{margin-bottom:8px}
+.article-body strong{color:var(--text-1);font-weight:600}
+.article-body code{background:var(--bg-3);border:1px solid var(--border);border-radius:4px;padding:2px 6px;font-size:14px;font-family:monospace}
+.article-body blockquote{border-right:4px solid var(--primary);padding:12px 20px;margin:24px 0;background:var(--bg-2);border-radius:0 8px 8px 0;color:var(--text-2);font-style:italic}
+
+.cta-box{background:var(--primary-light);border:1px solid rgba(225,29,72,0.2);border-radius:14px;padding:32px;margin:48px 0;text-align:center}
+.cta-box h3{font-size:22px;font-weight:700;color:var(--text-1);margin-bottom:8px}
+.cta-box p{color:var(--text-3);margin-bottom:20px;font-size:15px}
+.btn-primary{display:inline-block;background:var(--primary);color:#fff;padding:12px 28px;border-radius:10px;font-size:14px;font-weight:600;text-decoration:none;transition:all var(--t);box-shadow:0 4px 20px rgba(225,29,72,0.25)}
+.btn-primary:hover{background:var(--primary-hover);transform:translateY(-1px);text-decoration:none}
+
+footer{border-top:1px solid var(--border);padding:32px 24px;text-align:center;color:var(--text-4);font-size:13px}
+footer a{color:var(--text-3)}
+footer a:hover{color:var(--primary)}
+</style>
+</head>
+<body>
+<div class="nav-wrap">
+  <div class="nav-inner">
+    <a href="/" class="logo">agent7<span>d</span></a>
+    <div class="nav-links">
+      <a href="/">Home</a>
+      <a href="/blog/">Blog</a>
+      <a href="/products/docuai/support/">DocuAI</a>
+      <button class="theme-btn" onclick="toggleTheme()" title="Toggle theme">☀️</button>
+    </div>
+  </div>
+</div>
+
+<div class="article-wrap">
+  <div class="breadcrumb"><a href="/">Home</a> → <a href="/blog/">Blog</a> → How to Find Every Deal in Your monday.com CRM Where the Last Activity Date Is Older Than the Close Date — and What It Means for Your Pipeline</div>
+  <div class="article-category">monday.com</div>
+  <h1 class="article-title">How to Find Every Deal in Your monday.com CRM Where the Last Activity Date Is Older Than the Close Date — and What It Means for Your Pipeline</h1>
+  <div class="article-meta">
+    <span>📅 October 16, 2026</span>
+    <span>✍️ agent7d Team</span>
+    <span>⏱ 5 min read</span>
+  </div>
+  <div class="article-divider"></div>
+  <div class="article-body">
+    
+<p>There's a category of pipeline problem that never shows up on a forecast call. It doesn't trigger any alerts. Your monday.com board looks fine — deals are open, close dates are populated, amounts are logged. Everything appears to be moving.</p>
+<p>Except it isn't. Some of those deals haven't had a single touchpoint in months. And the close date listed is already in the past.</p>
+<p>This is a monday.com pipeline activity audit problem, and it's more common — and more expensive — than most sales teams realize.</p>
+<p>---</p>
+<h2>The Problem</h2>
+<p>When a deal's last recorded activity predates its close date and the deal is still sitting open, you're not looking at a sales problem. You're looking at a data problem with direct revenue consequences.</p>
+<p>A close date is a prediction. It should be grounded in recent context — a conversation, a follow-up, a proposal revision. When the most recent activity happened weeks or months before that predicted date, the close date is fiction. It's optimism that was never revisited and never cleaned up.</p>
+<p>The real damage isn't just an inaccurate forecast. It's that these deals consume mental space, distort your pipeline coverage ratio, and quietly inflate ARR projections that leadership is making real decisions against. A $280K pipeline that's actually $80K of real opportunity is a planning disaster waiting to surface at exactly the wrong moment.</p>
+<p>---</p>
+<h2>The Solution</h2>
+<p>Surface every deal where the last activity date is older than the close date, and the deal is still marked open. Then triage those deals based on recoverability — not gut feel, but signals already living inside your monday.com board.</p>
+<p>This requires two things: the right filtered view, and a scoring rubric you can apply in minutes per deal.</p>
+<p>---</p>
+<h2>Step by Step</h2>
+<p><strong>1. Make sure you're capturing last activity dates.</strong> If you're using monday.com's CRM template or a custom CRM board, you should have a Date column for last activity (sometimes called "Last Touch," "Last Contact," or similar). If you're logging activity through updates or linked boards, you may need to add a manual or automated Date column that reflects the most recent logged interaction.</p>
+<p><strong>2. Build a filtered view.</strong> In your Deals board, click Filter and add these conditions:</p>
+<ul><li>Status is not Lost and not Won (i.e., still open)</li>
+<li>Close Date is before Today</li>
+<li>Last Activity Date is before Close Date</li>
+<p></ul></p>
+<p>Save this as a view called something like "Frozen Deals — Needs Review." This is your standing audit view.</p>
+<p><strong>3. Identify the three patterns.</strong> Each frozen deal typically falls into one of these:</p>
+<ul><li><strong>Verbally lost, never updated.</strong> The rep knows this is dead. They moved on. Nobody logged the outcome. These are pipeline ghosts.</li>
+<li><strong>Rep left or reassigned, nobody picked it up.</strong> The deal had momentum once. Then something changed internally and it fell through the cracks. These sometimes have real recoverability.</li>
+<li><strong>Pushed repeatedly without contact.</strong> Close date was extended multiple times, but the activity log shows no actual conversations. This is the most dangerous pattern — it looks optimistic and isn't.</li>
+<p></ul></p>
+<p><strong>4. Score each deal by recoverability.</strong> Use columns already in your monday.com board: deal size, lead source, last activity date, and contact role. A deal worth $50K+ with a VP-level contact and a lead source that historically converts is worth one serious re-engagement attempt. A $4K deal with a cold contact from 120 days ago probably isn't.</p>
+<p><strong>5. Take action in two buckets.</strong> Genuinely dead deals get marked Lost with a reason logged. Recoverable deals get a task assigned with a specific follow-up date — not a note, a concrete next action with an owner.</p>
+<p>---</p>
+<h2>Real Example</h2>
+<p>A 12-person SaaS sales team ran this exact filter on their monday.com pipeline. They found 34 open deals where the last recorded activity was more than 90 days older than the listed close date. Combined pipeline value: $280K.</p>
+<p>After a two-hour triage session, they moved 26 deals to Lost. Six got assigned to reps for re-engagement. Two converted within 30 days — one of which had been sitting frozen for four months. Total recovered pipeline: $47K. The rest of the $280K came off the books, which actually improved their forecast accuracy by enough that leadership changed their hiring timeline based on the corrected number.</p>
+<p>The cost of that cleanup was one afternoon. The cost of not doing it would have been a missed plan and a confused Q4.</p>
+<p>---</p>
+<h2>How to Get Started</h2>
+<p>Pull your Frozen Deals view today. If you have a Last Activity Date column and a Close Date column, you can have this filter live in under ten minutes. Do the triage. Mark losses as losses. Assign follow-ups to real humans with real deadlines.</p>
+<p>Then schedule this as a quarterly sweep — 60 minutes, standing calendar invite, non-negotiable. Pipeline hygiene that compounds quarterly is the difference between a forecast you trust and one you're constantly apologizing for.</p>
+<p>Want to see what your own pipeline is losing? Run the free CRM Audit for monday.com — it scores your pipeline health and shows exactly where revenue is leaking. <a href="https://agent7d.com/tools/crm-audit/">Get your free audit</a></p>
+  </div>
+  <div class="cta-box">
+    <h3>Generate documents from monday.com in seconds</h3>
+    <p>DocuAI turns your item data into professional proposals, contracts, and reports — automatically.</p>
+    <a href="https://agent7d.com/products/docuai/" class="btn-primary">Try DocuAI Free →</a>
+  </div>
+</div>
+
+<footer>
+  <p>© 2026 agent7d · <a href="/products/docuai/privacy/">Privacy</a> · <a href="/products/docuai/terms/">Terms</a> · <a href="/blog/">Blog</a></p>
+</footer>
+<script>
+function toggleTheme(){
+  const cur=document.documentElement.getAttribute('data-theme');
+  const next=cur==='dark'?'light':'dark';
+  document.documentElement.setAttribute('data-theme',next);
+  localStorage.setItem('theme',next);
+  document.querySelector('.theme-btn').textContent=next==='dark'?'🌙':'☀️';
+}
+document.querySelector('.theme-btn').textContent=
+  document.documentElement.getAttribute('data-theme')==='dark'?'🌙':'☀️';
+</script>
+</body>
+</html>
