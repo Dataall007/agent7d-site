@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How to Find Every Deal in Your monday.com CRM That Has More Than One Contact But No Clear Decision Maker — agent7d Blog</title>
+<meta name="description" content="Multiple contacts on a deal looks like good news. It signals stakeholder coverage, relationship breadth, maybe even internal champions working on your behalf. B">
+<meta property="og:title" content="How to Find Every Deal in Your monday.com CRM That Has More Than One Contact But No Clear Decision Maker">
+<meta property="og:description" content="Multiple contacts on a deal looks like good news. It signals stakeholder coverage, relationship breadth, maybe even internal champions working on your behalf. B">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script>
+  const t=localStorage.getItem('theme')||(window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');
+  document.documentElement.setAttribute('data-theme',t);
+</script>
+<style>
+:root{
+  --primary:#e11d48;--primary-hover:#be123c;--primary-light:#fef2f5;
+  --bg:#ffffff;--bg-2:#f9fafb;--bg-3:#f3f4f6;
+  --border:#e5e7eb;--text-1:#111827;--text-2:#374151;--text-3:#6b7280;--text-4:#9ca3af;
+  --font:'Plus Jakarta Sans',sans-serif;--t:0.15s ease;
+  --shadow-sm:0 1px 3px rgba(0,0,0,0.08);--shadow-md:0 4px 12px rgba(0,0,0,0.08);
+}
+[data-theme="dark"]{
+  --bg:#0a0a0a;--bg-2:#111111;--bg-3:#1a1a1a;--border:#262626;
+  --text-1:#f9fafb;--text-2:#e5e7eb;--text-3:#9ca3af;--text-4:#6b7280;
+  --primary:#ff2056;--primary-light:rgba(255,32,86,0.1);
+  --shadow-sm:0 1px 3px rgba(0,0,0,0.3);--shadow-md:0 4px 12px rgba(0,0,0,0.4);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font);background:var(--bg);color:var(--text-1);line-height:1.6;-webkit-font-smoothing:antialiased;transition:background var(--t),color var(--t)}
+a{color:var(--primary);text-decoration:none}
+a:hover{text-decoration:underline}
+
+.nav-wrap{width:100%;border-bottom:1px solid var(--border);background:var(--bg);position:sticky;top:0;z-index:100}
+.nav-inner{max-width:1100px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:64px}
+.logo{font-size:20px;font-weight:800;color:var(--text-1);text-decoration:none;letter-spacing:-0.02em}
+.logo span{color:var(--primary)}
+.nav-links{display:flex;align-items:center;gap:24px}
+.nav-links a{font-size:14px;font-weight:500;color:var(--text-3);text-decoration:none;transition:color var(--t)}
+.nav-links a:hover{color:var(--text-1)}
+.theme-btn{background:none;border:1px solid var(--border);border-radius:8px;padding:6px 10px;cursor:pointer;color:var(--text-3);font-size:16px;transition:all var(--t)}
+.theme-btn:hover{border-color:var(--primary);color:var(--primary)}
+
+.article-wrap{max-width:720px;margin:0 auto;padding:64px 24px 96px}
+.breadcrumb{font-size:13px;color:var(--text-4);margin-bottom:32px}
+.breadcrumb a{color:var(--text-3);text-decoration:none}
+.breadcrumb a:hover{color:var(--primary)}
+.article-category{font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--primary);margin-bottom:14px}
+.article-title{font-size:42px;font-weight:800;line-height:1.15;letter-spacing:-0.02em;color:var(--text-1);margin-bottom:16px}
+.article-meta{font-size:13px;color:var(--text-4);margin-bottom:40px;display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+.article-meta span{display:flex;align-items:center;gap:5px}
+.article-divider{height:1px;background:var(--border);margin-bottom:40px}
+
+.article-body{font-size:17px;line-height:1.8;color:var(--text-2)}
+.article-body h2{font-size:26px;font-weight:700;color:var(--text-1);margin:40px 0 16px;line-height:1.3}
+.article-body h3{font-size:20px;font-weight:600;color:var(--text-1);margin:28px 0 12px}
+.article-body p{margin-bottom:20px}
+.article-body ul,.article-body ol{padding-right:24px;margin-bottom:20px}
+.article-body li{margin-bottom:8px}
+.article-body strong{color:var(--text-1);font-weight:600}
+.article-body code{background:var(--bg-3);border:1px solid var(--border);border-radius:4px;padding:2px 6px;font-size:14px;font-family:monospace}
+.article-body blockquote{border-right:4px solid var(--primary);padding:12px 20px;margin:24px 0;background:var(--bg-2);border-radius:0 8px 8px 0;color:var(--text-2);font-style:italic}
+
+.cta-box{background:var(--primary-light);border:1px solid rgba(225,29,72,0.2);border-radius:14px;padding:32px;margin:48px 0;text-align:center}
+.cta-box h3{font-size:22px;font-weight:700;color:var(--text-1);margin-bottom:8px}
+.cta-box p{color:var(--text-3);margin-bottom:20px;font-size:15px}
+.btn-primary{display:inline-block;background:var(--primary);color:#fff;padding:12px 28px;border-radius:10px;font-size:14px;font-weight:600;text-decoration:none;transition:all var(--t);box-shadow:0 4px 20px rgba(225,29,72,0.25)}
+.btn-primary:hover{background:var(--primary-hover);transform:translateY(-1px);text-decoration:none}
+
+footer{border-top:1px solid var(--border);padding:32px 24px;text-align:center;color:var(--text-4);font-size:13px}
+footer a{color:var(--text-3)}
+footer a:hover{color:var(--primary)}
+</style>
+</head>
+<body>
+<div class="nav-wrap">
+  <div class="nav-inner">
+    <a href="/" class="logo">agent7<span>d</span></a>
+    <div class="nav-links">
+      <a href="/">Home</a>
+      <a href="/blog/">Blog</a>
+      <a href="/products/docuai/support/">DocuAI</a>
+      <button class="theme-btn" onclick="toggleTheme()" title="Toggle theme">☀️</button>
+    </div>
+  </div>
+</div>
+
+<div class="article-wrap">
+  <div class="breadcrumb"><a href="/">Home</a> → <a href="/blog/">Blog</a> → How to Find Every Deal in Your monday.com CRM That Has More Than One Contact But No Clear Decision Maker</div>
+  <div class="article-category">monday.com</div>
+  <h1 class="article-title">How to Find Every Deal in Your monday.com CRM That Has More Than One Contact But No Clear Decision Maker</h1>
+  <div class="article-meta">
+    <span>📅 October 18, 2026</span>
+    <span>✍️ agent7d Team</span>
+    <span>⏱ 5 min read</span>
+  </div>
+  <div class="article-divider"></div>
+  <div class="article-body">
+    
+<p>Multiple contacts on a deal looks like good news. It signals stakeholder coverage, relationship breadth, maybe even internal champions working on your behalf. But there's a version of that picture that's quietly killing pipeline velocity — and it shows up constantly in monday.com CRMs that haven't been audited.</p>
+<p>If none of those contacts is flagged as the decision maker, you don't actually know who can say yes. And if your reps don't know who can say yes, they're nurturing a relationship that may never convert.</p>
+<p>---</p>
+<h2>The Problem</h2>
+<p>Here's the scenario: a rep has been working an account for six weeks. Three contacts connected to the deal. Regular touchpoints, good email response rates, a demo that went well. The deal moves to Proposal. And then it sits.</p>
+<p>The rep follows up. Gets friendly replies. More meetings. Still nothing moves. Eleven weeks later, the deal is still in Proposal — not lost, just... stuck. Nobody flags it.</p>
+<p>What's actually happening: none of those three contacts has budget authority. The person who can approve the deal was never identified, never mapped, maybe never even contacted. The rep didn't know to ask because the CRM never surfaced the gap.</p>
+<p>This is a pipeline health issue, not a sales skills issue. The rep did their job. The system failed them.</p>
+<p>When you run a monday.com CRM decision maker audit, this pattern shows up more often than most sales leaders expect. Multi-contact deals with no ownership role recorded are one of the highest-risk segments in any B2B pipeline — and they're almost invisible until you look for them deliberately.</p>
+<p>---</p>
+<h2>The Solution</h2>
+<p>The fix starts with accepting that deal coverage and decision maker clarity are two separate things. A deal can have five contacts and still have zero clarity on who holds budget authority.</p>
+<p>In monday.com, this gap lives in your board's field structure. Most CRMs built on monday.com have a way to link contacts — either through a Connect Boards column or a people-type field. What they often lack is a structured field that captures the <em>role</em> of each contact: Champion, Influencer, Economic Buyer, Decision Maker.</p>
+<p>Without that field, your reps are making qualitative mental notes that never make it into the system. And when a deal stalls, there's no data to tell you why.</p>
+<p>The solution is two-part: first, find every deal where this clarity is currently missing; second, redesign the board so the ambiguity can't re-enter.</p>
+<p>---</p>
+<h2>Step by Step</h2>
+<p><strong>1. Identify your contact-count indicator.</strong> If you're using a Connect Boards column to link contacts to deals, add a formula column or mirror column that counts the number of linked records. Any deal showing two or more linked contacts is in scope for this audit.</p>
+<p><strong>2. Add a Decision Maker field if it doesn't exist.</strong> Create a Status or Dropdown column on your deals board called "Decision Maker Identified" with values like Yes / No / Unknown. If you have a contact role field, look for any multi-contact deal where no contact carries a Decision Maker tag.</p>
+<p><strong>3. Filter for the gap.</strong> Use monday.com's filter panel to show only deals where: linked contacts ≥ 2 AND Decision Maker Identified = No or is blank. Save this as a view. Call it "DM Gap — Needs Action."</p>
+<p><strong>4. Sort by deal age and stage.</strong> Deals in Proposal or Negotiation with this gap are your highest-priority risk. Deals in early qualification can be caught before the problem compounds.</p>
+<p><strong>5. Assign re-qualification tasks.</strong> For each flagged deal, create a monday.com action item — not a calendar reminder, an actual task on the deal record — for the rep to identify and map the economic buyer within a defined window.</p>
+<p>---</p>
+<h2>Real Example</h2>
+<p>A B2B services firm — mid-market, 12-person sales team — ran a pipeline review after a disappointing quarter. When they filtered for multi-contact deals with no decision maker recorded, they found that 30% of those deals had the gap. Thirty percent.</p>
+<p>One deal stood out immediately: 11 weeks in Proposal, three contacts from the same account, all mid-level. The rep had been waiting for internal sign-off that none of those contacts could actually give. When they finally mapped the org chart and reached the VP of Operations, they learned the deal parameters had drifted out of budget during the delay. The deal died.</p>
+<p>The cost wasn't just that one deal. It was 11 weeks of rep time, proposal resources, and opportunity cost while better-qualified deals sat lower in the queue.</p>
+<p>After rebuilding their board to require Decision Maker Identified before a deal can move past Discovery, their average time-in-Proposal dropped by four days in the first month.</p>
+<p>---</p>
+<h2>How to Get Started</h2>
+<p>Before you redesign anything, you need to know what you're actually dealing with. Pull the filter view described above and look at the numbers honestly. How many multi-contact deals in your current pipeline have no decision maker recorded? What's the average age of those deals? Which stage has the highest concentration?</p>
+<p>That data is already in your monday.com board. You just need to surface it.</p>
+<p>If you want a faster way to see the full picture — including stuck deals, missing field values, and unowned records across your entire pipeline — there's a tool built specifically for this.</p>
+<p>---</p>
+<p>Want to see what your own pipeline is losing? Run the free CRM Audit for monday.com — it scores your pipeline health and shows exactly where revenue is leaking. <a href="https://agent7d.com/tools/crm-audit/">Get your free audit</a></p>
+  </div>
+  <div class="cta-box">
+    <h3>Generate documents from monday.com in seconds</h3>
+    <p>DocuAI turns your item data into professional proposals, contracts, and reports — automatically.</p>
+    <a href="https://agent7d.com/products/docuai/" class="btn-primary">Try DocuAI Free →</a>
+  </div>
+</div>
+
+<footer>
+  <p>© 2026 agent7d · <a href="/products/docuai/privacy/">Privacy</a> · <a href="/products/docuai/terms/">Terms</a> · <a href="/blog/">Blog</a></p>
+</footer>
+<script>
+function toggleTheme(){
+  const cur=document.documentElement.getAttribute('data-theme');
+  const next=cur==='dark'?'light':'dark';
+  document.documentElement.setAttribute('data-theme',next);
+  localStorage.setItem('theme',next);
+  document.querySelector('.theme-btn').textContent=next==='dark'?'🌙':'☀️';
+}
+document.querySelector('.theme-btn').textContent=
+  document.documentElement.getAttribute('data-theme')==='dark'?'🌙':'☀️';
+</script>
+</body>
+</html>
