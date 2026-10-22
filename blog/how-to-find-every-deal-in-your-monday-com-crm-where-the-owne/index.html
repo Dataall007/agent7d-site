@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How to Find Every Deal in Your monday.com CRM Where the Owner Has Changed More Than Once — and Why Serial Handoffs Are Killing Your Close Rate — agent7d Blog</title>
+<meta name="description" content="There's a category of pipeline damage that doesn't show up on your forecast call. No one flags it. No dashboard catches it. It just quietly compounds until you'">
+<meta property="og:title" content="How to Find Every Deal in Your monday.com CRM Where the Owner Has Changed More Than Once — and Why Serial Handoffs Are Killing Your Close Rate">
+<meta property="og:description" content="There's a category of pipeline damage that doesn't show up on your forecast call. No one flags it. No dashboard catches it. It just quietly compounds until you'">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script>
+  const t=localStorage.getItem('theme')||(window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');
+  document.documentElement.setAttribute('data-theme',t);
+</script>
+<style>
+:root{
+  --primary:#e11d48;--primary-hover:#be123c;--primary-light:#fef2f5;
+  --bg:#ffffff;--bg-2:#f9fafb;--bg-3:#f3f4f6;
+  --border:#e5e7eb;--text-1:#111827;--text-2:#374151;--text-3:#6b7280;--text-4:#9ca3af;
+  --font:'Plus Jakarta Sans',sans-serif;--t:0.15s ease;
+  --shadow-sm:0 1px 3px rgba(0,0,0,0.08);--shadow-md:0 4px 12px rgba(0,0,0,0.08);
+}
+[data-theme="dark"]{
+  --bg:#0a0a0a;--bg-2:#111111;--bg-3:#1a1a1a;--border:#262626;
+  --text-1:#f9fafb;--text-2:#e5e7eb;--text-3:#9ca3af;--text-4:#6b7280;
+  --primary:#ff2056;--primary-light:rgba(255,32,86,0.1);
+  --shadow-sm:0 1px 3px rgba(0,0,0,0.3);--shadow-md:0 4px 12px rgba(0,0,0,0.4);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font);background:var(--bg);color:var(--text-1);line-height:1.6;-webkit-font-smoothing:antialiased;transition:background var(--t),color var(--t)}
+a{color:var(--primary);text-decoration:none}
+a:hover{text-decoration:underline}
+
+.nav-wrap{width:100%;border-bottom:1px solid var(--border);background:var(--bg);position:sticky;top:0;z-index:100}
+.nav-inner{max-width:1100px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:64px}
+.logo{font-size:20px;font-weight:800;color:var(--text-1);text-decoration:none;letter-spacing:-0.02em}
+.logo span{color:var(--primary)}
+.nav-links{display:flex;align-items:center;gap:24px}
+.nav-links a{font-size:14px;font-weight:500;color:var(--text-3);text-decoration:none;transition:color var(--t)}
+.nav-links a:hover{color:var(--text-1)}
+.theme-btn{background:none;border:1px solid var(--border);border-radius:8px;padding:6px 10px;cursor:pointer;color:var(--text-3);font-size:16px;transition:all var(--t)}
+.theme-btn:hover{border-color:var(--primary);color:var(--primary)}
+
+.article-wrap{max-width:720px;margin:0 auto;padding:64px 24px 96px}
+.breadcrumb{font-size:13px;color:var(--text-4);margin-bottom:32px}
+.breadcrumb a{color:var(--text-3);text-decoration:none}
+.breadcrumb a:hover{color:var(--primary)}
+.article-category{font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--primary);margin-bottom:14px}
+.article-title{font-size:42px;font-weight:800;line-height:1.15;letter-spacing:-0.02em;color:var(--text-1);margin-bottom:16px}
+.article-meta{font-size:13px;color:var(--text-4);margin-bottom:40px;display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+.article-meta span{display:flex;align-items:center;gap:5px}
+.article-divider{height:1px;background:var(--border);margin-bottom:40px}
+
+.article-body{font-size:17px;line-height:1.8;color:var(--text-2)}
+.article-body h2{font-size:26px;font-weight:700;color:var(--text-1);margin:40px 0 16px;line-height:1.3}
+.article-body h3{font-size:20px;font-weight:600;color:var(--text-1);margin:28px 0 12px}
+.article-body p{margin-bottom:20px}
+.article-body ul,.article-body ol{padding-right:24px;margin-bottom:20px}
+.article-body li{margin-bottom:8px}
+.article-body strong{color:var(--text-1);font-weight:600}
+.article-body code{background:var(--bg-3);border:1px solid var(--border);border-radius:4px;padding:2px 6px;font-size:14px;font-family:monospace}
+.article-body blockquote{border-right:4px solid var(--primary);padding:12px 20px;margin:24px 0;background:var(--bg-2);border-radius:0 8px 8px 0;color:var(--text-2);font-style:italic}
+
+.cta-box{background:var(--primary-light);border:1px solid rgba(225,29,72,0.2);border-radius:14px;padding:32px;margin:48px 0;text-align:center}
+.cta-box h3{font-size:22px;font-weight:700;color:var(--text-1);margin-bottom:8px}
+.cta-box p{color:var(--text-3);margin-bottom:20px;font-size:15px}
+.btn-primary{display:inline-block;background:var(--primary);color:#fff;padding:12px 28px;border-radius:10px;font-size:14px;font-weight:600;text-decoration:none;transition:all var(--t);box-shadow:0 4px 20px rgba(225,29,72,0.25)}
+.btn-primary:hover{background:var(--primary-hover);transform:translateY(-1px);text-decoration:none}
+
+footer{border-top:1px solid var(--border);padding:32px 24px;text-align:center;color:var(--text-4);font-size:13px}
+footer a{color:var(--text-3)}
+footer a:hover{color:var(--primary)}
+</style>
+</head>
+<body>
+<div class="nav-wrap">
+  <div class="nav-inner">
+    <a href="/" class="logo">agent7<span>d</span></a>
+    <div class="nav-links">
+      <a href="/">Home</a>
+      <a href="/blog/">Blog</a>
+      <a href="/products/docuai/support/">DocuAI</a>
+      <button class="theme-btn" onclick="toggleTheme()" title="Toggle theme">☀️</button>
+    </div>
+  </div>
+</div>
+
+<div class="article-wrap">
+  <div class="breadcrumb"><a href="/">Home</a> → <a href="/blog/">Blog</a> → How to Find Every Deal in Your monday.com CRM Where the Owner Has Changed More Than Once — and Why Serial Handoffs Are Killing Your Close Rate</div>
+  <div class="article-category">monday.com</div>
+  <h1 class="article-title">How to Find Every Deal in Your monday.com CRM Where the Owner Has Changed More Than Once — and Why Serial Handoffs Are Killing Your Close Rate</h1>
+  <div class="article-meta">
+    <span>📅 October 22, 2026</span>
+    <span>✍️ agent7d Team</span>
+    <span>⏱ 5 min read</span>
+  </div>
+  <div class="article-divider"></div>
+  <div class="article-body">
+    
+<p>There's a category of pipeline damage that doesn't show up on your forecast call. No one flags it. No dashboard catches it. It just quietly compounds until you're staring at a Q4 miss and wondering where the opportunities went.</p>
+<p>Serial deal ownership changes are that damage.</p>
+<h2>The Problem</h2>
+<p>Most sales managers track ownership as a static fact: this deal belongs to this rep. What they don't track is how many times that answer has changed — and what happens to deal momentum each time it does.</p>
+<p>Every handoff resets the relationship. The new owner has to get up to speed, re-establish trust with the prospect, and often re-qualify work the previous owner already did. The prospect, meanwhile, gets a signal they may not consciously articulate but absolutely feel: <em>this company is disorganized, and I am not a priority.</em></p>
+<p>The data reflects this. Across sales organizations, deals that change owner more than once close at dramatically lower rates than single-owner deals — not because the deals are inherently worse, but because accountability evaporates with each transfer. Nobody owns the history. Nobody owns the urgency.</p>
+<p>The quieter problem: most monday.com users have no idea how many of these multi-handoff deals are sitting in their active pipeline right now. They're not closed-lost. They're just... drifting.</p>
+<h2>The Solution</h2>
+<p>Monday.com captures the data you need to surface every one of these deals. The activity log on each item records every field change, including People column updates, with a timestamp and the user who made the change. That's your audit trail.</p>
+<p>The goal is straightforward: query your pipeline for deals where the assigned owner column has changed more than once since the deal was created, then cross-reference those records against last activity date and current stage. What you're looking for isn't just the reassignment — it's the pattern that follows it.</p>
+<p>In most pipelines, that pattern is predictable. Multi-handoff deals tend to be older, stuck in mid-funnel stages, and bereft of logged activity. Each handoff was supposed to be a fresh start. None of them were.</p>
+<h2>Step by Step</h2>
+<p><strong>1. Export your activity log.</strong> In monday.com, open your CRM board and use the Activity Log view. Filter by item type (deals) and by column change events on your People or Owner column. Export this to CSV.</p>
+<p><strong>2. Identify serial reassignments.</strong> In your spreadsheet, group rows by item (deal) ID and count how many times the owner column changed. Flag any deal with two or more changes. This is your multi-handoff list.</p>
+<p><strong>3. Layer in last activity date.</strong> Cross-reference the flagged deals against your last activity or last contact date column. If you're not logging activities on the deal item itself, use the most recent update timestamp from the exported log.</p>
+<p><strong>4. Calculate your close-rate split.</strong> Segment your closed-won and closed-lost deals from the past 12 months by ownership change count. The difference in win rate between single-owner and multi-owner deals is your cost-of-handoff metric. Most teams find a 30–50% relative drop.</p>
+<p><strong>5. Build the automation.</strong> In monday.com Automations, create a trigger: <em>When the Owner column changes, and the Owner column has changed before on this item, notify [manager] and add a tag "Review: Multi-Handoff."</em> This creates a live flag for every future serial reassignment.</p>
+<p><strong>6. Triage the existing list.</strong> For each flagged deal, apply a simple framework — last prospect engagement date, deal size, stage, and days since last owner change. Deals with no prospect contact in 60-plus days and no scheduled next step should be moved to a dedicated "Rescue or Close" stage, not left to pollute your active forecast.</p>
+<h2>Real Example</h2>
+<p>A SaaS company with a three-stage sales motion — SDR, AE, account management — ran this audit and found that 34% of their open pipeline had changed owner at least twice. More striking: not one of those deals had a logged activity in over 45 days.</p>
+<p>The root cause wasn't rep performance. It was a structural gap in their handoff process. When a deal moved from SDR to AE, or from AE to AM, there was no required activity log entry, no next-step field, and no manager notification. The new owner inherited a record, not a relationship. The pipeline looked healthy. It wasn't.</p>
+<p>They added a mandatory "Handoff Note" required field triggered by any owner change, built the multi-handoff automation described above, and cleared 61 stalled deals from their active board in a single week — recovering a clean pipeline number and reallocating effort to deals that actually had momentum.</p>
+<h2>How to Get Started</h2>
+<p>Pull your activity log today. Count your multi-handoff deals. I'll wager the number is higher than you expect — and that most of them haven't had prospect contact in longer than you're comfortable admitting.</p>
+<p>Want to see what your own pipeline is losing? Run the free CRM Audit for monday.com — it scores your pipeline health and shows exactly where revenue is leaking. <a href="https://agent7d.com/tools/crm-audit/">Get your free audit</a></p>
+  </div>
+  <div class="cta-box">
+    <h3>Generate documents from monday.com in seconds</h3>
+    <p>DocuAI turns your item data into professional proposals, contracts, and reports — automatically.</p>
+    <a href="https://agent7d.com/products/docuai/" class="btn-primary">Try DocuAI Free →</a>
+  </div>
+</div>
+
+<footer>
+  <p>© 2026 agent7d · <a href="/products/docuai/privacy/">Privacy</a> · <a href="/products/docuai/terms/">Terms</a> · <a href="/blog/">Blog</a></p>
+</footer>
+<script>
+function toggleTheme(){
+  const cur=document.documentElement.getAttribute('data-theme');
+  const next=cur==='dark'?'light':'dark';
+  document.documentElement.setAttribute('data-theme',next);
+  localStorage.setItem('theme',next);
+  document.querySelector('.theme-btn').textContent=next==='dark'?'🌙':'☀️';
+}
+document.querySelector('.theme-btn').textContent=
+  document.documentElement.getAttribute('data-theme')==='dark'?'🌙':'☀️';
+</script>
+</body>
+</html>
