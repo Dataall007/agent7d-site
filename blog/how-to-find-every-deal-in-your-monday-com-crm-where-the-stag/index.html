@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>How to Find Every Deal in Your monday.com CRM Where the Stage and the Probability Don't Match — and Why It's Warping Your Forecast — agent7d Blog</title>
-<meta name="description" content="Your forecast is only as accurate as the data feeding it. And one of the most common — and most invisible — sources of forecast rot in monday.com pipelines is t">
-<meta property="og:title" content="How to Find Every Deal in Your monday.com CRM Where the Stage and the Probability Don't Match — and Why It's Warping Your Forecast">
-<meta property="og:description" content="Your forecast is only as accurate as the data feeding it. And one of the most common — and most invisible — sources of forecast rot in monday.com pipelines is t">
+<title>How to Find Every Deal in Your monday.com CRM Where the Stage Has Never Changed Since It Was Created — agent7d Blog</title>
+<meta name="description" content="There's a category of pipeline problem that most sales teams never think to look for: deals that didn't stall — they never moved at all.">
+<meta property="og:title" content="How to Find Every Deal in Your monday.com CRM Where the Stage Has Never Changed Since It Was Created">
+<meta property="og:description" content="There's a category of pipeline problem that most sales teams never think to look for: deals that didn't stall — they never moved at all.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <script>
@@ -87,48 +87,50 @@ footer a:hover{color:var(--primary)}
 </div>
 
 <div class="article-wrap">
-  <div class="breadcrumb"><a href="/">Home</a> → <a href="/blog/">Blog</a> → How to Find Every Deal in Your monday.com CRM Where the Stage and the Probability Don't Match — and Why It's Warping Your Forecast</div>
+  <div class="breadcrumb"><a href="/">Home</a> → <a href="/blog/">Blog</a> → How to Find Every Deal in Your monday.com CRM Where the Stage Has Never Changed Since It Was Created</div>
   <div class="article-category">monday.com</div>
-  <h1 class="article-title">How to Find Every Deal in Your monday.com CRM Where the Stage and the Probability Don't Match — and Why It's Warping Your Forecast</h1>
+  <h1 class="article-title">How to Find Every Deal in Your monday.com CRM Where the Stage Has Never Changed Since It Was Created</h1>
   <div class="article-meta">
-    <span>📅 October 5, 2026</span>
+    <span>📅 October 24, 2026</span>
     <span>✍️ agent7d Team</span>
     <span>⏱ 5 min read</span>
   </div>
   <div class="article-divider"></div>
   <div class="article-body">
     
-<p>Your forecast is only as accurate as the data feeding it. And one of the most common — and most invisible — sources of forecast rot in monday.com pipelines is the stage-probability mismatch: deals sitting in an advanced stage while still carrying the probability of a deal from two months ago.</p>
-<p>No one flags it. No one fixes it. And then the quarter closes badly and everyone wonders why.</p>
+<p>There's a category of pipeline problem that most sales teams never think to look for: deals that didn't stall — they never moved at all.</p>
+<p>A deal that goes backwards is visible. Someone notices. A deal that stays frozen in its opening stage from the moment it was created is invisible by design. It looks like a live lead. It counts toward your numbers. And it does exactly nothing.</p>
+<p>Here's how to surface every one of them in your monday.com CRM, what they mean, and what to do about them.</p>
 <p>---</p>
 <h2>The Problem</h2>
-<p>Stage and probability are supposed to tell the same story from two different angles. Stage describes <em>where</em> a deal is in your process. Probability describes <em>how likely</em> it is to close. In a healthy pipeline, they move together.</p>
-<p>In most pipelines, they don't.</p>
-<p>A rep moves a deal from "Discovery" to "Proposal Sent" in monday.com but forgets — or never thinks — to update the probability field. The deal now lives in a late stage but still carries a 10% or 20% probability from wherever it started. Your weighted pipeline calculation picks up the stage for reporting and the probability for the weighted value, and suddenly you're looking at numbers that are internally contradictory and externally misleading.</p>
-<p>The deeper problem: this is a silent error. monday.com won't warn you. Your dashboard won't turn red. The number just sits there, quietly lying.</p>
+<p>Most pipeline audits focus on deals that regress — moved to a later stage and slipped back. But the more damaging records are often the ones that registered as "created" and then simply... stopped.</p>
+<p>A deal stuck in its first stage has never been qualified, never been advanced, and almost certainly never been worked. Despite that, it sits in your pipeline looking identical to a real opportunity. It inflates your deal count. It pads your pipeline value. And because it's not visibly declining, it doesn't trigger any of the normal warning signals your team watches for.</p>
+<p>These records distort your forecast more than a lost deal does. A closed-lost deal is removed from the pipeline. A stage-frozen deal stays — permanently — making your numbers look stronger than they are.</p>
 <p>---</p>
 <h2>The Solution</h2>
-<p>Surface every deal where the stage and probability are out of sync, fix the data, and build a guardrail that stops the mismatch from recurring.</p>
-<p>This requires three things: a formula column that flags mismatches automatically, a triage process for the flagged deals, and an automation that enforces consistency going forward. All three are buildable directly inside monday.com — no external tools required.</p>
+<p>The fix requires two things: finding the records and understanding what caused them. In monday.com, you can isolate zero-movement deals using a combination of creation date filtering and stage-based sorting. Once you've pulled the list, each record falls into one of three categories — and each category has a different right action.</p>
+<p>The goal isn't to delete everything. It's to stop letting dead or phantom records distort what your pipeline actually looks like.</p>
 <p>---</p>
 <h2>Step by Step</h2>
-<p><strong>1. Define your stage-to-probability map.</strong></p>
-<p>Before you can flag mismatches, you need to decide what the correct probability is for each stage. Write it down explicitly. For example: Discovery = 10–20%, Proposal Sent = 30–50%, Contract Sent = 70–85%, Verbal Commit = 90%. The exact numbers are less important than having a defined range per stage.</p>
-<p><strong>2. Build a formula column to flag mismatches.</strong></p>
-<p>In your monday.com board, add a Formula column. Use an <code>IF</code> statement that checks whether the probability in the Probability column falls within the acceptable range for the current stage. For a deal in "Contract Sent" that should be between 70–85%, a formula like <code>IF({Stage} = "Contract Sent" AND {Probability} < 70, "⚠️ Mismatch", "OK")</code> will immediately surface every outlier. Build one condition per stage, chained with <code>AND</code>/<code>OR</code> logic. Name the column something your reps will notice: "Forecast Integrity" works well.</p>
-<p><strong>3. Filter your board to show only flagged deals.</strong></p>
-<p>Use monday.com's filter function to isolate every item where your new column shows "Mismatch." This is your triage list. Export it or share it as a saved view with your sales manager before every pipeline review.</p>
-<p><strong>4. Add an automation to prevent future drift.</strong></p>
-<p>Go to Automations and create a trigger: <em>When Stage changes, set Probability to [value]</em>. Build one automation per stage transition. This enforces your stage-probability map at the moment of update — before the mismatch can happen — rather than catching it after the fact.</p>
+<p><strong>1. Sort by creation date, filter by stage.</strong></p>
+<p>Open your CRM board in monday.com and apply a filter for your opening stage — whatever you call it: "New Lead," "Incoming," "Untouched." Then sort by creation date, oldest first. Any record that's been sitting there for more than 30 days without stage movement is a candidate for review.</p>
+<p><strong>2. Add a "Last Updated" column if you don't have one.</strong></p>
+<p>monday.com tracks last activity natively. Add a Last Updated column and sort by it. If a record's last update matches its creation date — nothing has ever been touched — that's a zero-movement deal.</p>
+<p><strong>3. Cross-reference with activity.</strong></p>
+<p>Use monday.com's Activity Log or any connected email/call integration to check whether any outreach was logged. A deal in "New Lead" with zero logged activity is not a pipeline item. It's a data entry artifact.</p>
+<p><strong>4. Tag each record before you action it.</strong></p>
+<p>Create a temporary Status column with three values: Duplicate, Dead Lead, Needs Qualification. Categorize every frozen deal before you touch it. This prevents hasty deletions and makes the triage auditable.</p>
+<p><strong>5. Action each category cleanly.</strong></p>
+<p>Duplicates: merge or delete. Dead leads with no activity: close-lost with a note and a reason. Unqualified records with a real contact: assign an owner and set a follow-up deadline. If no one claims it in five business days, close it.</p>
+<p><strong>6. Set a recurring filter view.</strong></p>
+<p>Save a board view in monday.com called "Stage Frozen 30+" — filtered to opening stage, sorted by creation date, showing everything older than 30 days. Review it monthly. Make it someone's job.</p>
 <p>---</p>
 <h2>Real Example</h2>
-<p>A 12-person SaaS sales team ran this exercise across their monday.com board and found 23 deals sitting in "Contract Sent" that still showed 20% probability — the probability they'd been assigned when they first entered the pipeline, two months earlier. No one had updated them as the deals progressed.</p>
-<p>The math was brutal. Those 23 deals had an average value of $73,500. At the correct 80% probability for their stage, they should have been contributing roughly $1.35 million to the weighted pipeline. At 20%, they were showing up as $340,000. The VP of Sales had been working from a committed pipeline number that understated reality by more than a million dollars — which meant her board forecast was built on a foundation that didn't reflect where the deals actually were.</p>
-<p>When she presented to the board, the disconnect between her forecast and her close rate was impossible to explain. The deals were real. The problem was that the probability data had never caught up to the stage data.</p>
+<p>A SaaS sales team ran this exercise on their monday.com board and found 40 deals sitting in "New Lead" for more than 90 days. When they categorized them: 12 were duplicates created by a form integration that wasn't deduplicating on submission. 15 belonged to contacts who had gone dark before any activity was ever logged — they should have been closed months earlier. The remaining 13 had real contacts but had never been assigned to a rep or run through any qualification step.</p>
+<p>Those 40 deals represented enough total value to make their monthly forecast look approximately 20% stronger than it actually was. Every pipeline review for the previous quarter had been built on numbers that included this phantom inventory.</p>
 <p>---</p>
 <h2>How to Get Started</h2>
-<p>Run the triage now, before your next pipeline review. Build the formula column today — it takes less than 20 minutes and you'll immediately see the shape of your mismatch problem. Then build the automations so you're not running this exercise manually every quarter.</p>
-<p>monday.com pipeline forecast accuracy doesn't come from working harder. It comes from trusting your data — and your data only becomes trustworthy when you build the right checks directly into the board.</p>
+<p>Before you can fix it, you need to see it clearly. The fastest way to surface stage-frozen deals — along with every other category of pipeline leakage in your monday.com CRM — is a structured audit.</p>
 <p>Want to see what your own pipeline is losing? Run the free CRM Audit for monday.com — it scores your pipeline health and shows exactly where revenue is leaking. <a href="https://agent7d.com/tools/crm-audit/">Get your free audit</a></p>
   </div>
   <div class="cta-box">
