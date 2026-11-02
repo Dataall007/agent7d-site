@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How to Auto-Generate a Client Onboarding Pack the Moment a monday.com Project Is Marked as Started — agent7d Blog</title>
+<meta name="description" content="Most client onboarding problems aren't process problems. They're timing and consistency problems. The information exists. The templates exist. The intention is ">
+<meta property="og:title" content="How to Auto-Generate a Client Onboarding Pack the Moment a monday.com Project Is Marked as Started">
+<meta property="og:description" content="Most client onboarding problems aren't process problems. They're timing and consistency problems. The information exists. The templates exist. The intention is ">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script>
+  const t=localStorage.getItem('theme')||(window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');
+  document.documentElement.setAttribute('data-theme',t);
+</script>
+<style>
+:root{
+  --primary:#e11d48;--primary-hover:#be123c;--primary-light:#fef2f5;
+  --bg:#ffffff;--bg-2:#f9fafb;--bg-3:#f3f4f6;
+  --border:#e5e7eb;--text-1:#111827;--text-2:#374151;--text-3:#6b7280;--text-4:#9ca3af;
+  --font:'Plus Jakarta Sans',sans-serif;--t:0.15s ease;
+  --shadow-sm:0 1px 3px rgba(0,0,0,0.08);--shadow-md:0 4px 12px rgba(0,0,0,0.08);
+}
+[data-theme="dark"]{
+  --bg:#0a0a0a;--bg-2:#111111;--bg-3:#1a1a1a;--border:#262626;
+  --text-1:#f9fafb;--text-2:#e5e7eb;--text-3:#9ca3af;--text-4:#6b7280;
+  --primary:#ff2056;--primary-light:rgba(255,32,86,0.1);
+  --shadow-sm:0 1px 3px rgba(0,0,0,0.3);--shadow-md:0 4px 12px rgba(0,0,0,0.4);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font);background:var(--bg);color:var(--text-1);line-height:1.6;-webkit-font-smoothing:antialiased;transition:background var(--t),color var(--t)}
+a{color:var(--primary);text-decoration:none}
+a:hover{text-decoration:underline}
+
+.nav-wrap{width:100%;border-bottom:1px solid var(--border);background:var(--bg);position:sticky;top:0;z-index:100}
+.nav-inner{max-width:1100px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:64px}
+.logo{font-size:20px;font-weight:800;color:var(--text-1);text-decoration:none;letter-spacing:-0.02em}
+.logo span{color:var(--primary)}
+.nav-links{display:flex;align-items:center;gap:24px}
+.nav-links a{font-size:14px;font-weight:500;color:var(--text-3);text-decoration:none;transition:color var(--t)}
+.nav-links a:hover{color:var(--text-1)}
+.theme-btn{background:none;border:1px solid var(--border);border-radius:8px;padding:6px 10px;cursor:pointer;color:var(--text-3);font-size:16px;transition:all var(--t)}
+.theme-btn:hover{border-color:var(--primary);color:var(--primary)}
+
+.article-wrap{max-width:720px;margin:0 auto;padding:64px 24px 96px}
+.breadcrumb{font-size:13px;color:var(--text-4);margin-bottom:32px}
+.breadcrumb a{color:var(--text-3);text-decoration:none}
+.breadcrumb a:hover{color:var(--primary)}
+.article-category{font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--primary);margin-bottom:14px}
+.article-title{font-size:42px;font-weight:800;line-height:1.15;letter-spacing:-0.02em;color:var(--text-1);margin-bottom:16px}
+.article-meta{font-size:13px;color:var(--text-4);margin-bottom:40px;display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+.article-meta span{display:flex;align-items:center;gap:5px}
+.article-divider{height:1px;background:var(--border);margin-bottom:40px}
+
+.article-body{font-size:17px;line-height:1.8;color:var(--text-2)}
+.article-body h2{font-size:26px;font-weight:700;color:var(--text-1);margin:40px 0 16px;line-height:1.3}
+.article-body h3{font-size:20px;font-weight:600;color:var(--text-1);margin:28px 0 12px}
+.article-body p{margin-bottom:20px}
+.article-body ul,.article-body ol{padding-right:24px;margin-bottom:20px}
+.article-body li{margin-bottom:8px}
+.article-body strong{color:var(--text-1);font-weight:600}
+.article-body code{background:var(--bg-3);border:1px solid var(--border);border-radius:4px;padding:2px 6px;font-size:14px;font-family:monospace}
+.article-body blockquote{border-right:4px solid var(--primary);padding:12px 20px;margin:24px 0;background:var(--bg-2);border-radius:0 8px 8px 0;color:var(--text-2);font-style:italic}
+
+.cta-box{background:var(--primary-light);border:1px solid rgba(225,29,72,0.2);border-radius:14px;padding:32px;margin:48px 0;text-align:center}
+.cta-box h3{font-size:22px;font-weight:700;color:var(--text-1);margin-bottom:8px}
+.cta-box p{color:var(--text-3);margin-bottom:20px;font-size:15px}
+.btn-primary{display:inline-block;background:var(--primary);color:#fff;padding:12px 28px;border-radius:10px;font-size:14px;font-weight:600;text-decoration:none;transition:all var(--t);box-shadow:0 4px 20px rgba(225,29,72,0.25)}
+.btn-primary:hover{background:var(--primary-hover);transform:translateY(-1px);text-decoration:none}
+
+footer{border-top:1px solid var(--border);padding:32px 24px;text-align:center;color:var(--text-4);font-size:13px}
+footer a{color:var(--text-3)}
+footer a:hover{color:var(--primary)}
+</style>
+</head>
+<body>
+<div class="nav-wrap">
+  <div class="nav-inner">
+    <a href="/" class="logo">agent7<span>d</span></a>
+    <div class="nav-links">
+      <a href="/">Home</a>
+      <a href="/blog/">Blog</a>
+      <a href="/products/docuai/support/">DocuAI</a>
+      <button class="theme-btn" onclick="toggleTheme()" title="Toggle theme">☀️</button>
+    </div>
+  </div>
+</div>
+
+<div class="article-wrap">
+  <div class="breadcrumb"><a href="/">Home</a> → <a href="/blog/">Blog</a> → How to Auto-Generate a Client Onboarding Pack the Moment a monday.com Project Is Marked as Started</div>
+  <div class="article-category">monday.com</div>
+  <h1 class="article-title">How to Auto-Generate a Client Onboarding Pack the Moment a monday.com Project Is Marked as Started</h1>
+  <div class="article-meta">
+    <span>📅 November 2, 2026</span>
+    <span>✍️ agent7d Team</span>
+    <span>⏱ 5 min read</span>
+  </div>
+  <div class="article-divider"></div>
+  <div class="article-body">
+    
+<p>Most client onboarding problems aren't process problems. They're timing and consistency problems. The information exists. The templates exist. The intention is there. What fails is the moment between "project approved" and "client actually receives everything they need to get started." That gap is where confusion, delays, and unnecessary back-and-forth are born.</p>
+<h2>The Problem</h2>
+<p>Picture a web development studio. They win a new build, the account manager updates the monday.com board, and the project manager's first day on that engagement looks like this: open last month's onboarding email, find the welcome document, manually update the client name, project timeline, contact details, and list of deliverables, rewrite the intro paragraph so it doesn't reference the wrong industry, attach the files, and send. Forty-five minutes per project, minimum — on a good day.</p>
+<p>Meanwhile, the client has already emailed twice asking who their main point of contact is and when kickoff will happen. Both answers are in the document that hasn't been sent yet.</p>
+<p>This is not an edge case. It's the default state for teams using monday.com without a document generation layer on top of it. The board has all the right data. Nothing is surfacing it to the client at the right moment.</p>
+<h2>The Solution</h2>
+<p>The solution is to trigger a complete, branded client onboarding pack the instant a project status changes to "In Progress" — pulling every relevant field directly from the monday.com item, with no manual input required.</p>
+<p>A proper monday.com client onboarding document should contain four things: a welcome overview that tells the client what happens next, a contact sheet with names, roles, and response time expectations, a project timeline with key milestones, and a client responsibilities list — the assets, approvals, and decisions you need from them to stay on schedule.</p>
+<p>Every single one of those sections maps to data your monday.com board already holds. The question is whether you have a tool that connects them.</p>
+<h2>Step by Step</h2>
+<p><strong>1. Map your monday.com columns to document sections.</strong></p>
+<p>Before automating anything, audit what your board actually stores. You're looking for: project name, project owner, assigned team members, start date, target end date, milestone columns, deliverables, and any client-side requirement fields. If some of these don't exist yet, add them — this exercise usually improves your board structure regardless.</p>
+<p><strong>2. Build your onboarding pack template in DocuAI.</strong></p>
+<p>DocuAI connects directly to monday.com and lets you build document templates using your column data as dynamic variables. You design the document once — header, branding, section structure, legal language if needed — and tag each variable ({{project_owner}}, {{kickoff_date}}, {{client_deliverables}}) to its corresponding column.</p>
+<p><strong>3. Set the automation trigger.</strong></p>
+<p>Inside monday.com, create an automation: "When status changes to In Progress → trigger DocuAI document generation." DocuAI receives the item data, populates the template, and produces a finished document. You can configure it to send directly to the client via email, save to the item's file section, or both.</p>
+<p><strong>4. Review your first output and refine.</strong></p>
+<p>Run the automation on a test item. Check that every variable populates correctly, the formatting holds, and the document reads as intended. Adjust column names or template tags as needed. This typically takes one iteration.</p>
+<h2>Real Example</h2>
+<p>The web development studio mentioned earlier implemented this setup across their project board. Every project item now contains a dedicated "Client Onboarding" section with milestone dates, a responsibilities checklist, and team contact fields. The moment a project manager moves a status to Active, DocuAI generates a four-page branded pack and emails it to the client automatically.</p>
+<p>Result: their "where do we start?" inbound emails dropped significantly in the first month. Project managers recovered nearly four hours per week previously spent on manual document prep. More importantly, clients arrived at kickoff calls already knowing who to contact, what they needed to provide, and what the first three milestones looked like.</p>
+<h2>How to Get Started</h2>
+<p>Start with your next new project. Open the item in monday.com and ask: if a client received a document built entirely from the data in this item right now, would it tell them everything they need for a clean start? If the answer is no, identify the gaps and fill them before you build the template. The automation is the easy part. Getting your board to contain the right information is the real work — and it's worth doing once properly.</p>
+<p>Once your columns are solid, the template takes about an hour to build. After that, every project that moves to "In Progress" produces a complete, consistent, client-ready onboarding pack without anyone touching a keyboard.</p>
+<p>---</p>
+<p>Ready to stop copying data into documents? Try DocuAI for monday.com — it generates professional proposals, contracts, and reports from your item data in seconds. <a href="https://agent7d.com/products/docuai/">Get started free</a></p>
+  </div>
+  <div class="cta-box">
+    <h3>Generate documents from monday.com in seconds</h3>
+    <p>DocuAI turns your item data into professional proposals, contracts, and reports — automatically.</p>
+    <a href="https://agent7d.com/products/docuai/" class="btn-primary">Try DocuAI Free →</a>
+  </div>
+</div>
+
+<footer>
+  <p>© 2026 agent7d · <a href="/products/docuai/privacy/">Privacy</a> · <a href="/products/docuai/terms/">Terms</a> · <a href="/blog/">Blog</a></p>
+</footer>
+<script>
+function toggleTheme(){
+  const cur=document.documentElement.getAttribute('data-theme');
+  const next=cur==='dark'?'light':'dark';
+  document.documentElement.setAttribute('data-theme',next);
+  localStorage.setItem('theme',next);
+  document.querySelector('.theme-btn').textContent=next==='dark'?'🌙':'☀️';
+}
+document.querySelector('.theme-btn').textContent=
+  document.documentElement.getAttribute('data-theme')==='dark'?'🌙':'☀️';
+</script>
+</body>
+</html>
