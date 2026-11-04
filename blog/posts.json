@@ -1,5 +1,18 @@
 [
   {
+    "slug": "how-to-generate-a-post-mortem-report-from-your-monday-com-bo",
+    "title": "How to Generate a Post-Mortem Report from Your monday.com Board After a Project Goes Wrong",
+    "excerpt": "The project is over. It went badly. Everyone knows it, nobody wants to talk about it, and the team is already halfway into the next sprint. The post-mortem sits",
+    "category": "monday.com",
+    "tags": [
+      "monday"
+    ],
+    "product": "docuai",
+    "date": "2026-11-04",
+    "dateStr": "November 4, 2026",
+    "readTime": "5 min read"
+  },
+  {
     "slug": "how-to-find-every-deal-in-your-monday-com-crm-where-the-pipe",
     "title": "How to Find Every Deal in Your monday.com CRM Where the Pipeline Stage and the Last Activity Are More Than 30 Days Apart — and What It Means for Your Revenue",
     "excerpt": "Your monday.com pipeline looks healthy. Deals are spread across stages. The board is full. Revenue feels predictable.",
