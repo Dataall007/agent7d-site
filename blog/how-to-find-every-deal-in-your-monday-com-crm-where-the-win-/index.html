@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How to Find Every Deal in Your monday.com CRM Where the Win Rate by Stage Tells a Different Story Than Your Close Rate — and What the Gap Is Hiding — agent7d Blog</title>
+<meta name="description" content="Your close rate looks fine. Maybe it's 35%, maybe 40%. You present it in the monthly review, nobody flinches, and the conversation moves on to pipeline volume o">
+<meta property="og:title" content="How to Find Every Deal in Your monday.com CRM Where the Win Rate by Stage Tells a Different Story Than Your Close Rate — and What the Gap Is Hiding">
+<meta property="og:description" content="Your close rate looks fine. Maybe it's 35%, maybe 40%. You present it in the monthly review, nobody flinches, and the conversation moves on to pipeline volume o">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script>
+  const t=localStorage.getItem('theme')||(window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');
+  document.documentElement.setAttribute('data-theme',t);
+</script>
+<style>
+:root{
+  --primary:#e11d48;--primary-hover:#be123c;--primary-light:#fef2f5;
+  --bg:#ffffff;--bg-2:#f9fafb;--bg-3:#f3f4f6;
+  --border:#e5e7eb;--text-1:#111827;--text-2:#374151;--text-3:#6b7280;--text-4:#9ca3af;
+  --font:'Plus Jakarta Sans',sans-serif;--t:0.15s ease;
+  --shadow-sm:0 1px 3px rgba(0,0,0,0.08);--shadow-md:0 4px 12px rgba(0,0,0,0.08);
+}
+[data-theme="dark"]{
+  --bg:#0a0a0a;--bg-2:#111111;--bg-3:#1a1a1a;--border:#262626;
+  --text-1:#f9fafb;--text-2:#e5e7eb;--text-3:#9ca3af;--text-4:#6b7280;
+  --primary:#ff2056;--primary-light:rgba(255,32,86,0.1);
+  --shadow-sm:0 1px 3px rgba(0,0,0,0.3);--shadow-md:0 4px 12px rgba(0,0,0,0.4);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font);background:var(--bg);color:var(--text-1);line-height:1.6;-webkit-font-smoothing:antialiased;transition:background var(--t),color var(--t)}
+a{color:var(--primary);text-decoration:none}
+a:hover{text-decoration:underline}
+
+.nav-wrap{width:100%;border-bottom:1px solid var(--border);background:var(--bg);position:sticky;top:0;z-index:100}
+.nav-inner{max-width:1100px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:64px}
+.logo{font-size:20px;font-weight:800;color:var(--text-1);text-decoration:none;letter-spacing:-0.02em}
+.logo span{color:var(--primary)}
+.nav-links{display:flex;align-items:center;gap:24px}
+.nav-links a{font-size:14px;font-weight:500;color:var(--text-3);text-decoration:none;transition:color var(--t)}
+.nav-links a:hover{color:var(--text-1)}
+.theme-btn{background:none;border:1px solid var(--border);border-radius:8px;padding:6px 10px;cursor:pointer;color:var(--text-3);font-size:16px;transition:all var(--t)}
+.theme-btn:hover{border-color:var(--primary);color:var(--primary)}
+
+.article-wrap{max-width:720px;margin:0 auto;padding:64px 24px 96px}
+.breadcrumb{font-size:13px;color:var(--text-4);margin-bottom:32px}
+.breadcrumb a{color:var(--text-3);text-decoration:none}
+.breadcrumb a:hover{color:var(--primary)}
+.article-category{font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--primary);margin-bottom:14px}
+.article-title{font-size:42px;font-weight:800;line-height:1.15;letter-spacing:-0.02em;color:var(--text-1);margin-bottom:16px}
+.article-meta{font-size:13px;color:var(--text-4);margin-bottom:40px;display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+.article-meta span{display:flex;align-items:center;gap:5px}
+.article-divider{height:1px;background:var(--border);margin-bottom:40px}
+
+.article-body{font-size:17px;line-height:1.8;color:var(--text-2)}
+.article-body h2{font-size:26px;font-weight:700;color:var(--text-1);margin:40px 0 16px;line-height:1.3}
+.article-body h3{font-size:20px;font-weight:600;color:var(--text-1);margin:28px 0 12px}
+.article-body p{margin-bottom:20px}
+.article-body ul,.article-body ol{padding-right:24px;margin-bottom:20px}
+.article-body li{margin-bottom:8px}
+.article-body strong{color:var(--text-1);font-weight:600}
+.article-body code{background:var(--bg-3);border:1px solid var(--border);border-radius:4px;padding:2px 6px;font-size:14px;font-family:monospace}
+.article-body blockquote{border-right:4px solid var(--primary);padding:12px 20px;margin:24px 0;background:var(--bg-2);border-radius:0 8px 8px 0;color:var(--text-2);font-style:italic}
+
+.cta-box{background:var(--primary-light);border:1px solid rgba(225,29,72,0.2);border-radius:14px;padding:32px;margin:48px 0;text-align:center}
+.cta-box h3{font-size:22px;font-weight:700;color:var(--text-1);margin-bottom:8px}
+.cta-box p{color:var(--text-3);margin-bottom:20px;font-size:15px}
+.btn-primary{display:inline-block;background:var(--primary);color:#fff;padding:12px 28px;border-radius:10px;font-size:14px;font-weight:600;text-decoration:none;transition:all var(--t);box-shadow:0 4px 20px rgba(225,29,72,0.25)}
+.btn-primary:hover{background:var(--primary-hover);transform:translateY(-1px);text-decoration:none}
+
+footer{border-top:1px solid var(--border);padding:32px 24px;text-align:center;color:var(--text-4);font-size:13px}
+footer a{color:var(--text-3)}
+footer a:hover{color:var(--primary)}
+</style>
+</head>
+<body>
+<div class="nav-wrap">
+  <div class="nav-inner">
+    <a href="/" class="logo">agent7<span>d</span></a>
+    <div class="nav-links">
+      <a href="/">Home</a>
+      <a href="/blog/">Blog</a>
+      <a href="/products/docuai/support/">DocuAI</a>
+      <button class="theme-btn" onclick="toggleTheme()" title="Toggle theme">☀️</button>
+    </div>
+  </div>
+</div>
+
+<div class="article-wrap">
+  <div class="breadcrumb"><a href="/">Home</a> → <a href="/blog/">Blog</a> → How to Find Every Deal in Your monday.com CRM Where the Win Rate by Stage Tells a Different Story Than Your Close Rate — and What the Gap Is Hiding</div>
+  <div class="article-category">monday.com</div>
+  <h1 class="article-title">How to Find Every Deal in Your monday.com CRM Where the Win Rate by Stage Tells a Different Story Than Your Close Rate — and What the Gap Is Hiding</h1>
+  <div class="article-meta">
+    <span>📅 November 12, 2026</span>
+    <span>✍️ agent7d Team</span>
+    <span>⏱ 5 min read</span>
+  </div>
+  <div class="article-divider"></div>
+  <div class="article-body">
+    
+<p>Your close rate looks fine. Maybe it's 35%, maybe 40%. You present it in the monthly review, nobody flinches, and the conversation moves on to pipeline volume or lead quality. But somewhere in your monday.com board, deals are dying quietly — not at the final stage, not in a way that shows up in the number you're watching — but earlier, in the middle of your funnel, one stage at a time.</p>
+<p>That gap between what your close rate tells you and what your monday.com pipeline stage conversion rate actually shows is where most revenue leaks live.</p>
+<h2>The Problem</h2>
+<p>Overall close rate is a lagging metric. By the time it moves, the damage is already done. It tells you what happened across your entire pipeline — the wins, the losses, the total — but it collapses all of that into a single number that smooths over everything underneath.</p>
+<p>Stage-level attrition is a different story entirely. A deal doesn't just appear in Closed Won or Closed Lost. It travels through Qualified, Discovery, Proposal Sent, Negotiation, and so on. At each transition, some deals advance and some don't. Those drop-off rates at each individual stage are where the actual story lives.</p>
+<p>If 70% of your deals are dying at Proposal Sent, your close rate will still look acceptable as long as enough deals are entering the top of the funnel. The metric masks the problem. You keep feeding a leaking pipe and calling it a volume challenge when it's actually a conversion problem at one specific stage.</p>
+<h2>The Solution</h2>
+<p>Calculate monday.com pipeline stage conversion rates — not just an end-to-end close rate — and look at each transition independently.</p>
+<p>A healthy pipeline has a predictable drop-off curve. You'd expect significant attrition early (not every lead deserves to move forward) and progressively smaller attrition as deals get later-stage and more qualified. When you see a spike in drop-off at a later stage — Proposal Sent, for example, or Negotiation — that's a signal worth investigating. Something specific is breaking at that point: your proposal quality, your timing, your pricing, the type of deals you're advancing.</p>
+<p>The fix starts with visibility. You cannot manage what you cannot measure at the stage level.</p>
+<h2>Step by Step</h2>
+<p><strong>1. Map your stages explicitly.</strong> In your monday.com board, confirm that every deal has a clearly defined status column representing its current pipeline stage. Ambiguous stages or inconsistent labelling will distort your data immediately.</p>
+<p><strong>2. Count deals entering and exiting each stage.</strong> For a defined time period — the last 90 days is a reasonable starting point — count how many deals entered each stage and how many advanced to the next one. That ratio is your stage conversion rate.</p>
+<p><strong>3. Plot the drop-off curve.</strong> Put the conversion rates in sequence. Where does the drop spike? A drop of 60–70% at a mid-to-late stage is a red flag worth investigating.</p>
+<p><strong>4. Separate volume problems from quality problems.</strong> If too many unqualified deals are entering a stage and cluttering it, the issue is upstream qualification. If well-qualified deals are stalling specifically at one stage, the issue is something happening in that stage — your proposal, your follow-up cadence, your competitive positioning.</p>
+<p><strong>5. Check your data quality before you trust any of this.</strong> Blank deal values, missing contacts, stale last-updated dates — all of these corrupt stage conversion accuracy. A deal with no value logged skews your weighted pipeline. A deal with no contact logged may be a phantom. Dirty data makes your conversion rates look better or worse than they actually are.</p>
+<h2>Real Example</h2>
+<p>An agency came to us with a 38% overall close rate — not bad by most standards. But when we broke down their monday.com pipeline stage conversion rates, the picture changed completely. They were losing 70% of deals specifically at the Proposal Sent stage. Deals were making it through qualification and discovery just fine, but something in the proposal handoff was breaking.</p>
+<p>The cause: proposals were going out without a confirmed follow-up call booked, and the average time between sending and following up was eleven days. By that point, most prospects had moved on. The fix was a process change, not a volume increase. They implemented a same-day follow-up call booking as part of the Proposal Sent stage, and their overall close rate moved to 51% within two quarters — without adding a single new lead to the top of the funnel.</p>
+<p>The number hiding that problem the entire time was the aggregate close rate. It never showed the leak.</p>
+<h2>How to Get Started</h2>
+<p>Pull your monday.com pipeline data and run the stage-level count yourself — it takes about an hour if your data is clean. If it isn't clean, you'll spend that hour discovering just how much is missing, miscategorised, or stale before you can trust any of the numbers.</p>
+<p>The faster path is to let a tool do the scan for you, so you're looking at findings rather than spreadsheets.</p>
+<p>Want to see what your own pipeline is losing? Run the free CRM Audit for monday.com — it scores your pipeline health and shows exactly where revenue is leaking. <a href="https://agent7d.com/tools/crm-audit/">Get your free audit</a></p>
+  </div>
+  <div class="cta-box">
+    <h3>Generate documents from monday.com in seconds</h3>
+    <p>DocuAI turns your item data into professional proposals, contracts, and reports — automatically.</p>
+    <a href="https://agent7d.com/products/docuai/" class="btn-primary">Try DocuAI Free →</a>
+  </div>
+</div>
+
+<footer>
+  <p>© 2026 agent7d · <a href="/products/docuai/privacy/">Privacy</a> · <a href="/products/docuai/terms/">Terms</a> · <a href="/blog/">Blog</a></p>
+</footer>
+<script>
+function toggleTheme(){
+  const cur=document.documentElement.getAttribute('data-theme');
+  const next=cur==='dark'?'light':'dark';
+  document.documentElement.setAttribute('data-theme',next);
+  localStorage.setItem('theme',next);
+  document.querySelector('.theme-btn').textContent=next==='dark'?'🌙':'☀️';
+}
+document.querySelector('.theme-btn').textContent=
+  document.documentElement.getAttribute('data-theme')==='dark'?'🌙':'☀️';
+</script>
+</body>
+</html>
