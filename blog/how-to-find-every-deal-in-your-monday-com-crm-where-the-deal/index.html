@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>How to Find Every Deal in Your monday.com CRM Where the Deal Was Won But No Revenue Was Ever Recorded — and Why Your Closed Numbers Are Lying to You — agent7d Blog</title>
-<meta name="description" content="Your monday.com dashboard says you closed 40 deals last quarter. Leadership is happy. Commission is calculated. The board gets a clean number.">
-<meta property="og:title" content="How to Find Every Deal in Your monday.com CRM Where the Deal Was Won But No Revenue Was Ever Recorded — and Why Your Closed Numbers Are Lying to You">
-<meta property="og:description" content="Your monday.com dashboard says you closed 40 deals last quarter. Leadership is happy. Commission is calculated. The board gets a clean number.">
+<title>How to Find Every Deal in Your monday.com CRM Where the Deal Was Won But No Revenue Was Ever Recorded — and What That Gap Is Doing to Your Actual Numbers — agent7d Blog</title>
+<meta name="description" content="Winning a deal feels like the finish line. The status flips to Won, the rep moves on, and everyone assumes the number is in the system. It usually isn't.">
+<meta property="og:title" content="How to Find Every Deal in Your monday.com CRM Where the Deal Was Won But No Revenue Was Ever Recorded — and What That Gap Is Doing to Your Actual Numbers">
+<meta property="og:description" content="Winning a deal feels like the finish line. The status flips to Won, the rep moves on, and everyone assumes the number is in the system. It usually isn't.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <script>
@@ -87,46 +87,57 @@ footer a:hover{color:var(--primary)}
 </div>
 
 <div class="article-wrap">
-  <div class="breadcrumb"><a href="/">Home</a> → <a href="/blog/">Blog</a> → How to Find Every Deal in Your monday.com CRM Where the Deal Was Won But No Revenue Was Ever Recorded — and Why Your Closed Numbers Are Lying to You</div>
+  <div class="breadcrumb"><a href="/">Home</a> → <a href="/blog/">Blog</a> → How to Find Every Deal in Your monday.com CRM Where the Deal Was Won But No Revenue Was Ever Recorded — and What That Gap Is Doing to Your Actual Numbers</div>
   <div class="article-category">monday.com</div>
-  <h1 class="article-title">How to Find Every Deal in Your monday.com CRM Where the Deal Was Won But No Revenue Was Ever Recorded — and Why Your Closed Numbers Are Lying to You</h1>
+  <h1 class="article-title">How to Find Every Deal in Your monday.com CRM Where the Deal Was Won But No Revenue Was Ever Recorded — and What That Gap Is Doing to Your Actual Numbers</h1>
   <div class="article-meta">
-    <span>📅 November 9, 2026</span>
+    <span>📅 November 14, 2026</span>
     <span>✍️ agent7d Team</span>
     <span>⏱ 5 min read</span>
   </div>
   <div class="article-divider"></div>
   <div class="article-body">
     
-<p>Your monday.com dashboard says you closed 40 deals last quarter. Leadership is happy. Commission is calculated. The board gets a clean number.</p>
-<p>But what if a third of those wins have no revenue attached to them at all?</p>
-<p>This is one of the most common and least-discussed data problems in monday.com pipelines. Closed-won deals with blank deal values — ghost wins — are quietly inflating your conversion metrics while making your actual revenue figures meaningless. Here is how to find them, why they exist, and how to stop them from happening again.</p>
+<p>Winning a deal feels like the finish line. The status flips to Won, the rep moves on, and everyone assumes the number is in the system. It usually isn't.</p>
+<p>This is one of the most common and least-discussed data problems in monday.com CRMs: closed-won items sitting in your pipeline with no revenue value attached. Your deal count looks right. Your win rate looks fine. But your actual recorded revenue is quietly short — and nobody notices until the quarterly review lands wrong or finance asks where the numbers went.</p>
+<p>Here's how to find every one of those deals and fix them.</p>
 <p>---</p>
 <h2>The Problem</h2>
-<p>Moving a deal to "Won" in monday.com is a stage change. It is a dropdown selection, a column update, a click. It does not automatically confirm, verify, or record the revenue that was actually sold.</p>
-<p>This distinction matters enormously. Most sales teams treat a closed-won status as proof that revenue was captured. It is not. It is proof that someone changed a status column. The deal value, expected revenue, or contract amount field — whatever your team uses — is entirely separate. And it is left blank far more often than sales leaders realise.</p>
-<p>The result: your closed-won total is a count of status changes, not a sum of verified revenue. When those numbers diverge, every downstream metric built on them — win rate, average deal size, revenue forecast, commission calculations — becomes unreliable.</p>
+<p><strong>Why won deals end up with no revenue recorded in monday.com</strong></p>
+<p>The gap happens for three reasons, and they're all predictable.</p>
+<p><strong>First, reps close in conversation, not in the CRM.</strong> The verbal yes comes in, the rep updates the status to Won, and that's the last thing they touch. The deal value column — whatever you've named it — never gets filled. The momentum is gone, the next deal is open, and the number just never makes it in.</p>
+<p><strong>Second, your board doesn't enforce it.</strong> monday.com doesn't require a revenue value before a status change. There's no native validation that blocks a deal from moving to Won if the amount column is empty or zero. Unless you've built that gate yourself, it doesn't exist.</p>
+<p><strong>Third, deals sometimes get duplicated or migrated.</strong> A deal that started as a lead on one board gets re-created on a deals board mid-process, and the revenue value that existed on the original item never transfers over. The Won item on the pipeline board is a shell.</p>
+<p>None of this is a rep discipline problem. It's a system design problem. And the fix lives in the system.</p>
 <p>---</p>
 <h2>The Solution</h2>
-<p>You need to separate two distinct data points that your monday.com CRM currently conflates: <strong>status</strong> and <strong>value</strong>. A deal is only meaningfully closed when both are confirmed. Any item marked Won where the value column is blank or zero is not a closed deal — it is an incomplete record that needs immediate attention.</p>
-<p>The fix has two phases. First, audit what already exists. Find every ghost win in your current pipeline and either confirm the revenue or reclassify the record. Second, build a process that prevents new ghost wins from ever reaching closed-won status without a confirmed value.</p>
+<p><strong>How to filter your monday.com CRM to surface every closed-won item with a missing or zero revenue value</strong></p>
+<p>monday.com's filter logic handles this directly — you just need to stack two conditions.</p>
+<p>Go to your deals board. Open the filter panel. Set the first condition to your status column: <strong>is Won</strong> (or whatever your closed-won label is). Set the second condition to your revenue or deal value column: <strong>is empty</strong> OR <strong>is equal to 0</strong>.</p>
+<p>Apply both filters together. What you're left with is your problem list — every item your team considered closed but never actually recorded a number for.</p>
+<p>If you have deals spread across multiple boards or use Groups to separate pipeline stages, run the filter on each board where Won deals can land. Don't assume they're all in one place.</p>
 <p>---</p>
 <h2>Step by Step</h2>
-<p><strong>1. Identify your revenue column.</strong> In your monday.com CRM board, locate the column that holds deal value — commonly labelled Deal Value, Revenue, Contract Amount, or similar. If you have more than one, decide which is the authoritative figure.</p>
-<p><strong>2. Filter for Won deals.</strong> Use monday.com's filter functionality to show only items where your status column equals "Won" (or your equivalent closed-won label).</p>
-<p><strong>3. Add a secondary filter for blank or zero values.</strong> Filter that same view for items where your revenue column is blank or contains zero. This is your ghost wins list.</p>
-<p><strong>4. Export and triage.</strong> Export this filtered view to Excel or use monday.com's native export. For each record, determine: does real revenue exist for this deal and was simply never logged, or was this deal won at zero value (a legitimate free or pilot close)?</p>
-<p><strong>5. Update records with confirmed values.</strong> Go back to each item and enter the correct revenue. Add a note or activity log entry recording when and why the correction was made.</p>
-<p><strong>6. Create an automation to prevent recurrence.</strong> In monday.com's Automation Center, build a rule that sends a notification — or blocks the status change entirely — when someone attempts to move a deal to Won while the revenue column is empty. This creates a mandatory checkpoint at the moment of close.</p>
+<p><strong>Running a one-time cleanup and setting up a forward-looking automation</strong></p>
+<li>Run the filter described above and export or screenshot the full list before you touch anything.</li>
+<li>Assign ownership of the cleanup. Each rep should update their own items — they're more likely to know the actual value than anyone else.</li>
+<li>For deals where the rep is gone or the value genuinely can't be verified, mark the revenue field with a placeholder (many teams use $1 as a flag) and add a note column entry that flags it as unverified.</li>
+<li>Once the board is clean, go to <strong>Automations</strong> and create this rule: <em>When status changes to Won, and deal value is empty, notify [owner] and assigned manager.</em> monday.com's automation center supports conditional triggers — you can set "if column is empty" as the condition.</li>
+<li>Add a secondary automation: <em>When status changes to Won, send a reminder to the item owner after 24 hours if deal value is still empty.</em> This creates a soft deadline without blocking the rep's workflow.</li>
+<p>That combination — one-time cleanup plus a forward-looking automation — closes the gap in both directions.</p>
 <p>---</p>
 <h2>Real Example</h2>
-<p>A SaaS sales team runs this audit at the end of Q3. They have 40 deals marked Won. When they filter for items where the deal value field is blank or zero, they find 14 records — 35% of their closed pipeline — with no revenue logged at all.</p>
-<p>After investigation, eight of those deals have confirmed contract values that were simply never entered. The other six are free trials that converted and were marked Won prematurely before pricing was agreed.</p>
-<p>The corrected revenue total is 22% lower than the number that had been reported to the board. Their actual win rate, once ghost wins are reclassified, drops from 40% to 31%. Commission calculations need to be revisited. The forecast for Q4, which was extrapolated from Q3 performance, is now based on accurate data for the first time in months.</p>
-<p>Fourteen missing entries. Significant downstream damage.</p>
+<p><strong>What this looks like when it costs you</strong></p>
+<p>A marketing agency closed 14 deals in Q2. Their pipeline summary at the board level showed $340,000 in won revenue. When their ops lead ran the filter above before the finance handoff, she found 5 deals marked Won with zero or blank revenue values.</p>
+<p>Those 5 deals represented roughly $87,000 in actual closed business — deals the reps remembered, with contracts signed, but with nothing in the board. The number that went to finance was $253,000. The forecast for Q3 was built on that lower figure. Hiring decisions were made on it.</p>
+<p>The fix took two hours of cleanup. The cost of not fixing it was a quarter of planning built on incomplete data.</p>
+<p>This is not unusual. Five out of fourteen is high, but two or three missing values on a 20-deal quarter is completely normal for teams that haven't built the enforcement layer.</p>
 <p>---</p>
 <h2>How to Get Started</h2>
-<p>Before you build anything or change any processes, you need to know the actual state of your pipeline. How many ghost wins do you have? Where else is revenue leaking — stuck deals, unowned records, missing fields across other stages?</p>
+<p>If this post made you want to check your own board before reading another word — good instinct. The filter takes 90 seconds to set up. Run it now, before you read anything else.</p>
+<p>What you find will tell you a lot about your pipeline's data hygiene. If the list is empty, your team is unusually disciplined. If it's not, you now know where your numbers are leaking and exactly what to do about it.</p>
+<p>The minimum a closed-won deal should have before it leaves your pipeline: a recorded revenue value, a close date, a named owner, and a linked contact or company. If any of those are missing, the deal isn't done — it's just status-labeled.</p>
+<p>---</p>
 <p>Want to see what your own pipeline is losing? Run the free CRM Audit for monday.com — it scores your pipeline health and shows exactly where revenue is leaking. <a href="https://agent7d.com/tools/crm-audit/">Get your free audit</a></p>
   </div>
   <div class="cta-box">
