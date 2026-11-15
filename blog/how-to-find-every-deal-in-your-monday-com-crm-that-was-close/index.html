@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How to Find Every Deal in Your monday.com CRM That Was Closed Won in the Last 90 Days but Has No Recorded Revenue — and What It Means for Your Numbers — agent7d Blog</title>
+<meta name="description" content="A deal marked Closed Won with no revenue figure attached is not a win. It's a data hole dressed up as a success.">
+<meta property="og:title" content="How to Find Every Deal in Your monday.com CRM That Was Closed Won in the Last 90 Days but Has No Recorded Revenue — and What It Means for Your Numbers">
+<meta property="og:description" content="A deal marked Closed Won with no revenue figure attached is not a win. It's a data hole dressed up as a success.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script>
+  const t=localStorage.getItem('theme')||(window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');
+  document.documentElement.setAttribute('data-theme',t);
+</script>
+<style>
+:root{
+  --primary:#e11d48;--primary-hover:#be123c;--primary-light:#fef2f5;
+  --bg:#ffffff;--bg-2:#f9fafb;--bg-3:#f3f4f6;
+  --border:#e5e7eb;--text-1:#111827;--text-2:#374151;--text-3:#6b7280;--text-4:#9ca3af;
+  --font:'Plus Jakarta Sans',sans-serif;--t:0.15s ease;
+  --shadow-sm:0 1px 3px rgba(0,0,0,0.08);--shadow-md:0 4px 12px rgba(0,0,0,0.08);
+}
+[data-theme="dark"]{
+  --bg:#0a0a0a;--bg-2:#111111;--bg-3:#1a1a1a;--border:#262626;
+  --text-1:#f9fafb;--text-2:#e5e7eb;--text-3:#9ca3af;--text-4:#6b7280;
+  --primary:#ff2056;--primary-light:rgba(255,32,86,0.1);
+  --shadow-sm:0 1px 3px rgba(0,0,0,0.3);--shadow-md:0 4px 12px rgba(0,0,0,0.4);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font);background:var(--bg);color:var(--text-1);line-height:1.6;-webkit-font-smoothing:antialiased;transition:background var(--t),color var(--t)}
+a{color:var(--primary);text-decoration:none}
+a:hover{text-decoration:underline}
+
+.nav-wrap{width:100%;border-bottom:1px solid var(--border);background:var(--bg);position:sticky;top:0;z-index:100}
+.nav-inner{max-width:1100px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:64px}
+.logo{font-size:20px;font-weight:800;color:var(--text-1);text-decoration:none;letter-spacing:-0.02em}
+.logo span{color:var(--primary)}
+.nav-links{display:flex;align-items:center;gap:24px}
+.nav-links a{font-size:14px;font-weight:500;color:var(--text-3);text-decoration:none;transition:color var(--t)}
+.nav-links a:hover{color:var(--text-1)}
+.theme-btn{background:none;border:1px solid var(--border);border-radius:8px;padding:6px 10px;cursor:pointer;color:var(--text-3);font-size:16px;transition:all var(--t)}
+.theme-btn:hover{border-color:var(--primary);color:var(--primary)}
+
+.article-wrap{max-width:720px;margin:0 auto;padding:64px 24px 96px}
+.breadcrumb{font-size:13px;color:var(--text-4);margin-bottom:32px}
+.breadcrumb a{color:var(--text-3);text-decoration:none}
+.breadcrumb a:hover{color:var(--primary)}
+.article-category{font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--primary);margin-bottom:14px}
+.article-title{font-size:42px;font-weight:800;line-height:1.15;letter-spacing:-0.02em;color:var(--text-1);margin-bottom:16px}
+.article-meta{font-size:13px;color:var(--text-4);margin-bottom:40px;display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+.article-meta span{display:flex;align-items:center;gap:5px}
+.article-divider{height:1px;background:var(--border);margin-bottom:40px}
+
+.article-body{font-size:17px;line-height:1.8;color:var(--text-2)}
+.article-body h2{font-size:26px;font-weight:700;color:var(--text-1);margin:40px 0 16px;line-height:1.3}
+.article-body h3{font-size:20px;font-weight:600;color:var(--text-1);margin:28px 0 12px}
+.article-body p{margin-bottom:20px}
+.article-body ul,.article-body ol{padding-right:24px;margin-bottom:20px}
+.article-body li{margin-bottom:8px}
+.article-body strong{color:var(--text-1);font-weight:600}
+.article-body code{background:var(--bg-3);border:1px solid var(--border);border-radius:4px;padding:2px 6px;font-size:14px;font-family:monospace}
+.article-body blockquote{border-right:4px solid var(--primary);padding:12px 20px;margin:24px 0;background:var(--bg-2);border-radius:0 8px 8px 0;color:var(--text-2);font-style:italic}
+
+.cta-box{background:var(--primary-light);border:1px solid rgba(225,29,72,0.2);border-radius:14px;padding:32px;margin:48px 0;text-align:center}
+.cta-box h3{font-size:22px;font-weight:700;color:var(--text-1);margin-bottom:8px}
+.cta-box p{color:var(--text-3);margin-bottom:20px;font-size:15px}
+.btn-primary{display:inline-block;background:var(--primary);color:#fff;padding:12px 28px;border-radius:10px;font-size:14px;font-weight:600;text-decoration:none;transition:all var(--t);box-shadow:0 4px 20px rgba(225,29,72,0.25)}
+.btn-primary:hover{background:var(--primary-hover);transform:translateY(-1px);text-decoration:none}
+
+footer{border-top:1px solid var(--border);padding:32px 24px;text-align:center;color:var(--text-4);font-size:13px}
+footer a{color:var(--text-3)}
+footer a:hover{color:var(--primary)}
+</style>
+</head>
+<body>
+<div class="nav-wrap">
+  <div class="nav-inner">
+    <a href="/" class="logo">agent7<span>d</span></a>
+    <div class="nav-links">
+      <a href="/">Home</a>
+      <a href="/blog/">Blog</a>
+      <a href="/products/docuai/support/">DocuAI</a>
+      <button class="theme-btn" onclick="toggleTheme()" title="Toggle theme">☀️</button>
+    </div>
+  </div>
+</div>
+
+<div class="article-wrap">
+  <div class="breadcrumb"><a href="/">Home</a> → <a href="/blog/">Blog</a> → How to Find Every Deal in Your monday.com CRM That Was Closed Won in the Last 90 Days but Has No Recorded Revenue — and What It Means for Your Numbers</div>
+  <div class="article-category">monday.com</div>
+  <h1 class="article-title">How to Find Every Deal in Your monday.com CRM That Was Closed Won in the Last 90 Days but Has No Recorded Revenue — and What It Means for Your Numbers</h1>
+  <div class="article-meta">
+    <span>📅 November 15, 2026</span>
+    <span>✍️ agent7d Team</span>
+    <span>⏱ 5 min read</span>
+  </div>
+  <div class="article-divider"></div>
+  <div class="article-body">
+    
+<h2>The Problem</h2>
+<p>A deal marked Closed Won with no revenue figure attached is not a win. It's a data hole dressed up as a success.</p>
+<p>This happens more often than most sales managers realize. A rep updates the status to Closed Won — maybe right before a weekly meeting, maybe at the end of a quarter push — and the deal gets counted in your win rate. The board lights up green. Everyone feels good. But the revenue column is blank, and that blank is silently corrupting every report you run.</p>
+<p>The downstream damage is real: your forecasting is off because the deal didn't contribute to pipeline-to-revenue conversion. Your average deal size is wrong because the calculation is missing data points. Your board metrics look better than they are, which means leadership is making decisions on a false picture. And if you're using monday.com's dashboards or native revenue widgets, those widgets are pulling from the same incomplete data.</p>
+<p>The issue isn't that your team is lazy or dishonest. It's that monday.com, like any CRM, reflects the discipline of the people entering data. When closing a deal and entering the revenue amount are two separate steps — and only one of them feels urgent — the second step often doesn't happen.</p>
+<p>Ninety days is the right window to audit. Long enough to catch a meaningful pattern. Recent enough that you can still go back and get the actual numbers from invoices, contracts, or the reps themselves.</p>
+<h2>The Solution</h2>
+<p>You need a filtered view in monday.com that surfaces every item where the Status is Closed Won, the Close Date falls within the last 90 days, and the Revenue column (or whatever you've named your deal value column) is empty.</p>
+<p>Once you have that view, you have an actionable list — not a vague concern, but a specific set of deals you can fix this week.</p>
+<h2>Step by Step</h2>
+<p><strong>1. Open your CRM board</strong></p>
+<p>Navigate to the board where your deals live. This is typically your Deals board or Sales Pipeline board.</p>
+<p><strong>2. Create a new view</strong></p>
+<p>Click the Views menu at the top left and add a new Table view. Name it something clear: "Closed Won – No Revenue."</p>
+<p><strong>3. Apply filters</strong></p>
+<p>Open the Filter panel and add three conditions:</p>
+<ul><li>Status is Closed Won</li>
+<li>Close Date is within the last 90 days</li>
+<li>Revenue (or your deal value column) is empty</li>
+<p></ul></p>
+<p>If your board uses a Number column for revenue, "is empty" filters for blank cells. If you use a Formula column, you may need to filter for zero as well as empty, since some formulas default to 0.</p>
+<p><strong>4. Save the view</strong></p>
+<p>Lock the filters so they persist. This becomes a recurring hygiene check, not a one-time fix.</p>
+<p><strong>5. Work the list</strong></p>
+<p>Export it or assign the records directly. Each deal needs either a revenue figure added or an explanation attached — maybe it was a free pilot, a partnership swap, or a data entry error that should have been marked differently.</p>
+<h2>Real Example</h2>
+<p>A B2B SaaS company using monday.com as their CRM ran this exact filter and found 14 deals marked Closed Won in the previous quarter with no revenue recorded. When their ops lead dug in, the breakdown was: six deals had revenue in a connected contract tool but no one had synced it back to monday.com, four were trial conversions where the rep marked Won prematurely, three were genuine renewals where the amount was simply never logged, and one deal had been closed by a rep who had since left the company.</p>
+<p>That's one quarter, one board, and a 20% error rate in their won deal data. Their average deal size for the quarter was understated by roughly 30% because the calculation was averaging across all won deals including the zeros.</p>
+<p>The fix took one afternoon. The insight — that they needed a mandatory Revenue field before a deal could move to Closed Won — took five minutes to implement using monday.com's column permissions and required fields.</p>
+<h2>How to Get Started</h2>
+<p>If you haven't done this audit before, start with the 90-day window described above. Build the view, run the numbers, and assign ownership for each gap. Then make it a standing weekly check on your CRM hygiene list.</p>
+<p>If you want to go further — looking at unowned records, stalled deals past their expected close date, missing contact information, and other revenue leaks across your full pipeline — that's where a systematic audit pays off faster than manual work.</p>
+<p>Want to see what your own pipeline is losing? Run the free CRM Audit for monday.com — it scores your pipeline health and shows exactly where revenue is leaking. <a href="https://agent7d.com/tools/crm-audit/">Get your free audit</a></p>
+  </div>
+  <div class="cta-box">
+    <h3>Generate documents from monday.com in seconds</h3>
+    <p>DocuAI turns your item data into professional proposals, contracts, and reports — automatically.</p>
+    <a href="https://agent7d.com/products/docuai/" class="btn-primary">Try DocuAI Free →</a>
+  </div>
+</div>
+
+<footer>
+  <p>© 2026 agent7d · <a href="/products/docuai/privacy/">Privacy</a> · <a href="/products/docuai/terms/">Terms</a> · <a href="/blog/">Blog</a></p>
+</footer>
+<script>
+function toggleTheme(){
+  const cur=document.documentElement.getAttribute('data-theme');
+  const next=cur==='dark'?'light':'dark';
+  document.documentElement.setAttribute('data-theme',next);
+  localStorage.setItem('theme',next);
+  document.querySelector('.theme-btn').textContent=next==='dark'?'🌙':'☀️';
+}
+document.querySelector('.theme-btn').textContent=
+  document.documentElement.getAttribute('data-theme')==='dark'?'🌙':'☀️';
+</script>
+</body>
+</html>
