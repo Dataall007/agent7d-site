@@ -1,5 +1,18 @@
 [
   {
+    "slug": "how-to-auto-generate-a-service-level-agreement-from-your-mon",
+    "title": "How to Auto-Generate a Service Level Agreement from Your monday.com Project Board",
+    "excerpt": "Your monday.com board already knows everything an SLA needs to say. It knows the client name, the scope, the response time commitments, who owns what, and when ",
+    "category": "monday.com",
+    "tags": [
+      "monday"
+    ],
+    "product": "docuai",
+    "date": "2026-11-16",
+    "dateStr": "November 16, 2026",
+    "readTime": "5 min read"
+  },
+  {
     "slug": "how-to-find-every-deal-in-your-monday-com-crm-that-was-close",
     "title": "How to Find Every Deal in Your monday.com CRM That Was Closed Won in the Last 90 Days but Has No Recorded Revenue — and What It Means for Your Numbers",
     "excerpt": "A deal marked Closed Won with no revenue figure attached is not a win. It's a data hole dressed up as a success.",
