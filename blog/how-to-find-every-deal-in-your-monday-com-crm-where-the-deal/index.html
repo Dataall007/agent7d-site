@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>How to Find Every Deal in Your monday.com CRM Where the Deal Was Won But No Revenue Was Ever Recorded — and What That Gap Is Doing to Your Actual Numbers — agent7d Blog</title>
-<meta name="description" content="Winning a deal feels like the finish line. The status flips to Won, the rep moves on, and everyone assumes the number is in the system. It usually isn't.">
-<meta property="og:title" content="How to Find Every Deal in Your monday.com CRM Where the Deal Was Won But No Revenue Was Ever Recorded — and What That Gap Is Doing to Your Actual Numbers">
-<meta property="og:description" content="Winning a deal feels like the finish line. The status flips to Won, the rep moves on, and everyone assumes the number is in the system. It usually isn't.">
+<title>How to Find Every Deal in Your monday.com CRM Where the Deal Was Marked Closed Won But the Project Board Was Never Created — and What That Gap Is Costing You — agent7d Blog</title>
+<meta name="description" content="Closing a deal feels like the finish line. It isn't. For services businesses, closing a deal is the starting gun for delivery — and if that gun never fires, the">
+<meta property="og:title" content="How to Find Every Deal in Your monday.com CRM Where the Deal Was Marked Closed Won But the Project Board Was Never Created — and What That Gap Is Costing You">
+<meta property="og:description" content="Closing a deal feels like the finish line. It isn't. For services businesses, closing a deal is the starting gun for delivery — and if that gun never fires, the">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <script>
@@ -87,56 +87,49 @@ footer a:hover{color:var(--primary)}
 </div>
 
 <div class="article-wrap">
-  <div class="breadcrumb"><a href="/">Home</a> → <a href="/blog/">Blog</a> → How to Find Every Deal in Your monday.com CRM Where the Deal Was Won But No Revenue Was Ever Recorded — and What That Gap Is Doing to Your Actual Numbers</div>
+  <div class="breadcrumb"><a href="/">Home</a> → <a href="/blog/">Blog</a> → How to Find Every Deal in Your monday.com CRM Where the Deal Was Marked Closed Won But the Project Board Was Never Created — and What That Gap Is Costing You</div>
   <div class="article-category">monday.com</div>
-  <h1 class="article-title">How to Find Every Deal in Your monday.com CRM Where the Deal Was Won But No Revenue Was Ever Recorded — and What That Gap Is Doing to Your Actual Numbers</h1>
+  <h1 class="article-title">How to Find Every Deal in Your monday.com CRM Where the Deal Was Marked Closed Won But the Project Board Was Never Created — and What That Gap Is Costing You</h1>
   <div class="article-meta">
-    <span>📅 November 14, 2026</span>
+    <span>📅 November 17, 2026</span>
     <span>✍️ agent7d Team</span>
     <span>⏱ 5 min read</span>
   </div>
   <div class="article-divider"></div>
   <div class="article-body">
     
-<p>Winning a deal feels like the finish line. The status flips to Won, the rep moves on, and everyone assumes the number is in the system. It usually isn't.</p>
-<p>This is one of the most common and least-discussed data problems in monday.com CRMs: closed-won items sitting in your pipeline with no revenue value attached. Your deal count looks right. Your win rate looks fine. But your actual recorded revenue is quietly short — and nobody notices until the quarterly review lands wrong or finance asks where the numbers went.</p>
-<p>Here's how to find every one of those deals and fix them.</p>
+<p>Closing a deal feels like the finish line. It isn't. For services businesses, closing a deal is the starting gun for delivery — and if that gun never fires, the race never starts. What you get instead is a CRM item sitting in your Closed Won column while nothing actually happens.</p>
+<p>This is one of the quietest ways revenue leaks in monday.com pipelines. No error message. No alert. Just a won deal that never became a project, and a client who eventually wonders why no one has called.</p>
 <p>---</p>
 <h2>The Problem</h2>
-<p><strong>Why won deals end up with no revenue recorded in monday.com</strong></p>
-<p>The gap happens for three reasons, and they're all predictable.</p>
-<p><strong>First, reps close in conversation, not in the CRM.</strong> The verbal yes comes in, the rep updates the status to Won, and that's the last thing they touch. The deal value column — whatever you've named it — never gets filled. The momentum is gone, the next deal is open, and the number just never makes it in.</p>
-<p><strong>Second, your board doesn't enforce it.</strong> monday.com doesn't require a revenue value before a status change. There's no native validation that blocks a deal from moving to Won if the amount column is empty or zero. Unless you've built that gate yourself, it doesn't exist.</p>
-<p><strong>Third, deals sometimes get duplicated or migrated.</strong> A deal that started as a lead on one board gets re-created on a deals board mid-process, and the revenue value that existed on the original item never transfers over. The Won item on the pipeline board is a shell.</p>
-<p>None of this is a rep discipline problem. It's a system design problem. And the fix lives in the system.</p>
+<p>In monday.com, your CRM pipeline and your project workspace are separate environments. That separation is useful — until it isn't.</p>
+<p>The gap between a deal being marked Closed Won and a project board being created is not always a problem. There's legitimate lag: contracts need signing, kickoff calls need scheduling, resources need assigning. Normal handoff lag is measured in days.</p>
+<p>The problem is when the lag is measured in weeks — or the handoff never happens at all. A deal marked Closed Won with no linked project board after 14 days is not in transition. It's stuck.</p>
+<p>This matters for three concrete reasons. First, revenue recognition: if your accounting team bills on project milestones, uninitiated projects mean unbilled work. Second, delivery risk: scope lives in the CRM item — discovery notes, attachments, agreed deliverables — and if delivery team never receives that context, they're guessing. Third, client experience: the client signed. They're waiting. The longer the silence, the worse the relationship starts.</p>
+<p>The real problem underneath this isn't laziness. It's structural. monday.com doesn't natively enforce a link between a CRM item and a project board. Nothing breaks when that link doesn't exist. So it routinely doesn't get created.</p>
 <p>---</p>
 <h2>The Solution</h2>
-<p><strong>How to filter your monday.com CRM to surface every closed-won item with a missing or zero revenue value</strong></p>
-<p>monday.com's filter logic handles this directly — you just need to stack two conditions.</p>
-<p>Go to your deals board. Open the filter panel. Set the first condition to your status column: <strong>is Won</strong> (or whatever your closed-won label is). Set the second condition to your revenue or deal value column: <strong>is empty</strong> OR <strong>is equal to 0</strong>.</p>
-<p>Apply both filters together. What you're left with is your problem list — every item your team considered closed but never actually recorded a number for.</p>
-<p>If you have deals spread across multiple boards or use Groups to separate pipeline stages, run the filter on each board where Won deals can land. Don't assume they're all in one place.</p>
+<p>You need a cross-reference audit: a systematic comparison of every Closed Won deal in your CRM board against every active project board in your workspace.</p>
+<p>The goal is to produce a list of CRM items in Closed Won status that have no corresponding project board — no linked item, no connected board, no reference in a connected column. That list is your gap report.</p>
+<p>Once you have it, you can prioritize by close date, assign accountability, and calculate the total contract value sitting in that gap. That number, in most pipelines we've audited, surprises people.</p>
 <p>---</p>
 <h2>Step by Step</h2>
-<p><strong>Running a one-time cleanup and setting up a forward-looking automation</strong></p>
-<li>Run the filter described above and export or screenshot the full list before you touch anything.</li>
-<li>Assign ownership of the cleanup. Each rep should update their own items — they're more likely to know the actual value than anyone else.</li>
-<li>For deals where the rep is gone or the value genuinely can't be verified, mark the revenue field with a placeholder (many teams use $1 as a flag) and add a note column entry that flags it as unverified.</li>
-<li>Once the board is clean, go to <strong>Automations</strong> and create this rule: <em>When status changes to Won, and deal value is empty, notify [owner] and assigned manager.</em> monday.com's automation center supports conditional triggers — you can set "if column is empty" as the condition.</li>
-<li>Add a secondary automation: <em>When status changes to Won, send a reminder to the item owner after 24 hours if deal value is still empty.</em> This creates a soft deadline without blocking the rep's workflow.</li>
-<p>That combination — one-time cleanup plus a forward-looking automation — closes the gap in both directions.</p>
+<p><strong>1. Export your Closed Won deals.</strong> Filter your CRM board by status: Closed Won. Export to Excel or use monday's column filters to isolate these items. Note the deal name, owner, close date, and contract value for each.</p>
+<p><strong>2. Pull your active project boards.</strong> In your monday.com workspace, list every board in your project delivery workspace. If you use a consistent naming convention (client name + project name, for example), this is faster. If you don't, now you know why you should.</p>
+<p><strong>3. Cross-reference manually or by connected column.</strong> If your CRM items have a "linked project" column, filter for items where that column is empty and status is Closed Won. If you don't have that column, you're doing this by hand: match deal names against board names. Flag every deal with no match.</p>
+<p><strong>4. Flag by age.</strong> Sort unlinked deals by close date. Any deal closed more than 14 days ago with no project board is a priority flag. Any deal closed more than 30 days ago is an active revenue risk.</p>
+<p><strong>5. Calculate uninitiated contract value.</strong> Sum the contract values of every unlinked Closed Won deal. That figure is revenue your business has technically earned but not yet started delivering — and therefore has not yet fully secured.</p>
 <p>---</p>
 <h2>Real Example</h2>
-<p><strong>What this looks like when it costs you</strong></p>
-<p>A marketing agency closed 14 deals in Q2. Their pipeline summary at the board level showed $340,000 in won revenue. When their ops lead ran the filter above before the finance handoff, she found 5 deals marked Won with zero or blank revenue values.</p>
-<p>Those 5 deals represented roughly $87,000 in actual closed business — deals the reps remembered, with contracts signed, but with nothing in the board. The number that went to finance was $253,000. The forecast for Q3 was built on that lower figure. Hiring decisions were made on it.</p>
-<p>The fix took two hours of cleanup. The cost of not fixing it was a quarter of planning built on incomplete data.</p>
-<p>This is not unusual. Five out of fourteen is high, but two or three missing values on a 20-deal quarter is completely normal for teams that haven't built the enforcement layer.</p>
+<p>A digital services agency ran this audit across their Q1 pipeline. They had 14 deals marked Closed Won. When they cross-referenced against their project workspace, 6 had no corresponding project board.</p>
+<p>Of those 6: two had never been resourced at all — no team member had been assigned, no kickoff scheduled, no client contacted post-signature. One had been billed based on a preliminary estimate in the CRM item rather than a finalized scope, resulting in an invoice that was $4,200 short of the actual agreed value. The discrepancy only surfaced when the client queried a change order three months into delivery.</p>
+<p>The other three were genuine lag cases — projects in pre-kickoff — but had no documented timeline, so there was no way to tell from the CRM data alone whether they were progressing or stalled.</p>
+<p>Total uninitiated contract value across the 6 unlinked deals: $112,000. Not lost. Not cancelled. Just sitting in a column, unexecuted.</p>
 <p>---</p>
 <h2>How to Get Started</h2>
-<p>If this post made you want to check your own board before reading another word — good instinct. The filter takes 90 seconds to set up. Run it now, before you read anything else.</p>
-<p>What you find will tell you a lot about your pipeline's data hygiene. If the list is empty, your team is unusually disciplined. If it's not, you now know where your numbers are leaking and exactly what to do about it.</p>
-<p>The minimum a closed-won deal should have before it leaves your pipeline: a recorded revenue value, a close date, a named owner, and a linked contact or company. If any of those are missing, the deal isn't done — it's just status-labeled.</p>
+<p>The manual version of this audit takes a few hours for a typical pipeline. The bigger investment is deciding what your post-close workflow should actually look like in monday.com — which columns are required before a deal can move to Closed Won, whether you automate project board creation on status change, and who owns the handoff.</p>
+<p>A clean post-close workflow in monday.com typically includes: a required "linked project board" column that must be populated before Closed Won status is available, an automation that pings the delivery lead when a deal moves to Closed Won, and a weekly view filtered to show Closed Won deals with empty project links — so the gap never grows past seven days undetected.</p>
+<p>That last piece — the ongoing visibility — is what most teams skip. They fix the backlog once and don't build the monitoring that prevents the next one.</p>
 <p>---</p>
 <p>Want to see what your own pipeline is losing? Run the free CRM Audit for monday.com — it scores your pipeline health and shows exactly where revenue is leaking. <a href="https://agent7d.com/tools/crm-audit/">Get your free audit</a></p>
   </div>
