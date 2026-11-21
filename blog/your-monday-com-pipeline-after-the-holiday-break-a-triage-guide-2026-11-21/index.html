@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your monday.com Pipeline After the Holiday Break: A Triage Guide — agent7d Blog</title>
+<meta name="description" content="Two weeks off. You come back, open monday.com, and the pipeline looks… fine. Same deals. Same stages. Same numbers. That's the problem — it looks fine because n">
+<meta property="og:title" content="Your monday.com Pipeline After the Holiday Break: A Triage Guide">
+<meta property="og:description" content="Two weeks off. You come back, open monday.com, and the pipeline looks… fine. Same deals. Same stages. Same numbers. That's the problem — it looks fine because n">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script>
+  const t=localStorage.getItem('theme')||(window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');
+  document.documentElement.setAttribute('data-theme',t);
+</script>
+<style>
+:root{
+  --primary:#e11d48;--primary-hover:#be123c;--primary-light:#fef2f5;
+  --bg:#ffffff;--bg-2:#f9fafb;--bg-3:#f3f4f6;
+  --border:#e5e7eb;--text-1:#111827;--text-2:#374151;--text-3:#6b7280;--text-4:#9ca3af;
+  --font:'Plus Jakarta Sans',sans-serif;--t:0.15s ease;
+  --shadow-sm:0 1px 3px rgba(0,0,0,0.08);--shadow-md:0 4px 12px rgba(0,0,0,0.08);
+}
+[data-theme="dark"]{
+  --bg:#0a0a0a;--bg-2:#111111;--bg-3:#1a1a1a;--border:#262626;
+  --text-1:#f9fafb;--text-2:#e5e7eb;--text-3:#9ca3af;--text-4:#6b7280;
+  --primary:#ff2056;--primary-light:rgba(255,32,86,0.1);
+  --shadow-sm:0 1px 3px rgba(0,0,0,0.3);--shadow-md:0 4px 12px rgba(0,0,0,0.4);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font);background:var(--bg);color:var(--text-1);line-height:1.6;-webkit-font-smoothing:antialiased;transition:background var(--t),color var(--t)}
+a{color:var(--primary);text-decoration:none}
+a:hover{text-decoration:underline}
+
+.nav-wrap{width:100%;border-bottom:1px solid var(--border);background:var(--bg);position:sticky;top:0;z-index:100}
+.nav-inner{max-width:1100px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:64px}
+.logo{font-size:20px;font-weight:800;color:var(--text-1);text-decoration:none;letter-spacing:-0.02em}
+.logo span{color:var(--primary)}
+.nav-links{display:flex;align-items:center;gap:24px}
+.nav-links a{font-size:14px;font-weight:500;color:var(--text-3);text-decoration:none;transition:color var(--t)}
+.nav-links a:hover{color:var(--text-1)}
+.theme-btn{background:none;border:1px solid var(--border);border-radius:8px;padding:6px 10px;cursor:pointer;color:var(--text-3);font-size:16px;transition:all var(--t)}
+.theme-btn:hover{border-color:var(--primary);color:var(--primary)}
+
+.article-wrap{max-width:720px;margin:0 auto;padding:64px 24px 96px}
+.breadcrumb{font-size:13px;color:var(--text-4);margin-bottom:32px}
+.breadcrumb a{color:var(--text-3);text-decoration:none}
+.breadcrumb a:hover{color:var(--primary)}
+.article-category{font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--primary);margin-bottom:14px}
+.article-title{font-size:42px;font-weight:800;line-height:1.15;letter-spacing:-0.02em;color:var(--text-1);margin-bottom:16px}
+.article-meta{font-size:13px;color:var(--text-4);margin-bottom:40px;display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+.article-meta span{display:flex;align-items:center;gap:5px}
+.article-divider{height:1px;background:var(--border);margin-bottom:40px}
+
+.article-body{font-size:17px;line-height:1.8;color:var(--text-2)}
+.article-body h2{font-size:26px;font-weight:700;color:var(--text-1);margin:40px 0 16px;line-height:1.3}
+.article-body h3{font-size:20px;font-weight:600;color:var(--text-1);margin:28px 0 12px}
+.article-body p{margin-bottom:20px}
+.article-body ul,.article-body ol{padding-right:24px;margin-bottom:20px}
+.article-body li{margin-bottom:8px}
+.article-body strong{color:var(--text-1);font-weight:600}
+.article-body code{background:var(--bg-3);border:1px solid var(--border);border-radius:4px;padding:2px 6px;font-size:14px;font-family:monospace}
+.article-body blockquote{border-right:4px solid var(--primary);padding:12px 20px;margin:24px 0;background:var(--bg-2);border-radius:0 8px 8px 0;color:var(--text-2);font-style:italic}
+
+.cta-box{background:var(--primary-light);border:1px solid rgba(225,29,72,0.2);border-radius:14px;padding:32px;margin:48px 0;text-align:center}
+.cta-box h3{font-size:22px;font-weight:700;color:var(--text-1);margin-bottom:8px}
+.cta-box p{color:var(--text-3);margin-bottom:20px;font-size:15px}
+.btn-primary{display:inline-block;background:var(--primary);color:#fff;padding:12px 28px;border-radius:10px;font-size:14px;font-weight:600;text-decoration:none;transition:all var(--t);box-shadow:0 4px 20px rgba(225,29,72,0.25)}
+.btn-primary:hover{background:var(--primary-hover);transform:translateY(-1px);text-decoration:none}
+
+footer{border-top:1px solid var(--border);padding:32px 24px;text-align:center;color:var(--text-4);font-size:13px}
+footer a{color:var(--text-3)}
+footer a:hover{color:var(--primary)}
+</style>
+</head>
+<body>
+<div class="nav-wrap">
+  <div class="nav-inner">
+    <a href="/" class="logo">agent7<span>d</span></a>
+    <div class="nav-links">
+      <a href="/">Home</a>
+      <a href="/blog/">Blog</a>
+      <a href="/products/docuai/support/">DocuAI</a>
+      <button class="theme-btn" onclick="toggleTheme()" title="Toggle theme">☀️</button>
+    </div>
+  </div>
+</div>
+
+<div class="article-wrap">
+  <div class="breadcrumb"><a href="/">Home</a> → <a href="/blog/">Blog</a> → Your monday.com Pipeline After the Holiday Break: A Triage Guide</div>
+  <div class="article-category">monday.com</div>
+  <h1 class="article-title">Your monday.com Pipeline After the Holiday Break: A Triage Guide</h1>
+  <div class="article-meta">
+    <span>📅 November 21, 2026</span>
+    <span>✍️ agent7d Team</span>
+    <span>⏱ 5 min read</span>
+  </div>
+  <div class="article-divider"></div>
+  <div class="article-body">
+    
+<p>Two weeks off. You come back, open monday.com, and the pipeline looks… fine. Same deals. Same stages. Same numbers. That's the problem — it looks fine because nobody updated anything while you were gone.</p>
+<p>Underneath that surface calm, close dates have lapsed, a rep who left hasn't been replaced as owner on three deals, and several prospects have quietly moved on without telling you. The pipeline isn't a snapshot of reality anymore. It's a fossil record.</p>
+<p>Here's how to triage it fast.</p>
+<p>---</p>
+<h2>The Problem</h2>
+<p>Pipelines don't degrade because people are careless. They degrade because CRM hygiene requires a continuous input of small, deliberate actions — logging a call, nudging a close date, updating a stage — and those actions stop completely the moment your team is out of office.</p>
+<p>Two weeks is long enough for real things to happen on the buyer's side: budgets get frozen, decisions get made without you, contacts change roles. None of that shows up in monday.com automatically. So when you return, what looks like a healthy pipeline is actually a mix of live deals, dead deals, and deals that are somewhere in between — and you can't tell which is which at a glance.</p>
+<p>The danger isn't the deals you know are dead. It's the ones you <em>think</em> are still alive.</p>
+<p>---</p>
+<h2>The Solution</h2>
+<p>The fix isn't a team meeting or a manual scroll through every item. It's a systematic pass against four specific signals that reliably indicate pipeline decay: lapsed close dates, missing owners, frozen stages, and deals with no logged activity.</p>
+<p>If you catch all four in one sweep, you can triage an entire pipeline in under 30 minutes and walk into the first week back with a prioritised action list instead of a vague sense of dread.</p>
+<p>The agent7d CRM Audit Tool does exactly this sweep automatically. Connect it to your monday.com board, and it surfaces deals that have gone quiet, flags missing owners, identifies fields left blank, and estimates the revenue sitting in stalled deals — in a single pass. The free report gives you enough to act on immediately.</p>
+<p>---</p>
+<h2>Step by Step</h2>
+<p>Work through this sequence on your first morning back.</p>
+<p><strong>1. Run the audit before you open a single deal.</strong> Don't let your eye get drawn to the big-logo account first. Run the CRM Audit Tool on your pipeline board and read the output before you touch anything. You want the full picture before you start making judgment calls.</p>
+<p><strong>2. Pull every deal with a close date in the past.</strong> These are your most urgent calls. Each one needs either a realistic new date or a closed-lost status. Leaving them open distorts your forecast immediately.</p>
+<p><strong>3. Identify deals with no owner or a former employee as owner.</strong> These are orphaned. No one is watching them. Assign ownership today — even temporarily — before anything else moves.</p>
+<p><strong>4. Flag deals with no activity in 30-plus days.</strong> Sort by last activity. Anything beyond 30 days with no note, no email log, no stage change needs a human check: is the contact still there? Is the opportunity still real?</p>
+<p><strong>5. Check for blank required fields.</strong> Close date, deal value, stage — if these are empty, the deal isn't manageable. Fill them in or close the deal out.</p>
+<p>---</p>
+<h2>Real Example</h2>
+<p>A sales manager returns after a two-week holiday break. She runs the audit and finds this:</p>
+<p>Six deals still showing a close date of December 31st — none of them closed. Three deals with no owner, because a rep left in late December and nobody reassigned his accounts. Four deals with no activity logged since before Christmas.</p>
+<p>That's 13 deals requiring immediate attention, representing a significant chunk of Q1 pipeline. Without the audit, she might not have caught all of this until the weekly pipeline review — by which point a prospect or two would have already moved on.</p>
+<p>With the audit output in hand, she spends day one on close-date corrections and ownership reassignments. Day two, she works through the no-activity deals with her remaining reps. By end of week two, the pipeline reflects reality again.</p>
+<p>---</p>
+<h2>How to Get Started</h2>
+<p>Do this before anything else on your first morning back. Open your monday.com pipeline, run the audit, and read the results before you check your email. The audit output becomes your to-do list. Work the highest-risk items first — lapsed dates and orphaned deals — then move through the no-activity list in order of deal size.</p>
+<p>If you want to do this manually, the sequence above is everything you need. The audit just compresses the discovery phase from an hour of clicking to a few minutes.</p>
+<p>---</p>
+<p>Want to know what your own pipeline looks like under the hood? Run the free CRM Audit for monday.com — it scores your pipeline health, estimates the revenue sitting in stalled deals, and lists your first quick wins. <a href="https://agent7d.com/tools/crm-audit/">Get your free audit</a></p>
+  </div>
+  <div class="cta-box">
+    <h3>Generate documents from monday.com in seconds</h3>
+    <p>DocuAI turns your item data into professional proposals, contracts, and reports — automatically.</p>
+    <a href="https://agent7d.com/products/docuai/" class="btn-primary">Try DocuAI Free →</a>
+  </div>
+</div>
+
+<footer>
+  <p>© 2026 agent7d · <a href="/products/docuai/privacy/">Privacy</a> · <a href="/products/docuai/terms/">Terms</a> · <a href="/blog/">Blog</a></p>
+</footer>
+<script>
+function toggleTheme(){
+  const cur=document.documentElement.getAttribute('data-theme');
+  const next=cur==='dark'?'light':'dark';
+  document.documentElement.setAttribute('data-theme',next);
+  localStorage.setItem('theme',next);
+  document.querySelector('.theme-btn').textContent=next==='dark'?'🌙':'☀️';
+}
+document.querySelector('.theme-btn').textContent=
+  document.documentElement.getAttribute('data-theme')==='dark'?'🌙':'☀️';
+</script>
+</body>
+</html>
